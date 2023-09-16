@@ -26,8 +26,20 @@ struct ReceiptAssignor: View {
 
     var body: some View {
         List {
+            Section {
+                HStack(alignment: .top) {
+                    Image(systemName: "info.circle.fill")
+                        .symbolRenderingMode(.multicolor)
+                        .font(.title)
+                    Text("Receipt.Assign.Description")
+                        .font(.body)
+                        .foregroundStyle(.secondary)
+                }
+                .listRowInsets(EdgeInsets())
+                .listRowBackground(Color.clear)
+            }
             ForEach($receiptItemsEditable) { $itemEditable in
-                ReceiptItemAssignableRow(name: itemEditable.name, price: itemEditable.price,
+                ReceiptItemAssignableSection(name: itemEditable.name, price: itemEditable.price,
                                          personWhoOrdered: $itemEditable.person)
             }
         }

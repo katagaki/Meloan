@@ -33,7 +33,7 @@
 		E44B68592AB5C2FB00B243B0 /* ReceiptItemEditableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68582AB5C2FB00B243B0 /* ReceiptItemEditableRow.swift */; };
 		E44B685B2AB5D7EA00B243B0 /* ReceiptItemEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B685A2AB5D7EA00B243B0 /* ReceiptItemEditable.swift */; };
 		E44B685F2AB5F7A000B243B0 /* ReceiptAssignor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B685E2AB5F7A000B243B0 /* ReceiptAssignor.swift */; };
-		E44B68612AB5FA0F00B243B0 /* ReceiptItemAssignableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68602AB5FA0F00B243B0 /* ReceiptItemAssignableRow.swift */; };
+		E44B68612AB5FA0F00B243B0 /* ReceiptItemAssignableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68602AB5FA0F00B243B0 /* ReceiptItemAssignableSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +64,7 @@
 		E44B68582AB5C2FB00B243B0 /* ReceiptItemEditableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemEditableRow.swift; sourceTree = "<group>"; };
 		E44B685A2AB5D7EA00B243B0 /* ReceiptItemEditable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemEditable.swift; sourceTree = "<group>"; };
 		E44B685E2AB5F7A000B243B0 /* ReceiptAssignor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptAssignor.swift; sourceTree = "<group>"; };
-		E44B68602AB5FA0F00B243B0 /* ReceiptItemAssignableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemAssignableRow.swift; sourceTree = "<group>"; };
+		E44B68602AB5FA0F00B243B0 /* ReceiptItemAssignableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemAssignableSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +173,7 @@
 				E44B68532AB5BA4A00B243B0 /* ReceiptCreator.swift */,
 				E44B68582AB5C2FB00B243B0 /* ReceiptItemEditableRow.swift */,
 				E44B685E2AB5F7A000B243B0 /* ReceiptAssignor.swift */,
-				E44B68602AB5FA0F00B243B0 /* ReceiptItemAssignableRow.swift */,
+				E44B68602AB5FA0F00B243B0 /* ReceiptItemAssignableSection.swift */,
 			);
 			path = Receipts;
 			sourceTree = "<group>";
@@ -307,7 +307,7 @@
 				E44B685B2AB5D7EA00B243B0 /* ReceiptItemEditable.swift in Sources */,
 				E44B68302AB5675E00B243B0 /* MainTabView.swift in Sources */,
 				E44B68372AB5700300B243B0 /* NavigationManager.swift in Sources */,
-				E44B68612AB5FA0F00B243B0 /* ReceiptItemAssignableRow.swift in Sources */,
+				E44B68612AB5FA0F00B243B0 /* ReceiptItemAssignableSection.swift in Sources */,
 				E44B68432AB579D800B243B0 /* MoreView.swift in Sources */,
 				E44B682C2AB5671600B243B0 /* TaxItem.swift in Sources */,
 				E44B683C2AB5704300B243B0 /* TabType.swift in Sources */,

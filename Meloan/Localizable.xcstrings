@@ -52,6 +52,23 @@
         }
       }
     },
+    "Receipt.Assign.Description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assign each receipt item to the person who purchased/ordered the item."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "各商品を購入または注文した人に割り当ててください。"
+          }
+        }
+      }
+    },
     "Receipt.Assign.Title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -155,7 +172,6 @@
       }
     },
     "Receipt.OrderedBy" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -382,7 +398,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "次へ"
+            "value" : "次"
           }
         }
       }
@@ -405,7 +421,6 @@
       }
     },
     "Shared.Shared" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
