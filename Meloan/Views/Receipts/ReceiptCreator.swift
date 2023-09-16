@@ -12,14 +12,10 @@ import SwiftUI
 struct ReceiptCreator: View {
 
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var navigationManager: NavigationManager
     @Query private var people: [Person]
 
-    @Binding var name: String
-    @Binding var receiptItems: [ReceiptItem]
-    @Binding var discountItems: [DiscountItem]
-    @Binding var taxItems: [TaxItem]
-    @Binding var personWhoPaid: Person?
+    @State var name: String = ""
+    @State var personWhoPaid: Person?
 
     @State var receiptItemsEditable: [ReceiptItemEditable] = []
     @State var discountItemsEditable: [ReceiptItemEditable] = []
@@ -27,7 +23,7 @@ struct ReceiptCreator: View {
     @State var onCreate: () -> Void
 
     var body: some View {
-        NavigationStack(path: $navigationManager.receiptCreatorTabPath) {
+        NavigationStack {
             List {
                 Section {
                     TextField("Receipt.Name", text: $name)
@@ -107,21 +103,6 @@ struct ReceiptCreator: View {
                     }
                 }
             }
-            .navigationDestination(for: ViewPath.self) { viewPath in
-                switch viewPath {
-                case .receiptAssignor:
-                    ReceiptAssignor(name: $name,
-                                    receiptItems: $receiptItems,
-                                    discountItems: $discountItems,
-                                    taxItems: $taxItems,
-                                    personWhoPaid: $personWhoPaid,
-                                    receiptItemsEditable: receiptItemsEditable,
-                                    discountItemsEditable: discountItemsEditable,
-                                    taxItemsEditable: taxItemsEditable,
-                                    onCreate: onCreate)
-                default: Color.clear
-                }
-            }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
@@ -131,8 +112,13 @@ struct ReceiptCreator: View {
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        navigationManager.receiptCreatorTabPath.append(ViewPath.receiptAssignor)
+                    NavigationLink {
+                        ReceiptAssignor(name: $name,
+                                        personWhoPaid: $personWhoPaid,
+                                        receiptItemsEditable: receiptItemsEditable,
+                                        discountItemsEditable: discountItemsEditable,
+                                        taxItemsEditable: taxItemsEditable,
+                                        onCreate: onCreate)
                     } label: {
                         HStack(alignment: .center, spacing: 2.0) {
                             Text("Shared.Next")

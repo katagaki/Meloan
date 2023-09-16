@@ -10,12 +10,13 @@ import SwiftUI
 
 struct ReceiptAssignor: View {
 
+    @Environment(\.modelContext) private var modelContext
     @Query private var people: [Person]
 
     @Binding var name: String
-    @Binding var receiptItems: [ReceiptItem]
-    @Binding var discountItems: [DiscountItem]
-    @Binding var taxItems: [TaxItem]
+    @State var receiptItems: [ReceiptItem] = []
+    @State var discountItems: [DiscountItem] = []
+    @State var taxItems: [TaxItem] = []
     @Binding var personWhoPaid: Person?
 
     @State var receiptItemsEditable: [ReceiptItemEditable]
@@ -36,6 +37,14 @@ struct ReceiptAssignor: View {
                         for receiptItemEditable in receiptItemsEditable {
                             let receiptItem = ReceiptItem(from: receiptItemEditable)
                             receiptItems.append(receiptItem)
+                        }
+                        if name != "", let personWhoPaid = personWhoPaid {
+                            let newReceipt = Receipt(name: name)
+                            newReceipt.addReceiptItems(from: receiptItems)
+                            newReceipt.addDiscountItems(from: discountItems)
+                            newReceipt.addTaxItems(from: taxItems)
+                            newReceipt.setPersonWhoPaid(to: personWhoPaid)
+                            modelContext.insert(newReceipt)
                         }
                         onCreate()
                     } label: {

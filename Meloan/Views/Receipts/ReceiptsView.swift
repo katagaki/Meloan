@@ -13,14 +13,7 @@ struct ReceiptsView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
     @Query private var receipts: [Receipt]
-
-    // Receipt Creator
     @State var isCreatingReceipt: Bool = false
-    @State var newReceiptName: String = ""
-    @State var newReceiptPaidBy: Person?
-    @State var newReceiptItems: [ReceiptItem] = []
-    @State var newReceiptDiscountItems: [DiscountItem] = []
-    @State var newReceiptTaxItems: [TaxItem] = []
 
     var body: some View {
         NavigationStack(path: $navigationManager.receiptsTabPath) {
@@ -75,11 +68,6 @@ struct ReceiptsView: View {
                             Text("Shared.CreateSampleData")
                         }
                         Button {
-                            newReceiptName = ""
-                            newReceiptPaidBy = nil
-                            newReceiptItems.removeAll()
-                            newReceiptDiscountItems.removeAll()
-                            newReceiptTaxItems.removeAll()
                             isCreatingReceipt = true
                         } label: {
                             Image(systemName: "plus")
@@ -88,22 +76,10 @@ struct ReceiptsView: View {
                 }
             }
             .sheet(isPresented: $isCreatingReceipt) {
-                ReceiptCreator(name: $newReceiptName,
-                               receiptItems: $newReceiptItems,
-                               discountItems: $newReceiptDiscountItems,
-                               taxItems: $newReceiptTaxItems,
-                               personWhoPaid: $newReceiptPaidBy) {
-                    if let newReceiptPaidBy = newReceiptPaidBy {
-                        let newReceipt = Receipt(name: newReceiptName)
-                        newReceipt.addReceiptItems(from: newReceiptItems)
-                        newReceipt.addDiscountItems(from: newReceiptDiscountItems)
-                        newReceipt.addTaxItems(from: newReceiptTaxItems)
-                        newReceipt.setPersonWhoPaid(to: newReceiptPaidBy)
-                        modelContext.insert(newReceipt)
-                        isCreatingReceipt = false
-                    }
+                ReceiptCreator {
+                    isCreatingReceipt = false
                 }
-                    .interactiveDismissDisabled()
+                .interactiveDismissDisabled()
             }
             .navigationTitle("ViewTitle.Receipts")
         }
