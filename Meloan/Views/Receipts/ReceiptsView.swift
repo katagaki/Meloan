@@ -22,7 +22,6 @@ struct ReceiptsView: View {
                         lhs.name < rhs.name
                     })) { receipt in
                         ReceiptColumn(receipt: receipt)
-                            .frame(maxHeight: 300)
                     }
                 }
                 .padding()
