@@ -1,5 +1,5 @@
 //
-//  MeloanApp.swift
+//  App.swift
 //  Meloan
 //
 //  Created by シン・ジャスティン on 2023/09/15.
@@ -12,10 +12,9 @@ import SwiftData
 struct MeloanApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            DiscountItem.self, Person.self, ReceiptItem.self, TaxItem.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
@@ -23,9 +22,14 @@ struct MeloanApp: App {
         }
     }()
 
+    @StateObject var tabManager = TabManager()
+    @StateObject var navigationManager = NavigationManager()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
+                .environmentObject(tabManager)
+                .environmentObject(navigationManager)
         }
         .modelContainer(sharedModelContainer)
     }

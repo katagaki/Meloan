@@ -7,20 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E44B68182AB4ADCA00B243B0 /* MeloanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68172AB4ADCA00B243B0 /* MeloanApp.swift */; };
-		E44B681A2AB4ADCA00B243B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68192AB4ADCA00B243B0 /* ContentView.swift */; };
-		E44B681C2AB4ADCA00B243B0 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B681B2AB4ADCA00B243B0 /* Item.swift */; };
+		E44B68182AB4ADCA00B243B0 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68172AB4ADCA00B243B0 /* App.swift */; };
+		E44B681A2AB4ADCA00B243B0 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68192AB4ADCA00B243B0 /* PeopleView.swift */; };
+		E44B681C2AB4ADCA00B243B0 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B681B2AB4ADCA00B243B0 /* Person.swift */; };
 		E44B681E2AB4ADCB00B243B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44B681D2AB4ADCB00B243B0 /* Assets.xcassets */; };
-		E44B68212AB4ADCB00B243B0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44B68202AB4ADCB00B243B0 /* Preview Assets.xcassets */; };
+		E44B68292AB5667A00B243B0 /* ReceiptItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68282AB5667A00B243B0 /* ReceiptItem.swift */; };
+		E44B682C2AB5671600B243B0 /* TaxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B682B2AB5671600B243B0 /* TaxItem.swift */; };
+		E44B682E2AB5673B00B243B0 /* DiscountItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B682D2AB5673B00B243B0 /* DiscountItem.swift */; };
+		E44B68302AB5675E00B243B0 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B682F2AB5675E00B243B0 /* MainTabView.swift */; };
+		E44B68332AB56D0D00B243B0 /* Komponents in Frameworks */ = {isa = PBXBuildFile; productRef = E44B68322AB56D0D00B243B0 /* Komponents */; };
+		E44B68372AB5700300B243B0 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68362AB5700300B243B0 /* NavigationManager.swift */; };
+		E44B68392AB5702C00B243B0 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68382AB5702C00B243B0 /* TabManager.swift */; };
+		E44B683C2AB5704300B243B0 /* TabType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B683B2AB5704300B243B0 /* TabType.swift */; };
+		E44B683E2AB5705600B243B0 /* ViewPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B683D2AB5705600B243B0 /* ViewPath.swift */; };
+		E44B68402AB573C300B243B0 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E44B683F2AB573C300B243B0 /* Localizable.xcstrings */; };
+		E44B68432AB579D800B243B0 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68422AB579D800B243B0 /* MoreView.swift */; };
+		E44B68462AB5832900B243B0 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68452AB5832900B243B0 /* Receipt.swift */; };
+		E44B68482AB58B9100B243B0 /* PeopleCreatorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68472AB58B9100B243B0 /* PeopleCreatorSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E44B68142AB4ADCA00B243B0 /* Meloan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meloan.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E44B68172AB4ADCA00B243B0 /* MeloanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeloanApp.swift; sourceTree = "<group>"; };
-		E44B68192AB4ADCA00B243B0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		E44B681B2AB4ADCA00B243B0 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		E44B68172AB4ADCA00B243B0 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		E44B68192AB4ADCA00B243B0 /* PeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
+		E44B681B2AB4ADCA00B243B0 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		E44B681D2AB4ADCB00B243B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E44B68202AB4ADCB00B243B0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E44B68282AB5667A00B243B0 /* ReceiptItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItem.swift; sourceTree = "<group>"; };
+		E44B682B2AB5671600B243B0 /* TaxItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxItem.swift; sourceTree = "<group>"; };
+		E44B682D2AB5673B00B243B0 /* DiscountItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountItem.swift; sourceTree = "<group>"; };
+		E44B682F2AB5675E00B243B0 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		E44B68362AB5700300B243B0 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		E44B68382AB5702C00B243B0 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
+		E44B683B2AB5704300B243B0 /* TabType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabType.swift; sourceTree = "<group>"; };
+		E44B683D2AB5705600B243B0 /* ViewPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPath.swift; sourceTree = "<group>"; };
+		E44B683F2AB573C300B243B0 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		E44B68412AB5748900B243B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E44B68422AB579D800B243B0 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
+		E44B68452AB5832900B243B0 /* Receipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
+		E44B68472AB58B9100B243B0 /* PeopleCreatorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCreatorSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E44B68332AB56D0D00B243B0 /* Komponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,21 +78,65 @@
 		E44B68162AB4ADCA00B243B0 /* Meloan */ = {
 			isa = PBXGroup;
 			children = (
-				E44B68172AB4ADCA00B243B0 /* MeloanApp.swift */,
-				E44B68192AB4ADCA00B243B0 /* ContentView.swift */,
-				E44B681B2AB4ADCA00B243B0 /* Item.swift */,
+				E44B68412AB5748900B243B0 /* Info.plist */,
 				E44B681D2AB4ADCB00B243B0 /* Assets.xcassets */,
-				E44B681F2AB4ADCB00B243B0 /* Preview Content */,
+				E44B683F2AB573C300B243B0 /* Localizable.xcstrings */,
+				E44B68342AB56FEC00B243B0 /* Views */,
+				E44B68352AB56FF100B243B0 /* Classes */,
+				E44B683A2AB5703C00B243B0 /* Enums */,
+				E44B68272AB5662800B243B0 /* SwiftData */,
 			);
 			path = Meloan;
 			sourceTree = "<group>";
 		};
-		E44B681F2AB4ADCB00B243B0 /* Preview Content */ = {
+		E44B68272AB5662800B243B0 /* SwiftData */ = {
 			isa = PBXGroup;
 			children = (
-				E44B68202AB4ADCB00B243B0 /* Preview Assets.xcassets */,
+				E44B68452AB5832900B243B0 /* Receipt.swift */,
+				E44B681B2AB4ADCA00B243B0 /* Person.swift */,
+				E44B682D2AB5673B00B243B0 /* DiscountItem.swift */,
+				E44B68282AB5667A00B243B0 /* ReceiptItem.swift */,
+				E44B682B2AB5671600B243B0 /* TaxItem.swift */,
 			);
-			path = "Preview Content";
+			path = SwiftData;
+			sourceTree = "<group>";
+		};
+		E44B68342AB56FEC00B243B0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E44B68172AB4ADCA00B243B0 /* App.swift */,
+				E44B682F2AB5675E00B243B0 /* MainTabView.swift */,
+				E44B68442AB5806A00B243B0 /* People */,
+				E44B68422AB579D800B243B0 /* MoreView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E44B68352AB56FF100B243B0 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E44B68362AB5700300B243B0 /* NavigationManager.swift */,
+				E44B68382AB5702C00B243B0 /* TabManager.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		E44B683A2AB5703C00B243B0 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				E44B683D2AB5705600B243B0 /* ViewPath.swift */,
+				E44B683B2AB5704300B243B0 /* TabType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		E44B68442AB5806A00B243B0 /* People */ = {
+			isa = PBXGroup;
+			children = (
+				E44B68192AB4ADCA00B243B0 /* PeopleView.swift */,
+				E44B68472AB58B9100B243B0 /* PeopleCreatorSheet.swift */,
+			);
+			path = People;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,12 +149,16 @@
 				E44B68102AB4ADCA00B243B0 /* Sources */,
 				E44B68112AB4ADCA00B243B0 /* Frameworks */,
 				E44B68122AB4ADCA00B243B0 /* Resources */,
+				E44B682A2AB566D200B243B0 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Meloan;
+			packageProductDependencies = (
+				E44B68322AB56D0D00B243B0 /* Komponents */,
+			);
 			productName = Meloan;
 			productReference = E44B68142AB4ADCA00B243B0 /* Meloan.app */;
 			productType = "com.apple.product-type.application";
@@ -112,8 +185,12 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = E44B680B2AB4ADCA00B243B0;
+			packageReferences = (
+				E44B68312AB56D0D00B243B0 /* XCRemoteSwiftPackageReference "Komponents" */,
+			);
 			productRefGroup = E44B68152AB4ADCA00B243B0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -128,21 +205,53 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E44B68212AB4ADCB00B243B0 /* Preview Assets.xcassets in Resources */,
+				E44B68402AB573C300B243B0 /* Localizable.xcstrings in Resources */,
 				E44B681E2AB4ADCB00B243B0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E44B682A2AB566D200B243B0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E44B68102AB4ADCA00B243B0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E44B681A2AB4ADCA00B243B0 /* ContentView.swift in Sources */,
-				E44B681C2AB4ADCA00B243B0 /* Item.swift in Sources */,
-				E44B68182AB4ADCA00B243B0 /* MeloanApp.swift in Sources */,
+				E44B681A2AB4ADCA00B243B0 /* PeopleView.swift in Sources */,
+				E44B683E2AB5705600B243B0 /* ViewPath.swift in Sources */,
+				E44B681C2AB4ADCA00B243B0 /* Person.swift in Sources */,
+				E44B68462AB5832900B243B0 /* Receipt.swift in Sources */,
+				E44B68182AB4ADCA00B243B0 /* App.swift in Sources */,
+				E44B68482AB58B9100B243B0 /* PeopleCreatorSheet.swift in Sources */,
+				E44B682E2AB5673B00B243B0 /* DiscountItem.swift in Sources */,
+				E44B68302AB5675E00B243B0 /* MainTabView.swift in Sources */,
+				E44B68372AB5700300B243B0 /* NavigationManager.swift in Sources */,
+				E44B68432AB579D800B243B0 /* MoreView.swift in Sources */,
+				E44B682C2AB5671600B243B0 /* TaxItem.swift in Sources */,
+				E44B683C2AB5704300B243B0 /* TabType.swift in Sources */,
+				E44B68292AB5667A00B243B0 /* ReceiptItem.swift in Sources */,
+				E44B68392AB5702C00B243B0 /* TabManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,10 +384,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Meloan/Preview Content\"";
 				DEVELOPMENT_TEAM = YYM4Z6MU8F;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Meloan/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,10 +414,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Meloan/Preview Content\"";
 				DEVELOPMENT_TEAM = YYM4Z6MU8F;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Meloan/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -348,6 +459,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E44B68312AB56D0D00B243B0 /* XCRemoteSwiftPackageReference "Komponents" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/katagaki/Komponents";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E44B68322AB56D0D00B243B0 /* Komponents */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E44B68312AB56D0D00B243B0 /* XCRemoteSwiftPackageReference "Komponents" */;
+			productName = Komponents;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E44B680C2AB4ADCA00B243B0 /* Project object */;
 }

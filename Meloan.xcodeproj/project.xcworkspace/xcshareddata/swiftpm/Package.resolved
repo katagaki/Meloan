@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "komponents",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/katagaki/Komponents",
+      "state" : {
+        "branch" : "main",
+        "revision" : "7b7b75d1e3469f537be09475b5ab7745ab7615db"
+      }
+    }
+  ],
+  "version" : 2
+}
