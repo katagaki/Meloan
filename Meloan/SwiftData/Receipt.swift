@@ -10,21 +10,26 @@ import SwiftData
 
 @Model
 final class Receipt {
-    var name: String
-    var receiptItems: [ReceiptItem]
-    var discountItems: [DiscountItem]
-    var taxItems: [TaxItem]
-    var personWhoPaid: Person
+    @Attribute(.unique) var name: String
+    @Relationship(deleteRule: .cascade) var receiptItems: [ReceiptItem] = []
+    @Relationship(deleteRule: .cascade) var discountItems: [DiscountItem] = []
+    @Relationship(deleteRule: .cascade) var taxItems: [TaxItem] = []
+    @Relationship(deleteRule: .noAction) var personWhoPaid: Person
 
     init(name: String,
-         items receiptItems: [ReceiptItem] = [],
-         discounts discountItems: [DiscountItem] = [],
-         tax taxItems: [TaxItem] = [],
          paidBy person: Person) {
         self.name = name
-        self.receiptItems = receiptItems
-        self.discountItems = discountItems
-        self.taxItems = taxItems
         self.personWhoPaid = person
+    }
+
+    func addReceiptItems(from receiptItems: [ReceiptItem]) {
+        self.receiptItems.append(contentsOf: receiptItems)
+    }
+
+    func addDiscountItems(from discountItems: [DiscountItem]) {
+        self.discountItems.append(contentsOf: discountItems)
+    }
+    func addTaxItems(from taxItems: [TaxItem]) {
+        self.taxItems.append(contentsOf: taxItems)
     }
 }

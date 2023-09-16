@@ -12,7 +12,7 @@ import SwiftData
 struct MeloanApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            DiscountItem.self, Person.self, ReceiptItem.self, TaxItem.self
+            Receipt.self, Person.self, ReceiptItem.self, DiscountItem.self, TaxItem.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         do {

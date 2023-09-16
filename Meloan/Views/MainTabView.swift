@@ -15,7 +15,7 @@ struct MainTabView: View {
 
     var body: some View {
         TabView(selection: $tabManager.selectedTab) {
-            Color.clear
+            ReceiptsView()
                 .tabItem {
                     Label("TabTitle.Receipts", image: "Tab.Receipts")
                 }

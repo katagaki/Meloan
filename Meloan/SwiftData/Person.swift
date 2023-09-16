@@ -12,7 +12,7 @@ import SwiftData
 final class Person {
     var name: String
     var photo: Data?
-    var id: String
+    @Attribute(.unique) var id: String
 
     init(name: String) {
         self.name = name

@@ -24,6 +24,9 @@
 		E44B68432AB579D800B243B0 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68422AB579D800B243B0 /* MoreView.swift */; };
 		E44B68462AB5832900B243B0 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68452AB5832900B243B0 /* Receipt.swift */; };
 		E44B68482AB58B9100B243B0 /* PeopleCreatorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68472AB58B9100B243B0 /* PeopleCreatorSheet.swift */; };
+		E44B684C2AB5931700B243B0 /* ReceiptsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B684B2AB5931700B243B0 /* ReceiptsView.swift */; };
+		E44B684E2AB5938700B243B0 /* ReceiptColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B684D2AB5938700B243B0 /* ReceiptColumn.swift */; };
+		E44B68502AB5A36A00B243B0 /* ReceiptItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B684F2AB5A36A00B243B0 /* ReceiptItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +48,9 @@
 		E44B68422AB579D800B243B0 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		E44B68452AB5832900B243B0 /* Receipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
 		E44B68472AB58B9100B243B0 /* PeopleCreatorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCreatorSheet.swift; sourceTree = "<group>"; };
+		E44B684B2AB5931700B243B0 /* ReceiptsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsView.swift; sourceTree = "<group>"; };
+		E44B684D2AB5938700B243B0 /* ReceiptColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptColumn.swift; sourceTree = "<group>"; };
+		E44B684F2AB5A36A00B243B0 /* ReceiptItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +100,8 @@
 			children = (
 				E44B68452AB5832900B243B0 /* Receipt.swift */,
 				E44B681B2AB4ADCA00B243B0 /* Person.swift */,
-				E44B682D2AB5673B00B243B0 /* DiscountItem.swift */,
 				E44B68282AB5667A00B243B0 /* ReceiptItem.swift */,
+				E44B682D2AB5673B00B243B0 /* DiscountItem.swift */,
 				E44B682B2AB5671600B243B0 /* TaxItem.swift */,
 			);
 			path = SwiftData;
@@ -106,6 +112,8 @@
 			children = (
 				E44B68172AB4ADCA00B243B0 /* App.swift */,
 				E44B682F2AB5675E00B243B0 /* MainTabView.swift */,
+				E44B68492AB592F400B243B0 /* Receipts */,
+				E44B684A2AB592F800B243B0 /* IOU */,
 				E44B68442AB5806A00B243B0 /* People */,
 				E44B68422AB579D800B243B0 /* MoreView.swift */,
 			);
@@ -137,6 +145,23 @@
 				E44B68472AB58B9100B243B0 /* PeopleCreatorSheet.swift */,
 			);
 			path = People;
+			sourceTree = "<group>";
+		};
+		E44B68492AB592F400B243B0 /* Receipts */ = {
+			isa = PBXGroup;
+			children = (
+				E44B684B2AB5931700B243B0 /* ReceiptsView.swift */,
+				E44B684D2AB5938700B243B0 /* ReceiptColumn.swift */,
+				E44B684F2AB5A36A00B243B0 /* ReceiptItemView.swift */,
+			);
+			path = Receipts;
+			sourceTree = "<group>";
+		};
+		E44B684A2AB592F800B243B0 /* IOU */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = IOU;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,9 +267,11 @@
 				E44B683E2AB5705600B243B0 /* ViewPath.swift in Sources */,
 				E44B681C2AB4ADCA00B243B0 /* Person.swift in Sources */,
 				E44B68462AB5832900B243B0 /* Receipt.swift in Sources */,
+				E44B684C2AB5931700B243B0 /* ReceiptsView.swift in Sources */,
 				E44B68182AB4ADCA00B243B0 /* App.swift in Sources */,
 				E44B68482AB58B9100B243B0 /* PeopleCreatorSheet.swift in Sources */,
 				E44B682E2AB5673B00B243B0 /* DiscountItem.swift in Sources */,
+				E44B684E2AB5938700B243B0 /* ReceiptColumn.swift in Sources */,
 				E44B68302AB5675E00B243B0 /* MainTabView.swift in Sources */,
 				E44B68372AB5700300B243B0 /* NavigationManager.swift in Sources */,
 				E44B68432AB579D800B243B0 /* MoreView.swift in Sources */,
@@ -252,6 +279,7 @@
 				E44B683C2AB5704300B243B0 /* TabType.swift in Sources */,
 				E44B68292AB5667A00B243B0 /* ReceiptItem.swift in Sources */,
 				E44B68392AB5702C00B243B0 /* TabManager.swift in Sources */,
+				E44B68502AB5A36A00B243B0 /* ReceiptItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

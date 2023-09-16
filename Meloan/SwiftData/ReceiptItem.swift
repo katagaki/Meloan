@@ -13,9 +13,9 @@ final class ReceiptItem {
     var name: String
     var price: Double
     var amount: Int
-    var person: Person?
+    @Relationship(deleteRule: .cascade) var person: Person?
 
-    init(name: String, price: Double, amount: Int, person: Person) {
+    init(name: String, price: Double, amount: Int, purchasedBy person: Person) {
         self.name = name
         self.price = price
         self.amount = amount

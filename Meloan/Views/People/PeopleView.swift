@@ -6,8 +6,8 @@
 //
 
 import Komponents
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct PeopleView: View {
 
