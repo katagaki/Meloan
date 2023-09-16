@@ -50,6 +50,8 @@ struct PeopleView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
+                        newPersonPhoto = nil
+                        newPersonName = ""
                         isCreatingPerson = true
                     } label: {
                         Image(systemName: "plus")
