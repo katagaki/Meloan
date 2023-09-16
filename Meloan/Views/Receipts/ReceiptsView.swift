@@ -56,7 +56,8 @@ struct ReceiptsView: View {
                         modelContext.insert(discountItem)
                         modelContext.insert(taxItem1)
                         modelContext.insert(taxItem2)
-                        receipt.addReceiptItems(from: [receiptItem1, receiptItem2, receiptItem3, receiptItem4, receiptItem5])
+                        receipt.addReceiptItems(from: [receiptItem1, receiptItem2, receiptItem3,
+                                                       receiptItem4, receiptItem5])
                         receipt.addDiscountItems(from: [discountItem])
                         receipt.addTaxItems(from: [taxItem1, taxItem2])
                         modelContext.insert(receipt)
