@@ -51,7 +51,6 @@ struct PeopleCreatorSheet: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
-                        resetInput()
                         dismiss()
                     } label: {
                         Text("Shared.Cancel")
@@ -61,7 +60,6 @@ struct PeopleCreatorSheet: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         onCreate()
-                        resetInput()
                         dismiss()
                     } label: {
                         Text("Shared.Create")
@@ -81,10 +79,5 @@ struct PeopleCreatorSheet: View {
                 }
             }
         }
-    }
-
-    func resetInput() {
-        selectedPhoto = nil
-        name = ""
     }
 }
