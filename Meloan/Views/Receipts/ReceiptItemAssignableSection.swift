@@ -24,6 +24,7 @@ struct ReceiptItemAssignableSection: View {
                     Button {
                         personWhoOrdered = nil
                     } label: {
+                        Image("Profile.Shared")
                         Text("Shared.Shared")
                     }
                     ForEach(people) { person in
@@ -37,7 +38,14 @@ struct ReceiptItemAssignableSection: View {
                     if let personWhoOrdered = personWhoOrdered {
                         PersonRow(person: personWhoOrdered)
                     } else {
-                        Text("Shared.Shared")
+                        HStack(alignment: .center, spacing: 16.0) {
+                            Image("Profile.Shared")
+                                .resizable()
+                            .frame(width: 30.0, height: 30.0)
+                            .clipShape(Circle())
+                            Text("Shared.Shared")
+                                .font(.body)
+                        }
                     }
                     Spacer()
                 }

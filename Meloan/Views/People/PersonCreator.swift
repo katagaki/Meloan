@@ -32,7 +32,7 @@ struct PersonCreator: View {
                                         .resizable()
                                         .scaledToFill()
                                 } else {
-                                    Image("Person.Generic")
+                                    Image("Profile.Generic")
                                         .resizable()
                                 }
                             }

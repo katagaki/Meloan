@@ -17,8 +17,9 @@ struct PersonRow: View {
                 if let photo = person.photo, let image = UIImage(data: photo) {
                     Image(uiImage: image)
                         .resizable()
+                        .scaledToFill()
                 } else {
-                    Image("Person.Generic")
+                    Image("Profile.Generic")
                         .resizable()
                 }
             }
