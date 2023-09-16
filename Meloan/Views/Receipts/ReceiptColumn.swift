@@ -26,14 +26,14 @@ struct ReceiptColumn: View {
                         ForEach(receipt.receiptItems.sorted(by: { lhs, rhs in
                             lhs.name < rhs.name
                         })) { item in
-                            ReceiptItemView(name: item.name, price: item.price)
+                            ReceiptItemCompactRow(name: item.name, price: item.price)
                         }
                         if !receipt.taxItems.isEmpty {
                             Divider()
                             ForEach(receipt.taxItems.sorted(by: { lhs, rhs in
                                 lhs.name < rhs.name
                             })) { item in
-                                ReceiptItemView(name: item.name, price: item.price)
+                                ReceiptItemCompactRow(name: item.name, price: item.price)
                             }
                         }
                         if !receipt.discountItems.isEmpty {
@@ -41,14 +41,12 @@ struct ReceiptColumn: View {
                             ForEach(receipt.discountItems.sorted(by: { lhs, rhs in
                                 lhs.name < rhs.name
                             })) { item in
-                                ReceiptItemView(name: item.name, price: item.price)
+                                ReceiptItemCompactRow(name: item.name, price: item.price)
                             }
                         }
                         Divider()
-                        ReceiptItemView(name: "Receipt.Total", price: total())
+                        ReceiptItemCompactRow(name: "Receipt.Total", price: total())
                     }
-                    .font(.system(size: 14.0))
-                    .monospaced()
                     .padding([.leading, .trailing])
                 }
                 .padding([.top, .bottom])

@@ -15,12 +15,10 @@ final class Receipt {
     @Relationship(deleteRule: .cascade) var receiptItems: [ReceiptItem] = []
     @Relationship(deleteRule: .cascade) var discountItems: [DiscountItem] = []
     @Relationship(deleteRule: .cascade) var taxItems: [TaxItem] = []
-    @Relationship(deleteRule: .noAction) var personWhoPaid: Person
+    @Relationship(deleteRule: .noAction) var personWhoPaid: Person?
 
-    init(name: String,
-         paidBy person: Person) {
+    init(name: String) {
         self.name = name
-        self.personWhoPaid = person
     }
 
     func addReceiptItems(from receiptItems: [ReceiptItem]) {
@@ -30,7 +28,12 @@ final class Receipt {
     func addDiscountItems(from discountItems: [DiscountItem]) {
         self.discountItems.append(contentsOf: discountItems)
     }
+
     func addTaxItems(from taxItems: [TaxItem]) {
         self.taxItems.append(contentsOf: taxItems)
+    }
+
+    func setPersonWhoPaid(to personWhoPaid: Person) {
+        self.personWhoPaid = personWhoPaid
     }
 }

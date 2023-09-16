@@ -27,4 +27,10 @@ final class ReceiptItem {
         self.price = price
         self.amount = amount
     }
+
+    init(from editable: ReceiptItemEditable) {
+        self.name = editable.name
+        self.price = editable.price
+        self.amount = editable.amount
+    }
 }

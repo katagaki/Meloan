@@ -34,6 +34,7 @@ struct MoreView: View {
                 switch viewPath {
                 case .moreAttributions:
                     LicensesView(licenses: [])
+                default: Color.clear
                 }
             }
         }

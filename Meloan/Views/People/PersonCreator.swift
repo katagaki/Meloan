@@ -1,5 +1,5 @@
 //
-//  PeopleCreatorSheet.swift
+//  PersonCreator.swift
 //  Meloan
 //
 //  Created by シン・ジャスティン on 2023/09/16.
@@ -8,7 +8,7 @@
 import PhotosUI
 import SwiftUI
 
-struct PeopleCreatorSheet: View {
+struct PersonCreator: View {
 
     @Environment(\.dismiss) var dismiss
     @Binding var name: String
@@ -45,7 +45,7 @@ struct PeopleCreatorSheet: View {
                     .listRowBackground(Color.clear)
                 }
                 Section {
-                    TextField("People.NewPersonName", text: $name)
+                    TextField("Person.Name", text: $name)
                 }
             }
             .toolbar {
@@ -68,7 +68,7 @@ struct PeopleCreatorSheet: View {
                     .disabled(name == "")
                 }
             }
-            .navigationTitle("Alert.CreateNewPerson.Title")
+            .navigationTitle("People.Create.Title")
             .navigationBarTitleDisplayMode(.inline)
         }
         .onChange(of: selectedPhotoItem) { _, _ in

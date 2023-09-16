@@ -10,6 +10,7 @@ import Foundation
 class NavigationManager: ObservableObject {
 
     @Published var receiptsTabPath: [ViewPath] = []
+    @Published var receiptCreatorTabPath: [ViewPath] = []
     @Published var iouTabPath: [ViewPath] = []
     @Published var peopleTabPath: [ViewPath] = []
     @Published var moreTabPath: [ViewPath] = []

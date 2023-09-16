@@ -14,6 +14,8 @@ struct PeopleView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
     @Query private var people: [Person]
+
+    // Person Creator
     @State var isCreatingPerson: Bool = false
     @State var newPersonPhoto: Data?
     @State var newPersonName: String = ""
@@ -22,51 +24,38 @@ struct PeopleView: View {
         NavigationStack(path: $navigationManager.peopleTabPath) {
             List {
                 ForEach(people) { person in
-                    HStack(alignment: .center, spacing: 16.0) {
-                        Group {
-                            if let photo = person.photo, let image = UIImage(data: photo) {
-                                Image(uiImage: image)
-                                    .resizable()
-                            } else {
-                                Image("Person.Generic")
-                                    .resizable()
-                            }
-                        }
-                        .frame(width: 30.0, height: 30.0)
-                        .clipShape(Circle())
-                        Text(verbatim: person.name)
-                            .font(.body)
-                    }
+                    PersonRow(person: person)
                 }
                 .onDelete(perform: { indexSet in
-                    withAnimation {
-                        for index in indexSet {
-                            modelContext.delete(people[index])
-                        }
+                    for index in indexSet {
+                        modelContext.delete(people[index])
                     }
                 })
             }
             .listStyle(.plain)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        newPersonPhoto = nil
-                        newPersonName = ""
-                        isCreatingPerson = true
-                    } label: {
-                        Image(systemName: "plus")
+                    HStack {
+                        EditButton()
+                        Button {
+                            newPersonPhoto = nil
+                            newPersonName = ""
+                            isCreatingPerson = true
+                        } label: {
+                            Image(systemName: "plus")
+                        }
                     }
-                    EditButton()
                 }
             }
             .sheet(isPresented: $isCreatingPerson, content: {
-                PeopleCreatorSheet(name: $newPersonName, selectedPhoto: $newPersonPhoto, onCreate: {
-                    withAnimation {
-                        let newPerson = Person(name: newPersonName, photo: newPersonPhoto)
-                        modelContext.insert(newPerson)
-                    }
+                PersonCreator(name: $newPersonName,
+                              selectedPhoto: $newPersonPhoto,
+                              onCreate: {
+                    let newPerson = Person(name: newPersonName, photo: newPersonPhoto)
+                    modelContext.insert(newPerson)
                 })
                 .presentationDetents([.medium])
+                .interactiveDismissDisabled()
             })
             .navigationTitle("ViewTitle.People")
         }
