@@ -55,10 +55,10 @@ struct ReceiptColumn: View {
             }
             Divider()
             VStack(alignment: .center, spacing: 16.0) {
-                ActionButton(text: "Receipt.ShowDetails", icon: "list.triangle", isPrimary: true) {
+                ActionButton(text: "Receipt.ShowDetails", icon: "Receipt.ShowDetails", isPrimary: true) {
                     // navigationManager.push(<#T##ViewPath#>, for: <#T##TabType#>)
                 }
-                ActionButton(text: "Receipt.Edit", icon: "pencil", isPrimary: false) {
+                ActionButton(text: "Receipt.Edit", icon: "Receipt.Edit", isPrimary: false) {
                     // navigationManager.push(<#T##ViewPath#>, for: <#T##TabType#>)
                 }
             }

@@ -67,6 +67,7 @@ struct PeopleCreatorSheet: View {
                         Text("Shared.Create")
                     }
                     .buttonStyle(.plain)
+                    .disabled(name == "")
                 }
             }
             .navigationTitle("Alert.CreateNewPerson.Title")

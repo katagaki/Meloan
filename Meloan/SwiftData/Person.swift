@@ -10,19 +10,17 @@ import SwiftData
 
 @Model
 final class Person {
+    @Attribute(.unique) var id: String = UUID().uuidString
     var name: String
     var photo: Data?
-    @Attribute(.unique) var id: String
 
     init(name: String) {
         self.name = name
         self.photo = nil
-        self.id = UUID().uuidString
     }
 
     init(name: String, photo: Data?) {
         self.name = name
         self.photo = photo
-        self.id = UUID().uuidString
     }
 }

@@ -17,6 +17,23 @@
         }
       }
     },
+    "More.DeleteAllData" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete All Data"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリをリセット"
+          }
+        }
+      }
+    },
     "People.NewPersonName" : {
       "localizations" : {
         "en" : {
@@ -197,6 +214,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "貸し借り先"
+          }
+        }
+      }
+    },
+    "ViewTitle.Receipts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Receipts"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "領収書"
           }
         }
       }
