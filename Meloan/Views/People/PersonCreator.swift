@@ -55,7 +55,6 @@ struct PersonCreator: View {
                     } label: {
                         Text("Shared.Cancel")
                     }
-                    .buttonStyle(.plain)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -64,7 +63,6 @@ struct PersonCreator: View {
                     } label: {
                         Text("Shared.Create")
                     }
-                    .buttonStyle(.plain)
                     .disabled(name == "")
                 }
             }
