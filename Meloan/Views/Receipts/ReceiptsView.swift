@@ -90,6 +90,7 @@ struct ReceiptsView: View {
         receipt.addDiscountItems(from: [discountItem])
         receipt.addTaxItems(from: [taxItem1, taxItem2])
         receipt.setPersonWhoPaid(to: person1)
+        receipt.addPeopleWhoParticipated(from: [person1, person2, person3])
         modelContext.insert(receipt)
     }
 }

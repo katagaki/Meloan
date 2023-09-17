@@ -21,7 +21,7 @@ struct MainTabView: View {
                 }
                 .toolbarBackground(.visible, for: .tabBar)
                 .tag(TabType.receipts)
-            Color.clear
+            IOUView()
                 .tabItem {
                     Label("TabTitle.IOU", image: "Tab.IOU")
                 }

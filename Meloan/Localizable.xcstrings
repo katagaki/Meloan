@@ -11,6 +11,40 @@
         }
       }
     },
+    "IOU.SelectLender" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lender"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貸し手"
+          }
+        }
+      }
+    },
+    "IOU.TotalBorrowed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Borrowed"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "合計"
+          }
+        }
+      }
+    },
     "More.DeleteAllData" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -214,18 +248,53 @@
         }
       }
     },
-    "Receipt.PaidBy.Description" : {
+    "Receipt.Participants" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select the person who paid for the items in this receipt."
+            "value" : "Participants"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "払った人を選択してください。"
+            "value" : "参加者"
+          }
+        }
+      }
+    },
+    "Receipt.Participants.Description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select the people who participated in this receipt."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この領収書の商品を購入または注文した人を選択してください。"
+          }
+        }
+      }
+    },
+    "Receipt.Participants.Label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1 Participant(s)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1名"
           }
         }
       }
@@ -711,6 +780,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "領収書"
+          }
+        }
+      }
+    },
+    "ViewTitle.IOU" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IOU"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貸し借り"
           }
         }
       }

@@ -11,13 +11,13 @@ import SwiftUI
 struct ReceiptAssignor: View {
 
     @Environment(\.modelContext) private var modelContext
-    @Query private var people: [Person]
 
     @Binding var name: String
     @State var receiptItems: [ReceiptItem] = []
     @State var discountItems: [DiscountItem] = []
     @State var taxItems: [TaxItem] = []
     @Binding var personWhoPaid: Person?
+    @Binding var peopleWhoParticipated: [Person]
 
     @State var receiptItemsEditable: [ReceiptItemEditable]
     @State var discountItemsEditable: [ReceiptItemEditable]
@@ -40,7 +40,8 @@ struct ReceiptAssignor: View {
             }
             ForEach($receiptItemsEditable) { $itemEditable in
                 ReceiptItemAssignableSection(name: itemEditable.name, price: itemEditable.price,
-                                         personWhoOrdered: $itemEditable.person)
+                                             personWhoOrdered: $itemEditable.person,
+                                             peopleWhoParticipated: $peopleWhoParticipated)
             }
         }
             .toolbar {
@@ -64,6 +65,7 @@ struct ReceiptAssignor: View {
                             newReceipt.addDiscountItems(from: discountItems)
                             newReceipt.addTaxItems(from: taxItems)
                             newReceipt.setPersonWhoPaid(to: personWhoPaid)
+                            newReceipt.addPeopleWhoParticipated(from: peopleWhoParticipated)
                             modelContext.insert(newReceipt)
                         }
                         onCreate()

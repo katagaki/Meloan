@@ -10,10 +10,10 @@ import SwiftUI
 
 struct ReceiptItemAssignableSection: View {
 
-    @Query private var people: [Person]
     @State var name: String
     @State var price: Double
     @Binding var personWhoOrdered: Person?
+    @Binding var peopleWhoParticipated: [Person]
 
     var body: some View {
         Section {
@@ -27,7 +27,7 @@ struct ReceiptItemAssignableSection: View {
                         Image("Profile.Shared")
                         Text("Shared.Shared")
                     }
-                    ForEach(people) { person in
+                    ForEach(peopleWhoParticipated) { person in
                         Button {
                             personWhoOrdered = person
                         } label: {
@@ -56,7 +56,7 @@ struct ReceiptItemAssignableSection: View {
             HStack(alignment: .top, spacing: 4.0) {
                 Text(LocalizedStringKey(name))
                 Spacer()
-                Text(price, format: .currency(code: "SGD"))
+                Text("\(price, specifier: "%.2f")")
             }
             .font(.system(size: 14.0))
             .monospaced()

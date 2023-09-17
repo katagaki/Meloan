@@ -45,7 +45,7 @@ struct ReceiptColumn: View {
                             }
                         }
                         Divider()
-                        ReceiptItemCompactRow(name: "Receipt.Total", price: total())
+                        ReceiptItemCompactRow(name: "Receipt.Total", price: receipt.sum())
                     }
                     .padding([.leading, .trailing])
                 }
@@ -54,10 +54,10 @@ struct ReceiptColumn: View {
             Divider()
             VStack(alignment: .center, spacing: 16.0) {
                 ActionButton(text: "Receipt.ShowDetails", icon: "Receipt.ShowDetails", isPrimary: true) {
-                    // navigationManager.push(<#T##ViewPath#>, for: <#T##TabType#>)
+                    // TODO: Show receipt details
                 }
                 ActionButton(text: "Receipt.Edit", icon: "Receipt.Edit", isPrimary: false) {
-                    // navigationManager.push(<#T##ViewPath#>, for: <#T##TabType#>)
+                    // TODO: Edit receipt
                 }
             }
             .padding()
@@ -65,18 +65,5 @@ struct ReceiptColumn: View {
         .background(Color(uiColor: UIColor.secondarySystemGroupedBackground))
         .frame(width: 288.0)
         .clipShape(RoundedRectangle(cornerRadius: 10.0))
-    }
-
-    func total() -> Double {
-        let sumOfItems = receipt.receiptItems.reduce(into: 0.0, { partialResult, item in
-            partialResult += item.price
-        })
-        let sumOfTax = receipt.taxItems.reduce(into: 0.0, { partialResult, item in
-            partialResult += item.price
-        })
-        let sumOfDiscount = receipt.discountItems.reduce(into: 0.0, { partialResult, item in
-            partialResult += item.price
-        })
-        return sumOfItems + sumOfTax - sumOfDiscount
     }
 }

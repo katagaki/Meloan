@@ -6,6 +6,7 @@
 //
 
 import Komponents
+import MultiPicker
 import SwiftData
 import SwiftUI
 
@@ -16,6 +17,7 @@ struct ReceiptCreator: View {
 
     @State var name: String = ""
     @State var personWhoPaid: Person?
+    @State var peopleWhoParticipated: [Person] = []
 
     @State var receiptItemsEditable: [ReceiptItemEditable] = []
     @State var discountItemsEditable: [ReceiptItemEditable] = []
@@ -29,21 +31,35 @@ struct ReceiptCreator: View {
                     TextField("Receipt.Name", text: $name)
                 }
                 Section {
+                    NavigationLink {
+                        PeoplePicker(title: "Receipt.Participants", selection: $peopleWhoParticipated)
+                    } label: {
+                        HStack {
+                            Text("Receipt.Participants")
+                                .bold()
+                            Spacer()
+                            Text(NSLocalizedString("Receipt.Participants.Label", comment: "")
+                                .replacingOccurrences(of: "%1", with: String(peopleWhoParticipated.count)))
+                            .lineLimit(1)
+                            .truncationMode(.head)
+                            .foregroundStyle(.secondary)
+                        }
+                    }
                     Picker(selection: $personWhoPaid) {
                         Text("Shared.NoSelection")
                             .tag(nil as Person?)
-                        ForEach(people) { person in
+                        ForEach(peopleWhoParticipated) { person in
                             PersonRow(person: person)
                                 .tag(person as Person?)
                         }
                     } label: {
                         Text("Receipt.PaidBy")
+                            .bold()
                     }
                     .pickerStyle(.navigationLink)
-                } header: {
-                    ListSectionHeader(text: "Receipt.PaidBy")
                 } footer: {
-                    Text("Receipt.PaidBy.Description")
+                    Text("Receipt.Participants.Description")
+                        .font(.body)
                 }
                 Section {
                     ForEach($receiptItemsEditable) { $itemEditable in
@@ -56,6 +72,7 @@ struct ReceiptCreator: View {
                 } header: {
                     HStack(alignment: .center, spacing: 4.0) {
                         ListSectionHeader(text: "Receipt.PurchasedItems")
+                            .font(.body)
                         Spacer()
                         Button {
                             receiptItemsEditable.insert(ReceiptItemEditable(), at: 0)
@@ -75,6 +92,7 @@ struct ReceiptCreator: View {
                 } header: {
                     HStack(alignment: .center, spacing: 4.0) {
                         ListSectionHeader(text: "Receipt.Discounts")
+                            .font(.body)
                         Spacer()
                         Button {
                             discountItemsEditable.insert(ReceiptItemEditable(), at: 0)
@@ -94,6 +112,7 @@ struct ReceiptCreator: View {
                 } header: {
                     HStack(alignment: .center, spacing: 4.0) {
                         ListSectionHeader(text: "Receipt.Tax")
+                            .font(.body)
                         Spacer()
                         Button {
                             taxItemsEditable.insert(ReceiptItemEditable(), at: 0)
@@ -113,12 +132,11 @@ struct ReceiptCreator: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
-                        ReceiptAssignor(name: $name,
-                                        personWhoPaid: $personWhoPaid,
+                        ReceiptAssignor(name: $name, personWhoPaid: $personWhoPaid,
+                                        peopleWhoParticipated: $peopleWhoParticipated,
                                         receiptItemsEditable: receiptItemsEditable,
                                         discountItemsEditable: discountItemsEditable,
-                                        taxItemsEditable: taxItemsEditable,
-                                        onCreate: onCreate)
+                                        taxItemsEditable: taxItemsEditable, onCreate: onCreate)
                     } label: {
                         HStack(alignment: .center, spacing: 2.0) {
                             Text("Shared.Next")
@@ -131,6 +149,13 @@ struct ReceiptCreator: View {
             }
             .navigationTitle("Receipt.Create.Title")
             .navigationBarTitleDisplayMode(.inline)
+            .onChange(of: peopleWhoParticipated) { _, _ in
+                if let personWhoPaid = personWhoPaid {
+                    if !peopleWhoParticipated.contains(where: { $0.id == personWhoPaid.id }) {
+                        self.personWhoPaid = nil
+                    }
+                }
+            }
         }
     }
 }
