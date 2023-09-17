@@ -6,7 +6,6 @@
 //
 
 import Komponents
-import MultiPicker
 import SwiftData
 import SwiftUI
 
