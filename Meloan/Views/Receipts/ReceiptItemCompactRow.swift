@@ -17,7 +17,7 @@ struct ReceiptItemCompactRow: View {
         HStack(alignment: .top, spacing: 8.0) {
             Text(LocalizedStringKey(name))
             Spacer()
-            Text(price, format: .currency(code: "SGD"))
+            Text("\(price, specifier: "%.2f")")
             Group {
                 if let person = person {
                     if let data = person.photo, let image = UIImage(data: data) {
@@ -35,11 +35,6 @@ struct ReceiptItemCompactRow: View {
             .frame(width: 16.0, height: 16.0)
             .clipShape(Circle())
             // TODO: Allow selection of currency per receipt
-//            if let currencyCode = Locale.current.currency?.identifier {
-//                Text(price.formatted(.currency(code: currencyCode)))
-//            } else {
-//                Text("\(price, specifier: "%.2f")")
-//            }
         }
         .font(.system(size: 14.0))
         .monospaced()
