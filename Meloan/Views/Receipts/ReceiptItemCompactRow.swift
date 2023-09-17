@@ -11,6 +11,7 @@ struct ReceiptItemCompactRow: View {
 
     var name: String
     var price: Double
+    var isPaid: Bool = false
     var person: Person?
     var hidesPhoto: Bool = false
 
@@ -33,9 +34,12 @@ struct ReceiptItemCompactRow: View {
             .frame(width: 16.0, height: 16.0)
             .clipShape(Circle())
             .opacity(hidesPhoto ? 0 : 1)
-            Text(LocalizedStringKey(name))
-            Spacer()
-            Text("\(price, specifier: "%.2f")")
+            Group {
+                Text(LocalizedStringKey(name))
+                Spacer()
+                Text("\(price, specifier: "%.2f")")
+            }
+            .strikethrough(isPaid)
             // TODO: Allow selection of currency per receipt
         }
         .font(.system(size: 14.0))

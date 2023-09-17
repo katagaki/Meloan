@@ -26,7 +26,8 @@ struct ReceiptColumn: View {
                         ForEach(receipt.receiptItems.sorted(by: { lhs, rhs in
                             lhs.name < rhs.name
                         })) { item in
-                            ReceiptItemCompactRow(name: item.name, price: item.price, person: item.person)
+                            ReceiptItemCompactRow(name: item.name, price: item.price,
+                                                  isPaid: item.paid, person: item.person)
                         }
                         if !receipt.taxItems.isEmpty {
                             Divider()
@@ -59,6 +60,7 @@ struct ReceiptColumn: View {
                 ActionButton(text: "Receipt.Edit", icon: "Receipt.Edit", isPrimary: false) {
                     // TODO: Edit receipt
                 }
+                .disabled(true)
             }
             .padding()
         }

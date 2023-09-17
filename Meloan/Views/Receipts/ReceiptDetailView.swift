@@ -26,24 +26,29 @@ struct ReceiptDetailView: View {
             }
             Section {
                 ForEach(receipt.receiptItems) { item in
-                    HStack(alignment: .center, spacing: 16.0) {
-                        Group {
-                            if let person = item.person {
-                                if let data = person.photo, let image = UIImage(data: data) {
-                                    Image(uiImage: image)
-                                        .resizable()
+                    Button {
+                        item.paid.toggle()
+                    } label: {
+                        HStack(alignment: .center, spacing: 16.0) {
+                            Group {
+                                if let person = item.person {
+                                    if let data = person.photo, let image = UIImage(data: data) {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                    } else {
+                                        Image("Profile.Generic")
+                                            .resizable()
+                                    }
                                 } else {
-                                    Image("Profile.Generic")
+                                    Image("Profile.Shared")
                                         .resizable()
                                 }
-                            } else {
-                                Image("Profile.Shared")
-                                    .resizable()
                             }
+                            .frame(width: 32.0, height: 32.0)
+                            .clipShape(Circle())
+                            ReceiptItemRow(name: item.name, price: item.price)
+                                .strikethrough(item.paid)
                         }
-                        .frame(width: 32.0, height: 32.0)
-                        .clipShape(Circle())
-                        ReceiptItemRow(name: item.name, price: item.price)
                     }
                 }
             } header: {

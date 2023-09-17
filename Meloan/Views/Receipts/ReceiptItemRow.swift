@@ -18,5 +18,6 @@ struct ReceiptItemRow: View {
             Spacer()
             Text("\(price, specifier: "%.2f")")
         }
+        .tint(.primary)
     }
 }

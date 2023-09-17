@@ -66,7 +66,7 @@ final class Receipt {
 
     func sumOfItemCost(for person: Person) -> Double {
         return receiptItems.reduce(into: 0.0, { partialResult, item in
-            if let itemPerson = item.person, itemPerson.id == person.id {
+            if let itemPerson = item.person, itemPerson.id == person.id, !item.paid {
                 partialResult += item.price
             }
         })

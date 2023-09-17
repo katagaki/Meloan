@@ -15,7 +15,6 @@ struct MainTabView: View {
     @EnvironmentObject var tabManager: TabManager
     @EnvironmentObject var navigationManager: NavigationManager
     @Query private var people: [Person]
-    @Query private var receipts: [Receipt]
 
     var body: some View {
         TabView(selection: $tabManager.selectedTab) {
@@ -41,6 +40,14 @@ struct MainTabView: View {
                     Label("TabTitle.More", systemImage: "ellipsis")
                 }
                 .tag(TabType.more)
+        }
+        .onAppear {
+            if !people.contains(where: { $0.id == "ME" }) {
+                let mePerson = Person(name: NSLocalizedString("People.Me", comment: ""))
+                mePerson.id = "ME"
+                mePerson.photo = UIImage(named: "Profile.Me")!.pngData()
+                modelContext.insert(mePerson)
+            }
         }
         .onReceive(tabManager.$selectedTab, perform: { newValue in
             if newValue == tabManager.previouslySelectedTab {

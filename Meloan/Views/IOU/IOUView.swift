@@ -25,15 +25,20 @@ struct IOUView: View {
                         Section {
                             ForEach(person.receiptsParticipated ?? []) { receipt in
                                 if receipt.personWhoPaid == personWhoPaid {
-                                    IOURow(name: receipt.name,
-                                           price: receipt.sumOwed(to: personWhoPaid, for: person))
+                                    // IMPORTANT: Do NOT refactor! SwiftUI will reuse views in an unexpected
+                                    // manner, and cause totals to appear incorrectly (calculation is CORRECT).
+                                    HStack(alignment: .center, spacing: 4.0) {
+                                        Text(receipt.name)
+                                        Spacer()
+                                        Text("\(receipt.sumOwed(to: personWhoPaid, for: person), specifier: "%.2f")")
+                                    }
                                 }
                             }
                         } header: {
                             ListSectionHeader(text: person.name)
                                 .font(.body)
                         } footer: {
-                            // IMPORTANT: Do NOT reuse IOURow! SwiftUI will reuse views in an unexpected
+                            // IMPORTANT: Do NOT refactor! SwiftUI will reuse views in an unexpected
                             // manner, and cause totals to appear incorrectly (calculation is CORRECT).
                             HStack(alignment: .center, spacing: 4.0) {
                                 Text("IOU.TotalBorrowed")
@@ -49,6 +54,11 @@ struct IOUView: View {
             }
             .listStyle(.sidebar)
             .navigationTitle("ViewTitle.IOU")
+            .overlay {
+                if personWhoPaid == nil {
+                    HintOverlay(image: "filemenu.and.selection", text: "IOU.Hint")
+                }
+            }
             .safeAreaInset(edge: .bottom) {
                 Picker(selection: $personWhoPaid) {
                     Text("Shared.NoSelection")

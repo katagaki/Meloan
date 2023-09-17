@@ -12,7 +12,31 @@
       }
     },
     "%d%%" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "IOU.Hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a lender to see an overview of the amount owed per borrower."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貸し手を選択すると、借り手ごとの未払い金額の概要がご覧になれます。"
+          }
+        }
+      }
     },
     "IOU.SelectLender" : {
       "extractionState" : "manual",
@@ -78,6 +102,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新規貸し借り先"
+          }
+        }
+      }
+    },
+    "People.Hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a lender/borrower to assign receipt items to them."
+          }
+        }
+      }
+    },
+    "People.Me" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Me"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "あなた"
           }
         }
       }
@@ -433,6 +485,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "合計"
+          }
+        }
+      }
+    },
+    "Receipts.Hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create a new receipt to track a bill, order, or loan."
           }
         }
       }
