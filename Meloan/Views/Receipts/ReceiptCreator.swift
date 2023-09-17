@@ -87,7 +87,7 @@ struct ReceiptCreator: View {
                                                placeholderText: "Receipt.ItemName")
                     }
                     .onDelete { indexSet in
-                        receiptItemsEditable.remove(atOffsets: indexSet)
+                        discountItemsEditable.remove(atOffsets: indexSet)
                     }
                 } header: {
                     HStack(alignment: .center, spacing: 4.0) {
@@ -107,7 +107,7 @@ struct ReceiptCreator: View {
                                                placeholderText: "Receipt.ItemName")
                     }
                     .onDelete { indexSet in
-                        receiptItemsEditable.remove(atOffsets: indexSet)
+                        taxItemsEditable.remove(atOffsets: indexSet)
                     }
                 } header: {
                     HStack(alignment: .center, spacing: 4.0) {
