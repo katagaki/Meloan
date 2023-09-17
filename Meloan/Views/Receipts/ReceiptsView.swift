@@ -54,6 +54,7 @@ struct ReceiptsView: View {
                         } label: {
                             Image(systemName: "plus")
                         }
+                        .popoverTip(ReceiptsTip(), arrowEdge: .top)
                     }
                 }
             }

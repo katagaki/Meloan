@@ -512,13 +512,34 @@
         }
       }
     },
-    "Receipts.Hint" : {
-      "extractionState" : "manual",
+    "Receipts.Tip.Text" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Create a new receipt to track a bill, order, or loan."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しい領収書を作成すると、レストランでの割り勘、ネットでの集合注文などの金額を追跡することができます。"
+          }
+        }
+      }
+    },
+    "Receipts.Tip.Title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creating Receipts"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "領収書について"
           }
         }
       }
