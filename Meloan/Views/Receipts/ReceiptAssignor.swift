@@ -50,6 +50,14 @@ struct ReceiptAssignor: View {
                             let receiptItem = ReceiptItem(from: receiptItemEditable)
                             receiptItems.append(receiptItem)
                         }
+                        for discountItemEditable in discountItemsEditable {
+                            let receiptItem = DiscountItem(from: discountItemEditable)
+                            discountItems.append(receiptItem)
+                        }
+                        for taxItemEditable in taxItemsEditable {
+                            let receiptItem = TaxItem(from: taxItemEditable)
+                            taxItems.append(receiptItem)
+                        }
                         if name != "", let personWhoPaid = personWhoPaid {
                             let newReceipt = Receipt(name: name)
                             newReceipt.addReceiptItems(from: receiptItems)

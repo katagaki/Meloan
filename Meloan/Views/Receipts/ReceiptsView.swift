@@ -41,9 +41,9 @@ struct ReceiptsView: View {
                         Button {
                             // Add sample data
                             // swiftlint:disable line_length
-                            let person1 = Person(name: "Justin")
-                            let person2 = Person(name: "Paul")
-                            let person3 = Person(name: "Dylon")
+                            let person1 = Person(name: "Akagi", photo: UIImage(named: "Akagi")!.pngData())
+                            let person2 = Person(name: "Muramoto", photo: UIImage(named: "Muramoto")!.pngData())
+                            let person3 = Person(name: "Kuroko", photo: UIImage(named: "Kuroko")!.pngData())
                             let receiptItem1 = ReceiptItem(name: "Steak Platter", price: 42.00, amount: 1)
                             let receiptItem2 = ReceiptItem(name: "Spaghetti Carbonara (Extra Sauce, Extra Cheese)", price: 12.00, amount: 1, purchasedBy: person1)
                             let receiptItem3 = ReceiptItem(name: "Fish & Chips", price: 11.00, amount: 1, purchasedBy: person2)
@@ -59,9 +59,6 @@ struct ReceiptsView: View {
                             receipt.addDiscountItems(from: [discountItem])
                             receipt.addTaxItems(from: [taxItem1, taxItem2])
                             receipt.setPersonWhoPaid(to: person1)
-                            modelContext.insert(person1)
-                            modelContext.insert(person2)
-                            modelContext.insert(person3)
                             modelContext.insert(receipt)
                             try? modelContext.save()
                         } label: {

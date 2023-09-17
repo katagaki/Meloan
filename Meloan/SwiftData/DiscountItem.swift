@@ -17,4 +17,9 @@ final class DiscountItem {
         self.name = name
         self.price = price
     }
+
+    init(from editable: ReceiptItemEditable) {
+        self.name = editable.name
+        self.price = editable.price
+    }
 }

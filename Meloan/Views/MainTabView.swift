@@ -19,6 +19,7 @@ struct MainTabView: View {
                 .tabItem {
                     Label("TabTitle.Receipts", image: "Tab.Receipts")
                 }
+                .toolbarBackground(.visible, for: .tabBar)
                 .tag(TabType.receipts)
             Color.clear
                 .tabItem {

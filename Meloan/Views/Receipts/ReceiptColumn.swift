@@ -26,7 +26,7 @@ struct ReceiptColumn: View {
                         ForEach(receipt.receiptItems.sorted(by: { lhs, rhs in
                             lhs.name < rhs.name
                         })) { item in
-                            ReceiptItemCompactRow(name: item.name, price: item.price)
+                            ReceiptItemCompactRow(name: item.name, price: item.price, person: item.person)
                         }
                         if !receipt.taxItems.isEmpty {
                             Divider()
