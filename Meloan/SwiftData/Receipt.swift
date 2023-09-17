@@ -23,10 +23,7 @@ final class Receipt {
     }
 
     func sum() -> Double {
-        let sumOfItems = sumOfItems()
-        let sumOfTax = sumOfTax()
-        let sumOfDiscount = sumOfDiscount()
-        return sumOfItems + sumOfTax - sumOfDiscount
+        return sumOfItems() + sumOfTax() - sumOfDiscount()
     }
 
     func sumOfItems() -> Double {
@@ -73,10 +70,6 @@ final class Receipt {
 
     func sumOwed(to lender: Person, for borrower: Person) -> Double {
         if ((personWhoPaid?.id ?? "") == lender.id) && contains(participant: borrower) {
-            debugPrint("Calculating sum owed to \(lender.name) from \(borrower.name) in receipt \(name)")
-            debugPrint("Calculation: \(sumOfItemCost(for: borrower)) + \(sumOfSharedItemCostPerPerson()) * \(overallRate())")
-            debugPrint("Participants: \(peopleWhoParticipated.reduce(into: "", { partialResult, person in partialResult += " \(person.name)" }))")
-            debugPrint("Value: \((sumOfItemCost(for: borrower) + sumOfSharedItemCostPerPerson()) * overallRate())")
             return (sumOfItemCost(for: borrower) + sumOfSharedItemCostPerPerson()) * overallRate()
         }
         return .zero

@@ -6,12 +6,16 @@
 //
 
 import Komponents
+import SwiftData
 import SwiftUI
 
 struct MainTabView: View {
 
+    @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var tabManager: TabManager
     @EnvironmentObject var navigationManager: NavigationManager
+    @Query private var people: [Person]
+    @Query private var receipts: [Receipt]
 
     var body: some View {
         TabView(selection: $tabManager.selectedTab) {
@@ -25,7 +29,7 @@ struct MainTabView: View {
                 .tabItem {
                     Label("TabTitle.IOU", image: "Tab.IOU")
                 }
-                .toolbarBackground(.hidden, for: .tabBar)
+                .toolbarBackground(.visible, for: .tabBar)
                 .tag(TabType.iou)
             PeopleView()
                 .tabItem {

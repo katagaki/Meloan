@@ -14,31 +14,35 @@ struct IOUView: View {
     @EnvironmentObject var navigationManager: NavigationManager
     @Query(sort: \Person.name) private var people: [Person]
     @Query private var receipts: [Receipt]
+    @State var viewSafeIOUs: [IOUViewSafe] = []
     @State var personWhoPaid: Person?
 
     var body: some View {
         NavigationStack(path: $navigationManager.iouTabPath) {
-            List {
-                if let personWhoPaid = personWhoPaid, !(personWhoPaid.receiptsPaid?.isEmpty ?? true) {
-                    ForEach(people) { person in
-                        if person.id != personWhoPaid.id {
-                            Section {
-                                ForEach(person.receiptsParticipated ?? []) { receipt in
-                                    if receipt.personWhoPaid == personWhoPaid {
-                                        IOURow(name: receipt.name,
-                                               price: receipt.sumOwed(to: personWhoPaid, for: person))
-                                    }
+            List(people) { person in
+                if let personWhoPaid = self.personWhoPaid, !(personWhoPaid.receiptsPaid?.isEmpty ?? true) {
+                    if person.id != personWhoPaid.id && person.sumOwed(to: personWhoPaid) != .zero {
+                        Section {
+                            ForEach(person.receiptsParticipated ?? []) { receipt in
+                                if receipt.personWhoPaid == personWhoPaid {
+                                    IOURow(name: receipt.name,
+                                           price: receipt.sumOwed(to: personWhoPaid, for: person))
                                 }
-                            } header: {
-                                ListSectionHeader(text: person.name)
-                                    .font(.body)
-                            } footer: {
-                                IOURow(name: "IOU.TotalBorrowed",
-                                       price: person.sumOwed(to: personWhoPaid))
-                                .font(.body)
-                                .bold()
-                                .foregroundStyle(.primary)
                             }
+                        } header: {
+                            ListSectionHeader(text: person.name)
+                                .font(.body)
+                        } footer: {
+                            // IMPORTANT: Do NOT reuse IOURow! SwiftUI will reuse views in an unexpected
+                            // manner, and cause totals to appear incorrectly (calculation is CORRECT).
+                            HStack(alignment: .center, spacing: 4.0) {
+                                Text("IOU.TotalBorrowed")
+                                Spacer()
+                                Text("\(person.sumOwed(to: personWhoPaid), specifier: "%.2f")")
+                            }
+                            .font(.body)
+                            .bold()
+                            .foregroundStyle(.primary)
                         }
                     }
                 }
@@ -59,7 +63,7 @@ struct IOUView: View {
                 }
                 .pickerStyle(.navigationLink)
                 .padding()
-                .background(.regularMaterial)
+                .background(.ultraThinMaterial)
             }
         }
     }
