@@ -23,9 +23,8 @@ struct IOUView: View {
                     ForEach(people) { person in
                         if person.id != personWhoPaid.id {
                             Section {
-                                ForEach(receipts) { receipt in
-                                    if receipt.personWhoPaid == personWhoPaid &&
-                                        receipt.contains(participant: person) {
+                                ForEach(person.receiptsParticipated ?? []) { receipt in
+                                    if receipt.personWhoPaid == personWhoPaid {
                                         IOURow(name: receipt.name,
                                                price: receipt.sumOwed(to: personWhoPaid, for: person))
                                     }
@@ -35,8 +34,9 @@ struct IOUView: View {
                                     .font(.body)
                             } footer: {
                                 IOURow(name: "IOU.TotalBorrowed",
-                                       price: receipts.reduce(into: 0.0, { partialResult, receipt in
-                                    if receipt.contains(participant: person) {
+                                       price: (person.receiptsParticipated ?? [])
+                                    .reduce(into: 0.0, { partialResult, receipt in
+                                    if receipt.personWhoPaid == personWhoPaid {
                                         partialResult += receipt.sumOwed(to: personWhoPaid, for: person)
                                     }
                                 }))

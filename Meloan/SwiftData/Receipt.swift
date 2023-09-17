@@ -76,6 +76,7 @@ final class Receipt {
             debugPrint("Calculating sum owed to \(lender.name) from \(borrower.name) in receipt \(name)")
             debugPrint("Calculation: \(sumOfItemCost(for: borrower)) + \(sumOfSharedItemCostPerPerson()) * \(overallRate())")
             debugPrint("Participants: \(peopleWhoParticipated.reduce(into: "", { partialResult, person in partialResult += " \(person.name)" }))")
+            debugPrint("Value: \((sumOfItemCost(for: borrower) + sumOfSharedItemCostPerPerson()) * overallRate())")
             return (sumOfItemCost(for: borrower) + sumOfSharedItemCostPerPerson()) * overallRate()
         }
         return .zero
