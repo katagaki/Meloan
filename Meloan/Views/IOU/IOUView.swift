@@ -24,7 +24,8 @@ struct IOUView: View {
                         if person.id != personWhoPaid.id {
                             Section {
                                 ForEach(receipts) { receipt in
-                                    if receipt.contains(participant: person) {
+                                    if receipt.personWhoPaid == personWhoPaid &&
+                                        receipt.contains(participant: person) {
                                         IOURow(name: receipt.name,
                                                price: receipt.sumOwed(to: personWhoPaid, for: person))
                                     }
