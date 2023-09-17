@@ -8,6 +8,7 @@
 import Komponents
 import SwiftData
 import SwiftUI
+import TipKit
 
 struct MainTabView: View {
 
@@ -40,6 +41,12 @@ struct MainTabView: View {
                     Label("TabTitle.More", systemImage: "ellipsis")
                 }
                 .tag(TabType.more)
+        }
+        .task {
+            try? Tips.configure([
+                .displayFrequency(.immediate),
+                .datastoreLocation(.applicationDefault)
+            ])
         }
         .onAppear {
             if !people.contains(where: { $0.id == "ME" }) {

@@ -47,6 +47,7 @@ struct PeopleView: View {
                         } label: {
                             Image(systemName: "plus")
                         }
+                        .popoverTip(PeopleTip(), arrowEdge: .top)
                     }
                 }
             }

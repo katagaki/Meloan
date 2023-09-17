@@ -106,17 +106,6 @@
         }
       }
     },
-    "People.Hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add a lender/borrower to assign receipt items to them."
-          }
-        }
-      }
-    },
     "People.Me" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -130,6 +119,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "あなた"
+          }
+        }
+      }
+    },
+    "People.Tip.Text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a lender/borrower to assign receipt items to them."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貸し借り先を追加すると、その人を領収書の商品に割り当てることができるようになります。"
+          }
+        }
+      }
+    },
+    "People.Tip.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adding People"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貸し借り先について"
           }
         }
       }
