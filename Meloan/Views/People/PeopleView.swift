@@ -57,6 +57,7 @@ struct PeopleView: View {
                               onCreate: {
                     let newPerson = Person(name: newPersonName, photo: newPersonPhoto)
                     modelContext.insert(newPerson)
+                    try? modelContext.save()
                 })
                 .presentationDetents([.medium])
                 .interactiveDismissDisabled()

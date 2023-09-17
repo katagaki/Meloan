@@ -68,6 +68,7 @@ struct ReceiptAssignor: View {
                             newReceipt.setPersonWhoPaid(to: personWhoPaid)
                             newReceipt.addPeopleWhoParticipated(from: peopleWhoParticipated)
                             modelContext.insert(newReceipt)
+                            try? modelContext.save()
                         }
                         onCreate()
                     } label: {
