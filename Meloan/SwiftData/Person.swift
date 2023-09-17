@@ -13,7 +13,8 @@ final class Person {
     @Attribute(.unique) var id: String = UUID().uuidString
     var name: String
     var photo: Data?
-    @Relationship(inverse: \ReceiptItem.person) var receiptItems: [ReceiptItem]?
+    @Relationship(inverse: \Receipt.personWhoPaid) var receiptsPaid: [Receipt]?
+    @Relationship(inverse: \Receipt.peopleWhoParticipated) var receiptsParticipated: [Receipt]?
 
     init(name: String) {
         self.name = name

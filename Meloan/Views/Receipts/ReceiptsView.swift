@@ -85,6 +85,9 @@ struct ReceiptsView: View {
         let taxItem2 = TaxItem(name: NSLocalizedString("SampleData.TaxItem2", comment: ""),
                                price: 6.48)
         let receipt = Receipt(name: NSLocalizedString("SampleData.ReceiptName", comment: ""))
+        modelContext.insert(person1)
+        modelContext.insert(person2)
+        modelContext.insert(person3)
         receiptItem2.setPurchaser(to: person1)
         receiptItem3.setPurchaser(to: person2)
         receiptItem4.setPurchaser(to: person3)

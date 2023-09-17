@@ -13,7 +13,7 @@ import SwiftUI
 struct ReceiptCreator: View {
 
     @Environment(\.dismiss) var dismiss
-    @Query private var people: [Person]
+    @Query(sort: \Person.name) private var people: [Person]
 
     @State var name: String = ""
     @State var personWhoPaid: Person?

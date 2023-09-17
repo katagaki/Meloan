@@ -6,12 +6,14 @@
 //
 
 import Komponents
+import SwiftData
 import SwiftUI
 
 struct MoreView: View {
 
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
+    @Query(sort: \Person.name) private var people: [Person]
 
     var body: some View {
         NavigationStack(path: $navigationManager.moreTabPath) {
@@ -19,11 +21,17 @@ struct MoreView: View {
                 // TODO: Add setting options for default tax rate, currency, etc
                 Section {
                     Button {
-                        try? modelContext.delete(model: Person.self)
-                        try? modelContext.delete(model: ReceiptItem.self)
-                        try? modelContext.delete(model: DiscountItem.self)
-                        try? modelContext.delete(model: TaxItem.self)
-                        try? modelContext.delete(model: Receipt.self)
+                        do {
+                            try modelContext.delete(model: ReceiptItem.self)
+                            try modelContext.delete(model: DiscountItem.self)
+                            try modelContext.delete(model: TaxItem.self)
+                            try modelContext.delete(model: Receipt.self)
+                            for person in people {
+                                modelContext.delete(person)
+                            }
+                        } catch {
+                            debugPrint(error.localizedDescription)
+                        }
                     } label: {
                         Text("More.DeleteAllData")
                             .foregroundStyle(.red)

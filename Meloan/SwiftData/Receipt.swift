@@ -71,12 +71,18 @@ final class Receipt {
         })
     }
 
-    func sumOwed(for person: Person) -> Double {
-        if peopleWhoParticipated.contains(where: { $0.id == person.id }) {
-            return (sumOfItemCost(for: person) + sumOfSharedItemCostPerPerson()) * overallRate()
-        } else {
-            return .zero
+    func sumOwed(to lender: Person, for borrower: Person) -> Double {
+        if ((personWhoPaid?.id ?? "") == lender.id) && contains(participant: borrower) {
+            debugPrint("Calculating sum owed to \(lender.name) from \(borrower.name) in receipt \(name)")
+            debugPrint("Calculation: \(sumOfItemCost(for: borrower)) + \(sumOfSharedItemCostPerPerson()) * \(overallRate())")
+            debugPrint("Participants: \(peopleWhoParticipated.reduce(into: "", { partialResult, person in partialResult += " \(person.name)" }))")
+            return (sumOfItemCost(for: borrower) + sumOfSharedItemCostPerPerson()) * overallRate()
         }
+        return .zero
+    }
+
+    func contains(participant person: Person) -> Bool {
+        return peopleWhoParticipated.contains(where: { $0.id == person.id })
     }
 
     func addReceiptItems(from receiptItems: [ReceiptItem]) {
