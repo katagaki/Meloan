@@ -11,11 +11,11 @@ import SwiftUI
 
 struct ReceiptColumn: View {
 
-    @Query private var receipts: [Receipt]
+    @EnvironmentObject var navigationManager: NavigationManager
     @State var receipt: Receipt
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0.0) {
+        VStack(alignment: .center, spacing: 0.0) {
             Text(receipt.name)
                 .bold()
                 .padding()
@@ -45,7 +45,7 @@ struct ReceiptColumn: View {
                             }
                         }
                         Divider()
-                        ReceiptItemCompactRow(name: "Receipt.Total", price: receipt.sum())
+                        ReceiptItemCompactRow(name: "Receipt.Total", price: receipt.sum(), hidesPhoto: true)
                     }
                     .padding([.leading, .trailing])
                 }
@@ -54,7 +54,7 @@ struct ReceiptColumn: View {
             Divider()
             VStack(alignment: .center, spacing: 16.0) {
                 ActionButton(text: "Receipt.ShowDetails", icon: "Receipt.ShowDetails", isPrimary: true) {
-                    // TODO: Show receipt details
+                    navigationManager.push(ViewPath.receiptDetail(receipt: receipt), for: .receipts)
                 }
                 ActionButton(text: "Receipt.Edit", icon: "Receipt.Edit", isPrimary: false) {
                     // TODO: Edit receipt

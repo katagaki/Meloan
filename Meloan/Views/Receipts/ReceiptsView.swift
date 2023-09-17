@@ -35,6 +35,12 @@ struct ReceiptsView: View {
                 .padding()
             }
             .background(Color(uiColor: UIColor.systemGroupedBackground))
+            .navigationDestination(for: ViewPath.self, destination: { viewPath in
+                switch viewPath {
+                case .receiptDetail(let receipt): ReceiptDetailView(receipt: receipt)
+                default: Color.clear
+                }
+            })
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack {

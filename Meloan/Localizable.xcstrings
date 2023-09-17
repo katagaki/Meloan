@@ -11,6 +11,9 @@
         }
       }
     },
+    "%d%%" : {
+
+    },
     "IOU.SelectLender" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -92,6 +95,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名前"
+          }
+        }
+      }
+    },
+    "Person.Payer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (Payer)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "（支払人）"
           }
         }
       }
@@ -379,6 +399,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "外税"
+          }
+        }
+      }
+    },
+    "Receipt.Tax.Detail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Approximate Tax Rate"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "概算税率"
           }
         }
       }

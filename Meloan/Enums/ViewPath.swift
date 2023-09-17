@@ -9,5 +9,6 @@ import Foundation
 
 enum ViewPath: Hashable {
     case moreAttributions
+    case receiptDetail(receipt: Receipt)
     case receiptAssignor
 }

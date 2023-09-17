@@ -44,6 +44,10 @@ final class Receipt {
         })
     }
 
+    func taxRate() -> Double {
+        return sumOfTax() / sumOfItems()
+    }
+
     func overallRate() -> Double {
         return sum() / sumOfItems()
     }
