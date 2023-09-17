@@ -25,4 +25,12 @@ final class Person {
         self.name = name
         self.photo = photo
     }
+
+    func sumOwed(to personWhoPaid: Person) -> Double {
+        var sum: Double = .zero
+        for receipt in receiptsParticipated ?? [] where receipt.personWhoPaid == personWhoPaid {
+            sum += receipt.sumOwed(to: personWhoPaid, for: self)
+        }
+        return sum
+    }
 }

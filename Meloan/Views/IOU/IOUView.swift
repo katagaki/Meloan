@@ -34,12 +34,7 @@ struct IOUView: View {
                                     .font(.body)
                             } footer: {
                                 IOURow(name: "IOU.TotalBorrowed",
-                                       price: (person.receiptsParticipated ?? [])
-                                    .reduce(into: 0.0, { partialResult, receipt in
-                                    if receipt.personWhoPaid == personWhoPaid {
-                                        partialResult += receipt.sumOwed(to: personWhoPaid, for: person)
-                                    }
-                                }))
+                                       price: person.sumOwed(to: personWhoPaid))
                                 .font(.body)
                                 .bold()
                                 .foregroundStyle(.primary)
