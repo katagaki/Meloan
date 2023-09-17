@@ -34,11 +34,14 @@ struct IOUView: View {
                                     IOURow(name: receipt.name, price: receipt.sumOwed(for: person))
                                 }
                             }
-                            IOURow(name: "IOU.TotalBorrowed", price: amountPayable)
-                                .bold()
                         } header: {
                             ListSectionHeader(text: person.name)
                                 .font(.body)
+                        } footer: {
+                            IOURow(name: "IOU.TotalBorrowed", price: amountPayable)
+                                .font(.body)
+                                .bold()
+                                .foregroundStyle(.primary)
                         }
                     }
                 }

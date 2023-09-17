@@ -72,7 +72,11 @@ final class Receipt {
     }
 
     func sumOwed(for person: Person) -> Double {
-        return (sumOfItemCost(for: person) + sumOfSharedItemCostPerPerson()) * overallRate()
+        if peopleWhoParticipated.contains(where: { $0.id == person.id }) {
+            return (sumOfItemCost(for: person) + sumOfSharedItemCostPerPerson()) * overallRate()
+        } else {
+            return .zero
+        }
     }
 
     func addReceiptItems(from receiptItems: [ReceiptItem]) {
