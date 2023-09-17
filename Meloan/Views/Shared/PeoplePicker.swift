@@ -17,7 +17,29 @@ struct PeoplePicker: View {
     var body: some View {
         List {
             if let mePerson = people.first(where: { $0.id == "ME" }) {
-                PersonRow(person: mePerson)
+                Button {
+                    if selection.contains(where: { $0.id == "ME" }) {
+                        selection.removeAll { selectedPerson in
+                            selectedPerson.id == "ME"
+                        }
+                    } else {
+                        selection.append(mePerson)
+                    }
+                } label: {
+                    HStack {
+                        PersonRow(person: mePerson)
+                            .tint(.primary)
+                        Spacer()
+                        if selection.contains(where: { $0.id == "ME" }) {
+                            Image(systemName: "checkmark")
+                                .fontWeight(.medium)
+                        } else {
+                            Image(systemName: "checkmark")
+                                .fontWeight(.medium)
+                                .opacity(0)
+                        }
+                    }
+                }
             }
             ForEach(people.filter({ $0.id != "ME" })) { person in
                 Button {
