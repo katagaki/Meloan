@@ -1,12 +1,20 @@
 {
   "images" : [
     {
-      "filename" : "Kuroko.png",
+      "filename" : "‎Profile Photo.‎005.png",
       "idiom" : "universal"
+    },
+    {
+      "filename" : "‎Profile Photo.‎008.png",
+      "idiom" : "universal",
+      "locale" : "ja"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "localizable" : true
   }
 }

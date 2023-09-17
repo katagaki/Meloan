@@ -3,10 +3,18 @@
     {
       "filename" : "Akagi.png",
       "idiom" : "universal"
+    },
+    {
+      "filename" : "‎Profile Photo.‎006.png",
+      "idiom" : "universal",
+      "locale" : "ja"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "localizable" : true
   }
 }
