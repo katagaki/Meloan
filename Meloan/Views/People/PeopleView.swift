@@ -23,7 +23,10 @@ struct PeopleView: View {
     var body: some View {
         NavigationStack(path: $navigationManager.peopleTabPath) {
             List {
-                ForEach(people) { person in
+                if let mePerson = people.first(where: { $0.id == "ME" }) {
+                    PersonRow(person: mePerson)
+                }
+                ForEach(people.filter({ $0.id != "ME" })) { person in
                     PersonRow(person: person)
                 }
                 .onDelete(perform: { indexSet in
