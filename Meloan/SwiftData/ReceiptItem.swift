@@ -15,13 +15,6 @@ final class ReceiptItem {
     var amount: Int
     @Relationship(deleteRule: .noAction) var person: Person?
 
-    init(name: String, price: Double, amount: Int, purchasedBy person: Person) {
-        self.name = name
-        self.price = price
-        self.amount = amount
-        self.person = person
-    }
-
     init(name: String, price: Double, amount: Int) {
         self.name = name
         self.price = price
@@ -31,7 +24,10 @@ final class ReceiptItem {
     init(from editable: ReceiptItemEditable) {
         self.name = editable.name
         self.price = editable.price
-        self.person = editable.person
         self.amount = editable.amount
+    }
+
+    func setPurchaser(to person: Person?) {
+        self.person = person
     }
 }

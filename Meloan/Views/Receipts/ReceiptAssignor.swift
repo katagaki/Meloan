@@ -49,6 +49,7 @@ struct ReceiptAssignor: View {
                     Button {
                         for receiptItemEditable in receiptItemsEditable {
                             let receiptItem = ReceiptItem(from: receiptItemEditable)
+                            receiptItem.setPurchaser(to: receiptItemEditable.person)
                             receiptItems.append(receiptItem)
                         }
                         for discountItemEditable in discountItemsEditable {
@@ -59,7 +60,7 @@ struct ReceiptAssignor: View {
                             let receiptItem = TaxItem(from: taxItemEditable)
                             taxItems.append(receiptItem)
                         }
-                        if name != "", let personWhoPaid = personWhoPaid {
+                        if name != "" {
                             let newReceipt = Receipt(name: name)
                             newReceipt.addReceiptItems(from: receiptItems)
                             newReceipt.addDiscountItems(from: discountItems)

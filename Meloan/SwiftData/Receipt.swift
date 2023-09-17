@@ -87,7 +87,7 @@ final class Receipt {
         self.taxItems.append(contentsOf: taxItems)
     }
 
-    func setPersonWhoPaid(to personWhoPaid: Person) {
+    func setPersonWhoPaid(to personWhoPaid: Person?) {
         self.personWhoPaid = personWhoPaid
     }
 

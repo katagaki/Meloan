@@ -71,11 +71,11 @@ struct ReceiptsView: View {
         let receiptItem1 = ReceiptItem(name: NSLocalizedString("SampleData.Item1", comment: ""),
                                        price: 42.00, amount: 1)
         let receiptItem2 = ReceiptItem(name: NSLocalizedString("SampleData.Item2", comment: ""),
-                                       price: 12.00, amount: 1, purchasedBy: person1)
+                                       price: 12.00, amount: 1)
         let receiptItem3 = ReceiptItem(name: NSLocalizedString("SampleData.Item3", comment: ""),
-                                       price: 11.00, amount: 1, purchasedBy: person2)
+                                       price: 11.00, amount: 1)
         let receiptItem4 = ReceiptItem(name: NSLocalizedString("SampleData.Item4", comment: ""),
-                                       price: 16.00, amount: 1, purchasedBy: person3)
+                                       price: 16.00, amount: 1)
         let receiptItem5 = ReceiptItem(name: NSLocalizedString("SampleData.Item5", comment: ""),
                                        price: 1.00, amount: 3)
         let discountItem = DiscountItem(name: NSLocalizedString("SampleData.Discount", comment: ""),
@@ -85,6 +85,9 @@ struct ReceiptsView: View {
         let taxItem2 = TaxItem(name: NSLocalizedString("SampleData.TaxItem2", comment: ""),
                                price: 6.48)
         let receipt = Receipt(name: NSLocalizedString("SampleData.ReceiptName", comment: ""))
+        receiptItem2.setPurchaser(to: person1)
+        receiptItem3.setPurchaser(to: person2)
+        receiptItem4.setPurchaser(to: person3)
         receipt.addReceiptItems(from: [receiptItem1, receiptItem2, receiptItem3,
                                        receiptItem4, receiptItem5])
         receipt.addDiscountItems(from: [discountItem])
