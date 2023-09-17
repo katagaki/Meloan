@@ -17,7 +17,7 @@ struct MoreView: View {
 
     var body: some View {
         NavigationStack(path: $navigationManager.moreTabPath) {
-            MoreList(repoName: "katagaki/Meloan", viewPath: ViewPath.moreAttributions) {
+            MoreList(repoName: "katagaki/Meloan") {
                 // TODO: Add setting options for default tax rate, currency, etc
                 Section {
                     Button {
@@ -36,13 +36,6 @@ struct MoreView: View {
                         Text("More.DeleteAllData")
                             .foregroundStyle(.red)
                     }
-                }
-            }
-            .navigationDestination(for: ViewPath.self) { viewPath in
-                switch viewPath {
-                case .moreAttributions:
-                    LicensesView(licenses: [])
-                default: Color.clear
                 }
             }
         }

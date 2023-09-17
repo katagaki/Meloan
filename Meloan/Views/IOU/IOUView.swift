@@ -63,7 +63,11 @@ struct IOUView: View {
                 Picker(selection: $personWhoPaid) {
                     Text("Shared.NoSelection")
                         .tag(nil as Person?)
-                    ForEach(people) { person in
+                    if let mePerson = people.first(where: { $0.id == "ME" }) {
+                        PersonRow(person: mePerson)
+                            .tag(mePerson as Person?)
+                    }
+                    ForEach(people.filter({ $0.id != "ME" })) { person in
                         PersonRow(person: person)
                             .tag(person as Person?)
                     }
