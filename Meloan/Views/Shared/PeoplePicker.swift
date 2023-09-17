@@ -31,7 +31,7 @@ struct PeoplePicker: View {
                 } label: {
                     HStack {
                         PersonRow(person: person)
-                            .tint(.white)
+                            .tint(.primary)
                         Spacer()
                         if selection.contains(where: { $0.id == person.id }) {
                             Image(systemName: "checkmark")
