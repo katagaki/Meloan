@@ -28,6 +28,7 @@ struct ReceiptEditor: View {
                     Text("Shared.AutoSaving")
                         .font(.subheadline)
                 }
+                .textCase(.none)
                 .padding(.bottom, 16.0)
             }
             Section {
