@@ -106,6 +106,23 @@
         }
       }
     },
+    "People.Edit.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Person"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貸し借り先を編集"
+          }
+        }
+      }
+    },
     "People.Me" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -842,6 +859,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択なし"
+          }
+        }
+      }
+    },
+    "Shared.Save" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存"
           }
         }
       }

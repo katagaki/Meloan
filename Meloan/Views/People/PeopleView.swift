@@ -27,7 +27,9 @@ struct PeopleView: View {
                     PersonRow(person: mePerson)
                 }
                 ForEach(people.filter({ $0.id != "ME" })) { person in
-                    PersonRow(person: person)
+                    NavigationLink(value: ViewPath.personEditor(person: person)) {
+                        PersonRow(person: person)
+                    }
                 }
                 .onDelete(perform: { indexSet in
                     for index in indexSet {
@@ -36,6 +38,12 @@ struct PeopleView: View {
                 })
             }
             .listStyle(.plain)
+            .navigationDestination(for: ViewPath.self, destination: { viewPath in
+                switch viewPath {
+                case .personEditor(let person): PersonEditor(person: person)
+                default: Color.clear
+                }
+            })
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack {
@@ -52,14 +60,10 @@ struct PeopleView: View {
                 }
             }
             .sheet(isPresented: $isCreatingPerson, content: {
-                PersonCreator(name: $newPersonName,
-                              selectedPhoto: $newPersonPhoto,
-                              onCreate: {
-                    let newPerson = Person(name: newPersonName, photo: newPersonPhoto)
-                    modelContext.insert(newPerson)
-                    try? modelContext.save()
-                })
+                PersonCreator()
+                #if os(iOS)
                 .presentationDetents([.medium])
+                #endif
                 .interactiveDismissDisabled()
             })
             .navigationTitle("ViewTitle.People")

@@ -10,11 +10,11 @@ import SwiftUI
 
 struct PersonCreator: View {
 
+    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
-    @Binding var name: String
-    @Binding var selectedPhoto: Data?
+    @State var name: String = ""
+    @State var selectedPhoto: Data?
     @State var selectedPhotoItem: PhotosPickerItem?
-    @State var onCreate: () -> Void
 
     var body: some View {
         NavigationStack {
@@ -58,7 +58,9 @@ struct PersonCreator: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        onCreate()
+                        let newPerson = Person(name: name, photo: selectedPhoto)
+                        modelContext.insert(newPerson)
+                        try? modelContext.save()
                         dismiss()
                     } label: {
                         Text("Shared.Create")

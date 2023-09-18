@@ -35,8 +35,29 @@ struct IOUView: View {
                                 }
                             }
                         } header: {
-                            ListSectionHeader(text: person.name)
-                                .font(.body)
+                            HStack(alignment: .center, spacing: 16.0) {
+                                Group {
+                                    if let photo = person.photo, let image = UIImage(data: photo) {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            .scaledToFill()
+                                    } else {
+                                        Image("Profile.Generic")
+                                            .resizable()
+                                    }
+                                }
+                                .frame(width: 30.0, height: 30.0)
+                                .clipShape(Circle())
+                                Text(verbatim: person.name)
+                                    .bold()
+                                    .foregroundColor(.primary)
+                                    .textCase(nil)
+                                    .lineLimit(1)
+                                    .truncationMode(.middle)
+                                    .allowsTightening(true)
+                                    .font(.body)
+                            }
+                            .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 8.0, trailing: 0.0))
                         } footer: {
                             // IMPORTANT: Do NOT refactor! SwiftUI will reuse views in an unexpected
                             // manner, and cause totals to appear incorrectly (calculation is CORRECT).
