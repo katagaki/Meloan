@@ -52,16 +52,16 @@ final class Receipt {
         return sum() / sumOfItems()
     }
 
-    func sumOfSharedItemCost() -> Double {
+    func sumOfSharedItemCost(excludingPaid: Bool = false) -> Double {
         return receiptItems.reduce(into: 0.0, { partialResult, item in
-            if item.person == nil {
+            if item.person == nil, !excludingPaid || !item.paid {
                 partialResult += item.price
             }
         })
     }
 
-    func sumOfSharedItemCostPerPerson() -> Double {
-        return sumOfSharedItemCost() / Double(peopleWhoParticipated.count)
+    func sumOfSharedItemCostPerPerson(excludingPaid: Bool = false) -> Double {
+        return sumOfSharedItemCost(excludingPaid: excludingPaid) / Double(peopleWhoParticipated.count)
     }
 
     func sumOfItemCost(for person: Person) -> Double {
@@ -74,7 +74,8 @@ final class Receipt {
 
     func sumOwed(to lender: Person, for borrower: Person) -> Double {
         if ((personWhoPaid?.id ?? "") == lender.id) && contains(participant: borrower) {
-            return (sumOfItemCost(for: borrower) + sumOfSharedItemCostPerPerson()) * overallRate()
+            return (sumOfItemCost(for: borrower) +
+                    sumOfSharedItemCostPerPerson(excludingPaid: true)) * overallRate()
         }
         return .zero
     }
