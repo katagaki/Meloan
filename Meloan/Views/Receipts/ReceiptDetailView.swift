@@ -5,12 +5,14 @@
 //  Created by シン・ジャスティン on 2023/09/17.
 //
 
+import ConfettiSwiftUI
 import Komponents
 import SwiftUI
 
 struct ReceiptDetailView: View {
 
     @State var receipt: Receipt
+    @State var confettiCounter: Int = 0
 
     var body: some View {
         List {
@@ -28,6 +30,9 @@ struct ReceiptDetailView: View {
                 ForEach(receipt.receiptItems.sorted(by: { $0.dateAdded < $1.dateAdded })) { item in
                     Button {
                         item.paid.toggle()
+                        if receipt.isPaid() {
+                            confettiCounter += 1
+                        }
                     } label: {
                         HStack(alignment: .center, spacing: 16.0) {
                             Group {
@@ -95,6 +100,7 @@ struct ReceiptDetailView: View {
                 }
             }
         }
+        .confettiCannon(counter: $confettiCounter, num: Int(receipt.sum()), rainHeight: 1000.0, radius: 500.0)
         .navigationTitle(receipt.name)
         .navigationBarTitleDisplayMode(.inline)
     }

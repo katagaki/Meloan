@@ -46,6 +46,7 @@
 		E4766C212AB86086005E4B47 /* ReceiptMarkPaidTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C202AB86086005E4B47 /* ReceiptMarkPaidTip.swift */; };
 		E4766C262AB886C9005E4B47 /* ReceiptItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C252AB886C9005E4B47 /* ReceiptItemDetailView.swift */; };
 		E4766C282AB88D41005E4B47 /* PeopleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C272AB88D41005E4B47 /* PeopleDetailView.swift */; };
+		E4766C2B2AB89500005E4B47 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E4766C2A2AB89500005E4B47 /* ConfettiSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4766C2B2AB89500005E4B47 /* ConfettiSwiftUI in Frameworks */,
 				E44B68332AB56D0D00B243B0 /* Komponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,6 +266,7 @@
 			name = Meloan;
 			packageProductDependencies = (
 				E44B68322AB56D0D00B243B0 /* Komponents */,
+				E4766C2A2AB89500005E4B47 /* ConfettiSwiftUI */,
 			);
 			productName = Meloan;
 			productReference = E44B68142AB4ADCA00B243B0 /* Meloan.app */;
@@ -296,6 +299,7 @@
 			mainGroup = E44B680B2AB4ADCA00B243B0;
 			packageReferences = (
 				E44B68312AB56D0D00B243B0 /* XCRemoteSwiftPackageReference "Komponents" */,
+				E4766C292AB89500005E4B47 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 			);
 			productRefGroup = E44B68152AB4ADCA00B243B0 /* Products */;
 			projectDirPath = "";
@@ -595,6 +599,14 @@
 				kind = branch;
 			};
 		};
+		E4766C292AB89500005E4B47 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -602,6 +614,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E44B68312AB56D0D00B243B0 /* XCRemoteSwiftPackageReference "Komponents" */;
 			productName = Komponents;
+		};
+		E4766C2A2AB89500005E4B47 /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4766C292AB89500005E4B47 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
