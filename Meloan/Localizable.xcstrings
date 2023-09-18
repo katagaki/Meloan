@@ -72,7 +72,41 @@
         }
       }
     },
-    "More.DeleteAllData" : {
+    "More.Data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage Data"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "データ管理"
+          }
+        }
+      }
+    },
+    "More.Data.CreateSampleData" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Sample Data"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サンプルデータを作成"
+          }
+        }
+      }
+    },
+    "More.Data.DeleteAll" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -811,22 +845,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "作成"
-          }
-        }
-      }
-    },
-    "Shared.CreateSampleData" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Create Sample Data"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "サンプルデータを作成"
           }
         }
       }
