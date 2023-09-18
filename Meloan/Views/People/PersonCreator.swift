@@ -5,6 +5,7 @@
 //  Created by シン・ジャスティン on 2023/09/16.
 //
 
+import Komponents
 import PhotosUI
 import SwiftUI
 
@@ -17,60 +18,57 @@ struct PersonCreator: View {
     @State var selectedPhotoItem: PhotosPickerItem?
 
     var body: some View {
-        NavigationStack {
-            List {
-                Section {
-                    HStack {
-                        Spacer()
-                        PhotosPicker(selection: $selectedPhotoItem,
-                                     matching: .images,
-                                     photoLibrary: .shared()) {
-                            Group {
-                                if let selectedPhoto = selectedPhoto,
-                                   let image = UIImage(data: selectedPhoto) {
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .scaledToFill()
-                                } else {
-                                    Image("Profile.Generic")
-                                        .resizable()
-                                }
+        List {
+            Section {
+                HStack {
+                    Spacer()
+                    PhotosPicker(selection: $selectedPhotoItem,
+                                 matching: .images,
+                                 photoLibrary: .shared()) {
+                        Group {
+                            if let selectedPhoto = selectedPhoto,
+                               let image = UIImage(data: selectedPhoto) {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFill()
+                            } else {
+                                Image("Profile.Generic")
+                                    .resizable()
                             }
-                            .frame(width: 144, height: 144)
-                            .clipShape(Circle())
                         }
-                                     .buttonStyle(.plain)
-                        Spacer()
+                        .frame(width: 144, height: 144)
+                        .clipShape(Circle())
                     }
-                    .listRowBackground(Color.clear)
+                                 .buttonStyle(.plain)
+                    Spacer()
                 }
-                Section {
-                    TextField("Person.Name", text: $name)
-                }
+                .listRowBackground(Color.clear)
             }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Text("Shared.Cancel")
-                    }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        let newPerson = Person(name: name, photo: selectedPhoto)
-                        modelContext.insert(newPerson)
-                        try? modelContext.save()
-                        dismiss()
-                    } label: {
-                        Text("Shared.Create")
-                    }
-                    .disabled(name == "")
-                }
+            Section {
+                TextField("Person.Name", text: $name)
             }
-            .navigationTitle("People.Create.Title")
-            .navigationBarTitleDisplayMode(.inline)
         }
+        .safeAreaInset(edge: .bottom) {
+            VStack(alignment: .center, spacing: 0.0) {
+                Button {
+                    let newPerson = Person(name: name, photo: selectedPhoto)
+                    modelContext.insert(newPerson)
+                    try? modelContext.save()
+                    dismiss()
+                } label: {
+                    LargeButtonLabel(iconName: "plus.circle.fill", text: "Shared.Create")
+                        .bold()
+                        .frame(maxWidth: .infinity)
+                }
+                .disabled(name == "")
+                .buttonStyle(.borderedProminent)
+                .clipShape(RoundedRectangle(cornerRadius: 99))
+                .frame(minHeight: 56.0)
+                .padding([.leading, .trailing, .bottom], 16.0)
+            }
+        }
+        .navigationTitle("People.Create.Title")
+        .navigationBarTitleDisplayMode(.inline)
         .onChange(of: selectedPhotoItem) { _, _ in
             Task {
                 if let selectedPhotoItem = selectedPhotoItem,

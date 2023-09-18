@@ -47,8 +47,6 @@ final class Person {
             let xOffset = (sourceSize.width - sideLength) / 2.0
             let yOffset = (sourceSize.height - sideLength) / 2.0
             let cropRect = CGRect(x: xOffset, y: yOffset, width: sideLength, height: sideLength)
-            let sourceCGImage = sourceImage.cgImage!
-            let croppedCGImage = sourceCGImage.cropping(to: cropRect.integral)!
             let imageRendererFormat = sourceImage.imageRendererFormat
             imageRendererFormat.opaque = false
             let circleCroppedImage = UIGraphicsImageRenderer(size: cropRect.size,

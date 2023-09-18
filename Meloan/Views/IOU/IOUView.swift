@@ -73,7 +73,6 @@ struct IOUView: View {
                 }
             }
             .listStyle(.sidebar)
-            .navigationTitle("ViewTitle.IOU")
             .overlay {
                 if personWhoPaid == nil {
                     HintOverlay(image: "filemenu.and.selection", text: "IOU.Hint")
@@ -103,6 +102,7 @@ struct IOUView: View {
                                             alignment: .top).foregroundColor(.primary.opacity(0.3)),
                          alignment: .top)
             }
+            .navigationTitle("ViewTitle.IOU")
             .onAppear {
                 if !isInitialLoadCompleted {
                     personWhoPaid = people.first(where: { $0.id == "ME" })

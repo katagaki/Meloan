@@ -20,7 +20,7 @@ struct PersonRow: View {
                         .resizable()
                         .scaledToFill()
                 } else {
-                    Image("Profile.Generic")
+                    Image("Profile.Generic.Circle")
                         .resizable()
                 }
             }

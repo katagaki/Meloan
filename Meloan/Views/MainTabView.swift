@@ -68,7 +68,7 @@ struct MainTabView: View {
         if !people.contains(where: { $0.id == "ME" }) {
             let mePerson = Person(name: NSLocalizedString("People.Me", comment: ""))
             mePerson.id = "ME"
-            mePerson.photo = UIImage(named: "Profile.Me")!.pngData()
+            mePerson.photo = UIImage(named: "Profile.Me.Circle")!.pngData()
             modelContext.insert(mePerson)
         } else {
             if let mePerson = people.first(where: { $0.id == "ME" }) {

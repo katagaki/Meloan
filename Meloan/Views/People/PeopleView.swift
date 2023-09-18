@@ -15,11 +15,6 @@ struct PeopleView: View {
     @EnvironmentObject var navigationManager: NavigationManager
     @Query(sort: \Person.name) private var people: [Person]
 
-    // Person Creator
-    @State var isCreatingPerson: Bool = false
-    @State var newPersonPhoto: Data?
-    @State var newPersonName: String = ""
-
     var body: some View {
         NavigationStack(path: $navigationManager.peopleTabPath) {
             List {
@@ -42,29 +37,19 @@ struct PeopleView: View {
             .listStyle(.plain)
             .navigationDestination(for: ViewPath.self, destination: { viewPath in
                 switch viewPath {
+                case .personCreator: PersonCreator()
                 case .personEditor(let person): PersonEditor(person: person)
                 default: Color.clear
                 }
             })
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        newPersonPhoto = nil
-                        newPersonName = ""
-                        isCreatingPerson = true
-                    } label: {
+                    NavigationLink(value: ViewPath.personCreator) {
                         Image(systemName: "plus")
                     }
                     .popoverTip(PeopleTip(), arrowEdge: .top)
                 }
             }
-            .sheet(isPresented: $isCreatingPerson, content: {
-                PersonCreator()
-                #if os(iOS)
-                .presentationDetents([.medium])
-                #endif
-                .interactiveDismissDisabled()
-            })
             .navigationTitle("ViewTitle.People")
         }
     }

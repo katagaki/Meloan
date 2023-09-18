@@ -48,8 +48,6 @@ struct PersonEditor: View {
                 TextField("Person.Name", text: $name)
             }
         }
-        .navigationTitle("People.Edit.Title")
-        .navigationBarTitleDisplayMode(.inline)
         .safeAreaInset(edge: .bottom) {
             VStack(alignment: .center, spacing: 0.0) {
                 Button {
@@ -67,6 +65,8 @@ struct PersonEditor: View {
                 .padding([.leading, .trailing, .bottom], 16.0)
             }
         }
+        .navigationTitle("People.Edit.Title")
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             name = person.name
             selectedPhoto = person.photo

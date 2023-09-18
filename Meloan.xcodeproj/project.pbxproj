@@ -10,7 +10,6 @@
 		E44B68182AB4ADCA00B243B0 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68172AB4ADCA00B243B0 /* App.swift */; };
 		E44B681A2AB4ADCA00B243B0 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68192AB4ADCA00B243B0 /* PeopleView.swift */; };
 		E44B681C2AB4ADCA00B243B0 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B681B2AB4ADCA00B243B0 /* Person.swift */; };
-		E44B681E2AB4ADCB00B243B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44B681D2AB4ADCB00B243B0 /* Assets.xcassets */; };
 		E44B68292AB5667A00B243B0 /* ReceiptItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68282AB5667A00B243B0 /* ReceiptItem.swift */; };
 		E44B682C2AB5671600B243B0 /* TaxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B682B2AB5671600B243B0 /* TaxItem.swift */; };
 		E44B682E2AB5673B00B243B0 /* DiscountItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B682D2AB5673B00B243B0 /* DiscountItem.swift */; };
@@ -47,6 +46,7 @@
 		E4766C262AB886C9005E4B47 /* ReceiptItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C252AB886C9005E4B47 /* ReceiptItemDetailView.swift */; };
 		E4766C282AB88D41005E4B47 /* PeopleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C272AB88D41005E4B47 /* PeopleDetailView.swift */; };
 		E4766C2B2AB89500005E4B47 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E4766C2A2AB89500005E4B47 /* ConfettiSwiftUI */; };
+		E4766C2C2AB89CEE005E4B47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44B681D2AB4ADCB00B243B0 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -316,8 +316,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E44B68522AB5B67F00B243B0 /* InfoPlist.xcstrings in Resources */,
+				E4766C2C2AB89CEE005E4B47 /* Assets.xcassets in Resources */,
 				E44B68402AB573C300B243B0 /* Localizable.xcstrings in Resources */,
-				E44B681E2AB4ADCB00B243B0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

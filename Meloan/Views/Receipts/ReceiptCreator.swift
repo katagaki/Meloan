@@ -28,7 +28,6 @@ struct ReceiptCreator: View {
     @State var taxItems: [TaxItem] = []
 
     var body: some View {
-        NavigationStack {
             List {
                 Section {
                     TextField("Receipt.Name", text: $name)
@@ -129,15 +128,8 @@ struct ReceiptCreator: View {
                     }
                 }
             }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Text("Shared.Cancel")
-                    }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
+            .safeAreaInset(edge: .bottom) {
+                VStack(alignment: .center, spacing: 0.0) {
                     Button {
                         for receiptItemEditable in receiptItemsEditable {
                             let receiptItem = ReceiptItem(from: receiptItemEditable)
@@ -164,9 +156,15 @@ struct ReceiptCreator: View {
                         }
                         dismiss()
                     } label: {
-                        Text("Shared.Create")
+                        LargeButtonLabel(iconName: "plus.circle.fill", text: "Shared.Create")
+                            .bold()
+                            .frame(maxWidth: .infinity)
                     }
                     .disabled(name == "" || personWhoPaid == nil || receiptItemsEditable.isEmpty)
+                    .buttonStyle(.borderedProminent)
+                    .clipShape(RoundedRectangle(cornerRadius: 99))
+                    .frame(minHeight: 56.0)
+                    .padding([.leading, .trailing, .bottom], 16.0)
                 }
             }
             .navigationTitle("Receipt.Create.Title")
@@ -178,6 +176,5 @@ struct ReceiptCreator: View {
                     }
                 }
             }
-        }
     }
 }

@@ -13,7 +13,6 @@ struct ReceiptsView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
     @Query(sort: \Receipt.dateAdded) private var receipts: [Receipt]
-    @State var isCreatingReceipt: Bool = false
 
     var body: some View {
         NavigationStack(path: $navigationManager.receiptsTabPath) {
@@ -37,6 +36,7 @@ struct ReceiptsView: View {
             .background(Color(uiColor: UIColor.systemGroupedBackground))
             .navigationDestination(for: ViewPath.self, destination: { viewPath in
                 switch viewPath {
+                case .receiptCreator: ReceiptCreator()
                 case .receiptDetail(let receipt): ReceiptDetailView(receipt: receipt)
                 case .receiptEditor(let receipt): ReceiptEditor(receipt: receipt)
                 default: Color.clear
@@ -45,18 +45,12 @@ struct ReceiptsView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack {
-                        Button {
-                            isCreatingReceipt = true
-                        } label: {
+                        NavigationLink(value: ViewPath.receiptCreator) {
                             Image(systemName: "plus")
                         }
                         .popoverTip(ReceiptsTip(), arrowEdge: .top)
                     }
                 }
-            }
-            .sheet(isPresented: $isCreatingReceipt) {
-                ReceiptCreator()
-                    .interactiveDismissDisabled()
             }
             .navigationTitle("ViewTitle.Receipts")
         }
