@@ -18,7 +18,7 @@ struct ReceiptsView: View {
     var body: some View {
         NavigationStack(path: $navigationManager.receiptsTabPath) {
             ScrollView(.horizontal) {
-                LazyHStack(alignment: .top, spacing: 16.0) {
+                LazyHStack(alignment: .top, spacing: 20.0) {
                     ForEach(receipts.sorted(by: { lhs, rhs in
                         lhs.name < rhs.name
                     })) { receipt in
@@ -32,7 +32,7 @@ struct ReceiptsView: View {
                             }
                     }
                 }
-                .padding()
+                .padding(20.0)
             }
             .background(Color(uiColor: UIColor.systemGroupedBackground))
             .navigationDestination(for: ViewPath.self, destination: { viewPath in
