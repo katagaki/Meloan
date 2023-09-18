@@ -25,7 +25,7 @@ struct ReceiptDetailView: View {
                     .font(.body)
             }
             Section {
-                ForEach(receipt.receiptItems) { item in
+                ForEach(receipt.receiptItems.sorted(by: { $0.dateAdded < $1.dateAdded })) { item in
                     Button {
                         item.paid.toggle()
                     } label: {
@@ -67,7 +67,7 @@ struct ReceiptDetailView: View {
             }
             if !receipt.discountItems.isEmpty {
                 Section {
-                    ForEach(receipt.discountItems) { item in
+                    ForEach(receipt.discountItems.sorted(by: { $0.dateAdded < $1.dateAdded })) { item in
                         ReceiptItemRow(name: item.name, price: item.price)
                     }
                 } header: {
@@ -77,7 +77,7 @@ struct ReceiptDetailView: View {
             }
             if !receipt.taxItems.isEmpty {
                 Section {
-                    ForEach(receipt.taxItems) { item in
+                    ForEach(receipt.taxItems.sorted(by: { $0.dateAdded < $1.dateAdded })) { item in
                         ReceiptItemRow(name: item.name, price: item.price)
                     }
                 } header: {

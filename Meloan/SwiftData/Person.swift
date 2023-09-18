@@ -15,6 +15,7 @@ final class Person {
     var photo: Data?
     @Relationship(inverse: \Receipt.personWhoPaid) var receiptsPaid: [Receipt]?
     @Relationship(inverse: \Receipt.peopleWhoParticipated) var receiptsParticipated: [Receipt]?
+    var dateAdded: Date = Date()
 
     init(name: String) {
         self.name = name

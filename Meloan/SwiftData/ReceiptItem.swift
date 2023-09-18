@@ -15,6 +15,7 @@ final class ReceiptItem {
     var amount: Int
     var paid: Bool = false
     @Relationship(deleteRule: .noAction) var person: Person?
+    var dateAdded: Date = Date()
 
     init(name: String, price: Double, amount: Int) {
         self.name = name

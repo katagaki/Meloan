@@ -12,6 +12,7 @@ import SwiftData
 final class TaxItem {
     var name: String
     var price: Double
+    var dateAdded: Date = Date()
 
     init(name: String, price: Double) {
         self.name = name

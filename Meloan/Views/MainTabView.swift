@@ -54,12 +54,7 @@ struct MainTabView: View {
             ])
         }
         .onAppear {
-            if !people.contains(where: { $0.id == "ME" }) {
-                let mePerson = Person(name: NSLocalizedString("People.Me", comment: ""))
-                mePerson.id = "ME"
-                mePerson.photo = UIImage(named: "Profile.Me")!.pngData()
-                modelContext.insert(mePerson)
-            }
+            createMePerson()
         }
         .onReceive(tabManager.$selectedTab, perform: { newValue in
             if newValue == tabManager.previouslySelectedTab {
@@ -67,5 +62,14 @@ struct MainTabView: View {
             }
             tabManager.previouslySelectedTab = newValue
         })
+    }
+
+    func createMePerson() {
+        if !people.contains(where: { $0.id == "ME" }) {
+            let mePerson = Person(name: NSLocalizedString("People.Me", comment: ""))
+            mePerson.id = "ME"
+            mePerson.photo = UIImage(named: "Profile.Me")!.pngData()
+            modelContext.insert(mePerson)
+        }
     }
 }

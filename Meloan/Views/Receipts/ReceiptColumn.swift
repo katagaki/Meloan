@@ -23,25 +23,19 @@ struct ReceiptColumn: View {
             ScrollView(.vertical) {
                 VStack(alignment: .leading, spacing: 8.0) {
                     Group {
-                        ForEach(receipt.receiptItems.sorted(by: { lhs, rhs in
-                            lhs.name < rhs.name
-                        })) { item in
+                        ForEach(receipt.receiptItems.sorted(by: { $0.dateAdded < $1.dateAdded })) { item in
                             ReceiptItemCompactRow(name: item.name, price: item.price,
                                                   isPaid: item.paid, person: item.person)
                         }
-                        if !receipt.taxItems.isEmpty {
+                        if !receipt.discountItems.isEmpty {
                             Divider()
-                            ForEach(receipt.taxItems.sorted(by: { lhs, rhs in
-                                lhs.name < rhs.name
-                            })) { item in
+                            ForEach(receipt.discountItems.sorted(by: { $0.dateAdded < $1.dateAdded })) { item in
                                 ReceiptItemCompactRow(name: item.name, price: item.price)
                             }
                         }
-                        if !receipt.discountItems.isEmpty {
+                        if !receipt.taxItems.isEmpty {
                             Divider()
-                            ForEach(receipt.discountItems.sorted(by: { lhs, rhs in
-                                lhs.name < rhs.name
-                            })) { item in
+                            ForEach(receipt.taxItems.sorted(by: { $0.dateAdded < $1.dateAdded })) { item in
                                 ReceiptItemCompactRow(name: item.name, price: item.price)
                             }
                         }

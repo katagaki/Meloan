@@ -12,7 +12,7 @@ struct ReceiptsView: View {
 
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
-    @Query private var receipts: [Receipt]
+    @Query(sort: \Receipt.dateAdded) private var receipts: [Receipt]
     @State var isCreatingReceipt: Bool = false
 
     var body: some View {

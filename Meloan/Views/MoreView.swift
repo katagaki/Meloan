@@ -84,7 +84,7 @@ struct MoreView: View {
             try modelContext.delete(model: DiscountItem.self)
             try modelContext.delete(model: TaxItem.self)
             try modelContext.delete(model: Receipt.self)
-            for person in people {
+            for person in people where person.id != "ME" {
                 modelContext.delete(person)
             }
         } catch {

@@ -64,14 +64,30 @@ struct ReceiptEditor: View {
                     .font(.subheadline)
             }
             Section {
-                ForEach($receipt.receiptItems) { $item in
+                ForEach($receipt.receiptItems
+                    .sorted(by: { $0.dateAdded.wrappedValue < $1.dateAdded.wrappedValue })) { $item in
                     ReceiptItemAssignableRow(name: $item.name, price: $item.price,
                                              personWhoOrdered: $item.person,
                                              peopleWhoParticipated: $receipt.peopleWhoParticipated,
                                              placeholderText: "Receipt.ProductName")
                 }
                 .onDelete { indexSet in
-                    receipt.receiptItems.remove(atOffsets: indexSet)
+                    // Workaround due to unsorted relationship in SwiftData
+                    indexSet.forEach { index in
+                        let itemsSorted = receipt.receiptItems.sorted(by: { $0.dateAdded < $1.dateAdded })
+                        var itemsToDelete: [ReceiptItem] = []
+                        indexSet.forEach { index in
+                            itemsToDelete.append(itemsSorted[index])
+                        }
+                        itemsToDelete.forEach { itemToDelete in
+                            receipt.receiptItems.removeAll { item in
+                                item == itemToDelete
+                            }
+                        }
+                        for item in itemsToDelete {
+                            modelContext.delete(item)
+                        }
+                    }
                 }
             } header: {
                 HStack(alignment: .center, spacing: 4.0) {
@@ -86,12 +102,28 @@ struct ReceiptEditor: View {
                 }
             }
             Section {
-                ForEach($receipt.discountItems) { $item in
+                ForEach($receipt.discountItems
+                    .sorted(by: { $0.dateAdded.wrappedValue < $1.dateAdded.wrappedValue })) { $item in
                     ReceiptItemEditableRow(name: $item.name, price: $item.price,
                                            placeholderText: "Receipt.ItemName")
                 }
                 .onDelete { indexSet in
-                    receipt.discountItems.remove(atOffsets: indexSet)
+                    // Workaround due to unsorted relationship in SwiftData
+                    indexSet.forEach { index in
+                        let itemsSorted = receipt.discountItems.sorted(by: { $0.dateAdded < $1.dateAdded })
+                        var itemsToDelete: [DiscountItem] = []
+                        indexSet.forEach { index in
+                            itemsToDelete.append(itemsSorted[index])
+                        }
+                        itemsToDelete.forEach { itemToDelete in
+                            receipt.discountItems.removeAll { item in
+                                item == itemToDelete
+                            }
+                        }
+                        for item in itemsToDelete {
+                            modelContext.delete(item)
+                        }
+                    }
                 }
             } header: {
                 HStack(alignment: .center, spacing: 4.0) {
@@ -106,12 +138,28 @@ struct ReceiptEditor: View {
                 }
             }
             Section {
-                ForEach($receipt.taxItems) { $item in
+                ForEach($receipt.taxItems
+                    .sorted(by: { $0.dateAdded.wrappedValue < $1.dateAdded.wrappedValue })) { $item in
                     ReceiptItemEditableRow(name: $item.name, price: $item.price,
                                            placeholderText: "Receipt.ItemName")
                 }
                 .onDelete { indexSet in
-                    receipt.taxItems.remove(atOffsets: indexSet)
+                    // Workaround due to unsorted relationship in SwiftData
+                    indexSet.forEach { index in
+                        let itemsSorted = receipt.taxItems.sorted(by: { $0.dateAdded < $1.dateAdded })
+                        var itemsToDelete: [TaxItem] = []
+                        indexSet.forEach { index in
+                            itemsToDelete.append(itemsSorted[index])
+                        }
+                        itemsToDelete.forEach { itemToDelete in
+                            receipt.taxItems.removeAll { item in
+                                item == itemToDelete
+                            }
+                        }
+                        for item in itemsToDelete {
+                            modelContext.delete(item)
+                        }
+                    }
                 }
             } header: {
                 HStack(alignment: .center, spacing: 4.0) {

@@ -17,6 +17,7 @@ final class Receipt {
     @Relationship(deleteRule: .cascade) var taxItems: [TaxItem] = []
     @Relationship(deleteRule: .noAction) var personWhoPaid: Person?
     @Relationship(deleteRule: .noAction) var peopleWhoParticipated: [Person] = []
+    var dateAdded: Date = Date()
 
     init(name: String) {
         self.name = name

@@ -46,17 +46,14 @@ struct PeopleView: View {
             })
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    HStack {
-                        EditButton()
-                        Button {
-                            newPersonPhoto = nil
-                            newPersonName = ""
-                            isCreatingPerson = true
-                        } label: {
-                            Image(systemName: "plus")
-                        }
-                        .popoverTip(PeopleTip(), arrowEdge: .top)
+                    Button {
+                        newPersonPhoto = nil
+                        newPersonName = ""
+                        isCreatingPerson = true
+                    } label: {
+                        Image(systemName: "plus")
                     }
+                    .popoverTip(PeopleTip(), arrowEdge: .top)
                 }
             }
             .sheet(isPresented: $isCreatingPerson, content: {
