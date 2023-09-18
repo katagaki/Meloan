@@ -143,7 +143,7 @@ struct ReceiptCreator: View {
                                 .font(.system(size: 18.0, weight: .medium))
                         }
                     }
-                    .disabled(name == "" || personWhoPaid == nil)
+                    .disabled(name == "" || personWhoPaid == nil || receiptItemsEditable.isEmpty)
                 }
             }
             .navigationTitle("Receipt.Create.Title")

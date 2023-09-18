@@ -64,30 +64,34 @@ struct ReceiptDetailView: View {
                 .bold()
                 .foregroundStyle(.primary)
             }
-            Section {
-                ForEach(receipt.discountItems) { item in
-                    ReceiptItemRow(name: item.name, price: item.price)
+            if !receipt.discountItems.isEmpty {
+                Section {
+                    ForEach(receipt.discountItems) { item in
+                        ReceiptItemRow(name: item.name, price: item.price)
+                    }
+                } header: {
+                    ListSectionHeader(text: "Receipt.Discounts")
+                        .font(.body)
                 }
-            } header: {
-                ListSectionHeader(text: "Receipt.Discounts")
-                    .font(.body)
             }
-            Section {
-                ForEach(receipt.taxItems) { item in
-                    ReceiptItemRow(name: item.name, price: item.price)
-                }
-            } header: {
-                ListSectionHeader(text: "Receipt.Tax")
+            if !receipt.taxItems.isEmpty {
+                Section {
+                    ForEach(receipt.taxItems) { item in
+                        ReceiptItemRow(name: item.name, price: item.price)
+                    }
+                } header: {
+                    ListSectionHeader(text: "Receipt.Tax")
+                        .font(.body)
+                } footer: {
+                    HStack(alignment: .center, spacing: 4.0) {
+                        Text("Receipt.Tax.Detail")
+                        Spacer()
+                        Text("\(Int(receipt.taxRate() * 100), specifier: "%d")%")
+                    }
                     .font(.body)
-            } footer: {
-                HStack(alignment: .center, spacing: 4.0) {
-                    Text("Receipt.Tax.Detail")
-                    Spacer()
-                    Text("\(Int(receipt.taxRate() * 100), specifier: "%d")%")
+                    .bold()
+                    .foregroundStyle(.primary)
                 }
-                .font(.body)
-                .bold()
-                .foregroundStyle(.primary)
             }
         }
         .navigationTitle(receipt.name)
