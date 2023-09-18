@@ -23,7 +23,7 @@ struct ReceiptItemAssignableRow: View {
                     Button {
                         personWhoOrdered = nil
                     } label: {
-                        Image("Profile.Shared")
+                        Image("Profile.Shared.Circle")
                         Text("Shared.Shared")
                     }
                     ForEach(peopleWhoParticipated) { person in
