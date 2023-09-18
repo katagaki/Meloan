@@ -38,6 +38,7 @@ struct ReceiptsView: View {
             .navigationDestination(for: ViewPath.self, destination: { viewPath in
                 switch viewPath {
                 case .receiptDetail(let receipt): ReceiptDetailView(receipt: receipt)
+                case .receiptEditor(let receipt): ReceiptEditor(receipt: receipt)
                 default: Color.clear
                 }
             })

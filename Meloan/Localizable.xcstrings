@@ -361,23 +361,6 @@
         }
       }
     },
-    "Receipt.OrderedBy" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ordered By"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "購入者"
-          }
-        }
-      }
-    },
     "Receipt.Paid" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -862,23 +845,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "削除"
-          }
-        }
-      }
-    },
-    "Shared.Next" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Next"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "次"
           }
         }
       }

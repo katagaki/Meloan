@@ -87,9 +87,8 @@ struct ReceiptColumn: View {
                     navigationManager.push(ViewPath.receiptDetail(receipt: receipt), for: .receipts)
                 }
                 ActionButton(text: "Receipt.Edit", icon: "Receipt.Edit", isPrimary: false) {
-                    // TODO: Edit receipt
+                    navigationManager.push(ViewPath.receiptEditor(receipt: receipt), for: .receipts)
                 }
-                .disabled(true)
             }
             .padding()
         }
