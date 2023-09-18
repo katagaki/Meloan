@@ -35,15 +35,6 @@ struct IOUView: View {
                                     }
                                 }
                             }
-                            HStack(alignment: .center, spacing: 8.0) {
-                                Text("IOU.TotalBorrowed")
-                                Spacer()
-                                Text("\(person.sumOwed(to: personWhoPaid), specifier: "%.2f")")
-                            }
-                            .font(.body)
-                            .bold()
-                            .foregroundStyle(.primary)
-                            .listRowBackground(Color(uiColor: UIColor.secondarySystemGroupedBackground).opacity(0.5))
                         } header: {
                             HStack(alignment: .center, spacing: 16.0) {
                                 Group {
@@ -68,6 +59,15 @@ struct IOUView: View {
                                     .font(.body)
                             }
                             .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 8.0, trailing: 0.0))
+                        } footer: {
+                            HStack(alignment: .center, spacing: 8.0) {
+                                Text("IOU.TotalBorrowed")
+                                Spacer()
+                                Text("\(person.sumOwed(to: personWhoPaid), specifier: "%.2f")")
+                            }
+                            .font(.body)
+                            .bold()
+                            .foregroundStyle(.primary)
                         }
                     }
                 }

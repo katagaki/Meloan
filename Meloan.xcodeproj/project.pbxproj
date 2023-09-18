@@ -185,13 +185,13 @@
 			isa = PBXGroup;
 			children = (
 				E44B684B2AB5931700B243B0 /* ReceiptsView.swift */,
-				E44B684D2AB5938700B243B0 /* ReceiptColumn.swift */,
-				E44B684F2AB5A36A00B243B0 /* ReceiptItemCompactRow.swift */,
 				E44B68702AB731DF00B243B0 /* ReceiptDetailView.swift */,
-				E44B68722AB7348700B243B0 /* ReceiptItemRow.swift */,
 				E44B68532AB5BA4A00B243B0 /* ReceiptCreator.swift */,
-				E44B68582AB5C2FB00B243B0 /* ReceiptItemEditableRow.swift */,
 				E44B685E2AB5F7A000B243B0 /* ReceiptAssignor.swift */,
+				E44B684D2AB5938700B243B0 /* ReceiptColumn.swift */,
+				E44B68722AB7348700B243B0 /* ReceiptItemRow.swift */,
+				E44B684F2AB5A36A00B243B0 /* ReceiptItemCompactRow.swift */,
+				E44B68582AB5C2FB00B243B0 /* ReceiptItemEditableRow.swift */,
 				E44B68602AB5FA0F00B243B0 /* ReceiptItemAssignableSection.swift */,
 			);
 			path = Receipts;
