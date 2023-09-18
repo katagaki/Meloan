@@ -37,6 +37,9 @@ struct SearchView: View {
                                 }
                             }
                         }
+                        .onDelete { indexSet in
+                            searchHistory.remove(atOffsets: indexSet)
+                        }
                     } header: {
                         ListSectionHeader(text: "Search.History")
                             .font(.body)
@@ -117,13 +120,15 @@ struct SearchView: View {
                     searchHistory.removeAll(where: { $0 == searchTerm })
                 }
                 searchHistory.insert(searchTerm, at: 0)
-                defaults.setValue(searchHistory, forKey: "SearchHistory")
             })
             .onAppear {
                 if let storedSearchHistory = defaults.array(forKey: "SearchHistory") as? [String] {
                     searchHistory = storedSearchHistory
                 }
             }
+            .onChange(of: searchHistory, { _, newValue in
+                defaults.setValue(newValue, forKey: "SearchHistory")
+            })
             .navigationTitle("ViewTitle.Search")
         }
     }
