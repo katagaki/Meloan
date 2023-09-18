@@ -15,6 +15,14 @@ class NavigationManager: ObservableObject {
     @Published var searchTabPath: [ViewPath] = []
     @Published var moreTabPath: [ViewPath] = []
 
+    func popAll() {
+        receiptsTabPath.removeAll()
+        iouTabPath.removeAll()
+        peopleTabPath.removeAll()
+        searchTabPath.removeAll()
+        moreTabPath.removeAll()
+    }
+
     func popToRoot(for tab: TabType) {
         switch tab {
         case .receipts:

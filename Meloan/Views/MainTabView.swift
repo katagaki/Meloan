@@ -70,6 +70,10 @@ struct MainTabView: View {
             mePerson.id = "ME"
             mePerson.photo = UIImage(named: "Profile.Me")!.pngData()
             modelContext.insert(mePerson)
+        } else {
+            if let mePerson = people.first(where: { $0.id == "ME" }) {
+                mePerson.name = NSLocalizedString("People.Me", comment: "")
+            }
         }
     }
 }

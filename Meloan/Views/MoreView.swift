@@ -15,6 +15,8 @@ struct MoreView: View {
     @EnvironmentObject var navigationManager: NavigationManager
     @Query(sort: \Person.name) private var people: [Person]
 
+    @State var isDeleteConfirming: Bool = false
+
     var body: some View {
         NavigationStack(path: $navigationManager.moreTabPath) {
             MoreList(repoName: "katagaki/Meloan") {
@@ -26,7 +28,7 @@ struct MoreView: View {
                         Text("More.Data.CreateSampleData")
                     }
                     Button {
-                        deleteAllData()
+                        isDeleteConfirming = true
                     } label: {
                         Text("More.Data.DeleteAll")
                             .foregroundStyle(.red)
@@ -36,6 +38,19 @@ struct MoreView: View {
                         .font(.body)
                 }
             }
+        }
+        .alert("Alert.DeleteAll.Title", isPresented: $isDeleteConfirming) {
+            Button(role: .destructive) {
+                deleteAllData()
+                navigationManager.popAll()
+            } label: {
+                Text("Shared.Yes")
+            }
+            Button(role: .cancel) { } label: {
+                Text("Shared.No")
+            }
+        } message: {
+            Text("Alert.DeleteAll.Text")
         }
     }
 

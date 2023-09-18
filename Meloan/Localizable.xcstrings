@@ -21,6 +21,40 @@
         }
       }
     },
+    "Alert.DeleteAll.Text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to delete all your data? This operation cannot be undone."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべてのデータを削除してよろしいですか？削除後、データは復元できません。"
+          }
+        }
+      }
+    },
+    "Alert.DeleteAll.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete All Data"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべてのデータを削除"
+          }
+        }
+      }
+    },
     "IOU.Hint" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1087,6 +1121,23 @@
         }
       }
     },
+    "Shared.No" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "いいえ"
+          }
+        }
+      }
+    },
     "Shared.NoSelection" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1133,6 +1184,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "共有"
+          }
+        }
+      }
+    },
+    "Shared.Yes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "はい"
           }
         }
       }
