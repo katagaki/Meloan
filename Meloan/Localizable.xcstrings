@@ -799,6 +799,23 @@
         }
       }
     },
+    "Shared.AutoSaving" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autosaving"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動的に保存されます"
+          }
+        }
+      }
+    },
     "Shared.Cancel" : {
       "extractionState" : "manual",
       "localizations" : {

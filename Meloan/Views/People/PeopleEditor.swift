@@ -67,7 +67,6 @@ struct PersonEditor: View {
                 .padding([.leading, .trailing, .bottom], 16.0)
             }
         }
-
         .onAppear {
             name = person.name
             selectedPhoto = person.photo

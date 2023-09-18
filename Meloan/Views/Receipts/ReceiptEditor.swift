@@ -117,6 +117,21 @@ struct ReceiptEditor: View {
         }
         .navigationTitle("Receipt.Create.Title")
         .navigationBarTitleDisplayMode(.inline)
+        .safeAreaInset(edge: .bottom) {
+            VStack(alignment: .center, spacing: 0.0) {
+                Button {
+                    // TODO: Implement manual saving
+                } label: {
+                    LargeButtonLabel(iconName: "square.and.arrow.down.fill", text: "Shared.AutoSaving")
+                        .bold()
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .clipShape(RoundedRectangle(cornerRadius: 99))
+                .frame(minHeight: 56.0)
+                .padding([.leading, .trailing, .bottom], 16.0)
+            }
+        }
         .onChange(of: receipt.peopleWhoParticipated) { _, _ in
             if let personWhoPaid = receipt.personWhoPaid {
                 if !receipt.peopleWhoParticipated.contains(where: { $0.id == personWhoPaid.id }) {

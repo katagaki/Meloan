@@ -56,17 +56,15 @@ struct ReceiptItemAssignableRow: View {
                         }
                     }
                 }
-                Group {
-                    TextField(LocalizedStringKey(placeholderText), text: $name)
-                        .frame(minWidth: (metrics.size.width * 0.65) - 46.0)
-                    Divider()
-                    TextField("Receipt.Price", value: $price,
-                              format: .number.precision(.fractionLength(2)).grouping(.never))
-                    .multilineTextAlignment(.trailing)
-                    .keyboardType(.decimalPad)
-                    .monospaced()
-                }
+                TextField(LocalizedStringKey(placeholderText), text: $name)
+                    .frame(minWidth: (metrics.size.width * 0.65) - 46.0)
+                Divider()
+                TextField("Receipt.Price", value: $price,
+                          format: .number.precision(.fractionLength(2)).grouping(.never))
+                .multilineTextAlignment(.trailing)
+                .keyboardType(.decimalPad)
                 .font(.system(size: 14.0))
+                .monospaced()
             }
         }
     }

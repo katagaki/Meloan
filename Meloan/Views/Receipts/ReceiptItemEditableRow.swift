@@ -24,8 +24,8 @@ struct ReceiptItemEditableRow: View {
                     .multilineTextAlignment(.trailing)
                     .keyboardType(.decimalPad)
                     .monospaced()
+                    .font(.system(size: 14.0))
             }
-            .font(.system(size: 14.0))
         }
     }
 }
