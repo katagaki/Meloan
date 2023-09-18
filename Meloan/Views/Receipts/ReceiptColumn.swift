@@ -52,6 +52,35 @@ struct ReceiptColumn: View {
                 }
                 .padding([.top, .bottom])
             }
+            .overlay {
+                if receipt.isPaid() {
+                    ZStack(alignment: .center) {
+                        Text("Receipt.Paid")
+                            .textCase(.uppercase)
+                            .font(.system(size: 50.0, weight: .black))
+                            .foregroundStyle(.accent)
+                            .padding([.leading, .trailing], 16.0)
+                            .padding([.top, .bottom], 8.0)
+                            .background {
+                                RoundedRectangle(cornerRadius: 10.0)
+                                    .stroke(lineWidth: 5.0)
+                                    .foregroundStyle(.accent)
+                            }
+                            .mask {
+                                Image("Noise")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .scaleEffect(2.5)
+                                    .offset(x: CGFloat.random(in: -50..<50),
+                                            y: CGFloat.random(in: -50..<50))
+                            }
+                            .rotationEffect(Angle(degrees: 320.0))
+                        Color.clear
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
+                    .background(.background.opacity(0.75))
+                }
+            }
             Divider()
             VStack(alignment: .center, spacing: 16.0) {
                 ActionButton(text: "Receipt.ShowDetails", icon: "Receipt.ShowDetails", isPrimary: true) {

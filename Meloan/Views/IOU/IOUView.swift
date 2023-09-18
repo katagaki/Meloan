@@ -16,6 +16,7 @@ struct IOUView: View {
     @Query private var receipts: [Receipt]
     @State var viewSafeIOUs: [IOUViewSafe] = []
     @State var personWhoPaid: Person?
+    @State var isInitialLoadCompleted: Bool = false
 
     var body: some View {
         NavigationStack(path: $navigationManager.iouTabPath) {
@@ -23,10 +24,10 @@ struct IOUView: View {
                 if let personWhoPaid = self.personWhoPaid, !(personWhoPaid.receiptsPaid?.isEmpty ?? true) {
                     if person.id != personWhoPaid.id && person.sumOwed(to: personWhoPaid) != .zero {
                         Section {
+                            // IMPORTANT: Do NOT refactor anything here! SwiftUI will reuse views in an unexpected
+                            // manner, and cause totals to appear incorrectly (calculation is CORRECT).
                             ForEach(person.receiptsParticipated ?? []) { receipt in
                                 if receipt.personWhoPaid == personWhoPaid {
-                                    // IMPORTANT: Do NOT refactor! SwiftUI will reuse views in an unexpected
-                                    // manner, and cause totals to appear incorrectly (calculation is CORRECT).
                                     HStack(alignment: .center, spacing: 4.0) {
                                         Text(receipt.name)
                                         Spacer()
@@ -34,6 +35,15 @@ struct IOUView: View {
                                     }
                                 }
                             }
+                            HStack(alignment: .center, spacing: 8.0) {
+                                Text("IOU.TotalBorrowed")
+                                Spacer()
+                                Text("\(person.sumOwed(to: personWhoPaid), specifier: "%.2f")")
+                            }
+                            .font(.body)
+                            .bold()
+                            .foregroundStyle(.primary)
+                            .listRowBackground(Color(uiColor: UIColor.secondarySystemGroupedBackground).opacity(0.5))
                         } header: {
                             HStack(alignment: .center, spacing: 16.0) {
                                 Group {
@@ -58,17 +68,6 @@ struct IOUView: View {
                                     .font(.body)
                             }
                             .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 8.0, trailing: 0.0))
-                        } footer: {
-                            // IMPORTANT: Do NOT refactor! SwiftUI will reuse views in an unexpected
-                            // manner, and cause totals to appear incorrectly (calculation is CORRECT).
-                            HStack(alignment: .center, spacing: 4.0) {
-                                Text("IOU.TotalBorrowed")
-                                Spacer()
-                                Text("\(person.sumOwed(to: personWhoPaid), specifier: "%.2f")")
-                            }
-                            .font(.body)
-                            .bold()
-                            .foregroundStyle(.primary)
                         }
                     }
                 }
@@ -99,6 +98,16 @@ struct IOUView: View {
                 .pickerStyle(.navigationLink)
                 .padding()
                 .background(.ultraThinMaterial)
+                .overlay(Rectangle().frame(width: nil,
+                                            height: 1/3,
+                                            alignment: .top).foregroundColor(.primary.opacity(0.3)),
+                         alignment: .top)
+            }
+            .onAppear {
+                if !isInitialLoadCompleted {
+                    personWhoPaid = people.first(where: { $0.id == "ME" })
+                    isInitialLoadCompleted = true
+                }
             }
         }
     }

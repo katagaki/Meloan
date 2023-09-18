@@ -343,6 +343,23 @@
         }
       }
     },
+    "Receipt.Paid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paid"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完済"
+          }
+        }
+      }
+    },
     "Receipt.PaidBy" : {
       "extractionState" : "manual",
       "localizations" : {

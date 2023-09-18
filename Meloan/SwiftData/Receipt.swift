@@ -84,6 +84,10 @@ final class Receipt {
         return peopleWhoParticipated.contains(where: { $0.id == person.id })
     }
 
+    func isPaid() -> Bool {
+        return !receiptItems.contains(where: { $0.paid == false })
+    }
+
     func addReceiptItems(from receiptItems: [ReceiptItem]) {
         self.receiptItems.append(contentsOf: receiptItems)
     }
