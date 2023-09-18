@@ -43,6 +43,7 @@
 		E44B68792AB80A8400B243B0 /* PeopleEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68782AB80A8400B243B0 /* PeopleEditor.swift */; };
 		E4766C1C2AB845EC005E4B47 /* ReceiptEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C1B2AB845EC005E4B47 /* ReceiptEditor.swift */; };
 		E4766C1F2AB8492B005E4B47 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C1E2AB8492B005E4B47 /* SearchView.swift */; };
+		E4766C212AB86086005E4B47 /* ReceiptMarkPaidTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C202AB86086005E4B47 /* ReceiptMarkPaidTip.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		E44B68782AB80A8400B243B0 /* PeopleEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleEditor.swift; sourceTree = "<group>"; };
 		E4766C1B2AB845EC005E4B47 /* ReceiptEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptEditor.swift; sourceTree = "<group>"; };
 		E4766C1E2AB8492B005E4B47 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		E4766C202AB86086005E4B47 /* ReceiptMarkPaidTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptMarkPaidTip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +226,7 @@
 				E44B686E2AB72A8700B243B0 /* IOUViewSafe.swift */,
 				E44B68742AB7450900B243B0 /* PeopleTip.swift */,
 				E44B68762AB7478A00B243B0 /* ReceiptsTip.swift */,
+				E4766C202AB86086005E4B47 /* ReceiptMarkPaidTip.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				E44B681C2AB4ADCA00B243B0 /* Person.swift in Sources */,
 				E44B68462AB5832900B243B0 /* Receipt.swift in Sources */,
 				E44B684C2AB5931700B243B0 /* ReceiptsView.swift in Sources */,
+				E4766C212AB86086005E4B47 /* ReceiptMarkPaidTip.swift in Sources */,
 				E44B68182AB4ADCA00B243B0 /* App.swift in Sources */,
 				E44B686F2AB72A8700B243B0 /* IOUViewSafe.swift in Sources */,
 				E44B68482AB58B9100B243B0 /* PersonCreator.swift in Sources */,

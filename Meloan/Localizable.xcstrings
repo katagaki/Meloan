@@ -361,6 +361,40 @@
         }
       }
     },
+    "Receipt.MarkPaid.Tip.Text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap on a purchased item to mark it paid. Paid items will not be calculated on the IOU tab."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "商品にタップすると、商品が支払済みとされます。支払い済みの商品は、貸し借り計算の対象外となります。"
+          }
+        }
+      }
+    },
+    "Receipt.MarkPaid.Tip.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marking Items Paid"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支払い済みとするについて"
+          }
+        }
+      }
+    },
     "Receipt.Name" : {
       "extractionState" : "manual",
       "localizations" : {

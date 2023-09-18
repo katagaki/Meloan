@@ -15,9 +15,9 @@ struct ReceiptDetailView: View {
     var body: some View {
         List {
             Section {
-                ForEach(receipt.peopleWhoParticipated.sorted(by: { lhs, _ in
-                    lhs.id == receipt.personWhoPaid?.id ?? ""
-                })) { person in
+                ForEach(receipt.peopleWhoParticipated
+                    .sorted(by: { $0.id == "ME" || $0.name < $1.name})
+                    .sorted(by: { lhs, _ in lhs.id == receipt.personWhoPaid?.id ?? "" })) { person in
                     PersonRow(person: person, isPersonWhoPaid: person.id == receipt.personWhoPaid?.id ?? "")
                 }
             } header: {
@@ -54,6 +54,7 @@ struct ReceiptDetailView: View {
             } header: {
                 ListSectionHeader(text: "Receipt.PurchasedItems")
                     .font(.body)
+                    .popoverTip(ReceiptMarkPaidTip())
             } footer: {
                 HStack(alignment: .center, spacing: 4.0) {
                     Text("Receipt.Total")
