@@ -48,17 +48,10 @@ struct SearchView: View {
                     if !receiptsFound().isEmpty {
                         Section {
                             ForEach(receiptsFound()) { receipt in
-                                HStack(alignment: .center, spacing: 16.0) {
-                                    Image("Receipt")
-                                        .resizable()
-                                        .frame(width: 30.0, height: 30.0)
-                                    VStack(alignment: .leading, spacing: 2.0) {
-                                        Text(receipt.name)
-                                            .font(.body)
-                                        Text("\(receipt.sum(), specifier: "%.2f")")
-                                            .font(.subheadline)
-                                            .foregroundStyle(.secondary)
-                                    }
+                                NavigationLink(value: ViewPath.receiptDetail(receipt: receipt)) {
+                                    ListRow(image: "ListIcon.Receipt",
+                                            title: receipt.name,
+                                            subtitle: String(format: "%.2f", receipt.sum()))
                                 }
                             }
                         } header: {
@@ -69,17 +62,10 @@ struct SearchView: View {
                     if !receiptItemsFound().isEmpty {
                         Section {
                             ForEach(receiptItemsFound()) { receiptItem in
-                                HStack(alignment: .center, spacing: 16.0) {
-                                    Image("Receipt.Item")
-                                        .resizable()
-                                        .frame(width: 30.0, height: 30.0)
-                                    VStack(alignment: .leading, spacing: 2.0) {
-                                        Text(receiptItem.name)
-                                            .font(.body)
-                                        Text("\(receiptItem.price, specifier: "%.2f")")
-                                            .font(.subheadline)
-                                            .foregroundStyle(.secondary)
-                                    }
+                                NavigationLink(value: ViewPath.receiptItemDetail(receiptItem: receiptItem)) {
+                                    ListRow(image: "ListIcon.ReceiptItem",
+                                            title: receiptItem.name,
+                                            subtitle: String(format: "%.2f", receiptItem.price))
                                 }
                             }
                         } header: {
@@ -90,21 +76,23 @@ struct SearchView: View {
                     if !peopleFound().isEmpty {
                         Section {
                             ForEach(peopleFound()) { person in
-                                HStack(alignment: .center, spacing: 16.0) {
-                                    Group {
-                                        if let photo = person.photo, let image = UIImage(data: photo) {
-                                            Image(uiImage: image)
-                                                .resizable()
-                                                .scaledToFill()
-                                        } else {
-                                            Image("Profile.Generic")
-                                                .resizable()
+                                NavigationLink(value: ViewPath.personDetail(person: person)) {
+                                    HStack(alignment: .center, spacing: 16.0) {
+                                        Group {
+                                            if let photo = person.photo, let image = UIImage(data: photo) {
+                                                Image(uiImage: image)
+                                                    .resizable()
+                                                    .scaledToFill()
+                                            } else {
+                                                Image("Profile.Generic")
+                                                    .resizable()
+                                            }
                                         }
+                                        .frame(width: 30.0, height: 30.0)
+                                        .clipShape(Circle())
+                                        Text(person.name)
+                                            .font(.body)
                                     }
-                                    .frame(width: 30.0, height: 30.0)
-                                    .clipShape(Circle())
-                                    Text(person.name)
-                                        .font(.body)
                                 }
                             }
                         } header: {
@@ -114,6 +102,14 @@ struct SearchView: View {
                     }
                 }
             }
+            .navigationDestination(for: ViewPath.self, destination: { viewPath in
+                switch viewPath {
+                case .receiptDetail(let receipt): ReceiptDetailView(receipt: receipt)
+                case .receiptItemDetail(let receiptItem): ReceiptItemDetailView(receiptItem: receiptItem)
+                case .personDetail(let person): PeopleDetailView(person: person)
+                default: Color.clear
+                }
+            })
             .searchable(text: $searchTerm)
             .onSubmit(of: .search, {
                 if searchHistory.contains(where: { $0 == searchTerm }) {
