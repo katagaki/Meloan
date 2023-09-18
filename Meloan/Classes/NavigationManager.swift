@@ -12,6 +12,7 @@ class NavigationManager: ObservableObject {
     @Published var receiptsTabPath: [ViewPath] = []
     @Published var iouTabPath: [ViewPath] = []
     @Published var peopleTabPath: [ViewPath] = []
+    @Published var searchTabPath: [ViewPath] = []
     @Published var moreTabPath: [ViewPath] = []
 
     func popToRoot(for tab: TabType) {
@@ -22,6 +23,8 @@ class NavigationManager: ObservableObject {
             iouTabPath.removeAll()
         case .people:
             peopleTabPath.removeAll()
+        case .search:
+            searchTabPath.removeAll()
         case .more:
             moreTabPath.removeAll()
         }
@@ -35,6 +38,8 @@ class NavigationManager: ObservableObject {
             iouTabPath.append(viewPath)
         case .people:
             peopleTabPath.append(viewPath)
+        case .search:
+            searchTabPath.append(viewPath)
         case .more:
             moreTabPath.append(viewPath)
         }

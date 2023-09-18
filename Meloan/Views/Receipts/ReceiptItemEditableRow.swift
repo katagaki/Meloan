@@ -17,6 +17,7 @@ struct ReceiptItemEditableRow: View {
         GeometryReader { metrics in
             HStack(alignment: .center, spacing: 16.0) {
                 TextField(LocalizedStringKey(placeholderText), text: $name)
+                    .textInputAutocapitalization(.words)
                     .frame(minWidth: metrics.size.width * 0.65)
                 Divider()
                 TextField("Receipt.Price", value: $price,

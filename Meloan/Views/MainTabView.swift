@@ -36,6 +36,11 @@ struct MainTabView: View {
                     Label("TabTitle.People", image: "Tab.People")
                 }
                 .tag(TabType.people)
+            SearchView()
+                .tabItem {
+                    Label("TabTitle.Search", systemImage: "magnifyingglass")
+                }
+                .tag(TabType.search)
             MoreView()
                 .tabItem {
                     Label("TabTitle.More", systemImage: "ellipsis")

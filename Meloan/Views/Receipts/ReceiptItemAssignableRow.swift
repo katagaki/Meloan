@@ -57,6 +57,7 @@ struct ReceiptItemAssignableRow: View {
                     }
                 }
                 TextField(LocalizedStringKey(placeholderText), text: $name)
+                    .textInputAutocapitalization(.words)
                     .frame(minWidth: (metrics.size.width * 0.65) - 46.0)
                 Divider()
                 TextField("Receipt.Price", value: $price,

@@ -32,6 +32,7 @@ struct ReceiptCreator: View {
             List {
                 Section {
                     TextField("Receipt.Name", text: $name)
+                        .textInputAutocapitalization(.words)
                 }
                 Section {
                     NavigationLink {
