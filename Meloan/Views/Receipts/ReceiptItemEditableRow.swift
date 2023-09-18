@@ -15,7 +15,7 @@ struct ReceiptItemEditableRow: View {
 
     var body: some View {
         GeometryReader { metrics in
-            HStack(alignment: .center) {
+            HStack(alignment: .center, spacing: 16.0) {
                 TextField(LocalizedStringKey(placeholderText), text: $name)
                     .frame(minWidth: metrics.size.width * 0.65)
                 Divider()
@@ -23,9 +23,9 @@ struct ReceiptItemEditableRow: View {
                           format: .number.precision(.fractionLength(2)).grouping(.never))
                     .multilineTextAlignment(.trailing)
                     .keyboardType(.decimalPad)
+                    .monospaced()
             }
             .font(.system(size: 14.0))
-            .monospaced()
         }
     }
 }

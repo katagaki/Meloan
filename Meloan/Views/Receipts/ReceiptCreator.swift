@@ -11,6 +11,7 @@ import SwiftUI
 
 struct ReceiptCreator: View {
 
+    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     @Query(sort: \Person.name) private var people: [Person]
 
@@ -21,7 +22,10 @@ struct ReceiptCreator: View {
     @State var receiptItemsEditable: [ReceiptItemEditable] = []
     @State var discountItemsEditable: [ReceiptItemEditable] = []
     @State var taxItemsEditable: [ReceiptItemEditable] = []
-    @State var onCreate: () -> Void
+
+    @State var receiptItems: [ReceiptItem] = []
+    @State var discountItems: [DiscountItem] = []
+    @State var taxItems: [TaxItem] = []
 
     var body: some View {
         NavigationStack {
@@ -62,8 +66,10 @@ struct ReceiptCreator: View {
                 }
                 Section {
                     ForEach($receiptItemsEditable) { $itemEditable in
-                        ReceiptItemEditableRow(name: $itemEditable.name, price: $itemEditable.price,
-                                               placeholderText: "Receipt.ProductName")
+                        ReceiptItemAssignableRow(name: $itemEditable.name, price: $itemEditable.price,
+                                                 personWhoOrdered: $itemEditable.person,
+                                                 peopleWhoParticipated: $peopleWhoParticipated,
+                                                 placeholderText: "Receipt.ProductName")
                     }
                     .onDelete { indexSet in
                         receiptItemsEditable.remove(atOffsets: indexSet)
@@ -130,18 +136,33 @@ struct ReceiptCreator: View {
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink {
-                        ReceiptAssignor(name: $name, personWhoPaid: $personWhoPaid,
-                                        peopleWhoParticipated: $peopleWhoParticipated,
-                                        receiptItemsEditable: receiptItemsEditable,
-                                        discountItemsEditable: discountItemsEditable,
-                                        taxItemsEditable: taxItemsEditable, onCreate: onCreate)
-                    } label: {
-                        HStack(alignment: .center, spacing: 2.0) {
-                            Text("Shared.Next")
-                            Image(systemName: "chevron.right")
-                                .font(.system(size: 18.0, weight: .medium))
+                    Button {
+                        for receiptItemEditable in receiptItemsEditable {
+                            let receiptItem = ReceiptItem(from: receiptItemEditable)
+                            receiptItem.setPurchaser(to: receiptItemEditable.person)
+                            receiptItems.append(receiptItem)
                         }
+                        for discountItemEditable in discountItemsEditable {
+                            let receiptItem = DiscountItem(from: discountItemEditable)
+                            discountItems.append(receiptItem)
+                        }
+                        for taxItemEditable in taxItemsEditable {
+                            let receiptItem = TaxItem(from: taxItemEditable)
+                            taxItems.append(receiptItem)
+                        }
+                        if name != "" {
+                            let newReceipt = Receipt(name: name)
+                            newReceipt.addReceiptItems(from: receiptItems)
+                            newReceipt.addDiscountItems(from: discountItems)
+                            newReceipt.addTaxItems(from: taxItems)
+                            newReceipt.setPersonWhoPaid(to: personWhoPaid)
+                            newReceipt.addPeopleWhoParticipated(from: peopleWhoParticipated)
+                            modelContext.insert(newReceipt)
+                            try? modelContext.save()
+                        }
+                        dismiss()
+                    } label: {
+                        Text("Shared.Create")
                     }
                     .disabled(name == "" || personWhoPaid == nil || receiptItemsEditable.isEmpty)
                 }

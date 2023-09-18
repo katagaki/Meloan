@@ -54,10 +54,8 @@ struct ReceiptsView: View {
                 }
             }
             .sheet(isPresented: $isCreatingReceipt) {
-                ReceiptCreator {
-                    isCreatingReceipt = false
-                }
-                .interactiveDismissDisabled()
+                ReceiptCreator()
+                    .interactiveDismissDisabled()
             }
             .navigationTitle("ViewTitle.Receipts")
         }

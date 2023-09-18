@@ -362,6 +362,7 @@
       }
     },
     "Receipt.OrderedBy" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -866,6 +867,7 @@
       }
     },
     "Shared.Next" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
