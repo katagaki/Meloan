@@ -242,6 +242,23 @@
         }
       }
     },
+    "Person.BasicInformation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basic Information"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貸し借り先情報"
+          }
+        }
+      }
+    },
     "Person.Name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -272,6 +289,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "（支払人）"
+          }
+        }
+      }
+    },
+    "Person.ReceiptsPaid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Receipts Paid"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支払った領収書"
+          }
+        }
+      }
+    },
+    "Person.ReceiptsParticipated" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Receipts Participated In"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "参加している領収書"
           }
         }
       }

@@ -42,6 +42,33 @@ struct PeopleDetailView: View {
                     Text(person.name)
                         .foregroundStyle(.secondary)
                 }
+            } header: {
+                ListSectionHeader(text: "Person.BasicInformation")
+                    .font(.body)
+            }
+            if let receiptsPaid = person.receiptsPaid, !receiptsPaid.isEmpty {
+                Section {
+                    ForEach(receiptsPaid) { receipt in
+                        NavigationLink(value: ViewPath.receiptDetail(receipt: receipt)) {
+                            ListRow(image: "ListIcon.Receipt", title: receipt.name)
+                        }
+                    }
+                } header: {
+                    ListSectionHeader(text: "Person.ReceiptsPaid")
+                        .font(.body)
+                }
+            }
+            if let receiptsParticipated = person.receiptsParticipated, !receiptsParticipated.isEmpty {
+                Section {
+                    ForEach(receiptsParticipated) { receipt in
+                        NavigationLink(value: ViewPath.receiptDetail(receipt: receipt)) {
+                            ListRow(image: "ListIcon.Receipt", title: receipt.name)
+                        }
+                    }
+                } header: {
+                    ListSectionHeader(text: "Person.ReceiptsParticipated")
+                        .font(.body)
+                }
             }
         }
         .navigationTitle(person.name)
