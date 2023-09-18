@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PeoplePicker: View {
 
-    @Query private var people: [Person]
+    @Query(sort: \Person.name) private var people: [Person]
     @State var title: String
     @Binding var selection: [Person]
 

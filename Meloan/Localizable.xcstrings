@@ -327,6 +327,23 @@
         }
       }
     },
+    "Receipt.Edit.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Receipt"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "領収書を編集"
+          }
+        }
+      }
+    },
     "Receipt.ItemName" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -873,13 +890,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Autosaving"
+            "value" : "Changes are automatically saved."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自動的に保存されます"
+            "value" : "編集した内容は自動的に保存されています。"
           }
         }
       }

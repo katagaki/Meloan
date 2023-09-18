@@ -52,7 +52,8 @@ struct ReceiptCreator: View {
                     Picker(selection: $personWhoPaid) {
                         Text("Shared.NoSelection")
                             .tag(nil as Person?)
-                        ForEach(peopleWhoParticipated) { person in
+                        ForEach(peopleWhoParticipated
+                            .sorted(by: { $0.id == "ME" || $0.name < $1.name })) { person in
                             PersonRow(person: person)
                                 .tag(person as Person?)
                         }
@@ -63,7 +64,7 @@ struct ReceiptCreator: View {
                     .pickerStyle(.navigationLink)
                 } footer: {
                     Text("Receipt.Participants.Description")
-                        .font(.body)
+                        .font(.subheadline)
                 }
                 Section {
                     ForEach($receiptItemsEditable) { $itemEditable in

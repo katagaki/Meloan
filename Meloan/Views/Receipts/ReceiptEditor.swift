@@ -21,6 +21,14 @@ struct ReceiptEditor: View {
             Section {
                 TextField("Receipt.Name", text: $receipt.name)
                     .textInputAutocapitalization(.words)
+            } header: {
+                HStack(alignment: .center, spacing: 8.0) {
+                    Image(systemName: "info.circle.fill")
+                        .font(.subheadline)
+                    Text("Shared.AutoSaving")
+                        .font(.subheadline)
+                }
+                .padding(.bottom, 16.0)
             }
             Section {
                 NavigationLink {
@@ -40,7 +48,8 @@ struct ReceiptEditor: View {
                 Picker(selection: $receipt.personWhoPaid) {
                     Text("Shared.NoSelection")
                         .tag(nil as Person?)
-                    ForEach(receipt.peopleWhoParticipated) { person in
+                    ForEach(receipt.peopleWhoParticipated
+                        .sorted(by: { $0.id == "ME" || $0.name < $1.name })) { person in
                         PersonRow(person: person)
                             .tag(person as Person?)
                     }
@@ -51,7 +60,7 @@ struct ReceiptEditor: View {
                 .pickerStyle(.navigationLink)
             } footer: {
                 Text("Receipt.Participants.Description")
-                    .font(.body)
+                    .font(.subheadline)
             }
             Section {
                 ForEach($receipt.receiptItems) { $item in
@@ -116,23 +125,9 @@ struct ReceiptEditor: View {
                 }
             }
         }
-        .navigationTitle("Receipt.Create.Title")
+        .navigationTitle("Receipt.Edit.Title")
         .navigationBarTitleDisplayMode(.inline)
-        .safeAreaInset(edge: .bottom) {
-            VStack(alignment: .center, spacing: 0.0) {
-                Button {
-                    // TODO: Implement manual saving
-                } label: {
-                    LargeButtonLabel(iconName: "square.and.arrow.down.fill", text: "Shared.AutoSaving")
-                        .bold()
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.borderedProminent)
-                .clipShape(RoundedRectangle(cornerRadius: 99))
-                .frame(minHeight: 56.0)
-                .padding([.leading, .trailing, .bottom], 16.0)
-            }
-        }
+        // TODO: Implement manual saving
         .onChange(of: receipt.peopleWhoParticipated) { _, _ in
             if let personWhoPaid = receipt.personWhoPaid {
                 if !receipt.peopleWhoParticipated.contains(where: { $0.id == personWhoPaid.id }) {
