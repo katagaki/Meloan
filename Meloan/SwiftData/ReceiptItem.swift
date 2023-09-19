@@ -10,6 +10,7 @@ import SwiftData
 
 @Model
 final class ReceiptItem {
+    var id: String = UUID().uuidString
     var name: String = ""
     var price: Double = 0.0
     var amount: Int = 0

@@ -5,10 +5,26 @@
 //  Created by シン・ジャスティン on 2023/09/19.
 //
 
+import AppIntents
+import SwiftData
 import SwiftUI
 import WidgetKit
 
-struct ReceiptWidget: View {
+struct ReceiptWidget: Widget {
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: "com.tsubuzaki.Meloan.ReceiptWidget",
+                               intent: ReceiptIntent.self,
+                               provider: Provider()) { entry in
+            ReceiptWidgetView(entry: entry)
+                .containerBackground(.widgetBackground, for: .widget)
+        }
+        .configurationDisplayName("Widget.Receipt.Title")
+        .description("Widget.Receipt.Description")
+        .supportedFamilies([.systemSmall, .systemMedium])
+    }
+}
+
+struct ReceiptWidgetView: View {
 
     @Environment(\.widgetFamily) var family
     var entry: Provider.Entry

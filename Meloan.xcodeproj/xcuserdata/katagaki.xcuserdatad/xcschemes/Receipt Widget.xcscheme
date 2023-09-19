@@ -79,7 +79,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "_XCWidgetKind"
-            value = ""
+            value = "com.tsubuzaki.Meloan.ReceiptWidget"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable

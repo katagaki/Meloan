@@ -12,10 +12,73 @@
       }
     },
     "%@" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "Receipt" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "Receipt.MarkPaidIntent.ItemID" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Item ID"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "商品ID"
+          }
+        }
+      }
+    },
+    "Receipt.MarkPaidIntent.Text" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marks a receipt item paid."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支払済とします。"
+          }
+        }
+      }
+    },
+    "Receipt.MarkPaidIntent.Title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mark Paid"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支払済とする"
+          }
+        }
+      }
     },
     "Widget.Paid.No" : {
       "extractionState" : "manual",
@@ -131,7 +194,41 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "領収書"
+            "value" : "要約"
+          }
+        }
+      }
+    },
+    "Widget.ReceiptItems.Description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shows a list of items in a receipt."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "領収書の商品リストを表示します。"
+          }
+        }
+      }
+    },
+    "Widget.ReceiptItems.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Receipt Items"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "商品リスト"
           }
         }
       }
@@ -149,6 +246,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "合計: %1"
+          }
+        }
+      }
+    },
+    "Widget.Total.Large" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "合計"
           }
         }
       }

@@ -12,6 +12,7 @@ import SwiftUI
 @main
 struct AssistantBundle: WidgetBundle {
     var body: some Widget {
-        Assistant()
+        ReceiptWidget()
+        ReceiptItemsWidget()
     }
 }

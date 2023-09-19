@@ -582,6 +582,40 @@
         }
       }
     },
+    "Receipt.MarkPaidIntent.Text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marks a receipt item paid."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "商品を支払済とします。"
+          }
+        }
+      }
+    },
+    "Receipt.MarkPaidIntent.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mark Item Paid"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支払済とする"
+          }
+        }
+      }
+    },
     "Receipt.Name" : {
       "extractionState" : "manual",
       "localizations" : {

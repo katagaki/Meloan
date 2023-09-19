@@ -10,7 +10,7 @@ import SwiftData
 
 @Model
 final class Receipt {
-    @Attribute(.unique) var id: String = UUID().uuidString
+    var id: String = UUID().uuidString
     var name: String
     @Relationship(deleteRule: .cascade) var receiptItems: [ReceiptItem] = []
     @Relationship(deleteRule: .cascade) var discountItems: [DiscountItem] = []

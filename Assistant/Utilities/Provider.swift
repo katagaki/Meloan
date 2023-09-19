@@ -49,7 +49,6 @@ struct Provider: AppIntentTimelineProvider {
     @MainActor
     func timeline(for configuration: ReceiptIntent, in context: Context) async -> Timeline<ReceiptEntry> {
         // Get receipt
-        // TODO: Allow configuration to select which receipt to show
         var receipt: Receipt?
         let selectedReceiptID = configuration.receipt.id
         let descriptor = FetchDescriptor<Receipt>(

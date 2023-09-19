@@ -32,6 +32,7 @@ struct ReceiptDetailView: View {
                     Button {
                         item.paid.toggle()
                         WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptWidget")
+                        WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptItemsWidget")
                         if receipt.isPaid() {
                             confettiCounter += 1
                         }
