@@ -11,11 +11,12 @@ import UIKit
 
 @Model
 final class Person {
-    @Attribute(.unique) var id: String = UUID().uuidString
-    var name: String
+    var id: String = UUID().uuidString
+    var name: String = ""
     var photo: Data?
     @Relationship(inverse: \Receipt.personWhoPaid) var receiptsPaid: [Receipt]?
     @Relationship(inverse: \Receipt.peopleWhoParticipated) var receiptsParticipated: [Receipt]?
+    @Relationship(inverse: \ReceiptItem.person) var receiptItemsOwned: [ReceiptItem]?
     var dateAdded: Date = Date()
 
     init(name: String) {

@@ -40,6 +40,19 @@
 		E44B68752AB7450900B243B0 /* PeopleTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68742AB7450900B243B0 /* PeopleTip.swift */; };
 		E44B68772AB7478A00B243B0 /* ReceiptsTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68762AB7478A00B243B0 /* ReceiptsTip.swift */; };
 		E44B68792AB80A8400B243B0 /* PeopleEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68782AB80A8400B243B0 /* PeopleEditor.swift */; };
+		E46082382AB9575D001CF504 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E46082372AB9575D001CF504 /* WidgetKit.framework */; };
+		E460823A2AB9575D001CF504 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E46082392AB9575D001CF504 /* SwiftUI.framework */; };
+		E460823D2AB9575D001CF504 /* AssistantBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460823C2AB9575D001CF504 /* AssistantBundle.swift */; };
+		E460823F2AB9575D001CF504 /* Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460823E2AB9575D001CF504 /* Assistant.swift */; };
+		E46082412AB9575E001CF504 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46082402AB9575E001CF504 /* Assets.xcassets */; };
+		E46082452AB9575E001CF504 /* AssistantExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E46082352AB9575D001CF504 /* AssistantExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E460824A2AB95818001CF504 /* ReceiptItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68282AB5667A00B243B0 /* ReceiptItem.swift */; };
+		E460824B2AB95818001CF504 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B681B2AB4ADCA00B243B0 /* Person.swift */; };
+		E460824C2AB95818001CF504 /* DiscountItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B682D2AB5673B00B243B0 /* DiscountItem.swift */; };
+		E460824D2AB95818001CF504 /* TaxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B682B2AB5671600B243B0 /* TaxItem.swift */; };
+		E460824E2AB95818001CF504 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68452AB5832900B243B0 /* Receipt.swift */; };
+		E460824F2AB96240001CF504 /* ReceiptItemEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B685A2AB5D7EA00B243B0 /* ReceiptItemEditable.swift */; };
+		E46082542AB96B07001CF504 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E46082522AB96AF4001CF504 /* Localizable.xcstrings */; };
 		E4766C1C2AB845EC005E4B47 /* ReceiptEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C1B2AB845EC005E4B47 /* ReceiptEditor.swift */; };
 		E4766C1F2AB8492B005E4B47 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C1E2AB8492B005E4B47 /* SearchView.swift */; };
 		E4766C212AB86086005E4B47 /* ReceiptMarkPaidTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C202AB86086005E4B47 /* ReceiptMarkPaidTip.swift */; };
@@ -48,6 +61,30 @@
 		E4766C2B2AB89500005E4B47 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E4766C2A2AB89500005E4B47 /* ConfettiSwiftUI */; };
 		E4766C2C2AB89CEE005E4B47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44B681D2AB4ADCB00B243B0 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E46082432AB9575E001CF504 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E44B680C2AB4ADCA00B243B0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E46082342AB9575D001CF504;
+			remoteInfo = AssistantExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E46082462AB9575E001CF504 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E46082452AB9575E001CF504 /* AssistantExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E44B68142AB4ADCA00B243B0 /* Meloan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meloan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +122,16 @@
 		E44B68742AB7450900B243B0 /* PeopleTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTip.swift; sourceTree = "<group>"; };
 		E44B68762AB7478A00B243B0 /* ReceiptsTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsTip.swift; sourceTree = "<group>"; };
 		E44B68782AB80A8400B243B0 /* PeopleEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleEditor.swift; sourceTree = "<group>"; };
+		E46082352AB9575D001CF504 /* AssistantExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AssistantExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E46082372AB9575D001CF504 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		E46082392AB9575D001CF504 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		E460823C2AB9575D001CF504 /* AssistantBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantBundle.swift; sourceTree = "<group>"; };
+		E460823E2AB9575D001CF504 /* Assistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assistant.swift; sourceTree = "<group>"; };
+		E46082402AB9575E001CF504 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E46082422AB9575E001CF504 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E46082502AB96603001CF504 /* Meloan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Meloan.entitlements; sourceTree = "<group>"; };
+		E46082512AB96991001CF504 /* AssistantExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AssistantExtension.entitlements; sourceTree = "<group>"; };
+		E46082522AB96AF4001CF504 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		E4766C1B2AB845EC005E4B47 /* ReceiptEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptEditor.swift; sourceTree = "<group>"; };
 		E4766C1E2AB8492B005E4B47 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		E4766C202AB86086005E4B47 /* ReceiptMarkPaidTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptMarkPaidTip.swift; sourceTree = "<group>"; };
@@ -102,13 +149,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E46082322AB9575D001CF504 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E460823A2AB9575D001CF504 /* SwiftUI.framework in Frameworks */,
+				E46082382AB9575D001CF504 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		E44B680B2AB4ADCA00B243B0 = {
 			isa = PBXGroup;
 			children = (
+				E46082512AB96991001CF504 /* AssistantExtension.entitlements */,
 				E44B68162AB4ADCA00B243B0 /* Meloan */,
+				E460823B2AB9575D001CF504 /* Assistant */,
+				E46082362AB9575D001CF504 /* Frameworks */,
 				E44B68152AB4ADCA00B243B0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -117,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				E44B68142AB4ADCA00B243B0 /* Meloan.app */,
+				E46082352AB9575D001CF504 /* AssistantExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,6 +184,7 @@
 		E44B68162AB4ADCA00B243B0 /* Meloan */ = {
 			isa = PBXGroup;
 			children = (
+				E46082502AB96603001CF504 /* Meloan.entitlements */,
 				E44B68412AB5748900B243B0 /* Info.plist */,
 				E44B681D2AB4ADCB00B243B0 /* Assets.xcassets */,
 				E44B68512AB5B67F00B243B0 /* InfoPlist.xcstrings */,
@@ -239,6 +300,27 @@
 			path = Structs;
 			sourceTree = "<group>";
 		};
+		E46082362AB9575D001CF504 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E46082372AB9575D001CF504 /* WidgetKit.framework */,
+				E46082392AB9575D001CF504 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E460823B2AB9575D001CF504 /* Assistant */ = {
+			isa = PBXGroup;
+			children = (
+				E460823C2AB9575D001CF504 /* AssistantBundle.swift */,
+				E460823E2AB9575D001CF504 /* Assistant.swift */,
+				E46082402AB9575E001CF504 /* Assets.xcassets */,
+				E46082422AB9575E001CF504 /* Info.plist */,
+				E46082522AB96AF4001CF504 /* Localizable.xcstrings */,
+			);
+			path = Assistant;
+			sourceTree = "<group>";
+		};
 		E4766C1D2AB84921005E4B47 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,10 +340,12 @@
 				E44B68112AB4ADCA00B243B0 /* Frameworks */,
 				E44B68122AB4ADCA00B243B0 /* Resources */,
 				E44B682A2AB566D200B243B0 /* ShellScript */,
+				E46082462AB9575E001CF504 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E46082442AB9575E001CF504 /* PBXTargetDependency */,
 			);
 			name = Meloan;
 			packageProductDependencies = (
@@ -271,6 +355,23 @@
 			productName = Meloan;
 			productReference = E44B68142AB4ADCA00B243B0 /* Meloan.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E46082342AB9575D001CF504 /* AssistantExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E46082492AB9575E001CF504 /* Build configuration list for PBXNativeTarget "AssistantExtension" */;
+			buildPhases = (
+				E46082312AB9575D001CF504 /* Sources */,
+				E46082322AB9575D001CF504 /* Frameworks */,
+				E46082332AB9575D001CF504 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AssistantExtension;
+			productName = AssistantExtension;
+			productReference = E46082352AB9575D001CF504 /* AssistantExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -283,6 +384,9 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					E44B68132AB4ADCA00B243B0 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					E46082342AB9575D001CF504 = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
@@ -306,6 +410,7 @@
 			projectRoot = "";
 			targets = (
 				E44B68132AB4ADCA00B243B0 /* Meloan */,
+				E46082342AB9575D001CF504 /* AssistantExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -318,6 +423,15 @@
 				E44B68522AB5B67F00B243B0 /* InfoPlist.xcstrings in Resources */,
 				E4766C2C2AB89CEE005E4B47 /* Assets.xcassets in Resources */,
 				E44B68402AB573C300B243B0 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E46082332AB9575D001CF504 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E46082542AB96B07001CF504 /* Localizable.xcstrings in Resources */,
+				E46082412AB9575E001CF504 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,7 +501,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E46082312AB9575D001CF504 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E460823F2AB9575D001CF504 /* Assistant.swift in Sources */,
+				E460824F2AB96240001CF504 /* ReceiptItemEditable.swift in Sources */,
+				E460824C2AB95818001CF504 /* DiscountItem.swift in Sources */,
+				E460824E2AB95818001CF504 /* Receipt.swift in Sources */,
+				E460824A2AB95818001CF504 /* ReceiptItem.swift in Sources */,
+				E460824B2AB95818001CF504 /* Person.swift in Sources */,
+				E460824D2AB95818001CF504 /* TaxItem.swift in Sources */,
+				E460823D2AB9575D001CF504 /* AssistantBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E46082442AB9575E001CF504 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E46082342AB9575D001CF504 /* AssistantExtension */;
+			targetProxy = E46082432AB9575E001CF504 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E44B68222AB4ADCB00B243B0 /* Debug */ = {
@@ -395,6 +532,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -458,6 +596,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -512,8 +651,10 @@
 		E44B68252AB4ADCB00B243B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Meloan/Meloan.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YYM4Z6MU8F;
@@ -541,8 +682,10 @@
 		E44B68262AB4ADCB00B243B0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Meloan/Meloan.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YYM4Z6MU8F;
@@ -567,6 +710,62 @@
 			};
 			name = Release;
 		};
+		E46082472AB9575E001CF504 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = AssistantExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YYM4Z6MU8F;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Assistant/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Assistant;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Meloan.Assistant;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E46082482AB9575E001CF504 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = AssistantExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YYM4Z6MU8F;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Assistant/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Assistant;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Meloan.Assistant;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -584,6 +783,15 @@
 			buildConfigurations = (
 				E44B68252AB4ADCB00B243B0 /* Debug */,
 				E44B68262AB4ADCB00B243B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E46082492AB9575E001CF504 /* Build configuration list for PBXNativeTarget "AssistantExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E46082472AB9575E001CF504 /* Debug */,
+				E46082482AB9575E001CF504 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

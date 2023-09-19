@@ -19,4 +19,3 @@ struct ReceiptMarkPaidTip: Tip {
         Image(systemName: "checklist")
     }
 }
-

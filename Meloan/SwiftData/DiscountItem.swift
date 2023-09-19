@@ -10,8 +10,9 @@ import SwiftData
 
 @Model
 final class DiscountItem {
-    var name: String
-    var price: Double
+    var name: String = ""
+    var price: Double = 0.0
+    @Relationship(inverse: \Receipt.discountItems) var receipts: [Receipt]?
     var dateAdded: Date = Date()
 
     init(name: String, price: Double) {

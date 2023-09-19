@@ -10,6 +10,7 @@ import SwiftData
 
 @main
 struct MeloanApp: App {
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Receipt.self, Person.self, ReceiptItem.self, DiscountItem.self, TaxItem.self

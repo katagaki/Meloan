@@ -10,9 +10,9 @@ import SwiftData
 
 @Model
 final class ReceiptItem {
-    var name: String
-    var price: Double
-    var amount: Int
+    var name: String = ""
+    var price: Double = 0.0
+    var amount: Int = 0
     var paid: Bool = false
     @Relationship(deleteRule: .noAction) var person: Person?
     @Relationship(inverse: \Receipt.receiptItems) var receipts: [Receipt] = []
