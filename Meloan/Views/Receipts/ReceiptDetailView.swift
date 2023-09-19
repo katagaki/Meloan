@@ -31,8 +31,7 @@ struct ReceiptDetailView: View {
                 ForEach(receipt.receiptItems.sorted(by: { $0.dateAdded < $1.dateAdded })) { item in
                     Button {
                         item.paid.toggle()
-                        WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptWidget")
-                        WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptItemsWidget")
+                        reloadWidget()
                         if receipt.isPaid() {
                             confettiCounter += 1
                         }
@@ -106,5 +105,10 @@ struct ReceiptDetailView: View {
         .confettiCannon(counter: $confettiCounter, num: Int(receipt.sum()), rainHeight: 1000.0, radius: 500.0)
         .navigationTitle(receipt.name)
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    func reloadWidget() {
+        WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptWidget")
+        WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptItemsWidget")
     }
 }

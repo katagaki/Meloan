@@ -184,5 +184,13 @@ struct ReceiptEditor: View {
                 }
             }
         }
+        .onDisappear {
+            reloadWidget()
+        }
+    }
+
+    func reloadWidget() {
+        WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptWidget")
+        WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptItemsWidget")
     }
 }
