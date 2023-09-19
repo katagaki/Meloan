@@ -56,6 +56,8 @@
 		E46082582AB9A711001CF504 /* ReceiptWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46082562AB9A6FE001CF504 /* ReceiptWidget.swift */; };
 		E460825A2AB9A771001CF504 /* ReceiptEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46082592AB9A771001CF504 /* ReceiptEntry.swift */; };
 		E460825D2AB9A7A0001CF504 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460825C2AB9A7A0001CF504 /* Provider.swift */; };
+		E46082612AB9A90D001CF504 /* ReceiptIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46082602AB9A90D001CF504 /* ReceiptIntent.swift */; };
+		E46082642AB9AC5A001CF504 /* ReceiptEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46082632AB9AC5A001CF504 /* ReceiptEntity.swift */; };
 		E4766C1C2AB845EC005E4B47 /* ReceiptEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C1B2AB845EC005E4B47 /* ReceiptEditor.swift */; };
 		E4766C1F2AB8492B005E4B47 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C1E2AB8492B005E4B47 /* SearchView.swift */; };
 		E4766C212AB86086005E4B47 /* ReceiptMarkPaidTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C202AB86086005E4B47 /* ReceiptMarkPaidTip.swift */; };
@@ -138,6 +140,8 @@
 		E46082562AB9A6FE001CF504 /* ReceiptWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptWidget.swift; sourceTree = "<group>"; };
 		E46082592AB9A771001CF504 /* ReceiptEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptEntry.swift; sourceTree = "<group>"; };
 		E460825C2AB9A7A0001CF504 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		E46082602AB9A90D001CF504 /* ReceiptIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptIntent.swift; sourceTree = "<group>"; };
+		E46082632AB9AC5A001CF504 /* ReceiptEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptEntity.swift; sourceTree = "<group>"; };
 		E4766C1B2AB845EC005E4B47 /* ReceiptEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptEditor.swift; sourceTree = "<group>"; };
 		E4766C1E2AB8492B005E4B47 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		E4766C202AB86086005E4B47 /* ReceiptMarkPaidTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptMarkPaidTip.swift; sourceTree = "<group>"; };
@@ -319,6 +323,8 @@
 			isa = PBXGroup;
 			children = (
 				E46082552AB9A6F3001CF504 /* ReceiptWidget */,
+				E460825F2AB9A8FD001CF504 /* Intents */,
+				E46082622AB9AC4E001CF504 /* Entities */,
 				E460825E2AB9A7B9001CF504 /* Utilities */,
 				E460823C2AB9575D001CF504 /* AssistantBundle.swift */,
 				E460823E2AB9575D001CF504 /* Assistant.swift */,
@@ -344,6 +350,22 @@
 				E460825C2AB9A7A0001CF504 /* Provider.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		E460825F2AB9A8FD001CF504 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				E46082602AB9A90D001CF504 /* ReceiptIntent.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
+		E46082622AB9AC4E001CF504 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				E46082632AB9AC5A001CF504 /* ReceiptEntity.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		E4766C1D2AB84921005E4B47 /* Search */ = {
@@ -538,7 +560,9 @@
 				E460824A2AB95818001CF504 /* ReceiptItem.swift in Sources */,
 				E460824B2AB95818001CF504 /* Person.swift in Sources */,
 				E460825D2AB9A7A0001CF504 /* Provider.swift in Sources */,
+				E46082612AB9A90D001CF504 /* ReceiptIntent.swift in Sources */,
 				E460824D2AB95818001CF504 /* TaxItem.swift in Sources */,
+				E46082642AB9AC5A001CF504 /* ReceiptEntity.swift in Sources */,
 				E460825A2AB9A771001CF504 /* ReceiptEntry.swift in Sources */,
 				E460823D2AB9575D001CF504 /* AssistantBundle.swift in Sources */,
 			);

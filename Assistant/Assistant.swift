@@ -11,9 +11,11 @@ import WidgetKit
 
 struct Assistant: Widget {
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: "com.tsubuzaki.Meloan.ReceiptWidget", provider: Provider()) { entry in
+        AppIntentConfiguration(kind: "com.tsubuzaki.Meloan.ReceiptWidget",
+                               intent: ReceiptIntent.self,
+                               provider: Provider()) { entry in
             ReceiptWidget(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
+                .containerBackground(.widgetBackground, for: .widget)
         }
         .configurationDisplayName("Widget.Receipt.Title")
         .description("Widget.Receipt.Description")

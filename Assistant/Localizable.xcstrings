@@ -2,6 +2,19 @@
   "sourceLanguage" : "en",
   "strings" : {
     "%.2f" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "%@" : {
+
+    },
+    "Receipt" : {
 
     },
     "Widget.Paid.No" : {
@@ -34,6 +47,57 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "完済"
+          }
+        }
+      }
+    },
+    "Widget.Receipt.Config.Label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Receipt"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "領収書"
+          }
+        }
+      }
+    },
+    "Widget.Receipt.Config.Text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a receipt to display on the widget."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ウィジェットに表示される領収書を選択してください。"
+          }
+        }
+      }
+    },
+    "Widget.Receipt.Config.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Receipt to Display"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "領収書"
           }
         }
       }
