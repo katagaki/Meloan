@@ -34,12 +34,7 @@ struct ReceiptEntity: AppEntity {
     }
 
     @MainActor
-    static let allReceipts: [ReceiptEntity] = getAllReceipts().map({ receipt in
-        ReceiptEntity(id: receipt.id, name: receipt.name)
-    })
-
-    @MainActor
-    static func getAllReceipts() -> [Receipt] {
+    static func allReceipts() -> [Receipt] {
         if let allReceipts = try? sharedModelContainer.mainContext.fetch(FetchDescriptor<Receipt>()) {
             return allReceipts
         } else {
@@ -50,11 +45,17 @@ struct ReceiptEntity: AppEntity {
 
 struct ReceiptQuery: EntityQuery {
     func entities(for identifiers: [ReceiptEntity.ID]) async throws -> [ReceiptEntity] {
-        ReceiptEntity.allReceipts.filter { identifiers.contains($0.id) }
+        await ReceiptEntity.allReceipts()
+            .map({ receipt in
+            ReceiptEntity(id: receipt.id, name: receipt.name)
+        })
+            .filter { identifiers.contains($0.id) }
     }
 
     func suggestedEntities() async throws -> [ReceiptEntity] {
-        ReceiptEntity.allReceipts
+        await ReceiptEntity.allReceipts().map({ receipt in
+            ReceiptEntity(id: receipt.id, name: receipt.name)
+        })
     }
 
     func defaultResult() async -> ReceiptEntity? {
