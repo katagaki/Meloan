@@ -36,7 +36,7 @@ struct ReceiptEntity: AppEntity {
     @MainActor
     static func allReceipts() -> [Receipt] {
         if let allReceipts = try? sharedModelContainer.mainContext.fetch(FetchDescriptor<Receipt>()) {
-            return allReceipts
+            return allReceipts.sorted(by: { $0.name < $1.name })
         } else {
             return []
         }
