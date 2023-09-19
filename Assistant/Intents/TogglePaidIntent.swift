@@ -37,8 +37,9 @@ struct TogglePaidIntent: AppIntent {
         self.id = id
     }
 
+    @MainActor
     func perform() async throws -> some IntentResult {
-        if let receiptItem = await getReceiptItem() {
+        if let receiptItem = getReceiptItem() {
             receiptItem.paid.toggle()
         }
         return .result()

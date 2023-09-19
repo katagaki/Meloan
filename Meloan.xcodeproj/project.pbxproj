@@ -42,7 +42,7 @@
 		E44B68792AB80A8400B243B0 /* PeopleEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68782AB80A8400B243B0 /* PeopleEditor.swift */; };
 		E46082382AB9575D001CF504 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E46082372AB9575D001CF504 /* WidgetKit.framework */; };
 		E460823A2AB9575D001CF504 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E46082392AB9575D001CF504 /* SwiftUI.framework */; };
-		E460823D2AB9575D001CF504 /* AssistantBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460823C2AB9575D001CF504 /* AssistantBundle.swift */; };
+		E460823D2AB9575D001CF504 /* Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460823C2AB9575D001CF504 /* Widgets.swift */; };
 		E460823F2AB9575D001CF504 /* ReceiptWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460823E2AB9575D001CF504 /* ReceiptWidget.swift */; };
 		E46082412AB9575E001CF504 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46082402AB9575E001CF504 /* Assets.xcassets */; };
 		E46082452AB9575E001CF504 /* AssistantExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E46082352AB9575D001CF504 /* AssistantExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -57,8 +57,8 @@
 		E460825D2AB9A7A0001CF504 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460825C2AB9A7A0001CF504 /* Provider.swift */; };
 		E46082612AB9A90D001CF504 /* ReceiptIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46082602AB9A90D001CF504 /* ReceiptIntent.swift */; };
 		E46082642AB9AC5A001CF504 /* ReceiptEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46082632AB9AC5A001CF504 /* ReceiptEntity.swift */; };
-		E460826D2AB9D182001CF504 /* ReceiptItemsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460826B2AB9D173001CF504 /* ReceiptItemsWidget.swift */; };
-		E460826E2AB9D270001CF504 /* TogglePaidIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46082662AB9CD63001CF504 /* TogglePaidIntent.swift */; };
+		E46082742AB9FA9A001CF504 /* ReceiptItemsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460826B2AB9D173001CF504 /* ReceiptItemsWidget.swift */; };
+		E460828F2ABA02F6001CF504 /* TogglePaidIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46082662AB9CD63001CF504 /* TogglePaidIntent.swift */; };
 		E4766C1C2AB845EC005E4B47 /* ReceiptEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C1B2AB845EC005E4B47 /* ReceiptEditor.swift */; };
 		E4766C1F2AB8492B005E4B47 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C1E2AB8492B005E4B47 /* SearchView.swift */; };
 		E4766C212AB86086005E4B47 /* ReceiptMarkPaidTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C202AB86086005E4B47 /* ReceiptMarkPaidTip.swift */; };
@@ -88,6 +88,16 @@
 				E46082452AB9575E001CF504 /* AssistantExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E46082872ABA0255001CF504 /* Embed ExtensionKit Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed ExtensionKit Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -131,7 +141,7 @@
 		E46082352AB9575D001CF504 /* AssistantExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AssistantExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E46082372AB9575D001CF504 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		E46082392AB9575D001CF504 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		E460823C2AB9575D001CF504 /* AssistantBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantBundle.swift; sourceTree = "<group>"; };
+		E460823C2AB9575D001CF504 /* Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets.swift; sourceTree = "<group>"; };
 		E460823E2AB9575D001CF504 /* ReceiptWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptWidget.swift; sourceTree = "<group>"; };
 		E46082402AB9575E001CF504 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E46082422AB9575E001CF504 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -339,7 +349,7 @@
 		E46082552AB9A6F3001CF504 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				E460823C2AB9575D001CF504 /* AssistantBundle.swift */,
+				E460823C2AB9575D001CF504 /* Widgets.swift */,
 				E460823E2AB9575D001CF504 /* ReceiptWidget.swift */,
 				E460826B2AB9D173001CF504 /* ReceiptItemsWidget.swift */,
 			);
@@ -399,6 +409,7 @@
 				E44B68122AB4ADCA00B243B0 /* Resources */,
 				E44B682A2AB566D200B243B0 /* ShellScript */,
 				E46082462AB9575E001CF504 /* Embed Foundation Extensions */,
+				E46082872ABA0255001CF504 /* Embed ExtensionKit Extensions */,
 			);
 			buildRules = (
 			);
@@ -568,15 +579,15 @@
 				E460824C2AB95818001CF504 /* DiscountItem.swift in Sources */,
 				E460824E2AB95818001CF504 /* Receipt.swift in Sources */,
 				E460824A2AB95818001CF504 /* ReceiptItem.swift in Sources */,
+				E460828F2ABA02F6001CF504 /* TogglePaidIntent.swift in Sources */,
 				E460824B2AB95818001CF504 /* Person.swift in Sources */,
-				E460826E2AB9D270001CF504 /* TogglePaidIntent.swift in Sources */,
 				E460825D2AB9A7A0001CF504 /* Provider.swift in Sources */,
 				E46082612AB9A90D001CF504 /* ReceiptIntent.swift in Sources */,
-				E460826D2AB9D182001CF504 /* ReceiptItemsWidget.swift in Sources */,
 				E460824D2AB95818001CF504 /* TaxItem.swift in Sources */,
+				E46082742AB9FA9A001CF504 /* ReceiptItemsWidget.swift in Sources */,
 				E46082642AB9AC5A001CF504 /* ReceiptEntity.swift in Sources */,
 				E460825A2AB9A771001CF504 /* ReceiptEntry.swift in Sources */,
-				E460823D2AB9575D001CF504 /* AssistantBundle.swift in Sources */,
+				E460823D2AB9575D001CF504 /* Widgets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

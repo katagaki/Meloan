@@ -11,6 +11,8 @@ import SwiftData
 
 struct ReceiptEntity: AppEntity {
 
+    typealias DefaultQuery = ReceiptQuery
+
     let id: String
     let name: String
 
@@ -24,6 +26,8 @@ struct ReceiptEntity: AppEntity {
 
 struct ReceiptQuery: EntityQuery {
 
+    typealias Entity = ReceiptEntity
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Receipt.self, Person.self, ReceiptItem.self, DiscountItem.self, TaxItem.self
@@ -36,30 +40,42 @@ struct ReceiptQuery: EntityQuery {
         }
     }()
 
-    func entities(for identifiers: [ReceiptEntity.ID]) async throws -> [ReceiptEntity] {
-        return await allReceipts()
+    func entities(for identifiers: [Entity.ID]) async throws -> [Entity] {
+        let allReceipts = await allReceipts()
             .map({ receipt in
                 ReceiptEntity(id: receipt.id, name: receipt.name)
             })
             .filter { identifiers.contains($0.id) }
+        for receipt in allReceipts {
+            debugPrint(#function + " \(receipt.id): \(receipt.name)")
+        }
+        return allReceipts
     }
 
-    func suggestedEntities() async throws -> [ReceiptEntity] {
-        return await allReceipts().map({ receipt in
-            ReceiptEntity(id: receipt.id, name: receipt.name)
-        })
+    func suggestedEntities() async throws -> [Entity] {
+        let allReceipts = await allReceipts()
+            .map({ receipt in
+                ReceiptEntity(id: receipt.id, name: receipt.name)
+            })
+        for receipt in allReceipts {
+            debugPrint(#function + " \(receipt.id): \(receipt.name)")
+        }
+        return allReceipts
     }
 
-    func defaultResult() async -> ReceiptEntity? {
+    func defaultResult() async -> Entity? {
         return try? await suggestedEntities().first
     }
 
-    @MainActor
-    func allReceipts() -> [Receipt] {
-        if let allReceipts = try? sharedModelContainer
-            .mainContext.fetch(FetchDescriptor<Receipt>()) {
-            return allReceipts.sorted(by: { $0.name < $1.name })
-        } else {
+    func allReceipts() async -> [Receipt] {
+        await MainActor.run {
+            do {
+                let allReceipts = try sharedModelContainer
+                    .mainContext.fetch(FetchDescriptor<Receipt>())
+                return allReceipts.sorted(by: { $0.name < $1.name })
+            } catch {
+                debugPrint(error.localizedDescription)
+            }
             return []
         }
     }

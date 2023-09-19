@@ -21,12 +21,12 @@ struct IOUView: View {
     var body: some View {
         NavigationStack(path: $navigationManager.iouTabPath) {
             List(people) { person in
-                if let personWhoPaid = self.personWhoPaid, !(personWhoPaid.receiptsPaid?.isEmpty ?? true) {
+                if let personWhoPaid = self.personWhoPaid, !personWhoPaid.receiptsPaid.isEmpty {
                     if person.id != personWhoPaid.id && person.sumOwed(to: personWhoPaid) != .zero {
                         Section {
                             // IMPORTANT: Do NOT refactor anything here! SwiftUI will reuse views in an unexpected
                             // manner, and cause totals to appear incorrectly (calculation is CORRECT).
-                            ForEach(person.receiptsParticipated ?? []) { receipt in
+                            ForEach(person.receiptsParticipated) { receipt in
                                 if receipt.personWhoPaid == personWhoPaid {
                                     HStack(alignment: .center, spacing: 4.0) {
                                         Text(receipt.name)

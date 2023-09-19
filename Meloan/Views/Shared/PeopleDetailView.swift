@@ -46,9 +46,9 @@ struct PeopleDetailView: View {
                 ListSectionHeader(text: "Person.BasicInformation")
                     .font(.body)
             }
-            if let receiptsPaid = person.receiptsPaid, !receiptsPaid.isEmpty {
+            if !person.receiptsPaid.isEmpty {
                 Section {
-                    ForEach(receiptsPaid) { receipt in
+                    ForEach(person.receiptsPaid) { receipt in
                         NavigationLink(value: ViewPath.receiptDetail(receipt: receipt)) {
                             ListRow(image: "ListIcon.Receipt", title: receipt.name)
                         }
@@ -58,9 +58,9 @@ struct PeopleDetailView: View {
                         .font(.body)
                 }
             }
-            if let receiptsParticipated = person.receiptsParticipated, !receiptsParticipated.isEmpty {
+            if !person.receiptsParticipated.isEmpty {
                 Section {
-                    ForEach(receiptsParticipated) { receipt in
+                    ForEach(person.receiptsParticipated) { receipt in
                         NavigationLink(value: ViewPath.receiptDetail(receipt: receipt)) {
                             ListRow(image: "ListIcon.Receipt", title: receipt.name)
                         }

@@ -13,7 +13,8 @@ struct MoreView: View {
 
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
-    @Query(sort: \Person.name) private var people: [Person]
+    @Query private var people: [Person]
+    @Query private var receipts: [Receipt]
 
     @State var isDeleteConfirming: Bool = false
 
@@ -125,16 +126,11 @@ SOFTWARE.
     }
 
     func deleteAllData() {
-        do {
-            try modelContext.delete(model: ReceiptItem.self)
-            try modelContext.delete(model: DiscountItem.self)
-            try modelContext.delete(model: TaxItem.self)
-            try modelContext.delete(model: Receipt.self)
-            for person in people where person.id != "ME" {
-                modelContext.delete(person)
-            }
-        } catch {
-            debugPrint(error.localizedDescription)
+        for receipt in receipts {
+            modelContext.delete(receipt)
+        }
+        for person in people where person.id != "ME" {
+            modelContext.delete(person)
         }
     }
 }
