@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%.2f" : {
+
+    },
     "Widget.Paid.No" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -82,6 +85,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "合計: %1"
+          }
+        }
+      }
+    },
+    "Widget.Total.Paid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paid: %1"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支払済: %1"
+          }
+        }
+      }
+    },
+    "Widget.Total.Paid.Large" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paid"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支払済"
+          }
+        }
+      }
+    },
+    "Widget.Total.Unpaid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unpaid: %1"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未払: %1"
+          }
+        }
+      }
+    },
+    "Widget.Total.Unpaid.Large" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unpaid"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未払"
           }
         }
       }

@@ -27,6 +27,18 @@ final class Receipt {
         return sumOfItems() + sumOfTax() - sumOfDiscount()
     }
 
+    func sumUnpaid() -> Double {
+        return receiptItems.reduce(into: 0.0, { partialResult, item in
+            if !item.paid {
+                partialResult += item.price
+            }
+        }) * overallRate()
+    }
+
+    func sumPaid() -> Double {
+        return sum() - sumUnpaid()
+    }
+
     func sumOfItems() -> Double {
         return receiptItems.reduce(into: 0.0, { partialResult, item in
             partialResult += item.price
