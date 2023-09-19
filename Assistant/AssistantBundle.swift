@@ -1,6 +1,6 @@
 //
 //  AssistantBundle.swift
-//  Assistant
+//  AssistantExtension
 //
 //  Created by シン・ジャスティン on 2023/09/19.
 //

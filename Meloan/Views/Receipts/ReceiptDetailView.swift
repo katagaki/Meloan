@@ -8,6 +8,7 @@
 import ConfettiSwiftUI
 import Komponents
 import SwiftUI
+import WidgetKit
 
 struct ReceiptDetailView: View {
 
@@ -30,6 +31,7 @@ struct ReceiptDetailView: View {
                 ForEach(receipt.receiptItems.sorted(by: { $0.dateAdded < $1.dateAdded })) { item in
                     Button {
                         item.paid.toggle()
+                        WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptWidget")
                         if receipt.isPaid() {
                             confettiCounter += 1
                         }
