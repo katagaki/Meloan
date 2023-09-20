@@ -66,6 +66,7 @@
 		E4766C282AB88D41005E4B47 /* PeopleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C272AB88D41005E4B47 /* PeopleDetailView.swift */; };
 		E4766C2B2AB89500005E4B47 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E4766C2A2AB89500005E4B47 /* ConfettiSwiftUI */; };
 		E4766C2C2AB89CEE005E4B47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44B681D2AB4ADCB00B243B0 /* Assets.xcassets */; };
+		E48A28492ABB33AC009E7912 /* ReceiptIOUWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A28482ABB33AC009E7912 /* ReceiptIOUWidget.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +160,7 @@
 		E4766C202AB86086005E4B47 /* ReceiptMarkPaidTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptMarkPaidTip.swift; sourceTree = "<group>"; };
 		E4766C252AB886C9005E4B47 /* ReceiptItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemDetailView.swift; sourceTree = "<group>"; };
 		E4766C272AB88D41005E4B47 /* PeopleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleDetailView.swift; sourceTree = "<group>"; };
+		E48A28482ABB33AC009E7912 /* ReceiptIOUWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptIOUWidget.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +354,7 @@
 				E460823C2AB9575D001CF504 /* Widgets.swift */,
 				E460823E2AB9575D001CF504 /* ReceiptProgressWidget.swift */,
 				E460826B2AB9D173001CF504 /* ReceiptItemsWidget.swift */,
+				E48A28482ABB33AC009E7912 /* ReceiptIOUWidget.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				E460823F2AB9575D001CF504 /* ReceiptProgressWidget.swift in Sources */,
 				E460824F2AB96240001CF504 /* ReceiptItemEditable.swift in Sources */,
 				E460824C2AB95818001CF504 /* DiscountItem.swift in Sources */,
+				E48A28492ABB33AC009E7912 /* ReceiptIOUWidget.swift in Sources */,
 				E460824E2AB95818001CF504 /* Receipt.swift in Sources */,
 				E460824A2AB95818001CF504 /* ReceiptItem.swift in Sources */,
 				E460828F2ABA02F6001CF504 /* TogglePaidIntent.swift in Sources */,

@@ -49,8 +49,7 @@ struct ReceiptEditor: View {
                 Picker(selection: $receipt.personWhoPaid) {
                     Text("Shared.NoSelection")
                         .tag(nil as Person?)
-                    ForEach(receipt.peopleWhoParticipated
-                        .sorted(by: { $0.id == "ME" || $0.name < $1.name })) { person in
+                    ForEach(receipt.participants()) { person in
                         PersonRow(person: person)
                             .tag(person as Person?)
                     }

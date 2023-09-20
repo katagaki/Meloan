@@ -58,7 +58,8 @@ struct ReceiptItemsWidgetView: View {
                             .sorted(by: { $0.dateAdded < $1.dateAdded })
                             .prefix(7)) { item in
                             Button(intent: TogglePaidIntent(id: item.id)) {
-                                ReceiptItemWidgetRow(photoData: item.person?.photo,
+                                ReceiptItemWidgetRow(isShared: item.person == nil,
+                                                     photoData: item.person?.photo,
                                                      name: item.name,
                                                      price: item.price)
                                     .strikethrough(item.paid)
@@ -101,7 +102,8 @@ struct ReceiptItemsWidgetView: View {
                                     .sorted(by: { $0.dateAdded < $1.dateAdded })
                                     .prefix(4)) { item in
                                         Button(intent: TogglePaidIntent(id: item.id)) {
-                                            ReceiptItemWidgetRow(photoData: item.person?.photo,
+                                            ReceiptItemWidgetRow(isShared: item.person == nil,
+                                                                 photoData: item.person?.photo,
                                                                  name: item.name,
                                                                  price: item.price)
                                             .strikethrough(item.paid)
@@ -121,6 +123,7 @@ struct ReceiptItemsWidgetView: View {
 
 struct ReceiptItemWidgetRow: View {
 
+    var isShared: Bool
     var photoData: Data?
     var name: String
     var price: Double
@@ -129,12 +132,17 @@ struct ReceiptItemWidgetRow: View {
         VStack(alignment: .leading, spacing: 8.0) {
             HStack(alignment: .center, spacing: 8.0) {
                 Group {
-                    if let photoData = photoData, let image = UIImage(data: photoData) {
-                        Image(uiImage: image)
-                            .resizable()
-                    } else {
+                    if isShared {
                         Image("Profile.Shared.Circle")
                             .resizable()
+                    } else {
+                        if let photoData = photoData, let image = UIImage(data: photoData) {
+                            Image(uiImage: image)
+                                .resizable()
+                        } else {
+                            Image("Profile.Generic.Circle")
+                                .resizable()
+                        }
                     }
                 }
                 .frame(width: 16.0, height: 16.0)

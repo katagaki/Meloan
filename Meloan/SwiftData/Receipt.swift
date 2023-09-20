@@ -97,6 +97,23 @@ final class Receipt: Identifiable {
         return peopleWhoParticipated.contains(where: { $0.id == person.id })
     }
 
+    func participants(sortPayerOnTop: Bool = false) -> [Person] {
+        var participants: [Person] = []
+        if let mePerson = peopleWhoParticipated.first(where: { $0.id == "ME" }) {
+            participants.append(mePerson)
+        }
+        let remainingPeopleSorted = peopleWhoParticipated
+            .filter({ $0.id != "ME" })
+            .sorted(by: { $0.name < $1.name })
+        participants.append(contentsOf: remainingPeopleSorted)
+        if sortPayerOnTop {
+            participants.sort { lhs, _ in
+                lhs.id == personWhoPaid?.id ?? ""
+            }
+        }
+        return participants
+    }
+
     func isPaid() -> Bool {
         return !receiptItems.contains(where: { $0.paid == false })
     }

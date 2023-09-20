@@ -21,6 +21,23 @@
         }
       }
     },
+    "Receipt.MarkPaidIntent.Description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marks a receipt item paid."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支払済とします。"
+          }
+        }
+      }
+    },
     "Receipt.MarkPaidIntent.ItemID" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -34,22 +51,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "商品ID"
-          }
-        }
-      }
-    },
-    "Receipt.MarkPaidIntent.Text" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Marks a receipt item paid."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "支払済とします。"
           }
         }
       }
@@ -69,6 +70,12 @@
           }
         }
       }
+    },
+    "Widget.LenderIOU.Description" : {
+      "extractionState" : "manual"
+    },
+    "Widget.LenderIOU.Title" : {
+      "extractionState" : "manual"
     },
     "Widget.Paid.No" : {
       "extractionState" : "manual",
@@ -104,6 +111,23 @@
         }
       }
     },
+    "Widget.Receipt.Config.Description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a receipt to display on the widget."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ウィジェットに表示される領収書を選択してください。"
+          }
+        }
+      }
+    },
     "Widget.Receipt.Config.Label" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -117,23 +141,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "領収書"
-          }
-        }
-      }
-    },
-    "Widget.Receipt.Config.Text" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Select a receipt to display on the widget."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ウィジェットに表示される領収書を選択してください。"
           }
         }
       }
@@ -185,6 +192,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "要約"
+          }
+        }
+      }
+    },
+    "Widget.ReceiptIOU.Description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shows the IOU for a receipt."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "領収書ごとの貸し借りを表示します。"
+          }
+        }
+      }
+    },
+    "Widget.ReceiptIOU.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IOU (Receipt)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貸し借り（領収書）"
           }
         }
       }
@@ -303,7 +344,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "未払: %1"
+            "value" : "残高: %1"
           }
         }
       }

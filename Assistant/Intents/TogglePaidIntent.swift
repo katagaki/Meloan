@@ -24,7 +24,7 @@ struct TogglePaidIntent: AppIntent {
     }()
 
     static var title: LocalizedStringResource = "Receipt.MarkPaidIntent.Title"
-    static var description = IntentDescription("Receipt.MarkPaidIntent.Text")
+    static var description = IntentDescription("Receipt.MarkPaidIntent.Description")
 
     @Parameter(title: "Receipt.MarkPaidIntent.ItemID") var id: String
 

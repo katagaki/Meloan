@@ -14,5 +14,6 @@ struct Widgets: WidgetBundle {
     var body: some Widget {
         ReceiptProgressWidget()
         ReceiptItemsWidget()
+        ReceiptIOUWidget()
     }
 }
