@@ -8,6 +8,7 @@
 import AppIntents
 import Foundation
 import SwiftData
+import WidgetKit
 
 struct TogglePaidIntent: AppIntent {
 
@@ -42,6 +43,9 @@ struct TogglePaidIntent: AppIntent {
         if let receiptItem = getReceiptItem() {
             receiptItem.paid.toggle()
             try? sharedModelContainer.mainContext.save()
+            WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptWidget")
+            WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptItemsWidget")
+            WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptIOUWidget")
         }
         return .result()
     }
