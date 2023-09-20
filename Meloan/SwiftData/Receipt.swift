@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class Receipt {
+final class Receipt: Identifiable {
     var id: String = UUID().uuidString
     var name: String
     @Relationship(deleteRule: .cascade) var receiptItems: [ReceiptItem] = []
