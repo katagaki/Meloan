@@ -35,7 +35,6 @@ struct ReceiptEntity: AppEntity {
 
 struct ReceiptQuery: EntityQuery, Sendable {
     func entities(for identifiers: [ReceiptEntity.ID]) async throws -> [ReceiptEntity] {
-        debugPrint(#function)
         return await all().filter { identifiers.contains($0.id) }
      }
 
@@ -44,7 +43,6 @@ struct ReceiptQuery: EntityQuery, Sendable {
      }
 
      func defaultResult() async -> ReceiptEntity? {
-         debugPrint(#function)
          return try? await suggestedEntities().first
      }
 
@@ -68,9 +66,6 @@ struct ReceiptQuery: EntityQuery, Sendable {
                 .map({ receipt in
                     ReceiptEntity(from: receipt)
                 })
-            for receipt in allReceipts {
-                debugPrint(receipt)
-            }
             return allReceipts
         } catch {
             debugPrint(error.localizedDescription)

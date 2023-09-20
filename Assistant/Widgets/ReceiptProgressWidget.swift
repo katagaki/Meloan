@@ -104,16 +104,6 @@ struct ReceiptProgressWidgetView: View {
             } else {
                 Spacer()
             }
-            Divider()
-            HStack(alignment: .center, spacing: 8.0) {
-                Image(systemName: "clock")
-                switch family {
-                case .systemSmall: Text(entry.date.formatted(date: .abbreviated, time: .omitted))
-                default: Text(entry.date.formatted(date: .abbreviated, time: .shortened))
-                }
-            }
-            .foregroundStyle(.tertiary)
-            .font(.system(size: 12.0))
         }
     }
 }
