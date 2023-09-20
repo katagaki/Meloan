@@ -49,13 +49,12 @@ struct MainTabView: View {
                 .tag(TabType.more)
         }
         .task {
+            createMePerson()
+            MeloanApp.reloadWidget()
             try? Tips.configure([
                 .displayFrequency(.immediate),
                 .datastoreLocation(.applicationDefault)
             ])
-        }
-        .onAppear {
-            createMePerson()
         }
         .onReceive(tabManager.$selectedTab, perform: { newValue in
             if newValue == tabManager.previouslySelectedTab {

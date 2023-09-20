@@ -40,6 +40,7 @@ struct ReceiptProgressWidgetView: View {
                         .lineLimit(1)
                         .truncationMode(.middle)
                     Divider()
+                    Spacer()
                     Group {
                         if receipt.isPaid() {
                             Text(LocalizedStringKey("Widget.Paid.Yes"))
@@ -48,13 +49,12 @@ struct ReceiptProgressWidgetView: View {
                             Text(NSLocalizedString("Widget.Total.Unpaid", comment: "")
                                 .replacingOccurrences(of: "%1", with: String(format: "%.2f", receipt.sumUnpaid())))
                             .foregroundStyle(.red)
-                            .bold()
                         }
                         Text(NSLocalizedString("Widget.Total", comment: "")
                             .replacingOccurrences(of: "%1", with: String(format: "%.2f", receipt.sum())))
                     }
-                    .font(.system(size: 15.0))
-                    Spacer()
+                    .font(.system(size: 19.0))
+                    .bold()
                 default:
                     HStack(alignment: .center, spacing: 8.0) {
                         Text(receipt.name)
@@ -75,6 +75,7 @@ struct ReceiptProgressWidgetView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 8.0))
                     }
                     Divider()
+                    Spacer(minLength: 0)
                     VStack(alignment: .center, spacing: 4.0) {
                         HStack(alignment: .center, spacing: 8.0) {
                             Text("Widget.Total.Paid.Large")
@@ -88,7 +89,7 @@ struct ReceiptProgressWidgetView: View {
                             .font(.system(size: 15.0))
                             ProgressView(value: receipt.sumPaid(), total: receipt.sum())
                                 .progressViewStyle(.linear)
-                                .tint(.accent)
+                                .tint(receipt.isPaid() ? .green : .accent)
                             Text("\(receipt.sumUnpaid(), specifier: "%.2f")")
                             .font(.system(size: 15.0))
                         }
