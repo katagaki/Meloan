@@ -11,17 +11,6 @@
         }
       }
     },
-    "%@" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
     "Receipt" : {
       "localizations" : {
         "ja" : {

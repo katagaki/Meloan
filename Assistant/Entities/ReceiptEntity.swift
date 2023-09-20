@@ -43,10 +43,10 @@ struct ReceiptQuery: EntityQuery, Sendable {
          return await all()
      }
 
-//     func defaultResult() async -> ReceiptEntity? {
-//         debugPrint(#function)
-//         return try? await suggestedEntities().first
-//     }
+     func defaultResult() async -> ReceiptEntity? {
+         debugPrint(#function)
+         return try? await suggestedEntities().first
+     }
 
     @MainActor
     func all() -> [ReceiptEntity] {
