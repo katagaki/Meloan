@@ -12,7 +12,7 @@ import WidgetKit
 
 struct ReceiptEditor: View {
 
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
 
     @State var receipt: Receipt
@@ -185,13 +185,17 @@ struct ReceiptEditor: View {
                 }
             }
         }
-        .onDisappear {
-            reloadWidget()
+        .onChange(of: receipt.name) { _, _ in
+            MeloanApp.reloadWidget()
         }
-    }
-
-    func reloadWidget() {
-        WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptWidget")
-        WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptItemsWidget")
+        .onChange(of: receipt.receiptItems) { _, _ in
+            MeloanApp.reloadWidget()
+        }
+        .onChange(of: receipt.discountItems) { _, _ in
+            MeloanApp.reloadWidget()
+        }
+        .onChange(of: receipt.taxItems) { _, _ in
+            MeloanApp.reloadWidget()
+        }
     }
 }

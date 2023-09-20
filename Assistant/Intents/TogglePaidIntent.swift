@@ -41,6 +41,7 @@ struct TogglePaidIntent: AppIntent {
     func perform() async throws -> some IntentResult {
         if let receiptItem = getReceiptItem() {
             receiptItem.paid.toggle()
+            try? sharedModelContainer.mainContext.save()
         }
         return .result()
     }

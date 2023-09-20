@@ -11,9 +11,9 @@ import SwiftUI
 
 struct PeopleView: View {
 
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.modelContext) var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
-    @Query(sort: \Person.name) private var people: [Person]
+    @Query(sort: \Person.name) var people: [Person]
 
     var body: some View {
         NavigationStack(path: $navigationManager.peopleTabPath) {

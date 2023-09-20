@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 @main
 struct MeloanApp: App {
@@ -33,5 +34,10 @@ struct MeloanApp: App {
                 .environmentObject(navigationManager)
         }
         .modelContainer(sharedModelContainer)
+    }
+
+    static func reloadWidget() {
+        WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptWidget")
+        WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptItemsWidget")
     }
 }

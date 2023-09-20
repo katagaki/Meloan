@@ -11,10 +11,10 @@ import SwiftUI
 
 struct MoreView: View {
 
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.modelContext) var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
-    @Query private var people: [Person]
-    @Query private var receipts: [Receipt]
+    @Query var people: [Person]
+    @Query var receipts: [Receipt]
 
     @State var isDeleteConfirming: Bool = false
 

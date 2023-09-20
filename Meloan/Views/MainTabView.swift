@@ -12,10 +12,11 @@ import TipKit
 
 struct MainTabView: View {
 
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.scenePhase) var scenePhase
+    @Environment(\.modelContext) var modelContext
     @EnvironmentObject var tabManager: TabManager
     @EnvironmentObject var navigationManager: NavigationManager
-    @Query private var people: [Person]
+    @Query var people: [Person]
 
     var body: some View {
         TabView(selection: $tabManager.selectedTab) {
@@ -62,6 +63,11 @@ struct MainTabView: View {
             }
             tabManager.previouslySelectedTab = newValue
         })
+        .onChange(of: scenePhase) { _, newValue in
+            if newValue == .active {
+                modelContext.processPendingChanges()
+            }
+        }
     }
 
     func createMePerson() {

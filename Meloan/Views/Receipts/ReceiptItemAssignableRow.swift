@@ -68,5 +68,8 @@ struct ReceiptItemAssignableRow: View {
                 .monospaced()
             }
         }
+        .onChange(of: personWhoOrdered) { _, _ in
+            MeloanApp.reloadWidget()
+        }
     }
 }

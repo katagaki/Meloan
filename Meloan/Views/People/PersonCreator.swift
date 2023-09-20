@@ -11,7 +11,7 @@ import SwiftUI
 
 struct PersonCreator: View {
 
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
     @State var name: String = ""
     @State var selectedPhoto: Data?

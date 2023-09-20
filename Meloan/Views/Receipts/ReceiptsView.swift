@@ -10,9 +10,9 @@ import SwiftUI
 
 struct ReceiptsView: View {
 
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.modelContext) var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
-    @Query(sort: \Receipt.dateAdded) private var receipts: [Receipt]
+    @Query(sort: \Receipt.dateAdded) var receipts: [Receipt]
 
     var body: some View {
         NavigationStack(path: $navigationManager.receiptsTabPath) {

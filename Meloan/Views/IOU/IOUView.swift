@@ -12,8 +12,8 @@ import SwiftUI
 struct IOUView: View {
 
     @EnvironmentObject var navigationManager: NavigationManager
-    @Query(sort: \Person.name) private var people: [Person]
-    @Query private var receipts: [Receipt]
+    @Query(sort: \Person.name) var people: [Person]
+    @Query var receipts: [Receipt]
     @State var viewSafeIOUs: [IOUViewSafe] = []
     @State var personWhoPaid: Person?
     @State var isInitialLoadCompleted: Bool = false

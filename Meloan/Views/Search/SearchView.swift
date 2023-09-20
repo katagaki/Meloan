@@ -12,9 +12,9 @@ import SwiftUI
 struct SearchView: View {
 
     @EnvironmentObject var navigationManager: NavigationManager
-    @Query private var receipts: [Receipt]
-    @Query private var receiptItems: [ReceiptItem]
-    @Query private var people: [Person]
+    @Query var receipts: [Receipt]
+    @Query var receiptItems: [ReceiptItem]
+    @Query var people: [Person]
 
     let defaults = UserDefaults.standard
 
