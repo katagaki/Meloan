@@ -32,42 +32,86 @@ struct ReceiptItemsWidgetView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8.0) {
             if let receipt = entry.receipt {
-                HStack(alignment: .center, spacing: 8.0) {
-                    Text(receipt.name)
+                switch family {
+                case .systemLarge:
+                    HStack(alignment: .center, spacing: 8.0) {
+                        Text(receipt.name)
+                            .font(.system(size: 17.0))
+                            .bold()
+                            .lineLimit(1)
+                            .truncationMode(.middle)
+                        Spacer()
+                        Text(receipt.isPaid() ? LocalizedStringKey("Widget.Paid.Yes") :
+                                LocalizedStringKey("Widget.Paid.No"))
+                        .textCase(.uppercase)
+                        .foregroundStyle(.white)
+                        .font(.system(size: 15.0))
                         .bold()
-                    Spacer()
-                    Text(receipt.isPaid() ? LocalizedStringKey("Widget.Paid.Yes") :
-                            LocalizedStringKey("Widget.Paid.No"))
-                    .textCase(.uppercase)
-                    .foregroundStyle(.white)
-                    .font(.subheadline)
-                    .bold()
-                    .padding([.leading, .trailing], 4.0)
-                    .padding([.top, .bottom], 2.0)
-                    .background(receipt.isPaid() ? Color.green : Color.red)
-                    .clipShape(RoundedRectangle(cornerRadius: 8.0))
-                }
-                Divider()
-                VStack(alignment: .leading, spacing: 8.0) {
-                    ForEach(receipt.receiptItems.sorted(by: { $0.dateAdded < $1.dateAdded })) { item in
-                        Button(intent: TogglePaidIntent(id: item.id)) {
-                            ReceiptItemWidgetRow(photoData: item.person?.photo,
-                                                 name: item.name,
-                                                 price: item.price)
-                                .strikethrough(item.paid)
+                        .padding([.leading, .trailing], 4.0)
+                        .padding([.top, .bottom], 2.0)
+                        .background(receipt.isPaid() ? Color.green : Color.red)
+                        .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                    }
+                    Divider()
+                    VStack(alignment: .leading, spacing: 8.0) {
+                        ForEach(receipt.receiptItems
+                            .sorted(by: { $0.dateAdded < $1.dateAdded })
+                            .prefix(7)) { item in
+                            Button(intent: TogglePaidIntent(id: item.id)) {
+                                ReceiptItemWidgetRow(photoData: item.person?.photo,
+                                                     name: item.name,
+                                                     price: item.price)
+                                    .strikethrough(item.paid)
+                            }
+                            .buttonStyle(.plain)
                         }
-                        .buttonStyle(.plain)
+                    }
+                    Spacer(minLength: 0)
+                    Divider()
+                    HStack(alignment: .center, spacing: 8.0) {
+                        Text("Widget.Total.Large")
+                        Spacer()
+                        Text("\(receipt.sum(), specifier: "%.2f")")
+                    }
+                    .font(.system(size: 14.0))
+                    .monospaced()
+                default:
+                    GeometryReader { metrics in
+                        HStack(alignment: .top, spacing: 8.0) {
+                            VStack(alignment: .leading, spacing: 4.0) {
+                                Text(receipt.name)
+                                    .font(.system(size: 17.0))
+                                    .bold()
+                                    .frame(width: metrics.size.width / 3)
+                                Spacer()
+                                Text(receipt.isPaid() ? LocalizedStringKey("Widget.Paid.Yes") :
+                                        LocalizedStringKey("Widget.Paid.No"))
+                                .textCase(.uppercase)
+                                .foregroundStyle(.white)
+                                .font(.system(size: 15.0))
+                                .bold()
+                                .padding([.leading, .trailing], 4.0)
+                                .padding([.top, .bottom], 2.0)
+                                .background(receipt.isPaid() ? Color.green : Color.red)
+                                .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                            }
+                            Divider()
+                            VStack(alignment: .leading, spacing: 8.0) {
+                                ForEach(receipt.receiptItems
+                                    .sorted(by: { $0.dateAdded < $1.dateAdded })
+                                    .prefix(4)) { item in
+                                        Button(intent: TogglePaidIntent(id: item.id)) {
+                                            ReceiptItemWidgetRow(photoData: item.person?.photo,
+                                                                 name: item.name,
+                                                                 price: item.price)
+                                            .strikethrough(item.paid)
+                                        }
+                                        .buttonStyle(.plain)
+                                    }
+                            }
+                        }
                     }
                 }
-                Spacer()
-                Divider()
-                HStack(alignment: .center, spacing: 8.0) {
-                    Text("Widget.Total.Large")
-                    Spacer()
-                    Text("\(receipt.sum(), specifier: "%.2f")")
-                }
-                .font(.system(size: 14.0))
-                .monospaced()
             } else {
                 Spacer()
             }
@@ -102,6 +146,7 @@ struct ReceiptItemWidgetRow: View {
             }
             .font(.system(size: 14.0))
             .monospaced()
+            .lineLimit(1)
             .frame(maxWidth: .infinity)
             Divider()
         }

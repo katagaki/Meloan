@@ -43,7 +43,7 @@
 		E46082382AB9575D001CF504 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E46082372AB9575D001CF504 /* WidgetKit.framework */; };
 		E460823A2AB9575D001CF504 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E46082392AB9575D001CF504 /* SwiftUI.framework */; };
 		E460823D2AB9575D001CF504 /* Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460823C2AB9575D001CF504 /* Widgets.swift */; };
-		E460823F2AB9575D001CF504 /* ReceiptWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460823E2AB9575D001CF504 /* ReceiptWidget.swift */; };
+		E460823F2AB9575D001CF504 /* ReceiptProgressWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460823E2AB9575D001CF504 /* ReceiptProgressWidget.swift */; };
 		E46082412AB9575E001CF504 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46082402AB9575E001CF504 /* Assets.xcassets */; };
 		E46082452AB9575E001CF504 /* AssistantExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E46082352AB9575D001CF504 /* AssistantExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E460824A2AB95818001CF504 /* ReceiptItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68282AB5667A00B243B0 /* ReceiptItem.swift */; };
@@ -142,7 +142,7 @@
 		E46082372AB9575D001CF504 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		E46082392AB9575D001CF504 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		E460823C2AB9575D001CF504 /* Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets.swift; sourceTree = "<group>"; };
-		E460823E2AB9575D001CF504 /* ReceiptWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptWidget.swift; sourceTree = "<group>"; };
+		E460823E2AB9575D001CF504 /* ReceiptProgressWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptProgressWidget.swift; sourceTree = "<group>"; };
 		E46082402AB9575E001CF504 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E46082422AB9575E001CF504 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E46082502AB96603001CF504 /* Meloan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Meloan.entitlements; sourceTree = "<group>"; };
@@ -350,7 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				E460823C2AB9575D001CF504 /* Widgets.swift */,
-				E460823E2AB9575D001CF504 /* ReceiptWidget.swift */,
+				E460823E2AB9575D001CF504 /* ReceiptProgressWidget.swift */,
 				E460826B2AB9D173001CF504 /* ReceiptItemsWidget.swift */,
 			);
 			path = Widgets;
@@ -574,7 +574,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E460823F2AB9575D001CF504 /* ReceiptWidget.swift in Sources */,
+				E460823F2AB9575D001CF504 /* ReceiptProgressWidget.swift in Sources */,
 				E460824F2AB96240001CF504 /* ReceiptItemEditable.swift in Sources */,
 				E460824C2AB95818001CF504 /* DiscountItem.swift in Sources */,
 				E460824E2AB95818001CF504 /* Receipt.swift in Sources */,

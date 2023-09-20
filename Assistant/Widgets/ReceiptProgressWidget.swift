@@ -1,5 +1,5 @@
 //
-//  ReceiptWidget.swift
+//  ReceiptProgressWidget.swift
 //  AssistantExtension
 //
 //  Created by シン・ジャスティン on 2023/09/19.
@@ -10,12 +10,12 @@ import SwiftData
 import SwiftUI
 import WidgetKit
 
-struct ReceiptWidget: Widget {
+struct ReceiptProgressWidget: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: "com.tsubuzaki.Meloan.ReceiptWidget",
                                intent: ReceiptIntent.self,
                                provider: Provider()) { entry in
-            ReceiptWidgetView(entry: entry)
+            ReceiptProgressWidgetView(entry: entry)
                 .containerBackground(.widgetBackground, for: .widget)
         }
         .configurationDisplayName("Widget.Receipt.Title")
@@ -24,7 +24,7 @@ struct ReceiptWidget: Widget {
     }
 }
 
-struct ReceiptWidgetView: View {
+struct ReceiptProgressWidgetView: View {
 
     @Environment(\.widgetFamily) var family
     var entry: Provider.Entry
@@ -35,9 +35,10 @@ struct ReceiptWidgetView: View {
                 switch family {
                 case .systemSmall:
                     Text(receipt.name)
-                        .font(.caption)
+                        .font(.system(size: 12.0))
                         .bold()
                         .lineLimit(1)
+                        .truncationMode(.middle)
                     Divider()
                     Group {
                         if receipt.isPaid() {
@@ -52,18 +53,21 @@ struct ReceiptWidgetView: View {
                         Text(NSLocalizedString("Widget.Total", comment: "")
                             .replacingOccurrences(of: "%1", with: String(format: "%.2f", receipt.sum())))
                     }
-                    .font(.subheadline)
+                    .font(.system(size: 15.0))
                     Spacer()
                 default:
                     HStack(alignment: .center, spacing: 8.0) {
                         Text(receipt.name)
+                            .font(.system(size: 17.0))
                             .bold()
+                            .lineLimit(1)
+                            .truncationMode(.middle)
                         Spacer()
                         Text(receipt.isPaid() ? LocalizedStringKey("Widget.Paid.Yes") :
                                 LocalizedStringKey("Widget.Paid.No"))
                         .textCase(.uppercase)
                         .foregroundStyle(.white)
-                        .font(.subheadline)
+                        .font(.system(size: 15.0))
                         .bold()
                         .padding([.leading, .trailing], 4.0)
                         .padding([.top, .bottom], 2.0)
@@ -77,24 +81,25 @@ struct ReceiptWidgetView: View {
                             Spacer()
                             Text("Widget.Total.Unpaid.Large")
                         }
-                        .font(.caption)
+                        .font(.system(size: 12.0))
                         .foregroundStyle(.secondary)
                         HStack(alignment: .center, spacing: 8.0) {
                             Text("\(receipt.sumPaid(), specifier: "%.2f")")
-                            .font(.subheadline)
+                            .font(.system(size: 15.0))
                             ProgressView(value: receipt.sumPaid(), total: receipt.sum())
                                 .progressViewStyle(.linear)
                                 .tint(.accent)
                             Text("\(receipt.sumUnpaid(), specifier: "%.2f")")
-                            .font(.subheadline)
+                            .font(.system(size: 15.0))
                         }
                         .bold()
                         Text(NSLocalizedString("Widget.Total", comment: "")
                             .replacingOccurrences(of: "%1", with: String(format: "%.2f", receipt.sum())))
-                        .font(.caption)
+                        .font(.system(size: 12.0))
                         .foregroundStyle(.secondary)
                     }
                     .frame(maxHeight: .infinity)
+                    Spacer(minLength: 0)
                 }
             } else {
                 Spacer()
@@ -108,7 +113,7 @@ struct ReceiptWidgetView: View {
                 }
             }
             .foregroundStyle(.tertiary)
-            .font(.caption)
+            .font(.system(size: 12.0))
         }
     }
 }

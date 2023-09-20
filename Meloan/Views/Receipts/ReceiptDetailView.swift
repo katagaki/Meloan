@@ -8,7 +8,6 @@
 import ConfettiSwiftUI
 import Komponents
 import SwiftUI
-import WidgetKit
 
 struct ReceiptDetailView: View {
 

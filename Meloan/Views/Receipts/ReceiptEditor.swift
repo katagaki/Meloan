@@ -8,7 +8,6 @@
 import Komponents
 import SwiftData
 import SwiftUI
-import WidgetKit
 
 struct ReceiptEditor: View {
 
