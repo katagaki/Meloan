@@ -52,8 +52,7 @@ struct TogglePaidIntent: AppIntent {
 
     @MainActor
     func getReceiptItem() -> ReceiptItem? {
-        if let allItems = try? sharedModelContainer
-            .mainContext.fetch(FetchDescriptor<ReceiptItem>()) {
+        if let allItems = try? sharedModelContainer.mainContext.fetch(FetchDescriptor<ReceiptItem>()) {
             return allItems.filter({ $0.id == id }).first
         }
         return nil

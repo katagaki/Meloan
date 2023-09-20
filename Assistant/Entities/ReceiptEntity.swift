@@ -60,8 +60,9 @@ struct ReceiptQuery: EntityQuery, Sendable {
             }
         }()
         do {
+            let receiptFetchDescriptor = FetchDescriptor<Receipt>()
             let allReceipts = try sharedModelContainer
-                .mainContext.fetch(FetchDescriptor<Receipt>())
+                .mainContext.fetch(receiptFetchDescriptor)
                 .sorted(by: { $0.name < $1.name })
                 .map({ receipt in
                     ReceiptEntity(from: receipt)

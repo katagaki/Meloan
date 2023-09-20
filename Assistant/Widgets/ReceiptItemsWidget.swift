@@ -83,7 +83,7 @@ struct ReceiptItemsWidgetView: View {
                                 Text(receipt.name)
                                     .font(.system(size: 17.0))
                                     .bold()
-                                    .frame(width: metrics.size.width / 3)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                                 Spacer()
                                 Text(receipt.isPaid() ? LocalizedStringKey("Widget.Paid.Yes") :
                                         LocalizedStringKey("Widget.Paid.No"))
@@ -96,6 +96,8 @@ struct ReceiptItemsWidgetView: View {
                                 .background(receipt.isPaid() ? Color.green : Color.red)
                                 .clipShape(RoundedRectangle(cornerRadius: 8.0))
                             }
+                            .compositingGroup()
+                            .frame(width: metrics.size.width / 3)
                             Divider()
                             VStack(alignment: .leading, spacing: 8.0) {
                                 ForEach(receipt.receiptItems
