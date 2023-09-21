@@ -52,39 +52,10 @@ struct ReceiptsView: View {
                                 .gesture(
                                     DragGesture(minimumDistance: 20)
                                         .onChanged { gesture in
-                                            if offsets[receipt] == nil { offsets[receipt] = .zero }
-                                            if previousOffsets[receipt] == nil { previousOffsets[receipt] = .zero }
-                                            if let previousOffset = previousOffsets[receipt] {
-                                                let translationHeight = gesture.translation.height
-                                                let expectedTranslation = previousOffset.height + translationHeight
-                                                var newOffset = CGSize(width: 0.0, height: previousOffset.height)
-                                                if expectedTranslation > 0.0 {
-                                                    newOffset.height = translationHeight / 4.0
-                                                } else if expectedTranslation <= -expectedOffset {
-                                                    if previousOffset.height <= -expectedOffset {
-                                                        newOffset.height = -expectedOffset + translationHeight / 4.0
-                                                    } else {
-                                                        newOffset.height = -expectedOffset + (translationHeight + expectedOffset) / 4.0
-                                                    }
-                                                } else {
-                                                    newOffset.height += translationHeight
-                                                }
-                                                offsets.updateValue(newOffset, forKey: receipt)
-                                            }
+                                            handleChange(of: gesture, for: receipt)
                                         }
                                         .onEnded { _ in
-                                            if let offset = offsets[receipt] {
-                                                if offset.height <= -expectedOffset {
-                                                    withAnimation(.snappy.speed(2)) {
-                                                        offsets[receipt]!.height = -expectedOffset
-                                                    }
-                                                } else {
-                                                    withAnimation(.snappy.speed(2)) {
-                                                        offsets[receipt]!.height = 0.0
-                                                    }
-                                                }
-                                            }
-                                            previousOffsets[receipt] = offsets[receipt]
+                                            handleEndOfGesture(for: receipt)
                                         }
                                 )
                         }
@@ -134,5 +105,46 @@ struct ReceiptsView: View {
             }
             .navigationTitle("ViewTitle.Receipts")
         }
+    }
+
+    func handleChange(of gesture: DragGesture.Value, for receipt: Receipt) {
+        if offsets[receipt] == nil { offsets[receipt] = .zero }
+        if previousOffsets[receipt] == nil { previousOffsets[receipt] = .zero }
+        if let previousOffset = previousOffsets[receipt] {
+            let translationHeight = gesture.translation.height
+            let expectedTranslation = previousOffset.height + translationHeight
+            var newOffset = CGSize(width: 0.0, height: previousOffset.height)
+            if expectedTranslation >= 0.0 {
+                if previousOffset.height <= -expectedOffset {
+                    newOffset.height = (translationHeight - expectedOffset) / 10.0
+                } else {
+                    newOffset.height = translationHeight / 10.0
+                }
+            } else if expectedTranslation <= -expectedOffset {
+                if previousOffset.height <= -expectedOffset {
+                    newOffset.height = -expectedOffset + translationHeight / 6.0
+                } else {
+                    newOffset.height = -expectedOffset + (translationHeight + expectedOffset) / 10.0
+                }
+            } else {
+                newOffset.height += translationHeight
+            }
+            offsets.updateValue(newOffset, forKey: receipt)
+        }
+    }
+
+    func handleEndOfGesture(for receipt: Receipt) {
+        if let offset = offsets[receipt] {
+            if offset.height <= -expectedOffset {
+                withAnimation(.snappy.speed(2)) {
+                    offsets[receipt]!.height = -expectedOffset
+                }
+            } else {
+                withAnimation(.snappy.speed(2)) {
+                    offsets[receipt]!.height = 0.0
+                }
+            }
+        }
+        previousOffsets[receipt] = offsets[receipt]
     }
 }
