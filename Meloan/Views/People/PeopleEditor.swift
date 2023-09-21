@@ -52,7 +52,7 @@ struct PersonEditor: View {
             VStack(alignment: .center, spacing: 0.0) {
                 Button {
                     person.name = name
-                    person.photo = selectedPhoto
+                    person.setPhoto(photo: selectedPhoto)
                     dismiss()
                 } label: {
                     LargeButtonLabel(iconName: "square.and.arrow.down.fill", text: "Shared.Save")

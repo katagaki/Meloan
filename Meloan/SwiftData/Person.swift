@@ -29,6 +29,10 @@ final class Person {
         self.photo = Person.cropPhoto(photo: photo)
     }
 
+    func setPhoto(photo: Data?) {
+        self.photo = Person.cropPhoto(photo: photo)
+    }
+
     func sumOwed(to personWhoPaid: Person?) -> Double {
         if let personWhoPaid = personWhoPaid {
             var sum: Double = .zero
