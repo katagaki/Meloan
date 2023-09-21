@@ -5,6 +5,7 @@
 //  Created by シン・ジャスティン on 2023/09/18.
 //
 
+import Combine
 import Komponents
 import SwiftData
 import SwiftUI
@@ -14,6 +15,7 @@ struct ReceiptEditor: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
 
+    @State var widgetReloadDebouncer = PassthroughSubject<String, Never>()
     @State var receipt: Receipt
 
     var body: some View {
@@ -180,15 +182,24 @@ struct ReceiptEditor: View {
             }
         }
         .onChange(of: receipt.name) { _, _ in
-            MeloanApp.reloadWidget()
+            widgetReloadDebouncer.send("")
         }
         .onChange(of: receipt.receiptItems) { _, _ in
-            MeloanApp.reloadWidget()
+            widgetReloadDebouncer.send("")
         }
         .onChange(of: receipt.discountItems) { _, _ in
-            MeloanApp.reloadWidget()
+            widgetReloadDebouncer.send("")
         }
         .onChange(of: receipt.taxItems) { _, _ in
+            widgetReloadDebouncer.send("")
+        }
+        .onChange(of: receipt.personWhoPaid) { _, _ in
+            widgetReloadDebouncer.send("")
+        }
+        .onChange(of: receipt.peopleWhoParticipated) { _, _ in
+            widgetReloadDebouncer.send("")
+        }
+        .onReceive(widgetReloadDebouncer.debounce(for: .seconds(3), scheduler: DispatchQueue.main)) { _ in
             MeloanApp.reloadWidget()
         }
     }
