@@ -42,22 +42,26 @@ final class Person {
 
     static func cropPhoto(photo data: Data?) -> Data? {
         if let data = data, let sourceImage = UIImage(data: data) {
-            // From: https://www.advancedswift.com/crop-image/
-            let sideLength = min(sourceImage.size.width, sourceImage.size.height)
-            let sourceSize = sourceImage.size
-            let xOffset = (sourceSize.width - sideLength) / 2.0
-            let yOffset = (sourceSize.height - sideLength) / 2.0
-            let cropRect = CGRect(x: xOffset, y: yOffset, width: sideLength, height: sideLength)
+            let shortSideLength = min(sourceImage.size.width, sourceImage.size.height)
+            let xOffset = (sourceImage.size.width - shortSideLength) / 2.0
+            let yOffset = (sourceImage.size.height - shortSideLength) / 2.0
+            let cropRect = CGRect(x: xOffset, y: yOffset, width: shortSideLength, height: shortSideLength)
             let imageRendererFormat = sourceImage.imageRendererFormat
             imageRendererFormat.opaque = false
             let circleCroppedImage = UIGraphicsImageRenderer(size: cropRect.size,
                                                              format: imageRendererFormat).image { _ in
-                let drawRect = CGRect(origin: .zero, size: cropRect.size)
-                UIBezierPath(ovalIn: drawRect).addClip()
-                let drawImageRect = CGRect(origin: CGPoint(x: -xOffset, y: -yOffset), size: sourceImage.size)
-                sourceImage.draw(in: drawImageRect)
-            }
-            return circleCroppedImage.pngData()
+                UIBezierPath(ovalIn: CGRect(origin: .zero, size: cropRect.size)).addClip()
+                sourceImage.draw(in: CGRect(origin: CGPoint(x: -xOffset, y: -yOffset), size: sourceImage.size))
+            }.cgImage!
+            let length = 144 * 3
+            let context = CGContext(data: nil, width: length, height: length, bitsPerComponent: 8,
+                                    bytesPerRow: length * circleCroppedImage.bitsPerPixel / 8,
+                                    space: circleCroppedImage.colorSpace!,
+                                    bitmapInfo: circleCroppedImage.bitmapInfo.rawValue)!
+            context.interpolationQuality = .high
+            context.draw(circleCroppedImage, in: CGRect(origin: CGPoint.zero, 
+                                                        size: CGSize(width: length, height: length)))
+            return context.makeImage().flatMap { UIImage(cgImage: $0) }?.pngData()
         }
         return nil
     }
