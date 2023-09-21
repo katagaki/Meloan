@@ -46,6 +46,7 @@ struct ReceiptColumn: View {
                 }
                 .padding([.top, .bottom])
             }
+            .scrollBounceBehavior(.basedOnSize, axes: .vertical)
             .overlay {
                 if receipt.isPaid() {
                     ZStack(alignment: .center) {

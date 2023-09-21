@@ -211,7 +211,6 @@
 				E44B686B2AB6CDE700B243B0 /* Structs */,
 				E44B68352AB56FF100B243B0 /* Classes */,
 				E44B683A2AB5703C00B243B0 /* Enums */,
-				E46082652AB9CD51001CF504 /* Intents */,
 				E44B68272AB5662800B243B0 /* SwiftData */,
 			);
 			path = Meloan;
@@ -376,13 +375,6 @@
 				E46082632AB9AC5A001CF504 /* ReceiptEntity.swift */,
 			);
 			path = Entities;
-			sourceTree = "<group>";
-		};
-		E46082652AB9CD51001CF504 /* Intents */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Intents;
 			sourceTree = "<group>";
 		};
 		E4766C1D2AB84921005E4B47 /* Search */ = {
