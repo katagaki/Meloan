@@ -5,6 +5,7 @@
 //  Created by シン・ジャスティン on 2023/09/16.
 //
 
+import CoreData
 import Komponents
 import SwiftData
 import SwiftUI
@@ -64,7 +65,19 @@ struct MainTabView: View {
         })
         .onChange(of: scenePhase) { _, newValue in
             if newValue == .active {
-                modelContext.processPendingChanges()
+                tryToReloadData()
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(
+            for: NSPersistentCloudKitContainer.eventChangedNotification
+        )) { notification in
+            // swiftlint:disable line_length
+            guard let event = notification.userInfo?[NSPersistentCloudKitContainer.eventNotificationUserInfoKey] as? NSPersistentCloudKitContainer.Event else {
+                return
+            }
+            // swiftlint:enable line_length
+            if event.endDate != nil && event.type == .import {
+                tryToReloadData()
             }
         }
     }
@@ -79,6 +92,12 @@ struct MainTabView: View {
             if let mePerson = people.first(where: { $0.id == "ME" }) {
                 mePerson.name = NSLocalizedString("People.Me", comment: "")
             }
+        }
+    }
+
+    func tryToReloadData() {
+        Task { @MainActor in
+            _ = try? modelContext.fetch(FetchDescriptor<Receipt>())
         }
     }
 }

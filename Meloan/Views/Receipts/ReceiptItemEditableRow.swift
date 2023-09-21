@@ -9,9 +9,25 @@ import SwiftUI
 
 struct ReceiptItemEditableRow: View {
 
-    @Binding var name: String
-    @Binding var price: Double
+    @State var discountItem: DiscountItem?
+    @State var taxItem: TaxItem?
+    @State var name: String
+    @State var price: Double
     var placeholderText: String
+
+    init(discountItem: DiscountItem, placeholderText: String) {
+        self.discountItem = discountItem
+        self.name = discountItem.name
+        self.price = discountItem.price
+        self.placeholderText = placeholderText
+    }
+
+    init(taxItem: TaxItem, placeholderText: String) {
+        self.taxItem = taxItem
+        self.name = taxItem.name
+        self.price = taxItem.price
+        self.placeholderText = placeholderText
+    }
 
     var body: some View {
         GeometryReader { metrics in
@@ -26,6 +42,20 @@ struct ReceiptItemEditableRow: View {
                     .keyboardType(.decimalPad)
                     .monospaced()
                     .font(.system(size: 14.0))
+            }
+        }
+        .onChange(of: name, initial: false) { _, _ in
+            if let discountItem = discountItem {
+                discountItem.name = name
+            } else if let taxItem = taxItem {
+                taxItem.name = name
+            }
+        }
+        .onChange(of: price, initial: false) { _, _ in
+            if let discountItem = discountItem {
+                discountItem.price = price
+            } else if let taxItem = taxItem {
+                taxItem.price = price
             }
         }
     }

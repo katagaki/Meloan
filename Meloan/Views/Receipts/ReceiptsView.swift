@@ -36,7 +36,6 @@ struct ReceiptsView: View {
             .background(Color(uiColor: UIColor.systemGroupedBackground))
             .navigationDestination(for: ViewPath.self, destination: { viewPath in
                 switch viewPath {
-                case .receiptCreator: ReceiptCreator()
                 case .receiptDetail(let receipt): ReceiptDetailView(receipt: receipt)
                 case .receiptEditor(let receipt): ReceiptEditor(receipt: receipt)
                 default: Color.clear
@@ -45,7 +44,19 @@ struct ReceiptsView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack {
-                        NavigationLink(value: ViewPath.receiptCreator) {
+                        Button {
+                            debugPrint("Attempting to reload data...")
+                            Task { @MainActor in
+                                _ = try? modelContext.fetch(FetchDescriptor<ReceiptItem>())
+                            }
+                        } label: {
+                            Image(systemName: "arrow.clockwise.circle")
+                        }
+                        Button {
+                            let receipt = Receipt(name: NSLocalizedString("Receipt.Create.Name.Default", comment: ""))
+                            modelContext.insert(receipt)
+                            navigationManager.push(ViewPath.receiptEditor(receipt: receipt), for: .receipts)
+                        } label: {
                             Image(systemName: "plus")
                         }
                         .popoverTip(ReceiptsTip(), arrowEdge: .top)

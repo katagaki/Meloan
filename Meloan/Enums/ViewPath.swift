@@ -8,7 +8,6 @@
 import Foundation
 
 enum ViewPath: Hashable {
-    case receiptCreator
     case receiptDetail(receipt: Receipt)
     case receiptEditor(receipt: Receipt)
     case receiptItemDetail(receiptItem: ReceiptItem)

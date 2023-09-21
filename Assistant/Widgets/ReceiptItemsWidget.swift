@@ -54,7 +54,7 @@ struct ReceiptItemsWidgetView: View {
                     }
                     Divider()
                     VStack(alignment: .leading, spacing: 8.0) {
-                        ForEach(receipt.receiptItems
+                        ForEach((receipt.receiptItems ?? [])
                             .sorted(by: { $0.dateAdded < $1.dateAdded })
                             .prefix(7)) { item in
                             Button(intent: TogglePaidIntent(id: item.id)) {
@@ -100,8 +100,7 @@ struct ReceiptItemsWidgetView: View {
                             .frame(width: metrics.size.width / 3)
                             Divider()
                             VStack(alignment: .leading, spacing: 8.0) {
-                                ForEach(receipt.receiptItems
-                                    .sorted(by: { $0.dateAdded < $1.dateAdded })
+                                ForEach(receipt.items()
                                     .prefix(4)) { item in
                                         Button(intent: TogglePaidIntent(id: item.id)) {
                                             ReceiptItemWidgetRow(isShared: item.person == nil,

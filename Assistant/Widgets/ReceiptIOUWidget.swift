@@ -58,22 +58,22 @@ struct ReceiptIOUWidgetView: View {
                                     ReceiptIOUPersonView(photoData: person.photo,
                                                          name: person.name,
                                                          amount: receipt.sumOwed(to: personWhoPaid, for: person))
-                                    if person != receipt.participants().prefix(4).last {
-                                        Divider()
-                                    }
+                                if person != receipt.participants().prefix(4).last {
+                                    Divider()
                                 }
+                            }
                         }
-                        if family == .systemLarge && receipt.peopleWhoParticipated.count > 4 {
+                        if family == .systemLarge && receipt.participants().count > 4 {
                             Divider()
                             HStack(alignment: .center, spacing: 8.0) {
                                 ForEach(receipt.participants()[4..<min(8, receipt.participants().count)]) { person in
-                                        ReceiptIOUPersonView(photoData: person.photo,
-                                                             name: person.name,
-                                                             amount: receipt.sumOwed(to: personWhoPaid, for: person))
-                                        if person != receipt.participants().prefix(8).last {
-                                            Divider()
-                                        }
+                                    ReceiptIOUPersonView(photoData: person.photo,
+                                                         name: person.name,
+                                                         amount: receipt.sumOwed(to: personWhoPaid, for: person))
+                                    if person != receipt.participants().prefix(8).last {
+                                        Divider()
                                     }
+                                }
                             }
                         }
                     }

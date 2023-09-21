@@ -25,7 +25,7 @@ struct ReceiptDetailView: View {
                     .font(.body)
             }
             Section {
-                ForEach(receipt.receiptItems.sorted(by: { $0.dateAdded < $1.dateAdded })) { item in
+                ForEach(receipt.items()) { item in
                     Button {
                         item.paid.toggle()
                         MeloanApp.reloadWidget()
@@ -69,9 +69,9 @@ struct ReceiptDetailView: View {
                 .bold()
                 .foregroundStyle(.primary)
             }
-            if !receipt.discountItems.isEmpty {
+            if receipt.discountItems().isEmpty {
                 Section {
-                    ForEach(receipt.discountItems.sorted(by: { $0.dateAdded < $1.dateAdded })) { item in
+                    ForEach(receipt.discountItems()) { item in
                         ReceiptItemRow(name: item.name, price: item.price)
                     }
                 } header: {
@@ -79,9 +79,9 @@ struct ReceiptDetailView: View {
                         .font(.body)
                 }
             }
-            if !receipt.taxItems.isEmpty {
+            if receipt.taxItems().isEmpty {
                 Section {
-                    ForEach(receipt.taxItems.sorted(by: { $0.dateAdded < $1.dateAdded })) { item in
+                    ForEach(receipt.taxItems()) { item in
                         ReceiptItemRow(name: item.name, price: item.price)
                     }
                 } header: {

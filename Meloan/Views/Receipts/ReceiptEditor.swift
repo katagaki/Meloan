@@ -33,14 +33,14 @@ struct ReceiptEditor: View {
             }
             Section {
                 NavigationLink {
-                    PeoplePicker(title: "Receipt.Participants", selection: $receipt.peopleWhoParticipated)
+                    PeoplePicker(title: "Receipt.Participants", selection: .constant(receipt.participants()))
                 } label: {
                     HStack {
                         Text("Receipt.Participants")
                             .bold()
                         Spacer()
                         Text(NSLocalizedString("Receipt.Participants.Label", comment: "")
-                            .replacingOccurrences(of: "%1", with: String(receipt.peopleWhoParticipated.count)))
+                            .replacingOccurrences(of: "%1", with: String(receipt.participants().count)))
                         .lineLimit(1)
                         .truncationMode(.head)
                         .foregroundStyle(.secondary)
@@ -63,23 +63,21 @@ struct ReceiptEditor: View {
                     .font(.subheadline)
             }
             Section {
-                ForEach($receipt.receiptItems
-                    .sorted(by: { $0.dateAdded.wrappedValue < $1.dateAdded.wrappedValue })) { $item in
-                    ReceiptItemAssignableRow(name: $item.name, price: $item.price,
-                                             personWhoOrdered: $item.person,
-                                             peopleWhoParticipated: $receipt.peopleWhoParticipated,
+                ForEach(receipt.items()) { item in
+                    ReceiptItemAssignableRow(item: item,
+                                             peopleWhoParticipated: .constant(receipt.participants()),
                                              placeholderText: "Receipt.ProductName")
                 }
                 .onDelete { indexSet in
                     // Workaround due to unsorted relationship in SwiftData
                     indexSet.forEach { index in
-                        let itemsSorted = receipt.receiptItems.sorted(by: { $0.dateAdded < $1.dateAdded })
+                        let itemsSorted = receipt.items()
                         var itemsToDelete: [ReceiptItem] = []
                         indexSet.forEach { index in
                             itemsToDelete.append(itemsSorted[index])
                         }
                         itemsToDelete.forEach { itemToDelete in
-                            receipt.receiptItems.removeAll { item in
+                            receipt.receiptItems?.removeAll { item in
                                 item == itemToDelete
                             }
                         }
@@ -101,21 +99,20 @@ struct ReceiptEditor: View {
                 }
             }
             Section {
-                ForEach($receipt.discountItems
-                    .sorted(by: { $0.dateAdded.wrappedValue < $1.dateAdded.wrappedValue })) { $item in
-                    ReceiptItemEditableRow(name: $item.name, price: $item.price,
+                ForEach(receipt.discountItems()) { item in
+                    ReceiptItemEditableRow(discountItem: item,
                                            placeholderText: "Receipt.ItemName")
                 }
                 .onDelete { indexSet in
                     // Workaround due to unsorted relationship in SwiftData
                     indexSet.forEach { index in
-                        let itemsSorted = receipt.discountItems.sorted(by: { $0.dateAdded < $1.dateAdded })
+                        let itemsSorted = receipt.discountItems()
                         var itemsToDelete: [DiscountItem] = []
                         indexSet.forEach { index in
                             itemsToDelete.append(itemsSorted[index])
                         }
                         itemsToDelete.forEach { itemToDelete in
-                            receipt.discountItems.removeAll { item in
+                            receipt.discountItems?.removeAll { item in
                                 item == itemToDelete
                             }
                         }
@@ -137,21 +134,20 @@ struct ReceiptEditor: View {
                 }
             }
             Section {
-                ForEach($receipt.taxItems
-                    .sorted(by: { $0.dateAdded.wrappedValue < $1.dateAdded.wrappedValue })) { $item in
-                    ReceiptItemEditableRow(name: $item.name, price: $item.price,
+                ForEach(receipt.taxItems()) { item in
+                    ReceiptItemEditableRow(taxItem: item,
                                            placeholderText: "Receipt.ItemName")
                 }
                 .onDelete { indexSet in
                     // Workaround due to unsorted relationship in SwiftData
                     indexSet.forEach { index in
-                        let itemsSorted = receipt.taxItems.sorted(by: { $0.dateAdded < $1.dateAdded })
+                        let itemsSorted = receipt.taxItems()
                         var itemsToDelete: [TaxItem] = []
                         indexSet.forEach { index in
                             itemsToDelete.append(itemsSorted[index])
                         }
                         itemsToDelete.forEach { itemToDelete in
-                            receipt.taxItems.removeAll { item in
+                            receipt.taxItems?.removeAll { item in
                                 item == itemToDelete
                             }
                         }
@@ -173,12 +169,12 @@ struct ReceiptEditor: View {
                 }
             }
         }
-        .navigationTitle("Receipt.Edit.Title")
+        .navigationTitle(receipt.name)
         .navigationBarTitleDisplayMode(.inline)
         // TODO: Implement manual saving
         .onChange(of: receipt.peopleWhoParticipated) { _, _ in
             if let personWhoPaid = receipt.personWhoPaid {
-                if !receipt.peopleWhoParticipated.contains(where: { $0.id == personWhoPaid.id }) {
+                if !receipt.participants().contains(where: { $0.id == personWhoPaid.id }) {
                     receipt.personWhoPaid = nil
                 }
             }

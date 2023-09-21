@@ -361,7 +361,7 @@
         }
       }
     },
-    "Receipt.Create.Title" : {
+    "Receipt.Create.Name.Default" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -396,23 +396,6 @@
       }
     },
     "Receipt.Edit" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Edit Receipt"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "領収書を編集"
-          }
-        }
-      }
-    },
-    "Receipt.Edit.Title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

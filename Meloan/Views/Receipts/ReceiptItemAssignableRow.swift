@@ -10,11 +10,21 @@ import SwiftUI
 
 struct ReceiptItemAssignableRow: View {
 
-    @Binding var name: String
-    @Binding var price: Double
-    @Binding var personWhoOrdered: Person?
+    var item: ReceiptItem
+    @State var name: String
+    @State var price: Double
+    @State var personWhoOrdered: Person?
     @Binding var peopleWhoParticipated: [Person]
     var placeholderText: String
+
+    init(item: ReceiptItem, peopleWhoParticipated: Binding<[Person]>, placeholderText: String) {
+        self.item = item
+        name = item.name
+        price = item.price
+        personWhoOrdered = item.person
+        self._peopleWhoParticipated = peopleWhoParticipated
+        self.placeholderText = placeholderText
+    }
 
     var body: some View {
         GeometryReader { metrics in
@@ -68,8 +78,22 @@ struct ReceiptItemAssignableRow: View {
                 .monospaced()
             }
         }
-        .onChange(of: personWhoOrdered) { _, _ in
+        .onChange(of: name, initial: false) { _, _ in
+            item.name = name
+        }
+        .onChange(of: price, initial: false) { _, _ in
+            item.price = price
+        }
+        .onChange(of: personWhoOrdered, initial: false) { _, _ in
+            item.person = personWhoOrdered
             MeloanApp.reloadWidget()
+        }
+        .onChange(of: peopleWhoParticipated, initial: false) { _, _ in
+            if let personWhoOrdered = personWhoOrdered {
+                if !peopleWhoParticipated.contains(personWhoOrdered) {
+                    self.personWhoOrdered = nil
+                }
+            }
         }
     }
 }

@@ -25,8 +25,8 @@ struct PeopleView: View {
                     NavigationLink(value: ViewPath.personEditor(person: person)) {
                         PersonRow(person: person)
                     }
-                    .deleteDisabled(!person.receiptsPaid.isEmpty ||
-                                    !person.receiptsParticipated.isEmpty)
+                    .deleteDisabled(!(person.receiptsPaid?.isEmpty ?? true) ||
+                                    !(person.receiptsParticipated?.isEmpty ?? true))
                 }
                 .onDelete(perform: { indexSet in
                     for index in indexSet {

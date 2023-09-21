@@ -32,7 +32,7 @@ struct ReceiptItemDetailView: View {
                     .font(.body)
             }
             Section {
-                ForEach(receiptItem.receipts) { receipt in
+                ForEach(receiptItem.receipts ?? []) { receipt in
                     NavigationLink(value: ViewPath.receiptDetail(receipt: receipt)) {
                         ListRow(image: "ListIcon.Receipt", title: receipt.name)
                     }
