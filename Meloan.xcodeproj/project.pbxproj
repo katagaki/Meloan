@@ -66,6 +66,8 @@
 		E48A28492ABB33AC009E7912 /* ReceiptIOUWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A28482ABB33AC009E7912 /* ReceiptIOUWidget.swift */; };
 		E48A284E2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A284D2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift */; };
 		E48A28502ABC5C27009E7912 /* IOUTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A284F2ABC5C27009E7912 /* IOUTip.swift */; };
+		E48A28532ABC61A1009E7912 /* ModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A28522ABC61A1009E7912 /* ModelContainer.swift */; };
+		E48A28542ABC61B7009E7912 /* ModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A28522ABC61A1009E7912 /* ModelContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +162,7 @@
 		E48A28482ABB33AC009E7912 /* ReceiptIOUWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptIOUWidget.swift; sourceTree = "<group>"; };
 		E48A284D2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDeleteAndEditTip.swift; sourceTree = "<group>"; };
 		E48A284F2ABC5C27009E7912 /* IOUTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOUTip.swift; sourceTree = "<group>"; };
+		E48A28522ABC61A1009E7912 /* ModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +190,7 @@
 		E44B680B2AB4ADCA00B243B0 = {
 			isa = PBXGroup;
 			children = (
+				E48A28512ABC6197009E7912 /* Shared */,
 				E44B68162AB4ADCA00B243B0 /* Meloan */,
 				E460823B2AB9575D001CF504 /* Assistant */,
 				E46082362AB9575D001CF504 /* Frameworks */,
@@ -391,6 +395,14 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		E48A28512ABC6197009E7912 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E48A28522ABC61A1009E7912 /* ModelContainer.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -557,6 +569,7 @@
 				E44B68502AB5A36A00B243B0 /* ReceiptItemCompactRow.swift in Sources */,
 				E4766C282AB88D41005E4B47 /* PeopleDetailView.swift in Sources */,
 				E44B68592AB5C2FB00B243B0 /* ReceiptItemEditableRow.swift in Sources */,
+				E48A28532ABC61A1009E7912 /* ModelContainer.swift in Sources */,
 				E4766C1F2AB8492B005E4B47 /* SearchView.swift in Sources */,
 				E44B68772AB7478A00B243B0 /* ReceiptsTip.swift in Sources */,
 				E44B68562AB5BBFE00B243B0 /* PersonRow.swift in Sources */,
@@ -569,6 +582,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E460823F2AB9575D001CF504 /* ReceiptProgressWidget.swift in Sources */,
+				E48A28542ABC61B7009E7912 /* ModelContainer.swift in Sources */,
 				E460824C2AB95818001CF504 /* DiscountItem.swift in Sources */,
 				E48A28492ABB33AC009E7912 /* ReceiptIOUWidget.swift in Sources */,
 				E460824E2AB95818001CF504 /* Receipt.swift in Sources */,
