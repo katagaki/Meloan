@@ -17,7 +17,7 @@ final class ReceiptItem {
     var paid: Bool = false
     @Relationship(deleteRule: .noAction) var person: Person?
     @Relationship(inverse: \Receipt.receiptItems) var receipts: [Receipt]? = []
-    var dateAdded: Date = Date()
+    var dateAdded: Date = Date.now
 
     init(name: String, price: Double, amount: Int) {
         self.name = name

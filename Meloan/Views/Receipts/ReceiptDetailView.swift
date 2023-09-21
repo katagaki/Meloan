@@ -24,52 +24,54 @@ struct ReceiptDetailView: View {
                 ListSectionHeader(text: "Receipt.Participants")
                     .font(.body)
             }
-            Section {
-                ForEach(receipt.items()) { item in
-                    Button {
-                        item.paid.toggle()
-                        MeloanApp.reloadWidget()
-                        if receipt.isPaid() {
-                            confettiCounter += 1
-                        }
-                    } label: {
-                        HStack(alignment: .center, spacing: 16.0) {
-                            Group {
-                                if let person = item.person {
-                                    if let data = person.photo, let image = UIImage(data: data) {
-                                        Image(uiImage: image)
-                                            .resizable()
+            if !receipt.items().isEmpty {
+                Section {
+                    ForEach(receipt.items()) { item in
+                        Button {
+                            item.paid.toggle()
+                            MeloanApp.reloadWidget()
+                            if receipt.isPaid() {
+                                confettiCounter += 1
+                            }
+                        } label: {
+                            HStack(alignment: .center, spacing: 16.0) {
+                                Group {
+                                    if let person = item.person {
+                                        if let data = person.photo, let image = UIImage(data: data) {
+                                            Image(uiImage: image)
+                                                .resizable()
+                                        } else {
+                                            Image("Profile.Generic")
+                                                .resizable()
+                                        }
                                     } else {
-                                        Image("Profile.Generic")
+                                        Image("Profile.Shared")
                                             .resizable()
                                     }
-                                } else {
-                                    Image("Profile.Shared")
-                                        .resizable()
                                 }
+                                .frame(width: 32.0, height: 32.0)
+                                .clipShape(Circle())
+                                ReceiptItemRow(name: item.name, price: item.price)
+                                    .strikethrough(item.paid)
                             }
-                            .frame(width: 32.0, height: 32.0)
-                            .clipShape(Circle())
-                            ReceiptItemRow(name: item.name, price: item.price)
-                                .strikethrough(item.paid)
                         }
                     }
-                }
-            } header: {
-                ListSectionHeader(text: "Receipt.PurchasedItems")
+                } header: {
+                    ListSectionHeader(text: "Receipt.PurchasedItems")
+                        .font(.body)
+                        .popoverTip(ReceiptMarkPaidTip())
+                } footer: {
+                    HStack(alignment: .center, spacing: 4.0) {
+                        Text("Receipt.Total")
+                        Spacer()
+                        Text("\(receipt.sumOfItems(), specifier: "%.2f")")
+                    }
                     .font(.body)
-                    .popoverTip(ReceiptMarkPaidTip())
-            } footer: {
-                HStack(alignment: .center, spacing: 4.0) {
-                    Text("Receipt.Total")
-                    Spacer()
-                    Text("\(receipt.sumOfItems(), specifier: "%.2f")")
+                    .bold()
+                    .foregroundStyle(.primary)
                 }
-                .font(.body)
-                .bold()
-                .foregroundStyle(.primary)
             }
-            if receipt.discountItems().isEmpty {
+            if !receipt.discountItems().isEmpty {
                 Section {
                     ForEach(receipt.discountItems()) { item in
                         ReceiptItemRow(name: item.name, price: item.price)
@@ -79,7 +81,7 @@ struct ReceiptDetailView: View {
                         .font(.body)
                 }
             }
-            if receipt.taxItems().isEmpty {
+            if !receipt.taxItems().isEmpty {
                 Section {
                     ForEach(receipt.taxItems()) { item in
                         ReceiptItemRow(name: item.name, price: item.price)

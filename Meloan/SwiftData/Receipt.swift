@@ -17,7 +17,7 @@ final class Receipt: Identifiable {
     @Relationship(deleteRule: .cascade) var taxItems: [TaxItem]? = []
     @Relationship(deleteRule: .noAction) var personWhoPaid: Person?
     @Relationship(deleteRule: .noAction) var peopleWhoParticipated: [Person]? = []
-    var dateAdded: Date = Date()
+    var dateAdded: Date = Date.now
 
     init(name: String) {
         self.name = name
@@ -91,11 +91,17 @@ final class Receipt: Identifiable {
     }
 
     func taxRate() -> Double {
-        return sumOfTax() / sumOfItems()
+        if sumOfItems() > 0 {
+            return sumOfTax() / sumOfItems()
+        }
+        return .zero
     }
 
     func overallRate() -> Double {
-        return sum() / sumOfItems()
+        if sumOfItems() > 0 {
+            return sum() / sumOfItems()
+        }
+        return .zero
     }
 
     func sumOfSharedItemCost(excludingPaid: Bool = false) -> Double {

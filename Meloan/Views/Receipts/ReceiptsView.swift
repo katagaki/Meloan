@@ -12,15 +12,13 @@ struct ReceiptsView: View {
 
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
-    @Query(sort: \Receipt.dateAdded) var receipts: [Receipt]
+    @Query(sort: \Receipt.dateAdded, order: .reverse, animation: .snappy.speed(2)) var receipts: [Receipt]
 
     var body: some View {
         NavigationStack(path: $navigationManager.receiptsTabPath) {
             ScrollView(.horizontal) {
                 LazyHStack(alignment: .top, spacing: 20.0) {
-                    ForEach(receipts.sorted(by: { lhs, rhs in
-                        lhs.name < rhs.name
-                    })) { receipt in
+                    ForEach(receipts) { receipt in
                         ReceiptColumn(receipt: receipt)
                             .contextMenu {
                                 Button(role: .destructive) {

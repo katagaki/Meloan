@@ -12,25 +12,25 @@ struct PeoplePicker: View {
 
     @Query(sort: \Person.name) var people: [Person]
     @State var title: String
-    @Binding var selection: [Person]
+    @Binding var selection: [Person]?
 
     var body: some View {
         List {
             if let mePerson = people.first(where: { $0.id == "ME" }) {
                 Button {
-                    if selection.contains(where: { $0.id == "ME" }) {
-                        selection.removeAll { selectedPerson in
+                    if selection?.contains(where: { $0.id == "ME" }) ?? false {
+                        selection?.removeAll { selectedPerson in
                             selectedPerson.id == "ME"
                         }
                     } else {
-                        selection.append(mePerson)
+                        selection?.append(mePerson)
                     }
                 } label: {
                     HStack {
                         PersonRow(person: mePerson)
                             .tint(.primary)
                         Spacer()
-                        if selection.contains(where: { $0.id == "ME" }) {
+                        if selection?.contains(where: { $0.id == "ME" }) ?? false {
                             Image(systemName: "checkmark")
                                 .fontWeight(.medium)
                         } else {
@@ -43,19 +43,19 @@ struct PeoplePicker: View {
             }
             ForEach(people.filter({ $0.id != "ME" })) { person in
                 Button {
-                    if selection.contains(where: { $0.id == person.id }) {
-                        selection.removeAll { selectedPerson in
+                    if selection?.contains(where: { $0.id == person.id }) ?? false {
+                        selection?.removeAll { selectedPerson in
                             selectedPerson.id == person.id
                         }
                     } else {
-                        selection.append(person)
+                        selection?.append(person)
                     }
                 } label: {
                     HStack {
                         PersonRow(person: person)
                             .tint(.primary)
                         Spacer()
-                        if selection.contains(where: { $0.id == person.id }) {
+                        if selection?.contains(where: { $0.id == person.id }) ?? false {
                             Image(systemName: "checkmark")
                                 .fontWeight(.medium)
                         } else {

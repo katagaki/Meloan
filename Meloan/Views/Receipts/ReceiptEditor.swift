@@ -33,7 +33,7 @@ struct ReceiptEditor: View {
             }
             Section {
                 NavigationLink {
-                    PeoplePicker(title: "Receipt.Participants", selection: .constant(receipt.participants()))
+                    PeoplePicker(title: "Receipt.Participants", selection: $receipt.peopleWhoParticipated)
                 } label: {
                     HStack {
                         Text("Receipt.Participants")
