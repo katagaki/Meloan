@@ -88,11 +88,11 @@ SOFTWARE.
 
     func createSampleData() {
         let person1 = Person(name: NSLocalizedString("SampleData.Akagi", comment: ""),
-                             photo: UIImage(named: "Akagi")!.jpegData(compressionQuality: 1.0))
+                             photo: UIImage(named: "Akagi")!.pngData())
         let person2 = Person(name: NSLocalizedString("SampleData.Muramoto", comment: ""),
-                             photo: UIImage(named: "Muramoto")!.jpegData(compressionQuality: 1.0))
+                             photo: UIImage(named: "Muramoto")!.pngData())
         let person3 = Person(name: NSLocalizedString("SampleData.Kuroko", comment: ""),
-                             photo: UIImage(named: "Kuroko")!.jpegData(compressionQuality: 1.0))
+                             photo: UIImage(named: "Kuroko")!.pngData())
         let receiptItem1 = ReceiptItem(name: NSLocalizedString("SampleData.Item1", comment: ""),
                                        price: 42.00, amount: 1)
         let receiptItem2 = ReceiptItem(name: NSLocalizedString("SampleData.Item2", comment: ""),

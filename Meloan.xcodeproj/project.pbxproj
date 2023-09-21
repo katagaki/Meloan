@@ -64,6 +64,8 @@
 		E4766C2B2AB89500005E4B47 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E4766C2A2AB89500005E4B47 /* ConfettiSwiftUI */; };
 		E4766C2C2AB89CEE005E4B47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44B681D2AB4ADCB00B243B0 /* Assets.xcassets */; };
 		E48A28492ABB33AC009E7912 /* ReceiptIOUWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A28482ABB33AC009E7912 /* ReceiptIOUWidget.swift */; };
+		E48A284E2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A284D2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift */; };
+		E48A28502ABC5C27009E7912 /* IOUTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A284F2ABC5C27009E7912 /* IOUTip.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +158,8 @@
 		E4766C252AB886C9005E4B47 /* ReceiptItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemDetailView.swift; sourceTree = "<group>"; };
 		E4766C272AB88D41005E4B47 /* PeopleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleDetailView.swift; sourceTree = "<group>"; };
 		E48A28482ABB33AC009E7912 /* ReceiptIOUWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptIOUWidget.swift; sourceTree = "<group>"; };
+		E48A284D2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDeleteAndEditTip.swift; sourceTree = "<group>"; };
+		E48A284F2ABC5C27009E7912 /* IOUTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOUTip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +316,8 @@
 				E44B68742AB7450900B243B0 /* PeopleTip.swift */,
 				E44B68762AB7478A00B243B0 /* ReceiptsTip.swift */,
 				E4766C202AB86086005E4B47 /* ReceiptMarkPaidTip.swift */,
+				E48A284D2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift */,
+				E48A284F2ABC5C27009E7912 /* IOUTip.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -520,6 +526,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E48A28502ABC5C27009E7912 /* IOUTip.swift in Sources */,
 				E44B681A2AB4ADCA00B243B0 /* PeopleView.swift in Sources */,
 				E44B683E2AB5705600B243B0 /* ViewPath.swift in Sources */,
 				E44B686A2AB6C6DB00B243B0 /* PeoplePicker.swift in Sources */,
@@ -529,6 +536,7 @@
 				E4766C212AB86086005E4B47 /* ReceiptMarkPaidTip.swift in Sources */,
 				E44B68182AB4ADCA00B243B0 /* App.swift in Sources */,
 				E44B686F2AB72A8700B243B0 /* IOUViewSafe.swift in Sources */,
+				E48A284E2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift in Sources */,
 				E44B68482AB58B9100B243B0 /* PersonCreator.swift in Sources */,
 				E44B68732AB7348700B243B0 /* ReceiptItemRow.swift in Sources */,
 				E44B682E2AB5673B00B243B0 /* DiscountItem.swift in Sources */,

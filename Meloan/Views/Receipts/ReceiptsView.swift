@@ -8,6 +8,7 @@
 import Komponents
 import SwiftData
 import SwiftUI
+import TipKit
 import UIKit
 
 struct ReceiptsView: View {
@@ -21,54 +22,65 @@ struct ReceiptsView: View {
 
     var body: some View {
         NavigationStack(path: $navigationManager.receiptsTabPath) {
-            ScrollView(.horizontal) {
-                LazyHStack(alignment: .top, spacing: 20.0) {
-                    ForEach(receipts) { receipt in
-                        ZStack(alignment: .bottom) {
-                            ActionButton(text: "Shared.Delete", icon: "Delete", isPrimary: true) {
-                                withAnimation(.snappy.speed(2)) {
-                                    modelContext.delete(receipt)
-                                }
-                            }
-                            .tint(.red)
-                            .padding(16.0)
-                            .overlay {
-                                GeometryReader { metrics in
-                                    Color.clear
-                                        .onAppear {
-                                            expectedOffset = metrics.size.height
-                                        }
-                                }
-                            }
-                            ReceiptColumn(receipt: receipt)
-                                .contextMenu {
-                                    Button(role: .destructive) {
-                                        modelContext.delete(receipt)
-                                    } label: {
-                                        Label("Shared.Delete", image: "Delete")
-                                    }
-                                }
-                                .offset(y: offsets[receipt]?.height ?? 0.0)
-                                .gesture(
-                                    DragGesture(minimumDistance: 20)
-                                        .onChanged { gesture in
-                                            handleChange(of: gesture, for: receipt)
-                                        }
-                                        .onEnded { _ in
-                                            handleEndOfGesture(for: receipt)
-                                        }
-                                )
-                        }
+            VStack(alignment: .leading, spacing: 0.0) {
+                Group {
+                    if receipts.count > 0 {
+                        TipView(ReceiptDeleteAndEditTip())
+                    } else {
+                        TipView(ReceiptsTip())
                     }
                 }
                 .padding(20.0)
-                .onTapGesture {
-                    withAnimation {
-                        offsets.keys.forEach { key in
-                            offsets.updateValue(.zero, forKey: key)
+                .background(.background)
+                ScrollView(.horizontal) {
+                    LazyHStack(alignment: .top, spacing: 20.0) {
+                        ForEach(receipts) { receipt in
+                            ZStack(alignment: .bottom) {
+                                ActionButton(text: "Shared.Delete", icon: "Delete", isPrimary: true) {
+                                    withAnimation(.snappy.speed(2)) {
+                                        modelContext.delete(receipt)
+                                    }
+                                }
+                                .tint(.red)
+                                .padding(16.0)
+                                .overlay {
+                                    GeometryReader { metrics in
+                                        Color.clear
+                                            .onAppear {
+                                                expectedOffset = metrics.size.height
+                                            }
+                                    }
+                                }
+                                ReceiptColumn(receipt: receipt)
+                                    .contextMenu {
+                                        Button(role: .destructive) {
+                                            modelContext.delete(receipt)
+                                        } label: {
+                                            Label("Shared.Delete", image: "Delete")
+                                        }
+                                    }
+                                    .offset(y: offsets[receipt]?.height ?? 0.0)
+                                    .gesture(
+                                        DragGesture(minimumDistance: 20)
+                                            .onChanged { gesture in
+                                                handleChange(of: gesture, for: receipt)
+                                            }
+                                            .onEnded { _ in
+                                                handleEndOfGesture(for: receipt)
+                                            }
+                                    )
+                            }
                         }
-                        previousOffsets.keys.forEach { key in
-                            previousOffsets.updateValue(.zero, forKey: key)
+                    }
+                    .padding(20.0)
+                    .onTapGesture {
+                        withAnimation {
+                            offsets.keys.forEach { key in
+                                offsets.updateValue(.zero, forKey: key)
+                            }
+                            previousOffsets.keys.forEach { key in
+                                previousOffsets.updateValue(.zero, forKey: key)
+                            }
                         }
                     }
                 }
@@ -99,7 +111,6 @@ struct ReceiptsView: View {
                         } label: {
                             Image(systemName: "plus")
                         }
-                        .popoverTip(ReceiptsTip(), arrowEdge: .top)
                     }
                 }
             }

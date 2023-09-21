@@ -67,7 +67,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "貸し手を選択すると、借り手ごとの未払い金額の概要がご覧になれます。"
+            "value" : "借り手ごとの未払い金額の概要を確認するには、貸し手を選択してください。"
           }
         }
       }
@@ -85,6 +85,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "貸し手"
+          }
+        }
+      }
+    },
+    "IOU.Tip.Text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a lender to see the remaining amount that needs to be paid to them."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "借りた金額を追跡するには、貸し手を選択してください。"
+          }
+        }
+      }
+    },
+    "IOU.Tip.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracking What's Lent"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貸し借りについて"
           }
         }
       }
@@ -374,6 +408,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新規領収書"
+          }
+        }
+      }
+    },
+    "Receipt.DeleteAndEdit.Tip.Text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To edit/delete a receipt, swipe up on a receipt."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "領収書を編集または削除するには、上にスワイプしてください。"
+          }
+        }
+      }
+    },
+    "Receipt.DeleteAndEdit.Tip.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editing & Deleting Receipts"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "領収書の編集または削除"
           }
         }
       }

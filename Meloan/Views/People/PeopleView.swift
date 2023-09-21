@@ -8,6 +8,7 @@
 import Komponents
 import SwiftData
 import SwiftUI
+import TipKit
 
 struct PeopleView: View {
 
@@ -17,24 +18,28 @@ struct PeopleView: View {
 
     var body: some View {
         NavigationStack(path: $navigationManager.peopleTabPath) {
-            List {
-                if let mePerson = people.first(where: { $0.id == "ME" }) {
-                    PersonRow(person: mePerson)
-                }
-                ForEach(people.filter({ $0.id != "ME" })) { person in
-                    NavigationLink(value: ViewPath.personEditor(person: person)) {
-                        PersonRow(person: person)
+            VStack(alignment: .leading, spacing: 0.0) {
+                TipView(PeopleTip())
+                    .padding(20.0)
+                List {
+                    if let mePerson = people.first(where: { $0.id == "ME" }) {
+                        PersonRow(person: mePerson)
                     }
-                    .deleteDisabled(!(person.receiptsPaid?.isEmpty ?? true) ||
-                                    !(person.receiptsParticipated?.isEmpty ?? true))
-                }
-                .onDelete(perform: { indexSet in
-                    for index in indexSet {
-                        modelContext.delete(people[index])
+                    ForEach(people.filter({ $0.id != "ME" })) { person in
+                        NavigationLink(value: ViewPath.personEditor(person: person)) {
+                            PersonRow(person: person)
+                        }
+                        .deleteDisabled(!(person.receiptsPaid?.isEmpty ?? true) ||
+                                        !(person.receiptsParticipated?.isEmpty ?? true))
                     }
-                })
+                    .onDelete(perform: { indexSet in
+                        for index in indexSet {
+                            modelContext.delete(people[index])
+                        }
+                    })
+                }
+                .listStyle(.plain)
             }
-            .listStyle(.plain)
             .navigationDestination(for: ViewPath.self, destination: { viewPath in
                 switch viewPath {
                 case .personCreator: PersonCreator()
@@ -47,7 +52,6 @@ struct PeopleView: View {
                     NavigationLink(value: ViewPath.personCreator) {
                         Image(systemName: "plus")
                     }
-                    .popoverTip(PeopleTip(), arrowEdge: .top)
                 }
             }
             .navigationTitle("ViewTitle.People")
