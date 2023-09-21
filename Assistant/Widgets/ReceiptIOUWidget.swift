@@ -78,6 +78,9 @@ struct ReceiptIOUWidgetView: View {
                         }
                     }
                 }
+                if receipt.participants().count == 0 {
+                    Spacer(minLength: 0)
+                }
                 if family == .systemLarge {
                     Spacer(minLength: 0)
                     Divider()
