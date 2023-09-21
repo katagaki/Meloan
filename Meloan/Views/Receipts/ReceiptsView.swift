@@ -116,15 +116,15 @@ struct ReceiptsView: View {
             var newOffset = CGSize(width: 0.0, height: previousOffset.height)
             if expectedTranslation >= 0.0 {
                 if previousOffset.height <= -expectedOffset {
-                    newOffset.height = (translationHeight - expectedOffset) / 10.0
+                    newOffset.height = (translationHeight - expectedOffset) / 6.0
                 } else {
-                    newOffset.height = translationHeight / 10.0
+                    newOffset.height = translationHeight / 6.0
                 }
             } else if expectedTranslation <= -expectedOffset {
                 if previousOffset.height <= -expectedOffset {
                     newOffset.height = -expectedOffset + translationHeight / 6.0
                 } else {
-                    newOffset.height = -expectedOffset + (translationHeight + expectedOffset) / 10.0
+                    newOffset.height = -expectedOffset + (translationHeight + expectedOffset) / 6.0
                 }
             } else {
                 newOffset.height += translationHeight
