@@ -11,6 +11,7 @@ import SwiftUI
 
 struct ReceiptDetailView: View {
 
+    @EnvironmentObject var settings: SettingsManager
     @State var receipt: Receipt
     @State var confettiCounter: Int = 0
 
@@ -63,12 +64,12 @@ struct ReceiptDetailView: View {
                 } footer: {
                     HStack(alignment: .center, spacing: 4.0) {
                         Text("Receipt.Total")
+                            .font(.body)
                         Spacer()
-                        Text("\(receipt.sumOfItems(), specifier: "%.2f")")
+                        Text(settings.format(receipt.sumOfItems()))
                             .font(.system(size: 14.0))
                             .monospaced()
                     }
-                    .font(.body)
                     .bold()
                     .foregroundStyle(.primary)
                 }
@@ -94,12 +95,12 @@ struct ReceiptDetailView: View {
                 } footer: {
                     HStack(alignment: .center, spacing: 4.0) {
                         Text("Receipt.Tax.Detail")
+                            .font(.body)
                         Spacer()
                         Text("\(Int(receipt.taxRate() * 100), specifier: "%d")%")
                             .font(.system(size: 14.0))
                             .monospaced()
                     }
-                    .font(.body)
                     .bold()
                     .foregroundStyle(.primary)
                 }

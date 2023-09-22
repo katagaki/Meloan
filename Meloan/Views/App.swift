@@ -14,12 +14,14 @@ struct MeloanApp: App {
 
     @StateObject var tabManager = TabManager()
     @StateObject var navigationManager = NavigationManager()
+    @StateObject var settings = SettingsManager()
 
     var body: some Scene {
         WindowGroup {
             MainTabView()
                 .environmentObject(tabManager)
                 .environmentObject(navigationManager)
+                .environmentObject(settings)
         }
         .modelContainer(sharedModelContainer)
     }

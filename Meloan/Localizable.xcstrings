@@ -1,16 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%.2f" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
     "%d%%" : {
       "localizations" : {
         "ja" : {
@@ -140,6 +130,60 @@
         }
       }
     },
+    "JPY" : {
+
+    },
+    "More.Currency" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Currency"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通貨"
+          }
+        }
+      }
+    },
+    "More.Currency.Decimals" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Decimals"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "小数点以下2桁を表示"
+          }
+        }
+      }
+    },
+    "More.Currency.Symbol" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Currency Symbol"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通過シンボル"
+          }
+        }
+      }
+    },
     "More.Data" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -157,19 +201,18 @@
         }
       }
     },
-    "More.Data.CreateSampleData" : {
-      "extractionState" : "manual",
+    "More.Data.AttemptReloadData" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Create Sample Data"
+            "value" : "Try to Reload Data"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "サンプルデータを作成"
+            "state" : "needs_review",
+            "value" : "データの再読み込みを試す"
           }
         }
       }
@@ -187,6 +230,106 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべてのデータを削除"
+          }
+        }
+      }
+    },
+    "More.Data.ReloadWidgets" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Force Reload Widgets"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ウィジェットを再読み込む"
+          }
+        }
+      }
+    },
+    "More.Data.SampleData" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sample Data"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サンプルデータ"
+          }
+        }
+      }
+    },
+    "More.Data.SampleData.Create" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Sample Data"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サンプルデータを作成"
+          }
+        }
+      }
+    },
+    "More.Data.SampleData.Description" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select 'Create Sample Data' to create a sample receipt you can use to learn how to use this app."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このアプリの使い方を学ぶためのサンプルデータを作成することができます。「サンプルデータを作成」をタップすると、そのデータが自動的に作成されます。"
+          }
+        }
+      }
+    },
+    "More.Data.Troubleshooting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Troubleshooting"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "トラブルシューティング"
+          }
+        }
+      }
+    },
+    "More.General" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一般"
           }
         }
       }
@@ -1190,6 +1333,9 @@
         }
       }
     },
+    "SGD" : {
+
+    },
     "Shared.AutoSaving" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1423,6 +1569,25 @@
         }
       }
     },
+    "USD" : {
+
+    },
+    "ViewTitle.Data" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage Data"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "データを管理"
+          }
+        }
+      }
+    },
     "ViewTitle.IOU" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1490,6 +1655,9 @@
           }
         }
       }
+    },
+    "VND" : {
+
     }
   },
   "version" : "1.0"

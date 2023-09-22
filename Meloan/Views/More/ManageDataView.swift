@@ -1,73 +1,60 @@
 //
-//  MoreView.swift
+//  ManageDataView.swift
 //  Meloan
 //
-//  Created by シン・ジャスティン on 2023/09/16.
+//  Created by シン・ジャスティン on 2023/09/22.
 //
 
 import Komponents
 import SwiftData
 import SwiftUI
 
-struct MoreView: View {
+struct ManageDataView: View {
 
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
     @Query var people: [Person]
     @Query var receipts: [Receipt]
-
     @State var isDeleteConfirming: Bool = false
 
     var body: some View {
-        NavigationStack(path: $navigationManager.moreTabPath) {
-            MoreList(repoName: "katagaki/Meloan", viewPath: ViewPath.moreAttributions) {
-                // TODO: Add setting options for default tax rate, currency, etc
-                Section {
-                    Button {
-                        createSampleData()
-                    } label: {
-                        Text("More.Data.CreateSampleData")
-                    }
-                    Button {
-                        isDeleteConfirming = true
-                    } label: {
-                        Text("More.Data.DeleteAll")
-                            .foregroundStyle(.red)
-                    }
-                } header: {
-                    ListSectionHeader(text: "More.Data")
-                        .font(.body)
+        List {
+            Section {
+                Button {
+                    createSampleData()
+                } label: {
+                    Text("More.Data.SampleData.Create")
                 }
+            } header: {
+                ListSectionHeader(text: "More.Data.SampleData")
+                    .font(.body)
+            } footer: {
+                Text("More.Data.SampleData.Description")
+                    .font(.body)
             }
-            .navigationDestination(for: ViewPath.self) { viewPath in
-                switch viewPath {
-                case .moreAttributions: LicensesView(licenses: [
-                    License(libraryName: "ConfettiSwiftUI", text:
-"""
-MIT License
-
-Copyright (c) 2020 Simon Bachmann
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-""")
-                ])
-                default: Color.clear
+            Section {
+                Button {
+                    Task { @MainActor in
+                        _ = try? modelContext.fetch(FetchDescriptor<ReceiptItem>())
+                    }
+                } label: {
+                    Text("More.Data.AttemptReloadData")
+                }
+                Button {
+                    MeloanApp.reloadWidget()
+                } label: {
+                    Text("More.Data.ReloadWidgets")
+                }
+            } header: {
+                ListSectionHeader(text: "More.Data.Troubleshooting")
+                    .font(.body)
+            }
+            Section {
+                Button {
+                    isDeleteConfirming = true
+                } label: {
+                    Text("More.Data.DeleteAll")
+                        .foregroundStyle(.red)
                 }
             }
         }
@@ -84,6 +71,7 @@ SOFTWARE.
         } message: {
             Text("Alert.DeleteAll.Text")
         }
+        .navigationTitle("ViewTitle.Data")
     }
 
     func createSampleData() {

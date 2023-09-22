@@ -13,6 +13,7 @@ import TipKit
 struct IOUView: View {
 
     @EnvironmentObject var navigationManager: NavigationManager
+    @EnvironmentObject var settings: SettingsManager
     @Query(sort: \Person.name) var people: [Person]
     @Query var receipts: [Receipt]
     @State var viewSafeIOUs: [IOUViewSafe] = []
@@ -35,7 +36,9 @@ struct IOUView: View {
                                         HStack(alignment: .center, spacing: 4.0) {
                                             Text(receipt.name)
                                             Spacer()
-                                            Text("\(receipt.sumOwed(to: personWhoPaid, for: person), specifier: "%.2f")")
+                                            Text(settings.format(receipt.sumOwed(to: personWhoPaid, for: person)))
+                                                .font(.system(size: 14.0))
+                                                .monospaced()
                                         }
                                     }
                                 }
@@ -66,10 +69,12 @@ struct IOUView: View {
                             } footer: {
                                 HStack(alignment: .center, spacing: 8.0) {
                                     Text("IOU.TotalBorrowed")
+                                        .font(.body)
                                     Spacer()
-                                    Text("\(person.sumOwed(to: personWhoPaid), specifier: "%.2f")")
+                                    Text(settings.format(person.sumOwed(to: personWhoPaid)))
+                                        .font(.system(size: 14.0))
+                                        .monospaced()
                                 }
-                                .font(.body)
                                 .bold()
                                 .foregroundStyle(.primary)
                             }

@@ -97,14 +97,6 @@ struct ReceiptsView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack {
                         Button {
-                            debugPrint("Attempting to reload data...")
-                            Task { @MainActor in
-                                _ = try? modelContext.fetch(FetchDescriptor<ReceiptItem>())
-                            }
-                        } label: {
-                            Image(systemName: "arrow.clockwise.circle")
-                        }
-                        Button {
                             let receipt = Receipt(name: NSLocalizedString("Receipt.Create.Name.Default", comment: ""))
                             modelContext.insert(receipt)
                             navigationManager.push(ViewPath.receiptEditor(receipt: receipt), for: .receipts)

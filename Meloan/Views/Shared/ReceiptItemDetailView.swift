@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ReceiptItemDetailView: View {
 
+    @EnvironmentObject var settings: SettingsManager
     @State var receiptItem: ReceiptItem
 
     var body: some View {
@@ -18,7 +19,7 @@ struct ReceiptItemDetailView: View {
                 HStack(alignment: .center, spacing: 16.0) {
                     ListRow(image: "ListIcon.Price", title: "Receipt.Item.Price")
                     Spacer()
-                    Text("\(receiptItem.price, specifier: "%.2f")")
+                    Text(settings.format(receiptItem.price))
                         .foregroundStyle(.secondary)
                 }
                 HStack(alignment: .center, spacing: 16.0) {
