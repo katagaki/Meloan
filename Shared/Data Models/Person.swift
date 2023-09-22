@@ -63,7 +63,7 @@ final class Person {
                                     space: circleCroppedImage.colorSpace!,
                                     bitmapInfo: circleCroppedImage.bitmapInfo.rawValue)!
             context.interpolationQuality = .high
-            context.draw(circleCroppedImage, in: CGRect(origin: CGPoint.zero, 
+            context.draw(circleCroppedImage, in: CGRect(origin: CGPoint.zero,
                                                         size: CGSize(width: length, height: length)))
             return context.makeImage().flatMap { UIImage(cgImage: $0) }?.pngData()
         }

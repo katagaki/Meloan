@@ -19,4 +19,3 @@ struct IOUTip: Tip {
         Image(systemName: "filemenu.and.selection")
     }
 }
-

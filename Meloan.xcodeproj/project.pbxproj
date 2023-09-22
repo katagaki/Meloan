@@ -187,6 +187,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E4130F1B2ABD134E00AEF308 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				E44B68452AB5832900B243B0 /* Receipt.swift */,
+				E44B681B2AB4ADCA00B243B0 /* Person.swift */,
+				E44B68282AB5667A00B243B0 /* ReceiptItem.swift */,
+				E44B682D2AB5673B00B243B0 /* DiscountItem.swift */,
+				E44B682B2AB5671600B243B0 /* TaxItem.swift */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
 		E44B680B2AB4ADCA00B243B0 = {
 			isa = PBXGroup;
 			children = (
@@ -219,21 +231,8 @@
 				E44B686B2AB6CDE700B243B0 /* Structs */,
 				E44B68352AB56FF100B243B0 /* Classes */,
 				E44B683A2AB5703C00B243B0 /* Enums */,
-				E44B68272AB5662800B243B0 /* SwiftData */,
 			);
 			path = Meloan;
-			sourceTree = "<group>";
-		};
-		E44B68272AB5662800B243B0 /* SwiftData */ = {
-			isa = PBXGroup;
-			children = (
-				E44B68452AB5832900B243B0 /* Receipt.swift */,
-				E44B681B2AB4ADCA00B243B0 /* Person.swift */,
-				E44B68282AB5667A00B243B0 /* ReceiptItem.swift */,
-				E44B682D2AB5673B00B243B0 /* DiscountItem.swift */,
-				E44B682B2AB5671600B243B0 /* TaxItem.swift */,
-			);
-			path = SwiftData;
 			sourceTree = "<group>";
 		};
 		E44B68342AB56FEC00B243B0 /* Views */ = {
@@ -399,6 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				E48A28522ABC61A1009E7912 /* ModelContainer.swift */,
+				E4130F1B2ABD134E00AEF308 /* Data Models */,
 			);
 			path = Shared;
 			sourceTree = "<group>";

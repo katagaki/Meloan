@@ -65,6 +65,8 @@ struct ReceiptDetailView: View {
                         Text("Receipt.Total")
                         Spacer()
                         Text("\(receipt.sumOfItems(), specifier: "%.2f")")
+                            .font(.system(size: 14.0))
+                            .monospaced()
                     }
                     .font(.body)
                     .bold()
@@ -94,6 +96,8 @@ struct ReceiptDetailView: View {
                         Text("Receipt.Tax.Detail")
                         Spacer()
                         Text("\(Int(receipt.taxRate() * 100), specifier: "%d")%")
+                            .font(.system(size: 14.0))
+                            .monospaced()
                     }
                     .font(.body)
                     .bold()

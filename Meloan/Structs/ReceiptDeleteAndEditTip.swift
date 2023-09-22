@@ -19,4 +19,3 @@ struct ReceiptDeleteAndEditTip: Tip {
         Image(systemName: "square.and.pencil.circle.fill")
     }
 }
-
