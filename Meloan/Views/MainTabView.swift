@@ -31,7 +31,7 @@ struct MainTabView: View {
                 .tabItem {
                     Label("TabTitle.IOU", image: "Tab.IOU")
                 }
-                .toolbarBackground(.visible, for: .tabBar)
+                .toolbarBackground(.hidden, for: .tabBar)
                 .tag(TabType.iou)
             PeopleView()
                 .tabItem {
