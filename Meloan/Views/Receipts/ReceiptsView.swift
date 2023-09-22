@@ -37,7 +37,7 @@ struct ReceiptsView: View {
                         ForEach(receipts) { receipt in
                             ZStack(alignment: .bottom) {
                                 VStack(alignment: .center, spacing: 16.0) {
-                                    ActionButton(text: "Receipt.Edit", icon: "Receipt.Edit", isPrimary: false) {
+                                    ActionButton(text: "Shared.Edit", icon: "Receipt.Edit", isPrimary: false) {
                                         navigationManager.push(ViewPath.receiptEditor(receipt: receipt), for: .receipts)
                                     }
                                     ActionButton(text: "Shared.Delete", icon: "Delete", isPrimary: true) {
