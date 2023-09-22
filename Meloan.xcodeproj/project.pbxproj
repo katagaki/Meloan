@@ -18,6 +18,9 @@
 		E4130F302ABD918E00AEF308 /* VND@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F2C2ABD918E00AEF308 /* VND@2x~ipad.png */; };
 		E4130F312ABD918E00AEF308 /* VND@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F2D2ABD918E00AEF308 /* VND@3x.png */; };
 		E4130F322ABD918E00AEF308 /* VND@3x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F2E2ABD918E00AEF308 /* VND@3x~ipad.png */; };
+		E4130F342ABDA26600AEF308 /* MoreAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F332ABDA26600AEF308 /* MoreAppIconView.swift */; };
+		E4130F362ABDA27400AEF308 /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F352ABDA27400AEF308 /* AppIcon.swift */; };
+		E4130F382ABDA2C400AEF308 /* ListAppIconRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F372ABDA2C400AEF308 /* ListAppIconRow.swift */; };
 		E44B68182AB4ADCA00B243B0 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68172AB4ADCA00B243B0 /* App.swift */; };
 		E44B681A2AB4ADCA00B243B0 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68192AB4ADCA00B243B0 /* PeopleView.swift */; };
 		E44B681C2AB4ADCA00B243B0 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B681B2AB4ADCA00B243B0 /* Person.swift */; };
@@ -126,6 +129,9 @@
 		E4130F2C2ABD918E00AEF308 /* VND@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VND@2x~ipad.png"; sourceTree = "<group>"; };
 		E4130F2D2ABD918E00AEF308 /* VND@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VND@3x.png"; sourceTree = "<group>"; };
 		E4130F2E2ABD918E00AEF308 /* VND@3x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VND@3x~ipad.png"; sourceTree = "<group>"; };
+		E4130F332ABDA26600AEF308 /* MoreAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreAppIconView.swift; sourceTree = "<group>"; };
+		E4130F352ABDA27400AEF308 /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
+		E4130F372ABDA2C400AEF308 /* ListAppIconRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAppIconRow.swift; sourceTree = "<group>"; };
 		E44B68142AB4ADCA00B243B0 /* Meloan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meloan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44B68172AB4ADCA00B243B0 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		E44B68192AB4ADCA00B243B0 /* PeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
@@ -225,6 +231,7 @@
 			children = (
 				E44B68422AB579D800B243B0 /* MoreView.swift */,
 				E4130F202ABD203000AEF308 /* ManageDataView.swift */,
+				E4130F332ABDA26600AEF308 /* MoreAppIconView.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -355,6 +362,7 @@
 				E44B68692AB6C6DB00B243B0 /* PeoplePicker.swift */,
 				E4766C252AB886C9005E4B47 /* ReceiptItemDetailView.swift */,
 				E4766C272AB88D41005E4B47 /* PeopleDetailView.swift */,
+				E4130F372ABDA2C400AEF308 /* ListAppIconRow.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -362,6 +370,7 @@
 		E44B686B2AB6CDE700B243B0 /* Structs */ = {
 			isa = PBXGroup;
 			children = (
+				E4130F352ABDA27400AEF308 /* AppIcon.swift */,
 				E44B686E2AB72A8700B243B0 /* IOUViewSafe.swift */,
 				E44B68742AB7450900B243B0 /* PeopleTip.swift */,
 				E44B68762AB7478A00B243B0 /* ReceiptsTip.swift */,
@@ -593,6 +602,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4130F382ABDA2C400AEF308 /* ListAppIconRow.swift in Sources */,
 				E48A28502ABC5C27009E7912 /* IOUTip.swift in Sources */,
 				E44B681A2AB4ADCA00B243B0 /* PeopleView.swift in Sources */,
 				E44B683E2AB5705600B243B0 /* ViewPath.swift in Sources */,
@@ -603,6 +613,7 @@
 				E4766C212AB86086005E4B47 /* ReceiptMarkPaidTip.swift in Sources */,
 				E44B68182AB4ADCA00B243B0 /* App.swift in Sources */,
 				E44B686F2AB72A8700B243B0 /* IOUViewSafe.swift in Sources */,
+				E4130F362ABDA27400AEF308 /* AppIcon.swift in Sources */,
 				E48A284E2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift in Sources */,
 				E44B68482AB58B9100B243B0 /* PersonCreator.swift in Sources */,
 				E44B68732AB7348700B243B0 /* ReceiptItemRow.swift in Sources */,
@@ -626,6 +637,7 @@
 				E44B68502AB5A36A00B243B0 /* ReceiptItemCompactRow.swift in Sources */,
 				E4766C282AB88D41005E4B47 /* PeopleDetailView.swift in Sources */,
 				E44B68592AB5C2FB00B243B0 /* ReceiptItemEditableRow.swift in Sources */,
+				E4130F342ABDA26600AEF308 /* MoreAppIconView.swift in Sources */,
 				E48A28532ABC61A1009E7912 /* ModelContainer.swift in Sources */,
 				E4766C1F2AB8492B005E4B47 /* SearchView.swift in Sources */,
 				E44B68772AB7478A00B243B0 /* ReceiptsTip.swift in Sources */,

@@ -17,6 +17,7 @@ final class Person {
     @Relationship(inverse: \Receipt.personWhoPaid) var receiptsPaid: [Receipt]? = []
     @Relationship(inverse: \Receipt.peopleWhoParticipated) var receiptsParticipated: [Receipt]? = []
     @Relationship(inverse: \ReceiptItem.person) var receiptItemsOwned: [ReceiptItem]? = []
+    @Relationship(inverse: \ReceiptItem.peopleWhoPaid) var receiptItemsPaid: [ReceiptItem]? = []
     var dateAdded: Date = Date.now
 
     init(name: String) {

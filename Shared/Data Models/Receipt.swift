@@ -112,8 +112,12 @@ final class Receipt: Identifiable {
         }) ?? .zero
     }
 
-    func sumOfSharedItemCostPerPerson(excludingPaid: Bool = false) -> Double {
-        return sumOfSharedItemCost(excludingPaid: excludingPaid) / Double(peopleWhoParticipated?.count ?? 0)
+    func sumOfSharedItemCost(for person: Person) -> Double {
+        return receiptItems?.reduce(into: 0.0, {partialResult, item in
+            if item.person == nil, !item.personHasPaid(person) {
+                partialResult += item.price / Double(peopleWhoParticipated?.count ?? 0)
+            }
+        }) ?? .zero
     }
 
     func sumOfItemCost(for person: Person) -> Double {
@@ -127,7 +131,7 @@ final class Receipt: Identifiable {
     func sumOwed(to lender: Person, for borrower: Person) -> Double {
         if ((personWhoPaid?.id ?? "") == lender.id) && contains(participant: borrower) {
             return (sumOfItemCost(for: borrower) +
-                    sumOfSharedItemCostPerPerson(excludingPaid: true)) * overallRate()
+                    sumOfSharedItemCost(for: borrower)) * overallRate()
         }
         return .zero
     }
@@ -185,5 +189,19 @@ final class Receipt: Identifiable {
 
     func addPeopleWhoParticipated(from peopleWhoParticipated: [Person]) {
         self.peopleWhoParticipated?.append(contentsOf: peopleWhoParticipated)
+    }
+
+    func setLenderItemsPaid() {
+        if let personWhoPaid = personWhoPaid {
+            for item in receiptItems ?? [] where item.person == personWhoPaid {
+                item.paid = true
+            }
+            for item in receiptItems ?? [] where item.person == nil {
+                item.addPersonWhoPaid(from: [personWhoPaid])
+                if (peopleWhoParticipated?.count ?? -1) == (item.peopleWhoPaid?.count ?? -2) {
+                    item.paid = true
+                }
+            }
+        }
     }
 }

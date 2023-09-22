@@ -14,7 +14,7 @@ struct ReceiptEditor: View {
 
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
-
+    @EnvironmentObject var settings: SettingsManager
     @State var widgetReloadDebouncer = PassthroughSubject<String, Never>()
     @State var receipt: Receipt
 
@@ -174,6 +174,11 @@ struct ReceiptEditor: View {
         .navigationTitle(receipt.name)
         .navigationBarTitleDisplayMode(.inline)
         // TODO: Implement manual saving
+        .onDisappear {
+            if settings.markSelfPaid {
+                receipt.setLenderItemsPaid()
+            }
+        }
         .onChange(of: receipt.peopleWhoParticipated) { _, _ in
             if let personWhoPaid = receipt.personWhoPaid {
                 if !receipt.participants().contains(where: { $0.id == personWhoPaid.id }) {

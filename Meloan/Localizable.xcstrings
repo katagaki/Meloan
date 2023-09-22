@@ -45,6 +45,86 @@
         }
       }
     },
+    "Currency.Hide" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hide"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "非表示"
+          }
+        }
+      }
+    },
+    "Currency.JPY" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Japanese Yen (JPY)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日本円（JPY）"
+          }
+        }
+      }
+    },
+    "Currency.SGD" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Singapore Dollar (SGD)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "シンガポールドル（SGD）"
+          }
+        }
+      }
+    },
+    "Currency.USD" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "US Dollar (USD)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アメリカドル（USD）"
+          }
+        }
+      }
+    },
+    "Currency.VND" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vietnamese Dong (VND)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ベトナムドン（VND）"
+          }
+        }
+      }
+    },
     "IOU.Hint" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -130,9 +210,6 @@
         }
       }
     },
-    "JPY" : {
-
-    },
     "More.Currency" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -184,6 +261,91 @@
         }
       }
     },
+    "More.Customization" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Customization"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カスタマイズ"
+          }
+        }
+      }
+    },
+    "More.Customization.AppIcon" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Icon"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アイコン"
+          }
+        }
+      }
+    },
+    "More.Customization.AppIcon.Dollar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dollar (Default)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ドル（デフォルト）"
+          }
+        }
+      }
+    },
+    "More.Customization.AppIcon.JapaneseYen" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Japanese Yen"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日本円"
+          }
+        }
+      }
+    },
+    "More.Customization.AppIcon.VietnameseDong" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vietnamese Dong"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ベトナムドン"
+          }
+        }
+      }
+    },
     "More.Data" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -211,7 +373,7 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "データの再読み込みを試す"
           }
         }
@@ -330,6 +492,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "一般"
+          }
+        }
+      }
+    },
+    "More.MarkSelfPaid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatically Mark Lender Items Paid"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支払人の商品を自動的に支払済とする"
           }
         }
       }
@@ -1333,9 +1512,6 @@
         }
       }
     },
-    "SGD" : {
-
-    },
     "Shared.AutoSaving" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1569,9 +1745,6 @@
         }
       }
     },
-    "USD" : {
-
-    },
     "ViewTitle.Data" : {
       "localizations" : {
         "en" : {
@@ -1601,6 +1774,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "貸し借り"
+          }
+        }
+      }
+    },
+    "ViewTitle.More.Customization.AppIcon" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Icon"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "アイコン"
           }
         }
       }
@@ -1655,9 +1844,6 @@
           }
         }
       }
-    },
-    "VND" : {
-
     }
   },
   "version" : "1.0"

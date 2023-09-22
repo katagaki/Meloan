@@ -28,16 +28,16 @@ struct ReceiptDetailView: View {
             if !receipt.items().isEmpty {
                 Section {
                     ForEach(receipt.items()) { item in
-                        Button {
-                            item.paid.toggle()
-                            MeloanApp.reloadWidget()
-                            if receipt.isPaid() {
-                                confettiCounter += 1
-                            }
-                        } label: {
-                            HStack(alignment: .center, spacing: 16.0) {
-                                Group {
-                                    if let person = item.person {
+                        if let person = item.person {
+                            Button {
+                                item.paid.toggle()
+                                MeloanApp.reloadWidget()
+                                if receipt.isPaid() {
+                                    confettiCounter += 1
+                                }
+                            } label: {
+                                HStack(alignment: .center, spacing: 16.0) {
+                                    Group {
                                         if let data = person.photo, let image = UIImage(data: data) {
                                             Image(uiImage: image)
                                                 .resizable()
@@ -45,15 +45,45 @@ struct ReceiptDetailView: View {
                                             Image("Profile.Generic")
                                                 .resizable()
                                         }
-                                    } else {
-                                        Image("Profile.Shared")
-                                            .resizable()
+                                    }
+                                    .frame(width: 32.0, height: 32.0)
+                                    .clipShape(Circle())
+                                    ReceiptItemRow(name: item.name, price: item.price)
+                                        .strikethrough(item.paid)
+                                }
+                            }
+                        } else {
+                            Menu {
+                                ForEach(receipt.participants()) { person in
+                                    Button {
+                                        if item.personHasPaid(person) {
+                                            item.removePersonWhoPaid(withID: person.id)
+                                            item.paid = false
+                                        } else {
+                                            item.addPersonWhoPaid(from: [person])
+                                            item.paid =  receipt.participants().count == item.peopleWhoPaid?.count
+                                        }
+                                        if receipt.isPaid() {
+                                            confettiCounter += 1
+                                        }
+                                    } label: {
+                                        HStack {
+                                            if item.personHasPaid(person) {
+                                                Image(systemName: "checkmark")
+                                            }
+                                            PersonRow(person: person)
+                                        }
                                     }
                                 }
-                                .frame(width: 32.0, height: 32.0)
-                                .clipShape(Circle())
-                                ReceiptItemRow(name: item.name, price: item.price)
-                                    .strikethrough(item.paid)
+                            } label: {
+                                HStack(alignment: .center, spacing: 16.0) {
+                                    Image("Profile.Shared")
+                                        .resizable()
+                                    .frame(width: 32.0, height: 32.0)
+                                    .clipShape(Circle())
+                                    ReceiptItemRow(name: item.name, price: item.price)
+                                        .strikethrough(item.paid)
+                                }
                             }
                         }
                     }

@@ -11,21 +11,26 @@ class SettingsManager: ObservableObject {
 
     let defaults = UserDefaults(suiteName: "group.com.tsubuzaki.Meloan")!
 
-    @Published var currencySymbol: String = "SGD"
+    @Published var currencySymbol: String = ""
     @Published var showDecimals: Bool = true
+    @Published var markSelfPaid: Bool = true
 
     init() {
         // Set default settings
         if defaults.value(forKey: "CurrencySymbol") == nil {
-            defaults.set("SGD", forKey: "CurrencySymbol")
+            defaults.set("", forKey: "CurrencySymbol")
         }
         if defaults.value(forKey: "ShowDecimals") == nil {
             defaults.set(true, forKey: "ShowDecimals")
         }
+        if defaults.value(forKey: "MarkSelfPaid") == nil {
+            defaults.set(true, forKey: "MarkSelfPaid")
+        }
 
         // Load configuration into global variables
-        currencySymbol = defaults.string(forKey: "CurrencySymbol") ?? "SGD"
+        currencySymbol = defaults.string(forKey: "CurrencySymbol") ?? ""
         showDecimals = defaults.bool(forKey: "ShowDecimals")
+        markSelfPaid = defaults.bool(forKey: "MarkSelfPaid")
     }
 
     func set(_ value: Any?, forKey key: String) {
@@ -42,11 +47,16 @@ class SettingsManager: ObservableObject {
         showDecimals = newValue
     }
 
+    func setMarkSelfPaid(_ newValue: Bool) {
+        defaults.set(newValue, forKey: "MarkSelfPaid")
+        markSelfPaid = newValue
+    }
+
     func format(_ price: Double) -> String {
         if showDecimals {
-            return String(format: "%.2f", price)
+            return String(format: "\(currencySymbol == "" ? "" : currencySymbol + " ")%.2f", price)
         } else {
-            return String(format: "%.0f", price)
+            return String(format: "\(currencySymbol == "" ? "" : currencySymbol + " ")%.0f", price)
         }
     }
 
@@ -60,6 +70,11 @@ class SettingsManager: ObservableObject {
             numberFormatter.maximumFractionDigits = 2
         } else {
             numberFormatter.maximumFractionDigits = 0
+        }
+        if currencySymbol != "" {
+            numberFormatter.numberStyle = .currency
+            numberFormatter.currencyCode = currencySymbol
+            numberFormatter.currencySymbol = currencySymbol
         }
         return numberFormatter
     }

@@ -16,6 +16,7 @@ final class ReceiptItem {
     var amount: Int = 0
     var paid: Bool = false
     @Relationship(deleteRule: .noAction) var person: Person?
+    @Relationship(deleteRule: .noAction) var peopleWhoPaid: [Person]? = []
     @Relationship(inverse: \Receipt.receiptItems) var receipts: [Receipt]? = []
     var dateAdded: Date = Date.now
 
@@ -27,5 +28,16 @@ final class ReceiptItem {
 
     func setPurchaser(to person: Person?) {
         self.person = person
+    }
+
+    func personHasPaid(_ person: Person) -> Bool {
+        return peopleWhoPaid?.contains(person) ?? false
+    }
+    func addPersonWhoPaid(from people: [Person]) {
+        peopleWhoPaid?.append(contentsOf: people)
+    }
+
+    func removePersonWhoPaid(withID id: String) {
+        peopleWhoPaid?.removeAll(where: { $0.id == id })
     }
 }
