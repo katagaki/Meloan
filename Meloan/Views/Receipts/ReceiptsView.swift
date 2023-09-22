@@ -117,6 +117,9 @@ struct ReceiptsView: View {
                     offsets.keys.forEach { key in
                         offsets.updateValue(CGSize.zero, forKey: key)
                     }
+                    previousOffsets.keys.forEach { key in
+                        previousOffsets.updateValue(CGSize.zero, forKey: key)
+                    }
                 }
             }
             .navigationTitle("ViewTitle.Receipts")
