@@ -71,11 +71,6 @@ class SettingsManager: ObservableObject {
         } else {
             numberFormatter.maximumFractionDigits = 0
         }
-        if currencySymbol != "" {
-            numberFormatter.numberStyle = .currency
-            numberFormatter.currencyCode = currencySymbol
-            numberFormatter.currencySymbol = currencySymbol
-        }
         return numberFormatter
     }
 }
