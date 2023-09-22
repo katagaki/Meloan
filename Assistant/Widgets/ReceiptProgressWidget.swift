@@ -41,7 +41,7 @@ struct ReceiptProgressWidgetView: View {
                         .lineLimit(1)
                         .truncationMode(.middle)
                     Divider()
-                    Spacer()
+                    Spacer(minLength: 0)
                     Group {
                         if receipt.isPaid() {
                             Text(LocalizedStringKey("Widget.Paid.Yes"))
@@ -55,6 +55,7 @@ struct ReceiptProgressWidgetView: View {
                             .replacingOccurrences(of: "%1", with: settings.format(receipt.sum())))
                     }
                     .font(.system(size: 19.0))
+                    .minimumScaleFactor(0.6)
                     .bold()
                 default:
                     HStack(alignment: .center, spacing: 8.0) {
@@ -77,24 +78,27 @@ struct ReceiptProgressWidgetView: View {
                     }
                     Divider()
                     Spacer(minLength: 0)
-                    VStack(alignment: .center, spacing: 4.0) {
-                        HStack(alignment: .center, spacing: 8.0) {
-                            Text("Widget.Total.Paid.Large")
-                            Spacer()
-                            Text("Widget.Total.Unpaid.Large")
+                    VStack(alignment: .center, spacing: 8.0) {
+                        VStack(alignment: .center, spacing: 4.0) {
+                            HStack(alignment: .center, spacing: 8.0) {
+                                Text("Widget.Total.Paid.Large")
+                                Spacer()
+                                Text("Widget.Total.Unpaid.Large")
+                            }
+                            .font(.system(size: 12.0))
+                            .foregroundStyle(.secondary)
+                            HStack(alignment: .center, spacing: 8.0) {
+                                Text(settings.format(receipt.sumPaid()))
+                                    .font(.system(size: 15.0))
+                                Spacer()
+                                Text(settings.format(receipt.sumUnpaid()))
+                                    .font(.system(size: 15.0))
+                            }
+                            .bold()
                         }
-                        .font(.system(size: 12.0))
-                        .foregroundStyle(.secondary)
-                        HStack(alignment: .center, spacing: 8.0) {
-                            Text(settings.format(receipt.sumPaid()))
-                            .font(.system(size: 15.0))
-                            ProgressView(value: receipt.sumPaid(), total: receipt.sum())
-                                .progressViewStyle(.linear)
-                                .tint(receipt.isPaid() ? .green : .accent)
-                            Text(settings.format(receipt.sumUnpaid()))
-                            .font(.system(size: 15.0))
-                        }
-                        .bold()
+                        ProgressView(value: receipt.sumPaid(), total: receipt.sum())
+                            .progressViewStyle(.linear)
+                            .tint(receipt.isPaid() ? .green : .accent)
                         Text(NSLocalizedString("Widget.Total", comment: "")
                             .replacingOccurrences(of: "%1", with: settings.format(receipt.sum())))
                         .font(.system(size: 12.0))
