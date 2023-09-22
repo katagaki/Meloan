@@ -10,7 +10,6 @@ import SwiftUI
 struct PersonRow: View {
 
     var person: Person
-    var isPersonWhoPaid: Bool = false
 
     var body: some View {
         HStack(alignment: .center, spacing: 16.0) {
@@ -26,13 +25,8 @@ struct PersonRow: View {
             }
             .frame(width: 30.0, height: 30.0)
             .clipShape(Circle())
-            if isPersonWhoPaid {
-                Text(verbatim: "\(person.name)\(NSLocalizedString("Person.Payer", comment: ""))")
-                    .font(.body)
-            } else {
-                Text(verbatim: person.name)
-                    .font(.body)
-            }
+            Text(verbatim: person.name)
+                .font(.body)
         }
     }
 }

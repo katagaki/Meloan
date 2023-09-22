@@ -17,9 +17,23 @@ struct ReceiptDetailView: View {
 
     var body: some View {
         List {
+            if let personWhoPaid = receipt.personWhoPaid {
+                Section {
+                    NavigationLink(value: ViewPath.personDetail(person: personWhoPaid)) {
+                        HStack(alignment: .center, spacing: 16.0) {
+                            ListRow(image: "ListIcon.Payer", title: "Receipt.Payer")
+                            Spacer()
+                            PersonRow(person: personWhoPaid)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                }
+            }
             Section {
-                ForEach(receipt.participants(sortPayerOnTop: true)) { person in
-                    PersonRow(person: person, isPersonWhoPaid: person.id == receipt.personWhoPaid?.id ?? "")
+                ForEach(receipt.borrowers()) { person in
+                    NavigationLink(value: ViewPath.personDetail(person: person)) {
+                        PersonRow(person: person)
+                    }
                 }
             } header: {
                 ListSectionHeader(text: "Receipt.Participants")

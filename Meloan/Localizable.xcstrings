@@ -649,23 +649,6 @@
         }
       }
     },
-    "Person.Payer" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : " (Payer)"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "（支払人）"
-          }
-        }
-      }
-    },
     "Person.ReceiptsPaid" : {
       "extractionState" : "manual",
       "localizations" : {

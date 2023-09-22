@@ -27,6 +27,7 @@ struct ReceiptItemDetailView: View {
                         ListRow(image: "ListIcon.Orderer", title: "Receipt.Item.Orderer")
                         Spacer()
                         PersonRow(person: personWhoOrdered)
+                            .foregroundStyle(.secondary)
                     }
                 }
                 HStack(alignment: .center, spacing: 16.0) {

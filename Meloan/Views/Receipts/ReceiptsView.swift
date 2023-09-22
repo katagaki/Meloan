@@ -95,6 +95,7 @@ struct ReceiptsView: View {
                 switch viewPath {
                 case .receiptDetail(let receipt): ReceiptDetailView(receipt: receipt)
                 case .receiptEditor(let receipt): ReceiptEditor(receipt: receipt)
+                case .personDetail(let person): PeopleDetailView(person: person)
                 default: Color.clear
                 }
             })
