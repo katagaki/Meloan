@@ -131,15 +131,15 @@ struct ReceiptsView: View {
             var newOffset = CGSize(width: 0.0, height: previousOffset.height)
             if expectedTranslation >= 0.0 {
                 if previousOffset.height <= -expectedOffset {
-                    newOffset.height = (translationHeight - expectedOffset) / 6.0
+                    newOffset.height = (translationHeight - expectedOffset) / 2.0
                 } else {
-                    newOffset.height = translationHeight / 6.0
+                    newOffset.height = translationHeight / 2.0
                 }
             } else if expectedTranslation <= -expectedOffset {
                 if previousOffset.height <= -expectedOffset {
-                    newOffset.height = -expectedOffset + translationHeight / 6.0
+                    newOffset.height = -expectedOffset + translationHeight / 2.0
                 } else {
-                    newOffset.height = -expectedOffset + (translationHeight + expectedOffset) / 6.0
+                    newOffset.height = -expectedOffset + (translationHeight + expectedOffset) / 2.0
                 }
             } else {
                 newOffset.height += translationHeight
@@ -150,7 +150,8 @@ struct ReceiptsView: View {
 
     func handleEndOfGesture(of gesture: DragGesture.Value, for receipt: Receipt) {
         if let offset = offsets[receipt] {
-            if gesture.predictedEndLocation.y <= -expectedOffset {
+            if gesture.predictedEndLocation.y <= -expectedOffset ||
+                offset.height <= -expectedOffset {
                 withAnimation(.snappy.speed(2)) {
                     offsets[receipt]!.height = -expectedOffset
                 }
