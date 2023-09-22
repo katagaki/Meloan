@@ -159,6 +159,23 @@
         }
       }
     },
+    "IOU.SelectReceipt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Receipt"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "領収書"
+          }
+        }
+      }
+    },
     "IOU.Tip.Text" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -819,6 +836,23 @@
         }
       }
     },
+    "Receipt.Item.Orderer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchased By"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "購入者"
+          }
+        }
+      }
+    },
     "Receipt.Item.Paid" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1023,23 +1057,6 @@
         }
       }
     },
-    "Receipt.PaidBy" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Paid By"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "支払人"
-          }
-        }
-      }
-    },
     "Receipt.Participants" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1087,6 +1104,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1名"
+          }
+        }
+      }
+    },
+    "Receipt.Payer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paid By"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支払人"
           }
         }
       }

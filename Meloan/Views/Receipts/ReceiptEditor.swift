@@ -56,7 +56,7 @@ struct ReceiptEditor: View {
                             .tag(person as Person?)
                     }
                 } label: {
-                    Text("Receipt.PaidBy")
+                    Text("Receipt.Payer")
                         .bold()
                 }
                 .pickerStyle(.navigationLink)

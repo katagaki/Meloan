@@ -22,6 +22,13 @@ struct ReceiptItemDetailView: View {
                     Text(settings.format(receiptItem.price))
                         .foregroundStyle(.secondary)
                 }
+                if let personWhoOrdered = receiptItem.person {
+                    HStack(alignment: .center, spacing: 16.0) {
+                        ListRow(image: "ListIcon.Orderer", title: "Receipt.Item.Orderer")
+                        Spacer()
+                        PersonRow(person: personWhoOrdered)
+                    }
+                }
                 HStack(alignment: .center, spacing: 16.0) {
                     ListRow(image: "ListIcon.Paid", title: "Receipt.Item.Paid")
                     Spacer()
