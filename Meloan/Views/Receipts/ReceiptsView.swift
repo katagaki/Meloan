@@ -70,8 +70,8 @@ struct ReceiptsView: View {
                                             .onChanged { gesture in
                                                 handleChange(of: gesture, for: receipt)
                                             }
-                                            .onEnded { _ in
-                                                handleEndOfGesture(for: receipt)
+                                            .onEnded { gesture in
+                                                handleEndOfGesture(of: gesture, for: receipt)
                                             }
                                     )
                             }
@@ -148,9 +148,9 @@ struct ReceiptsView: View {
         }
     }
 
-    func handleEndOfGesture(for receipt: Receipt) {
+    func handleEndOfGesture(of gesture: DragGesture.Value, for receipt: Receipt) {
         if let offset = offsets[receipt] {
-            if offset.height <= -expectedOffset {
+            if gesture.predictedEndLocation.y <= -expectedOffset {
                 withAnimation(.snappy.speed(2)) {
                     offsets[receipt]!.height = -expectedOffset
                 }
