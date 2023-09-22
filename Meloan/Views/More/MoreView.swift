@@ -108,5 +108,8 @@ SOFTWARE.
             settings.setShowDecimals(newValue)
             MeloanApp.reloadWidget()
         })
+        .onChange(of: settings.markSelfPaid, { _, newValue in
+            settings.setMarkSelfPaid(newValue)
+        })
     }
 }

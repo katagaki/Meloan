@@ -72,6 +72,7 @@ struct ReceiptItemAssignableRow: View {
                     .frame(minWidth: (metrics.size.width * 0.65) - 46.0)
                 Divider()
                 TextField("Receipt.Price", value: $price, formatter: settings.formatter())
+                // TODO: Don't put currency symbol in editor
                 .multilineTextAlignment(.trailing)
                 .keyboardType(.decimalPad)
                 .font(.system(size: 14.0))
