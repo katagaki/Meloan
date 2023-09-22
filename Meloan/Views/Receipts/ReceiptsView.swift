@@ -36,12 +36,17 @@ struct ReceiptsView: View {
                     LazyHStack(alignment: .top, spacing: 20.0) {
                         ForEach(receipts) { receipt in
                             ZStack(alignment: .bottom) {
-                                ActionButton(text: "Shared.Delete", icon: "Delete", isPrimary: true) {
-                                    withAnimation(.snappy.speed(2)) {
-                                        modelContext.delete(receipt)
+                                VStack(alignment: .center, spacing: 16.0) {
+                                    ActionButton(text: "Receipt.Edit", icon: "Receipt.Edit", isPrimary: false) {
+                                        navigationManager.push(ViewPath.receiptEditor(receipt: receipt), for: .receipts)
                                     }
+                                    ActionButton(text: "Shared.Delete", icon: "Delete", isPrimary: true) {
+                                        withAnimation(.snappy.speed(2)) {
+                                            modelContext.delete(receipt)
+                                        }
+                                    }
+                                    .tint(.red)
                                 }
-                                .tint(.red)
                                 .padding(16.0)
                                 .overlay {
                                     GeometryReader { metrics in
@@ -103,6 +108,13 @@ struct ReceiptsView: View {
                         } label: {
                             Image(systemName: "plus")
                         }
+                    }
+                }
+            }
+            .onDisappear {
+                withAnimation(.snappy.speed(2)) {
+                    offsets.keys.forEach { key in
+                        offsets.updateValue(CGSize.zero, forKey: key)
                     }
                 }
             }

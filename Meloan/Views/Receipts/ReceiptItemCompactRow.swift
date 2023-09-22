@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ReceiptItemCompactRow: View {
-    
+
     @EnvironmentObject var settings: SettingsManager
     var name: String
     var price: Double

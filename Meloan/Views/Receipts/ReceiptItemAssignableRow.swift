@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ReceiptItemAssignableRow: View {
 
+    @EnvironmentObject var settings: SettingsManager
     var item: ReceiptItem
     @State var name: String
     @State var price: Double
@@ -70,8 +71,7 @@ struct ReceiptItemAssignableRow: View {
                     .textInputAutocapitalization(.words)
                     .frame(minWidth: (metrics.size.width * 0.65) - 46.0)
                 Divider()
-                TextField("Receipt.Price", value: $price,
-                          format: .number.precision(.fractionLength(2)).grouping(.never))
+                TextField("Receipt.Price", value: $price, formatter: settings.formatter())
                 .multilineTextAlignment(.trailing)
                 .keyboardType(.decimalPad)
                 .font(.system(size: 14.0))
