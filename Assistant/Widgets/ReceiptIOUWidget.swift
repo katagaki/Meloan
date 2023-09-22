@@ -55,23 +55,23 @@ struct ReceiptIOUWidgetView: View {
                 if let personWhoPaid = receipt.personWhoPaid {
                     VStack(alignment: .leading, spacing: 8.0) {
                         HStack(alignment: .center, spacing: 8.0) {
-                            ForEach(receipt.participants().prefix(4)) { person in
+                            ForEach(receipt.borrowers().prefix(4)) { person in
                                     ReceiptIOUPersonView(photoData: person.photo,
                                                          name: person.name,
                                                          amount: receipt.sumOwed(to: personWhoPaid, for: person))
-                                if person != receipt.participants().prefix(4).last {
+                                if person != receipt.borrowers().prefix(4).last {
                                     Divider()
                                 }
                             }
                         }
-                        if family == .systemLarge && receipt.participants().count > 4 {
+                        if family == .systemLarge && receipt.borrowers().count > 4 {
                             Divider()
                             HStack(alignment: .center, spacing: 8.0) {
-                                ForEach(receipt.participants()[4..<min(8, receipt.participants().count)]) { person in
+                                ForEach(receipt.borrowers()[4..<min(8, receipt.borrowers().count)]) { person in
                                     ReceiptIOUPersonView(photoData: person.photo,
                                                          name: person.name,
                                                          amount: receipt.sumOwed(to: personWhoPaid, for: person))
-                                    if person != receipt.participants().prefix(8).last {
+                                    if person != receipt.borrowers().prefix(8).last {
                                         Divider()
                                     }
                                 }
@@ -79,7 +79,7 @@ struct ReceiptIOUWidgetView: View {
                         }
                     }
                 }
-                if receipt.participants().count == 0 {
+                if receipt.borrowers().count == 0 {
                     Spacer(minLength: 0)
                 }
                 if family == .systemLarge {

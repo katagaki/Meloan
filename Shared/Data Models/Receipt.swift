@@ -156,6 +156,13 @@ final class Receipt: Identifiable {
         return []
     }
 
+    func borrowers() -> [Person] {
+        if let personWhoPaid = personWhoPaid {
+            return participants().filter({ $0.id != personWhoPaid.id })
+        }
+        return participants()
+    }
+
     func isPaid() -> Bool {
         return !(receiptItems?.contains(where: { $0.paid == false }) ?? false)
     }
