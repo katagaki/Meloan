@@ -11,14 +11,16 @@ import SwiftUI
 struct MoreView: View {
 
     @EnvironmentObject var navigationManager: NavigationManager
-    @EnvironmentObject var settings: SettingsManager
+    @AppStorage(wrappedValue: "", "CurrencySymbol", store: defaults) var currencySymbol: String
+    @AppStorage(wrappedValue: true, "ShowDecimals", store: defaults) var showDecimals: Bool
+    @AppStorage(wrappedValue: true, "MarkSelfPaid", store: defaults) var markSelfPaid: Bool
 
     var body: some View {
         NavigationStack(path: $navigationManager.moreTabPath) {
             MoreList(repoName: "katagaki/Meloan", viewPath: ViewPath.moreAttributions) {
                 // TODO: Add setting options for default tax rate, currency, etc
                 Section {
-                    Toggle(isOn: $settings.markSelfPaid, label: {
+                    Toggle(isOn: $markSelfPaid, label: {
                         ListRow(image: "ListIcon.MarkSelfPaid",
                                 title: "More.MarkSelfPaid",
                                 includeSpacer: true)
@@ -41,7 +43,7 @@ struct MoreView: View {
                         .font(.body)
                 }
                 Section {
-                    Picker(selection: $settings.currencySymbol) {
+                    Picker(selection: $currencySymbol) {
                         Text("Currency.Hide")
                             .tag("")
                         Text("Currency.JPY")
@@ -56,7 +58,7 @@ struct MoreView: View {
                         ListRow(image: "ListIcon.CurrencySymbol",
                                 title: "More.Currency.Symbol")
                     }
-                    Toggle(isOn: $settings.showDecimals, label: {
+                    Toggle(isOn: $showDecimals, label: {
                         ListRow(image: "ListIcon.Decimals",
                                 title: "More.Currency.Decimals",
                                 includeSpacer: true)
@@ -100,16 +102,11 @@ SOFTWARE.
                 }
             }
         }
-        .onChange(of: settings.currencySymbol, { _, newValue in
-            settings.setCurrencySymbol(newValue)
+        .onChange(of: currencySymbol, { _, _ in
             MeloanApp.reloadWidget()
         })
-        .onChange(of: settings.showDecimals, { _, newValue in
-            settings.setShowDecimals(newValue)
+        .onChange(of: showDecimals, { _, _ in
             MeloanApp.reloadWidget()
-        })
-        .onChange(of: settings.markSelfPaid, { _, newValue in
-            settings.setMarkSelfPaid(newValue)
         })
     }
 }

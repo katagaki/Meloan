@@ -1,17 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%.2f" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
     "Receipt" : {
       "localizations" : {
         "ja" : {
@@ -84,7 +73,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Not Fully Paid"
+            "value" : "Pending"
           }
         },
         "ja" : {
@@ -101,7 +90,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fully Paid"
+            "value" : "Completed"
           }
         },
         "ja" : {

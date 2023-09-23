@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E4130F1D2ABD18CA00AEF308 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F1C2ABD18CA00AEF308 /* SettingsManager.swift */; };
-		E4130F1E2ABD1D1900AEF308 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F1C2ABD18CA00AEF308 /* SettingsManager.swift */; };
 		E4130F212ABD203000AEF308 /* ManageDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F202ABD203000AEF308 /* ManageDataView.swift */; };
 		E4130F272ABD918600AEF308 /* JPY@3x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F232ABD918600AEF308 /* JPY@3x~ipad.png */; };
 		E4130F282ABD918600AEF308 /* JPY@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F242ABD918600AEF308 /* JPY@2x~ipad.png */; };
@@ -21,6 +19,8 @@
 		E4130F342ABDA26600AEF308 /* MoreAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F332ABDA26600AEF308 /* MoreAppIconView.swift */; };
 		E4130F362ABDA27400AEF308 /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F352ABDA27400AEF308 /* AppIcon.swift */; };
 		E4130F382ABDA2C400AEF308 /* ListAppIconRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F372ABDA2C400AEF308 /* ListAppIconRow.swift */; };
+		E4130F3B2ABE9C5D00AEF308 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F3A2ABE9C5D00AEF308 /* Formatters.swift */; };
+		E4130F3C2ABE9C7C00AEF308 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F3A2ABE9C5D00AEF308 /* Formatters.swift */; };
 		E44B68182AB4ADCA00B243B0 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68172AB4ADCA00B243B0 /* App.swift */; };
 		E44B681A2AB4ADCA00B243B0 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68192AB4ADCA00B243B0 /* PeopleView.swift */; };
 		E44B681C2AB4ADCA00B243B0 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B681B2AB4ADCA00B243B0 /* Person.swift */; };
@@ -119,7 +119,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E4130F1C2ABD18CA00AEF308 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		E4130F202ABD203000AEF308 /* ManageDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageDataView.swift; sourceTree = "<group>"; };
 		E4130F232ABD918600AEF308 /* JPY@3x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JPY@3x~ipad.png"; sourceTree = "<group>"; };
 		E4130F242ABD918600AEF308 /* JPY@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JPY@2x~ipad.png"; sourceTree = "<group>"; };
@@ -132,6 +131,7 @@
 		E4130F332ABDA26600AEF308 /* MoreAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreAppIconView.swift; sourceTree = "<group>"; };
 		E4130F352ABDA27400AEF308 /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		E4130F372ABDA2C400AEF308 /* ListAppIconRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAppIconRow.swift; sourceTree = "<group>"; };
+		E4130F3A2ABE9C5D00AEF308 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		E44B68142AB4ADCA00B243B0 /* Meloan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meloan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44B68172AB4ADCA00B243B0 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		E44B68192AB4ADCA00B243B0 /* PeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
@@ -251,6 +251,14 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
+		E4130F392ABE9C5400AEF308 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E4130F3A2ABE9C5D00AEF308 /* Formatters.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		E44B680B2AB4ADCA00B243B0 = {
 			isa = PBXGroup;
 			children = (
@@ -306,7 +314,6 @@
 		E44B68352AB56FF100B243B0 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				E4130F1C2ABD18CA00AEF308 /* SettingsManager.swift */,
 				E44B68362AB5700300B243B0 /* NavigationManager.swift */,
 				E44B68382AB5702C00B243B0 /* TabManager.swift */,
 			);
@@ -453,6 +460,7 @@
 		E48A28512ABC6197009E7912 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E4130F392ABE9C5400AEF308 /* Utilities */,
 				E48A28522ABC61A1009E7912 /* ModelContainer.swift */,
 				E4130F1B2ABD134E00AEF308 /* Data Models */,
 			);
@@ -620,7 +628,6 @@
 				E44B682E2AB5673B00B243B0 /* DiscountItem.swift in Sources */,
 				E4766C1C2AB845EC005E4B47 /* ReceiptEditor.swift in Sources */,
 				E44B684E2AB5938700B243B0 /* ReceiptColumn.swift in Sources */,
-				E4130F1D2ABD18CA00AEF308 /* SettingsManager.swift in Sources */,
 				E44B68302AB5675E00B243B0 /* MainTabView.swift in Sources */,
 				E44B68372AB5700300B243B0 /* NavigationManager.swift in Sources */,
 				E4130F212ABD203000AEF308 /* ManageDataView.swift in Sources */,
@@ -640,6 +647,7 @@
 				E4130F342ABDA26600AEF308 /* MoreAppIconView.swift in Sources */,
 				E48A28532ABC61A1009E7912 /* ModelContainer.swift in Sources */,
 				E4766C1F2AB8492B005E4B47 /* SearchView.swift in Sources */,
+				E4130F3B2ABE9C5D00AEF308 /* Formatters.swift in Sources */,
 				E44B68772AB7478A00B243B0 /* ReceiptsTip.swift in Sources */,
 				E44B68562AB5BBFE00B243B0 /* PersonRow.swift in Sources */,
 				E44B68792AB80A8400B243B0 /* PeopleEditor.swift in Sources */,
@@ -652,6 +660,7 @@
 			files = (
 				E460823F2AB9575D001CF504 /* ReceiptProgressWidget.swift in Sources */,
 				E48A28542ABC61B7009E7912 /* ModelContainer.swift in Sources */,
+				E4130F3C2ABE9C7C00AEF308 /* Formatters.swift in Sources */,
 				E460824C2AB95818001CF504 /* DiscountItem.swift in Sources */,
 				E48A28492ABB33AC009E7912 /* ReceiptIOUWidget.swift in Sources */,
 				E460824E2AB95818001CF504 /* Receipt.swift in Sources */,
@@ -662,7 +671,6 @@
 				E46082612AB9A90D001CF504 /* ReceiptIntent.swift in Sources */,
 				E460824D2AB95818001CF504 /* TaxItem.swift in Sources */,
 				E46082742AB9FA9A001CF504 /* ReceiptItemsWidget.swift in Sources */,
-				E4130F1E2ABD1D1900AEF308 /* SettingsManager.swift in Sources */,
 				E46082642AB9AC5A001CF504 /* ReceiptEntity.swift in Sources */,
 				E460825A2AB9A771001CF504 /* ReceiptEntry.swift in Sources */,
 				E460823D2AB9575D001CF504 /* Widgets.swift in Sources */,

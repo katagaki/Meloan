@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ReceiptItemCompactRow: View {
 
-    @EnvironmentObject var settings: SettingsManager
     var name: String
     var price: Double
     var isPaid: Bool = false
@@ -38,7 +37,7 @@ struct ReceiptItemCompactRow: View {
             Group {
                 Text(LocalizedStringKey(name))
                 Spacer()
-                Text(settings.format(price))
+                Text(format(price))
             }
             .strikethrough(isPaid)
             // TODO: Allow selection of currency per receipt

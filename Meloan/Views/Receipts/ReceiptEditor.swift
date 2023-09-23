@@ -14,7 +14,7 @@ struct ReceiptEditor: View {
 
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var settings: SettingsManager
+    @AppStorage(wrappedValue: true, "MarkSelfPaid", store: defaults) var markSelfPaid: Bool
     @State var widgetReloadDebouncer = PassthroughSubject<String, Never>()
     @State var receipt: Receipt
 
@@ -175,7 +175,7 @@ struct ReceiptEditor: View {
         .navigationBarTitleDisplayMode(.inline)
         // TODO: Implement manual saving
         .onDisappear {
-            if settings.markSelfPaid {
+            if markSelfPaid {
                 receipt.setLenderItemsPaid()
             }
         }

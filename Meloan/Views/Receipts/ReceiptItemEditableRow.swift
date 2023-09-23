@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ReceiptItemEditableRow: View {
 
-    @EnvironmentObject var settings: SettingsManager
     @State var discountItem: DiscountItem?
     @State var taxItem: TaxItem?
     @State var name: String
@@ -37,7 +36,7 @@ struct ReceiptItemEditableRow: View {
                     .textInputAutocapitalization(.words)
                     .frame(minWidth: metrics.size.width * 0.65)
                 Divider()
-                TextField("Receipt.Price", value: $price, formatter: settings.formatter())
+                TextField("Receipt.Price", value: $price, formatter: formatter())
                     .multilineTextAlignment(.trailing)
                     .keyboardType(.decimalPad)
                     .monospaced()

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ReceiptItemRow: View {
 
-    @EnvironmentObject var settings: SettingsManager
     @State var name: String
     @State var price: Double
 
@@ -17,7 +16,7 @@ struct ReceiptItemRow: View {
         HStack(alignment: .center, spacing: 8.0) {
             Text(name)
             Spacer()
-            Text(settings.format(price))
+            Text(format(price))
                 .font(.system(size: 14.0))
                 .monospaced()
         }

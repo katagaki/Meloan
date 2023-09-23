@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ReceiptItemAssignableRow: View {
 
-    @EnvironmentObject var settings: SettingsManager
     var item: ReceiptItem
     @State var name: String
     @State var price: Double
@@ -71,7 +70,7 @@ struct ReceiptItemAssignableRow: View {
                     .textInputAutocapitalization(.words)
                     .frame(minWidth: (metrics.size.width * 0.65) - 46.0)
                 Divider()
-                TextField("Receipt.Price", value: $price, formatter: settings.formatter())
+                TextField("Receipt.Price", value: $price, formatter: formatter())
                 // TODO: Don't put currency symbol in editor
                 .multilineTextAlignment(.trailing)
                 .keyboardType(.decimalPad)

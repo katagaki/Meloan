@@ -11,7 +11,6 @@ import SwiftUI
 
 struct ReceiptDetailView: View {
 
-    @EnvironmentObject var settings: SettingsManager
     @State var receipt: Receipt
     @State var confettiCounter: Int = 0
 
@@ -110,7 +109,7 @@ struct ReceiptDetailView: View {
                         Text("Receipt.Total")
                             .font(.body)
                         Spacer()
-                        Text(settings.format(receipt.sumOfItems()))
+                        Text(format(receipt.sumOfItems()))
                             .font(.system(size: 14.0))
                             .monospaced()
                     }

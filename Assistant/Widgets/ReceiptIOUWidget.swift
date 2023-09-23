@@ -27,7 +27,6 @@ struct ReceiptIOUWidget: Widget {
 struct ReceiptIOUWidgetView: View {
 
     @Environment(\.widgetFamily) var family
-    @State var settings = SettingsManager()
     var entry: Provider.Entry
 
     var body: some View {
@@ -88,7 +87,7 @@ struct ReceiptIOUWidgetView: View {
                     HStack(alignment: .center, spacing: 8.0) {
                         Text("Widget.Total.Large")
                         Spacer()
-                        Text(settings.format(receipt.sum()))
+                        Text(format(receipt.sum()))
                     }
                     .font(.system(size: 14.0))
                     .monospaced()
@@ -102,7 +101,6 @@ struct ReceiptIOUWidgetView: View {
 
 struct ReceiptIOUPersonView: View {
 
-    @State var settings = SettingsManager()
     var photoData: Data?
     var name: String
     var amount: Double
@@ -123,7 +121,7 @@ struct ReceiptIOUPersonView: View {
                 .clipShape(Circle())
                 Text(name)
                     .font(.system(size: 17.0))
-                Text(settings.format(amount))
+                Text(format(amount))
                     .foregroundStyle(.secondary)
                     .font(.system(size: 14.0))
                     .monospaced()

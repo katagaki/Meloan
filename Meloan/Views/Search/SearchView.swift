@@ -12,7 +12,6 @@ import SwiftUI
 struct SearchView: View {
 
     @EnvironmentObject var navigationManager: NavigationManager
-    @EnvironmentObject var settings: SettingsManager
     @Query var receipts: [Receipt]
     @Query var receiptItems: [ReceiptItem]
     @Query var people: [Person]
@@ -52,7 +51,7 @@ struct SearchView: View {
                                 NavigationLink(value: ViewPath.receiptDetail(receipt: receipt)) {
                                     ListRow(image: "ListIcon.Receipt",
                                             title: receipt.name,
-                                            subtitle: settings.format(receipt.sum()))
+                                            subtitle: format(receipt.sum()))
                                 }
                             }
                         } header: {
@@ -66,7 +65,7 @@ struct SearchView: View {
                                 NavigationLink(value: ViewPath.receiptItemDetail(receiptItem: receiptItem)) {
                                     ListRow(image: "ListIcon.ReceiptItem",
                                             title: receiptItem.name,
-                                            subtitle: settings.format(receiptItem.price))
+                                            subtitle: format(receiptItem.price))
                                 }
                             }
                         } header: {

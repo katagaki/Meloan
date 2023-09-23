@@ -27,7 +27,6 @@ struct ReceiptItemsWidget: Widget {
 struct ReceiptItemsWidgetView: View {
 
     @Environment(\.widgetFamily) var family
-    @State var settings = SettingsManager()
     var entry: Provider.Entry
 
     var body: some View {
@@ -73,7 +72,7 @@ struct ReceiptItemsWidgetView: View {
                     HStack(alignment: .center, spacing: 8.0) {
                         Text("Widget.Total.Large")
                         Spacer()
-                        Text(settings.format(receipt.sum()))
+                        Text(format(receipt.sum()))
                     }
                     .font(.system(size: 14.0))
                     .monospaced()
@@ -125,7 +124,6 @@ struct ReceiptItemsWidgetView: View {
 
 struct ReceiptItemWidgetRow: View {
 
-    @State var settings = SettingsManager()
     var isShared: Bool
     var photoData: Data?
     var name: String
@@ -152,7 +150,7 @@ struct ReceiptItemWidgetRow: View {
                 .clipShape(Circle())
                 Text(name)
                 Spacer()
-                Text(settings.format(price))
+                Text(format(price))
                     .foregroundStyle(.secondary)
             }
             .font(.system(size: 14.0))

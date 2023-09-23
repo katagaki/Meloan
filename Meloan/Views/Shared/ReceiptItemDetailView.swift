@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ReceiptItemDetailView: View {
 
-    @EnvironmentObject var settings: SettingsManager
     @State var receiptItem: ReceiptItem
 
     var body: some View {
@@ -19,7 +18,7 @@ struct ReceiptItemDetailView: View {
                 HStack(alignment: .center, spacing: 16.0) {
                     ListRow(image: "ListIcon.Price", title: "Receipt.Item.Price")
                     Spacer()
-                    Text(settings.format(receiptItem.price))
+                    Text(format(receiptItem.price))
                         .foregroundStyle(.secondary)
                 }
                 if let personWhoOrdered = receiptItem.person {

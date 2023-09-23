@@ -27,7 +27,6 @@ struct ReceiptProgressWidget: Widget {
 struct ReceiptProgressWidgetView: View {
 
     @Environment(\.widgetFamily) var family
-    @State var settings = SettingsManager()
     var entry: Provider.Entry
 
     var body: some View {
@@ -48,11 +47,11 @@ struct ReceiptProgressWidgetView: View {
                                 .foregroundStyle(Color.secondary)
                         } else {
                             Text(NSLocalizedString("Widget.Total.Unpaid", comment: "")
-                                .replacingOccurrences(of: "%1", with: settings.format(receipt.sumUnpaid())))
+                                .replacingOccurrences(of: "%1", with: format(receipt.sumUnpaid())))
                             .foregroundStyle(.red)
                         }
                         Text(NSLocalizedString("Widget.Total", comment: "")
-                            .replacingOccurrences(of: "%1", with: settings.format(receipt.sum())))
+                            .replacingOccurrences(of: "%1", with: format(receipt.sum())))
                     }
                     .font(.system(size: 19.0))
                     .minimumScaleFactor(0.6)
@@ -88,10 +87,10 @@ struct ReceiptProgressWidgetView: View {
                             .font(.system(size: 12.0))
                             .foregroundStyle(.secondary)
                             HStack(alignment: .center, spacing: 8.0) {
-                                Text(settings.format(receipt.sumPaid()))
+                                Text(format(receipt.sumPaid()))
                                     .font(.system(size: 15.0))
                                 Spacer()
-                                Text(settings.format(receipt.sumUnpaid()))
+                                Text(format(receipt.sumUnpaid()))
                                     .font(.system(size: 15.0))
                             }
                             .bold()
@@ -100,7 +99,7 @@ struct ReceiptProgressWidgetView: View {
                             .progressViewStyle(.linear)
                             .tint(receipt.isPaid() ? .green : .accent)
                         Text(NSLocalizedString("Widget.Total", comment: "")
-                            .replacingOccurrences(of: "%1", with: settings.format(receipt.sum())))
+                            .replacingOccurrences(of: "%1", with: format(receipt.sum())))
                         .font(.system(size: 12.0))
                         .foregroundStyle(.secondary)
                     }
