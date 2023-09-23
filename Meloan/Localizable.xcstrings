@@ -40,7 +40,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "すべてのデータを削除"
+            "value" : "すべてのデータを消去"
           }
         }
       }
@@ -435,7 +435,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "すべてのデータを削除"
+            "value" : "すべてのデータを消去"
           }
         }
       }
