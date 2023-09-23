@@ -86,7 +86,7 @@ struct IOUView: View {
                         HintOverlay(image: "filemenu.and.selection", text: "IOU.Hint")
                     }
                 }
-                .safeAreaInset(edge: .bottom) {
+                .safeAreaInset(edge: .bottom, spacing: 0.0) {
                     Picker(selection: $personWhoPaid) {
                         Text("Shared.NoSelection")
                             .tag(nil as Person?)

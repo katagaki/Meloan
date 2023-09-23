@@ -103,7 +103,7 @@ struct ReceiptsView: View {
                 default: Color.clear
                 }
             })
-            .safeAreaInset(edge: .bottom) {
+            .safeAreaInset(edge: .bottom, spacing: 0.0) {
                 Toggle(isOn: $hidePaid.animation(.snappy.speed(2))) {
                     Text("Receipts.HidePaidReceipts")
                         .bold()
