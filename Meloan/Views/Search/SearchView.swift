@@ -43,8 +43,17 @@ struct SearchView: View {
                             searchHistory.remove(atOffsets: indexSet)
                         }
                     } header: {
-                        ListSectionHeader(text: "Search.History")
-                            .font(.body)
+                        HStack(alignment: .center, spacing: 4.0) {
+                            ListSectionHeader(text: "Search.History")
+                                .font(.body)
+                            Spacer()
+                            Button {
+                                searchHistory.removeAll()
+                            } label: {
+                                Text("Search.History.Clear")
+                                    .textCase(.none)
+                            }
+                        }
                     }
                 } else {
                     if !receiptsFound().isEmpty {

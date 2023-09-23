@@ -46,10 +46,24 @@
       }
     },
     "Currency.(currencyCode)" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "Currency.(currencySymbol)" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "Currency.Hide" : {
       "localizations" : {
@@ -1571,6 +1585,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "履歴"
+          }
+        }
+      }
+    },
+    "Search.History.Clear" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear History"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "履歴を消去"
           }
         }
       }
