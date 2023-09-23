@@ -93,6 +93,7 @@ struct ReceiptsView: View {
                         }
                     }
                 }
+                .scrollClipDisabled()
             }
             .background(Color(uiColor: UIColor.systemGroupedBackground))
             .navigationDestination(for: ViewPath.self, destination: { viewPath in
@@ -103,6 +104,15 @@ struct ReceiptsView: View {
                 default: Color.clear
                 }
             })
+            .safeAreaInset(edge: .top, spacing: 0.0) {
+                Color.clear
+                    .frame(maxWidth: .infinity, maxHeight: 0.0)
+                    .background(.ultraThinMaterial)
+                    .overlay(Rectangle().frame(width: nil,
+                                               height: 1/3,
+                                               alignment: .bottom).foregroundColor(.primary.opacity(0.3)),
+                             alignment: .bottom)
+            }
             .safeAreaInset(edge: .bottom, spacing: 0.0) {
                 Toggle(isOn: $hidePaid.animation(.snappy.speed(2))) {
                     Text("Receipts.HidePaidReceipts")

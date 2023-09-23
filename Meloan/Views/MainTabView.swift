@@ -25,7 +25,8 @@ struct MainTabView: View {
                 .tabItem {
                     Label("TabTitle.Receipts", image: "Tab.Receipts")
                 }
-                .toolbarBackground(.automatic, for: .tabBar)
+                .toolbarBackground(.hidden, for: .tabBar)
+                .toolbarBackground(.visible, for: .navigationBar)
                 .tag(TabType.receipts)
             IOUView()
                 .tabItem {

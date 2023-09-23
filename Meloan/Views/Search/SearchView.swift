@@ -16,9 +16,7 @@ struct SearchView: View {
     @Query var receiptItems: [ReceiptItem]
     @Query var people: [Person]
 
-    let defaults = UserDefaults.standard
-
-    @State var searchHistory: [String] = []
+    @AppStorage(wrappedValue: [], "SearchHistory", store: defaults) var searchHistory: [String]
     @State var searchTerm: String = ""
 
     var body: some View {
@@ -28,12 +26,16 @@ struct SearchView: View {
                     Section {
                         ForEach(searchHistory, id: \.self) { historicalSearchTerm in
                             Button {
-                                searchTerm = historicalSearchTerm
+                                withAnimation {
+                                    searchTerm = historicalSearchTerm
+                                }
                             } label: {
                                 HStack(alignment: .center, spacing: 16.0) {
+                                    Image(systemName: "magnifyingglass")
+                                    Text(historicalSearchTerm)
+                                    Spacer()
                                     Image(systemName: "arrow.up.backward.circle")
                                         .symbolRenderingMode(.hierarchical)
-                                    Text(historicalSearchTerm)
                                 }
                             }
                         }
@@ -117,13 +119,13 @@ struct SearchView: View {
                 }
                 searchHistory.insert(searchTerm, at: 0)
             })
-            .onAppear {
-                if let storedSearchHistory = defaults.array(forKey: "SearchHistory") as? [String] {
-                    searchHistory = storedSearchHistory
+            .onChange(of: navigationManager.searchTabPath, { oldValue, newValue in
+                if oldValue.count == 0 && newValue.count == 1 {
+                    if searchHistory.contains(searchTerm) {
+                        searchHistory.removeAll(where: { $0 == searchTerm })
+                    }
+                    searchHistory.insert(searchTerm, at: 0)
                 }
-            }
-            .onChange(of: searchHistory, { _, newValue in
-                defaults.setValue(newValue, forKey: "SearchHistory")
             })
             .navigationTitle("ViewTitle.Search")
         }
