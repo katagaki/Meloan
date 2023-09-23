@@ -15,8 +15,8 @@ final class ReceiptItem {
     var price: Double = 0.0
     var amount: Int = 0
     var paid: Bool = false
-    @Relationship(deleteRule: .noAction) var person: Person?
-    @Relationship(deleteRule: .noAction) var peopleWhoPaid: [Person]? = []
+    @Relationship(deleteRule: .nullify) var person: Person?
+    @Relationship(deleteRule: .nullify) var peopleWhoPaid: [Person]? = []
     @Relationship(inverse: \Receipt.receiptItems) var receipts: [Receipt]? = []
     var dateAdded: Date = Date.now
 

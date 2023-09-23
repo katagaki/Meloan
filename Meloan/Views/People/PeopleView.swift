@@ -34,7 +34,7 @@ struct PeopleView: View {
                     }
                     .onDelete(perform: { indexSet in
                         for index in indexSet {
-                            modelContext.delete(people[index])
+                            modelContext.delete(people[index + 1])
                         }
                     })
                 }

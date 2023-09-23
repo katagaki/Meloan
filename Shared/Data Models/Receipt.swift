@@ -15,8 +15,8 @@ final class Receipt: Identifiable {
     @Relationship(deleteRule: .cascade) var receiptItems: [ReceiptItem]? = []
     @Relationship(deleteRule: .cascade) var discountItems: [DiscountItem]? = []
     @Relationship(deleteRule: .cascade) var taxItems: [TaxItem]? = []
-    @Relationship(deleteRule: .noAction) var personWhoPaid: Person?
-    @Relationship(deleteRule: .noAction) var peopleWhoParticipated: [Person]? = []
+    @Relationship(deleteRule: .nullify) var personWhoPaid: Person?
+    @Relationship(deleteRule: .nullify) var peopleWhoParticipated: [Person]? = []
     var dateAdded: Date = Date.now
 
     init(name: String) {
