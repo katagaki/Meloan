@@ -42,7 +42,8 @@ struct MoreView: View {
                 Section {
                     Toggle(isOn: $markSelfPaid, label: {
                         ListRow(image: "ListIcon.MarkSelfPaid",
-                                title: "More.MarkSelfPaid",
+                                title: "More.Receipts.MarkSelfPaid",
+                                subtitle: "More.Receipts.MarkSelfPaid.Description",
                                 includeSpacer: true)
                     })
                     Menu {
@@ -78,7 +79,9 @@ struct MoreView: View {
                         HStack(alignment: .center, spacing: 16.0) {
                             ListRow(image: "ListIcon.TaxRate",
                                     title: "More.Receipts.AutomaticTaxRate",
+                                    subtitle: "More.Receipts.AutomaticTaxRate.Description",
                                     includeSpacer: true)
+                            .multilineTextAlignment(.leading)
                             Group {
                                 if taxRateCountry == "" {
                                     Text("TaxRate.Disable")
@@ -87,6 +90,7 @@ struct MoreView: View {
                                 }
                             }
                             .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.trailing)
                             Image(systemName: "chevron.up.chevron.down")
                                 .font(.footnote.weight(.medium))
                                 .foregroundColor(.secondary)
@@ -96,6 +100,9 @@ struct MoreView: View {
                 } header: {
                     ListSectionHeader(text: "More.Receipts")
                         .font(.body)
+                } footer: {
+                    Text("More.Receipts.Footer")
+                        .font(.subheadline)
                 }
                 Section {
                     Menu {
