@@ -195,6 +195,8 @@ final class Receipt: Identifiable {
                 item.addPersonWhoPaid(from: [personWhoPaid])
                 if (peopleWhoParticipated?.count ?? -1) == (item.peopleWhoPaid?.count ?? -2) {
                     item.paid = true
+                } else {
+                    item.paid = false
                 }
             }
         }

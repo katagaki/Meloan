@@ -14,7 +14,11 @@ struct ReceiptEditor: View {
 
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
+    @AppStorage(wrappedValue: 0.0, "TaxRate", store: defaults) var taxRate: Double
+    @AppStorage(wrappedValue: "", "TaxRateCountry", store: defaults) var taxRateCountry: String
+    @AppStorage(wrappedValue: "", "TaxRateType", store: defaults) var taxRateType: String
     @AppStorage(wrappedValue: true, "MarkSelfPaid", store: defaults) var markSelfPaid: Bool
+    @State var taxRates: TaxRate.List = Bundle.main.decode(TaxRate.List.self, from: "TaxRates.json")!
     @State var widgetReloadDebouncer = PassthroughSubject<String, Never>()
     @State var receipt: Receipt
 
@@ -135,38 +139,50 @@ struct ReceiptEditor: View {
                     }
                 }
             }
-            Section {
-                ForEach(receipt.taxItems()) { item in
-                    ReceiptItemEditableRow(taxItem: item,
-                                           placeholderText: "Receipt.ItemName")
-                }
-                .onDelete { indexSet in
-                    // Workaround due to unsorted relationship in SwiftData
-                    indexSet.forEach { index in
-                        let itemsSorted = receipt.taxItems()
-                        var itemsToDelete: [TaxItem] = []
-                        indexSet.forEach { index in
-                            itemsToDelete.append(itemsSorted[index])
-                        }
-                        itemsToDelete.forEach { itemToDelete in
-                            receipt.taxItems?.removeAll { item in
-                                item == itemToDelete
-                            }
-                        }
-                        for item in itemsToDelete {
-                            modelContext.delete(item)
-                        }
-                    }
-                }
-            } header: {
-                HStack(alignment: .center, spacing: 4.0) {
+            if receipt.taxItems().count == 0 && taxRateCountry != "" {
+                Section {
+                    Text("Receipt.Tax.AutomaticallyCalculatedHint")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .listRowBackground(Color.clear)
+                } header: {
                     ListSectionHeader(text: "Receipt.Tax")
                         .font(.body)
-                    Spacer()
-                    Button {
-                        receipt.addTaxItems(from: [TaxItem(name: "", price: 0.0)])
-                    } label: {
-                        Image(systemName: "plus.circle")
+                }
+            } else {
+                Section {
+                    ForEach(receipt.taxItems()) { item in
+                        ReceiptItemEditableRow(taxItem: item,
+                                               placeholderText: "Receipt.ItemName")
+                    }
+                    .onDelete { indexSet in
+                        // Workaround due to unsorted relationship in SwiftData
+                        indexSet.forEach { index in
+                            let itemsSorted = receipt.taxItems()
+                            var itemsToDelete: [TaxItem] = []
+                            indexSet.forEach { index in
+                                itemsToDelete.append(itemsSorted[index])
+                            }
+                            itemsToDelete.forEach { itemToDelete in
+                                receipt.taxItems?.removeAll { item in
+                                    item == itemToDelete
+                                }
+                            }
+                            for item in itemsToDelete {
+                                modelContext.delete(item)
+                            }
+                        }
+                    }
+                } header: {
+                    HStack(alignment: .center, spacing: 4.0) {
+                        ListSectionHeader(text: "Receipt.Tax")
+                            .font(.body)
+                        Spacer()
+                        Button {
+                            receipt.addTaxItems(from: [TaxItem(name: "", price: 0.0)])
+                        } label: {
+                            Image(systemName: "plus.circle")
+                        }
                     }
                 }
             }
@@ -177,6 +193,26 @@ struct ReceiptEditor: View {
         .onDisappear {
             if markSelfPaid {
                 receipt.setLenderItemsPaid()
+            }
+            if taxRateCountry != "" {
+                if let taxItem = receipt.taxItems?.first(where: { $0.id == "AUTOTAX-\(receipt.id)" }) {
+                    taxItem.price = receipt.sumOfItems() * taxRate
+                } else {
+                    if receipt.taxItems().count == 0 {
+                        let automaticTaxItem = TaxItem(name: "",
+                                                       price: receipt.sumOfItems() * taxRate)
+                        automaticTaxItem.id = "AUTOTAX-\(receipt.id)"
+                        switch taxRateType {
+                        case "gst":
+                            automaticTaxItem.name = NSLocalizedString("Receipt.Tax.GST", comment: "")
+                        case "vat":
+                            automaticTaxItem.name = NSLocalizedString("Receipt.Tax.VAT", comment: "")
+                        default:
+                            automaticTaxItem.name = ""
+                        }
+                        receipt.addTaxItems(from: [automaticTaxItem])
+                    }
+                }
             }
         }
         .onChange(of: receipt.peopleWhoParticipated) { _, _ in

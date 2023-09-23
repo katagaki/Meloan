@@ -31,3 +31,16 @@ func formatter() -> NumberFormatter {
     }
     return numberFormatter
 }
+
+func countryName(for countryCode: String) -> String {
+    let langCode = Locale.preferredLanguages[0]
+    let current = Locale(identifier: langCode)
+    if countryCode.contains("-") {
+        if let stateName = stateNames[countryCode] {
+            return stateName.name(language: current.language.languageCode?.identifier ?? "")
+        }
+        return countryCode
+    } else {
+        return current.localizedString(forRegionCode: countryCode) ?? countryCode
+    }
+}

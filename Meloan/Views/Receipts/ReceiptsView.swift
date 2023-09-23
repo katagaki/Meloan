@@ -154,8 +154,6 @@ struct ReceiptsView: View {
 
     func handleEndOfGesture(of gesture: DragGesture.Value, for receipt: Receipt) {
         if let offset = offsets[receipt] {
-            debugPrint(gesture.predictedEndTranslation.height)
-            debugPrint(gesture.velocity.height)
             if (previousOffsets[receipt]?.height ?? 0.0) + gesture.predictedEndTranslation.height <= -expectedOffset ||
                 offset.height <= -expectedOffset {
                 withAnimation(.snappy.speed(2)) {

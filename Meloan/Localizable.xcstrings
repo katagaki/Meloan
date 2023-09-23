@@ -45,6 +45,12 @@
         }
       }
     },
+    "Currency.(currencyCode)" : {
+
+    },
+    "Currency.(currencySymbol)" : {
+
+    },
     "Currency.Hide" : {
       "localizations" : {
         "en" : {
@@ -62,6 +68,7 @@
       }
     },
     "Currency.JPY" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -78,6 +85,7 @@
       }
     },
     "Currency.SGD" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -94,6 +102,7 @@
       }
     },
     "Currency.USD" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -110,6 +119,7 @@
       }
     },
     "Currency.VND" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -519,13 +529,47 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Automatically Mark Lender Items Paid"
+            "value" : "Mark Lender Items Paid"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "支払人の商品を自動的に支払済とする"
+            "value" : "支払人の商品を支払済とする"
+          }
+        }
+      }
+    },
+    "More.Receipts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Receipt Behavior"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "領収書の自動化"
+          }
+        }
+      }
+    },
+    "More.Receipts.AutomaticTaxRate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Tax Item"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "外税の計算"
           }
         }
       }
@@ -1175,6 +1219,23 @@
         }
       }
     },
+    "Receipt.Tax.AutomaticallyCalculatedHint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This receipt's tax will automatically calculated.\nYou can change this setting by going to More > Add Tax Item."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この領収書の外税は自動的に計算されます。\nこの設定を変更または無効化するには、「その他」タブの「外税の計算」を変更してください。"
+          }
+        }
+      }
+    },
     "Receipt.Tax.Detail" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1188,6 +1249,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "概算税率"
+          }
+        }
+      }
+    },
+    "Receipt.Tax.GST" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Goods and Services Tax"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "消費税"
+          }
+        }
+      }
+    },
+    "Receipt.Tax.VAT" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Value Added Tax"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "付加価値税"
           }
         }
       }
@@ -1762,6 +1857,22 @@
         }
       }
     },
+    "TaxRate.Disable" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disable"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無効化"
+          }
+        }
+      }
+    },
     "ViewTitle.Data" : {
       "localizations" : {
         "en" : {
@@ -1805,7 +1916,7 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "アイコン"
           }
         }

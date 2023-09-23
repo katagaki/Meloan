@@ -42,6 +42,8 @@ struct ReceiptItemEditableRow: View {
                     .monospaced()
                     .font(.system(size: 14.0))
             }
+            .disabled(shouldBeDisabled())
+            .foregroundStyle(shouldBeDisabled() ? Color.secondary : Color.primary)
         }
         .onChange(of: name, initial: false) { _, _ in
             if let discountItem = discountItem {
@@ -57,5 +59,13 @@ struct ReceiptItemEditableRow: View {
                 taxItem.price = price
             }
         }
+    }
+
+    func shouldBeDisabled() -> Bool {
+        if let taxItem = taxItem,
+           taxItem.id.starts(with: "AUTOTAX-") {
+            return true
+        }
+        return false
     }
 }

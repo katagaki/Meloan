@@ -1,0 +1,238 @@
+{
+    "US-AL": {
+        "en": "Alabama",
+        "ja": "アラバマ"
+    },
+    "US-AK": {
+        "en": "Alaska",
+        "ja": "アラスカ"
+    },
+    "US-AS": {
+        "en": "American Samoa",
+        "ja": "アメリカ領サモア"
+    },
+    "US-AZ": {
+        "en": "Arizona",
+        "ja": "アリゾナ"
+    },
+    "US-AR": {
+        "en": "Arkansas",
+        "ja": "アーカンソー"
+    },
+    "US-CA": {
+        "en": "California",
+        "ja": "カリフォルニア"
+    },
+    "US-CO": {
+        "en": "Colorado",
+        "ja": "コロラド"
+    },
+    "US-CT": {
+        "en": "Connecticut",
+        "ja": "コネチカット"
+    },
+    "US-DE": {
+        "en": "Delaware",
+        "ja": "デラウェア"
+    },
+    "US-DC": {
+        "en": "District Of Columbia",
+        "ja": "コロンビア特別区"
+    },
+    "US-FM": {
+        "en": "Federated States Of Micronesia",
+        "ja": "ミクロネシア連邦"
+    },
+    "US-FL": {
+        "en": "Florida",
+        "ja": "フロリダ"
+    },
+    "US-GA": {
+        "en": "Georgia",
+        "ja": "ジョージア"
+    },
+    "US-GU": {
+        "en": "Guam",
+        "ja": "グアム"
+    },
+    "US-HI": {
+        "en": "Hawaii",
+        "ja": "ハワイ"
+    },
+    "US-ID": {
+        "en": "Idaho",
+        "ja": "アイダホ"
+    },
+    "US-IL": {
+        "en": "Illinois",
+        "ja": "イリノイ"
+    },
+    "US-IN": {
+        "en": "Indiana",
+        "ja": "インディアナ"
+    },
+    "US-IA": {
+        "en": "Iowa",
+        "ja": "アイオワ"
+    },
+    "US-KS": {
+        "en": "Kansas",
+        "ja": "カンザス"
+    },
+    "US-KY": {
+        "en": "Kentucky",
+        "ja": "ケンタッキー"
+    },
+    "US-LA": {
+        "en": "Louisiana",
+        "ja": "ルイジアナ"
+    },
+    "US-ME": {
+        "en": "Maine",
+        "ja": "メイン"
+    },
+    "US-MH": {
+        "en": "Marshall Islands",
+        "ja": "マーシャル諸島"
+    },
+    "US-MD": {
+        "en": "Maryland",
+        "ja": "メリーランド"
+    },
+    "US-MA": {
+        "en": "Massachusetts",
+        "ja": "マサチューセッツ"
+    },
+    "US-MI": {
+        "en": "Michigan",
+        "ja": "ミシガン"
+    },
+    "US-MN": {
+        "en": "Minnesota",
+        "ja": "ミネソタ"
+    },
+    "US-MS": {
+        "en": "Mississippi",
+        "ja": "ミシシッピ"
+    },
+    "US-MO": {
+        "en": "Missouri",
+        "ja": "ミズーリ"
+    },
+    "US-MT": {
+        "en": "Montana",
+        "ja": "モンタナ"
+    },
+    "US-NE": {
+        "en": "Nebraska",
+        "ja": "ネブラスカ"
+    },
+    "US-NV": {
+        "en": "Nevada",
+        "ja": "ネバダ"
+    },
+    "US-NH": {
+        "en": "New Hampshire",
+        "ja": "ニューハンプシャー"
+    },
+    "US-NJ": {
+        "en": "New Jersey",
+        "ja": "ニュージャージー"
+    },
+    "US-NM": {
+        "en": "New Mexico",
+        "ja": "ニューメキシコ"
+    },
+    "US-NY": {
+        "en": "New York",
+        "ja": "ニューヨーク"
+    },
+    "US-NC": {
+        "en": "North Carolina",
+        "ja": "ノースカロライナ"
+    },
+    "US-ND": {
+        "en": "North Dakota",
+        "ja": "ノースダコタ"
+    },
+    "US-MP": {
+        "en": "Northern Mariana Islands",
+        "ja": "北マリアナ諸島"
+    },
+    "US-OH": {
+        "en": "Ohio",
+        "ja": "オハイオ"
+    },
+    "US-OK": {
+        "en": "Oklahoma",
+        "ja": "オクラホマ"
+    },
+    "US-OR": {
+        "en": "Oregon",
+        "ja": "オレゴン"
+    },
+    "US-PW": {
+        "en": "Palau",
+        "ja": "パラオ"
+    },
+    "US-PA": {
+        "en": "Pennsylvania",
+        "ja": "ペンシルベニア"
+    },
+    "US-PR": {
+        "en": "Puerto Rico",
+        "ja": "プエルトリコ"
+    },
+    "US-RI": {
+        "en": "Rhode Island",
+        "ja": "ロードアイランド"
+    },
+    "US-SC": {
+        "en": "South Carolina",
+        "ja": "サウスカロライナ"
+    },
+    "US-SD": {
+        "en": "South Dakota",
+        "ja": "サウスダコタ"
+    },
+    "US-TN": {
+        "en": "Tennessee",
+        "ja": "テネシー"
+    },
+    "US-TX": {
+        "en": "Texas",
+        "ja": "テキサス"
+    },
+    "US-UT": {
+        "en": "Utah",
+        "ja": "ユタ"
+    },
+    "US-VT": {
+        "en": "Vermont",
+        "ja": "バーモント"
+    },
+    "US-VI": {
+        "en": "Virgin Islands",
+        "ja": "ヴァージン諸島"
+    },
+    "US-VA": {
+        "en": "Virginia",
+        "ja": "バージニア"
+    },
+    "US-WA": {
+        "en": "Washington",
+        "ja": "ワシントン"
+    },
+    "US-WV": {
+        "en": "West Virginia",
+        "ja": "ウェストバージニア"
+    },
+    "US-WI": {
+        "en": "Wisconsin",
+        "ja": "ウィスコンシン"
+    },
+    "US-WY": {
+        "en": "Wyoming",
+        "ja": "ワイオミング"
+    }
+}
