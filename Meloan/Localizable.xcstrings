@@ -237,6 +237,9 @@
         }
       }
     },
+    "Key" : {
+      "extractionState" : "manual"
+    },
     "More.Currency" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1300,6 +1303,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "合計"
+          }
+        }
+      }
+    },
+    "Receipts.HidePaidReceipts" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hide Paid Receipts"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完済した領収書を非表示"
           }
         }
       }

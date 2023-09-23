@@ -100,6 +100,7 @@ struct IOUView: View {
                         }
                     } label: {
                         Text("IOU.SelectLender")
+                            .tint(.primary)
                             .bold()
                     }
                     .pickerStyle(.navigationLink)

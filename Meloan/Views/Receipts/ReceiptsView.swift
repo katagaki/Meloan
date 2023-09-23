@@ -16,6 +16,7 @@ struct ReceiptsView: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
     @Query(sort: \Receipt.dateAdded, order: .reverse, animation: .snappy.speed(2)) var receipts: [Receipt]
+    @AppStorage(wrappedValue: false, "HidePaidReceipts", store: defaults) var hidePaid: Bool
     @State var offsets: [Receipt: CGSize] = [:]
     @State var previousOffsets: [Receipt: CGSize] = [:]
     @State var expectedOffset: CGFloat = 0.0
@@ -35,45 +36,48 @@ struct ReceiptsView: View {
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .top, spacing: 20.0) {
                         ForEach(receipts) { receipt in
-                            ZStack(alignment: .bottom) {
-                                VStack(alignment: .center, spacing: 16.0) {
-                                    ActionButton(text: "Shared.Edit", icon: "Receipt.Edit", isPrimary: false) {
-                                        navigationManager.push(ViewPath.receiptEditor(receipt: receipt), for: .receipts)
+                            if !hidePaid || !receipt.isPaid() {
+                                ZStack(alignment: .bottom) {
+                                    VStack(alignment: .center, spacing: 16.0) {
+                                        ActionButton(text: "Shared.Edit", icon: "Receipt.Edit", isPrimary: false) {
+                                            navigationManager.push(ViewPath.receiptEditor(receipt: receipt),
+                                                                   for: .receipts)
+                                        }
+                                        ActionButton(text: "Shared.Delete", icon: "Delete", isPrimary: true) {
+                                            withAnimation(.snappy.speed(2)) {
+                                                modelContext.delete(receipt)
+                                            }
+                                        }
+                                        .tint(.red)
                                     }
-                                    ActionButton(text: "Shared.Delete", icon: "Delete", isPrimary: true) {
-                                        withAnimation(.snappy.speed(2)) {
-                                            modelContext.delete(receipt)
+                                    .padding(16.0)
+                                    .overlay {
+                                        GeometryReader { metrics in
+                                            Color.clear
+                                                .onAppear {
+                                                    expectedOffset = metrics.size.height
+                                                }
                                         }
                                     }
-                                    .tint(.red)
-                                }
-                                .padding(16.0)
-                                .overlay {
-                                    GeometryReader { metrics in
-                                        Color.clear
-                                            .onAppear {
-                                                expectedOffset = metrics.size.height
+                                    ReceiptColumn(receipt: receipt)
+                                        .contextMenu {
+                                            Button(role: .destructive) {
+                                                modelContext.delete(receipt)
+                                            } label: {
+                                                Label("Shared.Delete", image: "Delete")
                                             }
-                                    }
-                                }
-                                ReceiptColumn(receipt: receipt)
-                                    .contextMenu {
-                                        Button(role: .destructive) {
-                                            modelContext.delete(receipt)
-                                        } label: {
-                                            Label("Shared.Delete", image: "Delete")
                                         }
-                                    }
-                                    .offset(y: offsets[receipt]?.height ?? 0.0)
-                                    .gesture(
-                                        DragGesture(minimumDistance: 20)
-                                            .onChanged { gesture in
-                                                handleChange(of: gesture, for: receipt)
-                                            }
-                                            .onEnded { gesture in
-                                                handleEndOfGesture(of: gesture, for: receipt)
-                                            }
-                                    )
+                                        .offset(y: offsets[receipt]?.height ?? 0.0)
+                                        .gesture(
+                                            DragGesture(minimumDistance: 20)
+                                                .onChanged { gesture in
+                                                    handleChange(of: gesture, for: receipt)
+                                                }
+                                                .onEnded { gesture in
+                                                    handleEndOfGesture(of: gesture, for: receipt)
+                                                }
+                                        )
+                                }
                             }
                         }
                     }
@@ -99,6 +103,18 @@ struct ReceiptsView: View {
                 default: Color.clear
                 }
             })
+            .safeAreaInset(edge: .bottom) {
+                Toggle(isOn: $hidePaid.animation(.snappy.speed(2))) {
+                    Text("Receipts.HidePaidReceipts")
+                        .bold()
+                }
+                .padding()
+                .background(.ultraThinMaterial)
+                .overlay(Rectangle().frame(width: nil,
+                                           height: 1/3,
+                                           alignment: .top).foregroundColor(.primary.opacity(0.3)),
+                         alignment: .top)
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack {
