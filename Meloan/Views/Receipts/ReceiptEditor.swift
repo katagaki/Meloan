@@ -14,10 +14,11 @@ struct ReceiptEditor: View {
 
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
+    @AppStorage(wrappedValue: true, "MarkSelfPaid", store: defaults) var markSelfPaid: Bool
     @AppStorage(wrappedValue: 0.0, "TaxRate", store: defaults) var taxRate: Double
     @AppStorage(wrappedValue: "", "TaxRateCountry", store: defaults) var taxRateCountry: String
     @AppStorage(wrappedValue: "", "TaxRateType", store: defaults) var taxRateType: String
-    @AppStorage(wrappedValue: true, "MarkSelfPaid", store: defaults) var markSelfPaid: Bool
+    @AppStorage(wrappedValue: false, "AddTenPercent", store: defaults) var addTenPercent: Bool
     @State var taxRates: TaxRate.List = Bundle.main.decode(TaxRate.List.self, from: "TaxRates.json")!
     @State var widgetReloadDebouncer = PassthroughSubject<String, Never>()
     @State var receipt: Receipt
@@ -198,20 +199,28 @@ struct ReceiptEditor: View {
                 if let taxItem = receipt.taxItems?.first(where: { $0.id == "AUTOTAX-\(receipt.id)" }) {
                     taxItem.price = receipt.sumOfItems() * taxRate
                 } else {
-                    if receipt.taxItems().count == 0 {
-                        let automaticTaxItem = TaxItem(name: "",
-                                                       price: receipt.sumOfItems() * taxRate)
-                        automaticTaxItem.id = "AUTOTAX-\(receipt.id)"
-                        switch taxRateType {
-                        case "gst":
-                            automaticTaxItem.name = NSLocalizedString("Receipt.Tax.GST", comment: "")
-                        case "vat":
-                            automaticTaxItem.name = NSLocalizedString("Receipt.Tax.VAT", comment: "")
-                        default:
-                            automaticTaxItem.name = ""
-                        }
-                        receipt.addTaxItems(from: [automaticTaxItem])
+                    let automaticTaxItem = TaxItem(name: "",
+                                                   price: receipt.sumOfItems() * taxRate)
+                    automaticTaxItem.id = "AUTOTAX-\(receipt.id)"
+                    switch taxRateType {
+                    case "gst":
+                        automaticTaxItem.name = NSLocalizedString("Receipt.Tax.GST", comment: "")
+                    case "vat":
+                        automaticTaxItem.name = NSLocalizedString("Receipt.Tax.VAT", comment: "")
+                    default:
+                        automaticTaxItem.name = ""
                     }
+                    receipt.addTaxItems(from: [automaticTaxItem])
+                }
+            }
+            if addTenPercent {
+                if let serviceChargeItem = receipt.taxItems?.first(where: { $0.id == "AUTOTEN-\(receipt.id)" }) {
+                    serviceChargeItem.price = receipt.sumOfItems() * 0.1
+                } else {
+                    let automaticServiceCharge = TaxItem(name: NSLocalizedString("Receipt.ServiceCharge", comment: ""),
+                                                         price: receipt.sumOfItems() * 0.1)
+                    automaticServiceCharge.id = "AUTOTEN-\(receipt.id)"
+                    receipt.addTaxItems(from: [automaticServiceCharge])
                 }
             }
         }

@@ -11,12 +11,13 @@ import SwiftUI
 struct MoreView: View {
 
     @EnvironmentObject var navigationManager: NavigationManager
-    @AppStorage(wrappedValue: "", "CurrencySymbol", store: defaults) var currencySymbol: String
+    @AppStorage(wrappedValue: true, "MarkSelfPaid", store: defaults) var markSelfPaid: Bool
     @AppStorage(wrappedValue: 0.0, "TaxRate", store: defaults) var taxRate: Double
     @AppStorage(wrappedValue: "", "TaxRateCountry", store: defaults) var taxRateCountry: String
     @AppStorage(wrappedValue: "", "TaxRateType", store: defaults) var taxRateType: String
+    @AppStorage(wrappedValue: false, "AddTenPercent", store: defaults) var addTenPercent: Bool
+    @AppStorage(wrappedValue: "", "CurrencySymbol", store: defaults) var currencySymbol: String
     @AppStorage(wrappedValue: true, "ShowDecimals", store: defaults) var showDecimals: Bool
-    @AppStorage(wrappedValue: true, "MarkSelfPaid", store: defaults) var markSelfPaid: Bool
 
     var body: some View {
         NavigationStack(path: $navigationManager.moreTabPath) {
@@ -76,7 +77,7 @@ struct MoreView: View {
                             }
                         }
                     } label: {
-                        HStack(alignment: .center, spacing: 16.0) {
+                        HStack(alignment: .center, spacing: 8.0) {
                             ListRow(image: "ListIcon.TaxRate",
                                     title: "More.Receipts.AutomaticTaxRate",
                                     subtitle: "More.Receipts.AutomaticTaxRate.Description",
@@ -97,6 +98,12 @@ struct MoreView: View {
                         }
                         .tint(.primary)
                     }
+                    Toggle(isOn: $addTenPercent, label: {
+                        ListRow(image: "ListIcon.ServiceCharge",
+                                title: "More.Receipts.ServiceCharge",
+                                subtitle: "More.Receipts.ServiceCharge.Description",
+                                includeSpacer: true)
+                    })
                 } header: {
                     ListSectionHeader(text: "More.Receipts")
                         .font(.body)
@@ -131,7 +138,7 @@ struct MoreView: View {
                             }
                         }
                     } label: {
-                        HStack(alignment: .center, spacing: 16.0) {
+                        HStack(alignment: .center, spacing: 8.0) {
                             ListRow(image: "ListIcon.CurrencySymbol",
                                     title: "More.Currency.Symbol",
                                     includeSpacer: true)

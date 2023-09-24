@@ -23,7 +23,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "すべてのデータを削除してもよろしいですか？削除後、データは復元できません。"
+            "value" : "すべてのデータを削除してもよろしいですか？\n削除後、データは復元できません。"
           }
         }
       }
@@ -41,6 +41,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべてのデータを消去"
+          }
+        }
+      }
+    },
+    "Alert.ResetAllSettings.Text" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to reset all your settings? This operation cannot be undone."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべての設定をリセットしてもよろしいですか？\nリセット後、設定は復元できません。"
+          }
+        }
+      }
+    },
+    "Alert.ResetAllSettings.Title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset All Settings"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべての設定をリセット"
           }
         }
       }
@@ -453,6 +485,22 @@
         }
       }
     },
+    "More.Data.ResetAllSettings" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset All Settings"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべての設定をリセット"
+          }
+        }
+      }
+    },
     "More.Data.SampleData" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -560,13 +608,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tax Calculation"
+            "value" : "Calculate Tax"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "外税計算"
+            "value" : "外税を計算"
           }
         }
       }
@@ -577,13 +625,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tax will be automatically calculated based on the price of the items in a receipt."
+            "value" : "Automatically calculate tax based on the price of the items."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "領収書の外税は商品の値段をもとに自動的に計算されます。"
+            "value" : "外税は商品の値段をもとに自動的に計算されます。"
           }
         }
       }
@@ -628,13 +676,47 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Items purchased/ordered by the payer will be automatically mark paid."
+            "value" : "Automatically mark items purchased/ordered by the payer paid."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "支払人の商品は自動的に支払済とされます。"
+          }
+        }
+      }
+    },
+    "More.Receipts.ServiceCharge" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Service Charge"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サービス料を追加"
+          }
+        }
+      }
+    },
+    "More.Receipts.ServiceCharge.Description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatically add a 10% service."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10%のサービス料は自動的に追加されます。"
           }
         }
       }
@@ -1246,6 +1328,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "購入した商品"
+          }
+        }
+      }
+    },
+    "Receipt.ServiceCharge" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Service Charge"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サービス料"
           }
         }
       }
@@ -1967,7 +2066,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無効化"
+            "value" : "無効"
           }
         }
       }

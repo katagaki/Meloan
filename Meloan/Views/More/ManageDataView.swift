@@ -16,6 +16,7 @@ struct ManageDataView: View {
     @Query var people: [Person]
     @Query var receipts: [Receipt]
     @State var isDeleteConfirming: Bool = false
+    @State var isSettingsResetConfirming: Bool = false
 
     var body: some View {
         List {
@@ -51,12 +52,30 @@ struct ManageDataView: View {
             }
             Section {
                 Button {
+                    isSettingsResetConfirming = true
+                } label: {
+                    Text("More.Data.ResetAllSettings")
+                        .foregroundStyle(.red)
+                }
+                Button {
                     isDeleteConfirming = true
                 } label: {
                     Text("More.Data.DeleteAll")
                         .foregroundStyle(.red)
                 }
             }
+        }
+        .alert("Alert.ResetAllSettings.Title", isPresented: $isSettingsResetConfirming) {
+            Button(role: .destructive) {
+                resetSettings()
+            } label: {
+                Text("Shared.Yes")
+            }
+            Button(role: .cancel) { } label: {
+                Text("Shared.No")
+            }
+        } message: {
+            Text("Alert.ResetAllSettings.Text")
         }
         .alert("Alert.DeleteAll.Title", isPresented: $isDeleteConfirming) {
             Button(role: .destructive) {
@@ -120,5 +139,11 @@ struct ManageDataView: View {
         for person in people where person.id != "ME" {
             modelContext.delete(person)
         }
+    }
+
+    func resetSettings() {
+        let domain = Bundle.main.bundleIdentifier!
+        defaults.removePersistentDomain(forName: domain)
+        defaults.synchronize()
     }
 }
