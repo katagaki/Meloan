@@ -147,7 +147,7 @@ struct ReceiptEditor: View {
                         .foregroundStyle(.secondary)
                         .listRowBackground(Color.clear)
                 } header: {
-                    ListSectionHeader(text: "Receipt.Tax")
+                    ListSectionHeader(text: "Receipt.Taxes")
                         .font(.body)
                 }
             } else {
@@ -176,7 +176,7 @@ struct ReceiptEditor: View {
                     }
                 } header: {
                     HStack(alignment: .center, spacing: 4.0) {
-                        ListSectionHeader(text: "Receipt.Tax")
+                        ListSectionHeader(text: "Receipt.Taxes")
                             .font(.body)
                         Spacer()
                         Button {

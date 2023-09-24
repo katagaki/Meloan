@@ -8,6 +8,11 @@
 import Foundation
 
 extension Bundle {
+
+    func appName() -> String {
+        return self.infoDictionary!["CFBundleName"] as? String ?? "Meloan"
+    }
+
     func decode<T: Decodable>(_ type: T.Type, from file: String) -> T? {
         do {
             if let url = self.url(forResource: file, withExtension: nil),

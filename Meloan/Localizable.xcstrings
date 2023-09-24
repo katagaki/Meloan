@@ -1383,23 +1383,6 @@
         }
       }
     },
-    "Receipt.Tax" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Service Tax"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "外税"
-          }
-        }
-      }
-    },
     "Receipt.Tax.AutomaticallyCalculatedHint" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1468,6 +1451,23 @@
         }
       }
     },
+    "Receipt.Taxes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taxes"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "外税"
+          }
+        }
+      }
+    },
     "Receipt.Total" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1481,6 +1481,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "合計"
+          }
+        }
+      }
+    },
+    "Receipt.Total.AfterTax" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total After Tax"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "合計"
+          }
+        }
+      }
+    },
+    "Receipt.Total.BeforeTax" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Before Tax"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "小計"
           }
         }
       }
@@ -1936,6 +1970,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択なし"
+          }
+        }
+      }
+    },
+    "Shared.PDFExport" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF File"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDFファイル"
           }
         }
       }

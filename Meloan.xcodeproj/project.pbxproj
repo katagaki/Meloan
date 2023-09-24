@@ -36,6 +36,9 @@
 		E4130F5C2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F5B2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift */; };
 		E4130F5E2AC0040D00AEF308 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F5D2AC0040D00AEF308 /* Defaults.swift */; };
 		E4130F5F2AC0041900AEF308 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F5D2AC0040D00AEF308 /* Defaults.swift */; };
+		E4130F612AC0057700AEF308 /* PDFExporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F602AC0057700AEF308 /* PDFExporterView.swift */; };
+		E4130F632AC008A300AEF308 /* PDFDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F622AC008A300AEF308 /* PDFDocument.swift */; };
+		E4130F652AC01E7400AEF308 /* PDFKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F642AC01E7400AEF308 /* PDFKitView.swift */; };
 		E44B68182AB4ADCA00B243B0 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68172AB4ADCA00B243B0 /* App.swift */; };
 		E44B681A2AB4ADCA00B243B0 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68192AB4ADCA00B243B0 /* PeopleView.swift */; };
 		E44B681C2AB4ADCA00B243B0 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B681B2AB4ADCA00B243B0 /* Person.swift */; };
@@ -157,6 +160,9 @@
 		E4130F582ABFF32300AEF308 /* NoReceiptHintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReceiptHintView.swift; sourceTree = "<group>"; };
 		E4130F5B2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTroubleshootingView.swift; sourceTree = "<group>"; };
 		E4130F5D2AC0040D00AEF308 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		E4130F602AC0057700AEF308 /* PDFExporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExporterView.swift; sourceTree = "<group>"; };
+		E4130F622AC008A300AEF308 /* PDFDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDocument.swift; sourceTree = "<group>"; };
+		E4130F642AC01E7400AEF308 /* PDFKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitView.swift; sourceTree = "<group>"; };
 		E44B68142AB4ADCA00B243B0 /* Meloan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meloan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44B68172AB4ADCA00B243B0 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		E44B68192AB4ADCA00B243B0 /* PeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
@@ -292,6 +298,7 @@
 				E4130F542ABF3B6400AEF308 /* Array.swift */,
 				E4130F462ABEA4AB00AEF308 /* Bundle.swift */,
 				E4130F4C2ABEBCAE00AEF308 /* JSONs.swift */,
+				E4130F622AC008A300AEF308 /* PDFDocument.swift */,
 				E4130F482ABEBA4700AEF308 /* StateNames.json */,
 				E4130F402ABEA0AC00AEF308 /* TaxRates.json */,
 			);
@@ -417,6 +424,8 @@
 		E44B68572AB5BC0600B243B0 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E4130F602AC0057700AEF308 /* PDFExporterView.swift */,
+				E4130F642AC01E7400AEF308 /* PDFKitView.swift */,
 				E44B68552AB5BBFE00B243B0 /* PersonRow.swift */,
 				E44B68692AB6C6DB00B243B0 /* PeoplePicker.swift */,
 				E4766C252AB886C9005E4B47 /* ReceiptItemDetailView.swift */,
@@ -666,6 +675,7 @@
 				E4130F382ABDA2C400AEF308 /* ListAppIconRow.swift in Sources */,
 				E48A28502ABC5C27009E7912 /* IOUTip.swift in Sources */,
 				E44B681A2AB4ADCA00B243B0 /* PeopleView.swift in Sources */,
+				E4130F632AC008A300AEF308 /* PDFDocument.swift in Sources */,
 				E44B683E2AB5705600B243B0 /* ViewPath.swift in Sources */,
 				E44B686A2AB6C6DB00B243B0 /* PeoplePicker.swift in Sources */,
 				E44B681C2AB4ADCA00B243B0 /* Person.swift in Sources */,
@@ -676,6 +686,7 @@
 				E44B686F2AB72A8700B243B0 /* IOUViewSafe.swift in Sources */,
 				E4130F362ABDA27400AEF308 /* AppIcon.swift in Sources */,
 				E48A284E2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift in Sources */,
+				E4130F612AC0057700AEF308 /* PDFExporterView.swift in Sources */,
 				E44B68482AB58B9100B243B0 /* PersonCreator.swift in Sources */,
 				E4130F5C2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift in Sources */,
 				E44B68732AB7348700B243B0 /* ReceiptItemRow.swift in Sources */,
@@ -688,6 +699,7 @@
 				E44B68372AB5700300B243B0 /* NavigationManager.swift in Sources */,
 				E4130F212ABD203000AEF308 /* MoreManageDataView.swift in Sources */,
 				E44B68612AB5FA0F00B243B0 /* ReceiptItemAssignableRow.swift in Sources */,
+				E4130F652AC01E7400AEF308 /* PDFKitView.swift in Sources */,
 				E44B68432AB579D800B243B0 /* MoreView.swift in Sources */,
 				E44B68632AB6BA0100B243B0 /* IOUView.swift in Sources */,
 				E44B682C2AB5671600B243B0 /* TaxItem.swift in Sources */,

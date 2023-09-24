@@ -13,6 +13,7 @@ struct ReceiptDetailView: View {
 
     @State var receipt: Receipt
     @State var confettiCounter: Int = 0
+    @State var isSharing: Bool = false
 
     var body: some View {
         List {
@@ -133,7 +134,7 @@ struct ReceiptDetailView: View {
                         ReceiptItemRow(name: item.name, price: item.price)
                     }
                 } header: {
-                    ListSectionHeader(text: "Receipt.Tax")
+                    ListSectionHeader(text: "Receipt.Taxes")
                         .font(.body)
                 } footer: {
                     HStack(alignment: .center, spacing: 4.0) {
@@ -150,6 +151,19 @@ struct ReceiptDetailView: View {
             }
         }
         .confettiCannon(counter: $confettiCounter, num: Int(receipt.sum()), rainHeight: 1000.0, radius: 500.0)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    isSharing = true
+                } label: {
+                    Image("PDF")
+                }
+            }
+        }
+        .sheet(isPresented: $isSharing, content: {
+            PDFExporterView(receipt: receipt)
+                .presentationDragIndicator(.visible)
+        })
         .navigationTitle(receipt.name)
         .navigationBarTitleDisplayMode(.inline)
     }
