@@ -53,7 +53,7 @@ struct PDFExporterView: View {
     // swiftlint:disable function_body_length
     func createPDF() -> Data {
         let format = UIGraphicsPDFRendererFormat()
-        format.documentInfo = [kCGPDFContextTitle: receipt.name + " " + Date.now.formatted(date: .abbreviated, 
+        format.documentInfo = [kCGPDFContextTitle: receipt.name + " " + Date.now.formatted(date: .abbreviated,
                                                                                            time: .omitted),
                               kCGPDFContextAuthor: Bundle.main.appName()] as [String: Any]
         let renderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 597.6, height: 842.4),
@@ -164,7 +164,7 @@ struct PDFExporterView: View {
         title.draw(in: titleRect)
         return titleSize
     }
-    
+
     func drawSubtitle(_ text: String, x: Double, y: Double) -> CGSize {
         let largeFontAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 28.0)]
         let subtitle = NSAttributedString(string: text, attributes: largeFontAttributes)
