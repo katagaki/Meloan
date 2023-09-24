@@ -34,6 +34,8 @@
 		E4130F552ABF3B6400AEF308 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F542ABF3B6400AEF308 /* Array.swift */; };
 		E4130F5A2ABFF37000AEF308 /* NoReceiptHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F582ABFF32300AEF308 /* NoReceiptHintView.swift */; };
 		E4130F5C2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F5B2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift */; };
+		E4130F5E2AC0040D00AEF308 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F5D2AC0040D00AEF308 /* Defaults.swift */; };
+		E4130F5F2AC0041900AEF308 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F5D2AC0040D00AEF308 /* Defaults.swift */; };
 		E44B68182AB4ADCA00B243B0 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68172AB4ADCA00B243B0 /* App.swift */; };
 		E44B681A2AB4ADCA00B243B0 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68192AB4ADCA00B243B0 /* PeopleView.swift */; };
 		E44B681C2AB4ADCA00B243B0 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B681B2AB4ADCA00B243B0 /* Person.swift */; };
@@ -154,6 +156,7 @@
 		E4130F542ABF3B6400AEF308 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		E4130F582ABFF32300AEF308 /* NoReceiptHintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReceiptHintView.swift; sourceTree = "<group>"; };
 		E4130F5B2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTroubleshootingView.swift; sourceTree = "<group>"; };
+		E4130F5D2AC0040D00AEF308 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		E44B68142AB4ADCA00B243B0 /* Meloan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meloan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44B68172AB4ADCA00B243B0 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		E44B68192AB4ADCA00B243B0 /* PeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
@@ -277,6 +280,7 @@
 		E4130F392ABE9C5400AEF308 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E4130F5D2AC0040D00AEF308 /* Defaults.swift */,
 				E4130F3A2ABE9C5D00AEF308 /* Formatters.swift */,
 			);
 			path = Utilities;
@@ -692,6 +696,7 @@
 				E4130F552ABF3B6400AEF308 /* Array.swift in Sources */,
 				E4766C262AB886C9005E4B47 /* ReceiptItemDetailView.swift in Sources */,
 				E44B683C2AB5704300B243B0 /* TabType.swift in Sources */,
+				E4130F5E2AC0040D00AEF308 /* Defaults.swift in Sources */,
 				E44B68292AB5667A00B243B0 /* ReceiptItem.swift in Sources */,
 				E44B68392AB5702C00B243B0 /* TabManager.swift in Sources */,
 				E44B68712AB731DF00B243B0 /* ReceiptDetailView.swift in Sources */,
@@ -734,6 +739,7 @@
 				E460825A2AB9A771001CF504 /* ReceiptEntry.swift in Sources */,
 				E460823D2AB9575D001CF504 /* Widgets.swift in Sources */,
 				E4130F502ABEBD8B00AEF308 /* JSONs.swift in Sources */,
+				E4130F5F2AC0041900AEF308 /* Defaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

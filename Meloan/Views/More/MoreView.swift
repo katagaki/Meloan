@@ -8,6 +8,7 @@
 import Komponents
 import SwiftUI
 
+// swiftlint:disable type_body_length
 struct MoreView: View {
 
     @EnvironmentObject var navigationManager: NavigationManager
@@ -265,3 +266,4 @@ This app uses data from states_hash.json. For more information, visit https://gi
         }
     }
 }
+// swiftlint:enable type_body_length

@@ -192,7 +192,7 @@ struct ReceiptEditor: View {
         .navigationBarTitleDisplayMode(.inline)
         // TODO: Implement manual saving
         .onDisappear {
-            if markSelfPaid {
+            if defaults.value(forKey: "MarkSelfPaid") == nil || markSelfPaid {
                 receipt.setLenderItemsPaid()
             }
             if taxRateCountry != "" {
