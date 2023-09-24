@@ -63,7 +63,7 @@ struct ReceiptItemEditableRow: View {
 
     func shouldBeDisabled() -> Bool {
         if let taxItem = taxItem,
-           taxItem.id.starts(with: "AUTOTAX-") {
+           taxItem.id.starts(with: "AUTOTAX-") || taxItem.id.starts(with: "AUTOTEN-") {
             return true
         }
         return false
