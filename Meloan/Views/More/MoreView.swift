@@ -167,11 +167,21 @@ struct MoreView: View {
                     ListSectionHeader(text: "More.Currency")
                         .font(.body)
                 }
+                Section {
+                    NavigationLink(value: ViewPath.moreTroubleshooting) {
+                        ListRow(image: "ListIcon.Troubleshooting",
+                                title: "More.Troubleshooting")
+                    }
+                } header: {
+                    ListSectionHeader(text: "More.Advanced")
+                        .font(.body)
+                }
             }
             .navigationDestination(for: ViewPath.self) { viewPath in
                 switch viewPath {
-                case .moreData: ManageDataView()
+                case .moreData: MoreManageDataView()
                 case .moreAppIcon: MoreAppIconView()
+                case .moreTroubleshooting: MoreTroubleshootingView()
                 case .moreAttributions: LicensesView(licenses: [
                     License(libraryName: "ConfettiSwiftUI", text:
 """

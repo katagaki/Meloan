@@ -17,5 +17,6 @@ enum ViewPath: Hashable {
     case receiptAssignor
     case moreData
     case moreAppIcon
+    case moreTroubleshooting
     case moreAttributions
 }

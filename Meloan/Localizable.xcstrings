@@ -283,6 +283,23 @@
         }
       }
     },
+    "More.Advanced" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advanced"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高度オプション"
+          }
+        }
+      }
+    },
     "More.Currency" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -551,23 +568,6 @@
         }
       }
     },
-    "More.Data.Troubleshooting" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Troubleshooting"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "トラブルシューティング"
-          }
-        }
-      }
-    },
     "More.General" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -717,6 +717,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "10%のサービス料は自動的に追加されます。"
+          }
+        }
+      }
+    },
+    "More.Troubleshooting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Troubleshooting"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "トラブルシューティング"
           }
         }
       }
@@ -2167,6 +2184,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "検索"
+          }
+        }
+      }
+    },
+    "ViewTitle.Troubleshooting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Troubleshooting"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "トラブルシューティング"
           }
         }
       }

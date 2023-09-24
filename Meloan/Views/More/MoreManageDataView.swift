@@ -1,5 +1,5 @@
 //
-//  ManageDataView.swift
+//  MoreManageDataView.swift
 //  Meloan
 //
 //  Created by シン・ジャスティン on 2023/09/22.
@@ -9,7 +9,7 @@ import Komponents
 import SwiftData
 import SwiftUI
 
-struct ManageDataView: View {
+struct MoreManageDataView: View {
 
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
@@ -33,62 +33,6 @@ struct ManageDataView: View {
                 Text("More.Data.SampleData.Description")
                     .font(.body)
             }
-            Section {
-                Button {
-                    Task { @MainActor in
-                        _ = try? modelContext.fetch(FetchDescriptor<ReceiptItem>())
-                    }
-                } label: {
-                    Text("More.Data.AttemptReloadData")
-                }
-                Button {
-                    MeloanApp.reloadWidget()
-                } label: {
-                    Text("More.Data.ReloadWidgets")
-                }
-            } header: {
-                ListSectionHeader(text: "More.Data.Troubleshooting")
-                    .font(.body)
-            }
-            Section {
-                Button {
-                    isSettingsResetConfirming = true
-                } label: {
-                    Text("More.Data.ResetAllSettings")
-                        .foregroundStyle(.red)
-                }
-                Button {
-                    isDeleteConfirming = true
-                } label: {
-                    Text("More.Data.DeleteAll")
-                        .foregroundStyle(.red)
-                }
-            }
-        }
-        .alert("Alert.ResetAllSettings.Title", isPresented: $isSettingsResetConfirming) {
-            Button(role: .destructive) {
-                resetSettings()
-            } label: {
-                Text("Shared.Yes")
-            }
-            Button(role: .cancel) { } label: {
-                Text("Shared.No")
-            }
-        } message: {
-            Text("Alert.ResetAllSettings.Text")
-        }
-        .alert("Alert.DeleteAll.Title", isPresented: $isDeleteConfirming) {
-            Button(role: .destructive) {
-                deleteAllData()
-                navigationManager.popAll()
-            } label: {
-                Text("Shared.Yes")
-            }
-            Button(role: .cancel) { } label: {
-                Text("Shared.No")
-            }
-        } message: {
-            Text("Alert.DeleteAll.Text")
         }
         .navigationTitle("ViewTitle.Data")
     }
@@ -130,20 +74,5 @@ struct ManageDataView: View {
         receipt.setPersonWhoPaid(to: person1)
         receipt.addPeopleWhoParticipated(from: [person1, person2, person3])
         modelContext.insert(receipt)
-    }
-
-    func deleteAllData() {
-        for receipt in receipts {
-            modelContext.delete(receipt)
-        }
-        for person in people where person.id != "ME" {
-            modelContext.delete(person)
-        }
-    }
-
-    func resetSettings() {
-        let domain = Bundle.main.bundleIdentifier!
-        defaults.removePersistentDomain(forName: domain)
-        defaults.synchronize()
     }
 }

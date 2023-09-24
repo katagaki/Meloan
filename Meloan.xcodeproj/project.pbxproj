@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E4130F212ABD203000AEF308 /* ManageDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F202ABD203000AEF308 /* ManageDataView.swift */; };
+		E4130F212ABD203000AEF308 /* MoreManageDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F202ABD203000AEF308 /* MoreManageDataView.swift */; };
 		E4130F272ABD918600AEF308 /* JPY@3x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F232ABD918600AEF308 /* JPY@3x~ipad.png */; };
 		E4130F282ABD918600AEF308 /* JPY@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F242ABD918600AEF308 /* JPY@2x~ipad.png */; };
 		E4130F292ABD918600AEF308 /* JPY@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F252ABD918600AEF308 /* JPY@3x.png */; };
@@ -33,6 +33,7 @@
 		E4130F532ABEBDA000AEF308 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F462ABEA4AB00AEF308 /* Bundle.swift */; };
 		E4130F552ABF3B6400AEF308 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F542ABF3B6400AEF308 /* Array.swift */; };
 		E4130F5A2ABFF37000AEF308 /* NoReceiptHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F582ABFF32300AEF308 /* NoReceiptHintView.swift */; };
+		E4130F5C2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F5B2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift */; };
 		E44B68182AB4ADCA00B243B0 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68172AB4ADCA00B243B0 /* App.swift */; };
 		E44B681A2AB4ADCA00B243B0 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68192AB4ADCA00B243B0 /* PeopleView.swift */; };
 		E44B681C2AB4ADCA00B243B0 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B681B2AB4ADCA00B243B0 /* Person.swift */; };
@@ -131,7 +132,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E4130F202ABD203000AEF308 /* ManageDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageDataView.swift; sourceTree = "<group>"; };
+		E4130F202ABD203000AEF308 /* MoreManageDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreManageDataView.swift; sourceTree = "<group>"; };
 		E4130F232ABD918600AEF308 /* JPY@3x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JPY@3x~ipad.png"; sourceTree = "<group>"; };
 		E4130F242ABD918600AEF308 /* JPY@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JPY@2x~ipad.png"; sourceTree = "<group>"; };
 		E4130F252ABD918600AEF308 /* JPY@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JPY@3x.png"; sourceTree = "<group>"; };
@@ -152,6 +153,7 @@
 		E4130F4C2ABEBCAE00AEF308 /* JSONs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONs.swift; sourceTree = "<group>"; };
 		E4130F542ABF3B6400AEF308 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		E4130F582ABFF32300AEF308 /* NoReceiptHintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReceiptHintView.swift; sourceTree = "<group>"; };
+		E4130F5B2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTroubleshootingView.swift; sourceTree = "<group>"; };
 		E44B68142AB4ADCA00B243B0 /* Meloan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meloan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44B68172AB4ADCA00B243B0 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		E44B68192AB4ADCA00B243B0 /* PeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
@@ -250,8 +252,9 @@
 			isa = PBXGroup;
 			children = (
 				E44B68422AB579D800B243B0 /* MoreView.swift */,
-				E4130F202ABD203000AEF308 /* ManageDataView.swift */,
+				E4130F202ABD203000AEF308 /* MoreManageDataView.swift */,
 				E4130F332ABDA26600AEF308 /* MoreAppIconView.swift */,
+				E4130F5B2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				E4130F362ABDA27400AEF308 /* AppIcon.swift in Sources */,
 				E48A284E2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift in Sources */,
 				E44B68482AB58B9100B243B0 /* PersonCreator.swift in Sources */,
+				E4130F5C2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift in Sources */,
 				E44B68732AB7348700B243B0 /* ReceiptItemRow.swift in Sources */,
 				E44B682E2AB5673B00B243B0 /* DiscountItem.swift in Sources */,
 				E4766C1C2AB845EC005E4B47 /* ReceiptEditor.swift in Sources */,
@@ -678,7 +682,7 @@
 				E44B68302AB5675E00B243B0 /* MainTabView.swift in Sources */,
 				E4130F4B2ABEBBE000AEF308 /* StateName.swift in Sources */,
 				E44B68372AB5700300B243B0 /* NavigationManager.swift in Sources */,
-				E4130F212ABD203000AEF308 /* ManageDataView.swift in Sources */,
+				E4130F212ABD203000AEF308 /* MoreManageDataView.swift in Sources */,
 				E44B68612AB5FA0F00B243B0 /* ReceiptItemAssignableRow.swift in Sources */,
 				E44B68432AB579D800B243B0 /* MoreView.swift in Sources */,
 				E44B68632AB6BA0100B243B0 /* IOUView.swift in Sources */,
