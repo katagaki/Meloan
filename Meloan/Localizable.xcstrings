@@ -1643,13 +1643,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Clear History"
+            "value" : "Clear"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "履歴を消去"
+            "value" : "消去"
           }
         }
       }
@@ -1757,7 +1757,7 @@
       }
     },
     "Shared.Delete" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
