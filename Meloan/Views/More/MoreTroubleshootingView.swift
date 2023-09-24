@@ -87,8 +87,7 @@ struct MoreTroubleshootingView: View {
     }
 
     func resetSettings() {
-        let domain = Bundle.main.bundleIdentifier!
-        defaults.removePersistentDomain(forName: domain)
+        defaults.removePersistentDomain(forName: "group.com.tsubuzaki.Meloan")
         defaults.synchronize()
     }
 }
