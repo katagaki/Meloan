@@ -107,7 +107,7 @@ struct ReceiptProgressWidgetView: View {
                     Spacer(minLength: 0)
                 }
             } else {
-                Spacer()
+                NoReceiptHintView()
             }
         }
     }

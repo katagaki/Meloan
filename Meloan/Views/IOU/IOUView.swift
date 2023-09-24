@@ -105,7 +105,7 @@ struct IOUView: View {
                     }
                     .pickerStyle(.navigationLink)
                     .padding()
-                    .background(.ultraThinMaterial)
+                    .background(.regularMaterial)
                     .overlay(Rectangle().frame(width: nil,
                                                height: 1/3,
                                                alignment: .top).foregroundColor(.primary.opacity(0.3)),

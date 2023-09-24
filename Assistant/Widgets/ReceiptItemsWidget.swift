@@ -116,7 +116,7 @@ struct ReceiptItemsWidgetView: View {
                     }
                 }
             } else {
-                Spacer()
+                NoReceiptHintView()
             }
         }
     }

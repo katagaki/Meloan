@@ -60,13 +60,6 @@ struct ReceiptsView: View {
                                         }
                                     }
                                     ReceiptColumn(receipt: receipt)
-                                        .contextMenu {
-                                            Button(role: .destructive) {
-                                                modelContext.delete(receipt)
-                                            } label: {
-                                                Label("Shared.Delete", image: "Delete")
-                                            }
-                                        }
                                         .offset(y: offsets[receipt]?.height ?? 0.0)
                                         .gesture(
                                             DragGesture(minimumDistance: 20)
@@ -107,7 +100,7 @@ struct ReceiptsView: View {
             .safeAreaInset(edge: .top, spacing: 0.0) {
                 Color.clear
                     .frame(maxWidth: .infinity, maxHeight: 0.0)
-                    .background(.ultraThinMaterial)
+                    .background(.regularMaterial)
                     .overlay(Rectangle().frame(width: nil,
                                                height: 1/3,
                                                alignment: .bottom).foregroundColor(.primary.opacity(0.3)),
@@ -119,7 +112,7 @@ struct ReceiptsView: View {
                         .bold()
                 }
                 .padding()
-                .background(.ultraThinMaterial)
+                .background(.regularMaterial)
                 .overlay(Rectangle().frame(width: nil,
                                            height: 1/3,
                                            alignment: .top).foregroundColor(.primary.opacity(0.3)),

@@ -32,6 +32,7 @@
 		E4130F512ABEBD9200AEF308 /* TaxRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F442ABEA2F400AEF308 /* TaxRate.swift */; };
 		E4130F532ABEBDA000AEF308 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F462ABEA4AB00AEF308 /* Bundle.swift */; };
 		E4130F552ABF3B6400AEF308 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F542ABF3B6400AEF308 /* Array.swift */; };
+		E4130F5A2ABFF37000AEF308 /* NoReceiptHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F582ABFF32300AEF308 /* NoReceiptHintView.swift */; };
 		E44B68182AB4ADCA00B243B0 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68172AB4ADCA00B243B0 /* App.swift */; };
 		E44B681A2AB4ADCA00B243B0 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68192AB4ADCA00B243B0 /* PeopleView.swift */; };
 		E44B681C2AB4ADCA00B243B0 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B681B2AB4ADCA00B243B0 /* Person.swift */; };
@@ -150,6 +151,7 @@
 		E4130F4A2ABEBBE000AEF308 /* StateName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateName.swift; sourceTree = "<group>"; };
 		E4130F4C2ABEBCAE00AEF308 /* JSONs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONs.swift; sourceTree = "<group>"; };
 		E4130F542ABF3B6400AEF308 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		E4130F582ABFF32300AEF308 /* NoReceiptHintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReceiptHintView.swift; sourceTree = "<group>"; };
 		E44B68142AB4ADCA00B243B0 /* Meloan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meloan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44B68172AB4ADCA00B243B0 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		E44B68192AB4ADCA00B243B0 /* PeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 				E460823E2AB9575D001CF504 /* ReceiptProgressWidget.swift */,
 				E460826B2AB9D173001CF504 /* ReceiptItemsWidget.swift */,
 				E48A28482ABB33AC009E7912 /* ReceiptIOUWidget.swift */,
+				E4130F582ABFF32300AEF308 /* NoReceiptHintView.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				E4130F512ABEBD9200AEF308 /* TaxRate.swift in Sources */,
 				E460824E2AB95818001CF504 /* Receipt.swift in Sources */,
 				E460824A2AB95818001CF504 /* ReceiptItem.swift in Sources */,
+				E4130F5A2ABFF37000AEF308 /* NoReceiptHintView.swift in Sources */,
 				E460828F2ABA02F6001CF504 /* TogglePaidIntent.swift in Sources */,
 				E460824B2AB95818001CF504 /* Person.swift in Sources */,
 				E460825D2AB9A7A0001CF504 /* Provider.swift in Sources */,

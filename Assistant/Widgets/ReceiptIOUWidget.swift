@@ -93,7 +93,7 @@ struct ReceiptIOUWidgetView: View {
                     .monospaced()
                 }
             } else {
-                Spacer()
+                NoReceiptHintView()
             }
         }
     }

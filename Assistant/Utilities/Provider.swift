@@ -15,7 +15,7 @@ struct Provider: AppIntentTimelineProvider {
     typealias Intent = ReceiptIntent
 
     func placeholder(in context: Context) -> ReceiptEntry {
-        ReceiptEntry(date: Date.now)
+        ReceiptEntry()
     }
 
     @MainActor
@@ -37,7 +37,7 @@ struct Provider: AppIntentTimelineProvider {
                 debugPrint(error.localizedDescription)
             }
         }
-        return ReceiptEntry(date: Date.now)
+        return ReceiptEntry()
     }
 
     @MainActor
@@ -53,7 +53,7 @@ struct Provider: AppIntentTimelineProvider {
                 let receipts = try sharedModelContainer.mainContext.fetch(descriptor)
                 receipt = receipts.first
                 // Return timeline with entry to pass to widget
-                let timeline = Timeline(entries: [ReceiptEntry(date: Date.now, receipt: receipt)], policy: .atEnd)
+                let timeline = Timeline(entries: [ReceiptEntry(receipt: receipt)], policy: .atEnd)
                 return timeline
             } catch {
                 debugPrint(error.localizedDescription)

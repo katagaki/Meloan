@@ -1757,6 +1757,7 @@
       }
     },
     "Shared.Delete" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
