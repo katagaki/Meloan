@@ -41,6 +41,7 @@ struct PDFExporterView: View {
                         }
                     }
                     .navigationTitle("Shared.PDFExport")
+                    .navigationBarTitleDisplayMode(.inline)
             }
         }
         .onAppear {
