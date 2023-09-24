@@ -12,11 +12,6 @@ import SwiftUI
 struct MoreManageDataView: View {
 
     @Environment(\.modelContext) var modelContext
-    @EnvironmentObject var navigationManager: NavigationManager
-    @Query var people: [Person]
-    @Query var receipts: [Receipt]
-    @State var isDeleteConfirming: Bool = false
-    @State var isSettingsResetConfirming: Bool = false
 
     var body: some View {
         List {
