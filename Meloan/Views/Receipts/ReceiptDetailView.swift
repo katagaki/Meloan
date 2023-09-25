@@ -206,19 +206,22 @@ struct ReceiptDetailView: View {
             Divider()
             if let personWhoPaid = receipt.personWhoPaid {
                 HStack(alignment: .center, spacing: 16.0) {
-                    ListRow(image: "ListIcon.Payer", title: "Receipt.Payer")
+                    ListRow(image: "ListIcon.Payer",
+                            title: NSLocalizedString("Receipt.Payer", comment: ""))
                     Spacer()
                     PersonRow(person: personWhoPaid)
                 }
             }
             Divider()
-            ListSectionHeader(text: "Receipt.Participants")
+            Text(NSLocalizedString("Receipt.Participants", comment: ""))
+                .bold()
             ForEach(receipt.borrowers()) { person in
                 PersonRow(person: person)
             }
             if !receipt.items().isEmpty {
                 Divider()
-                ListSectionHeader(text: "Receipt.PurchasedItems")
+                Text(NSLocalizedString("Receipt.PurchasedItems", comment: ""))
+                    .bold()
                 ForEach(receipt.items()) { item in
                     if let person = item.person {
                         HStack(alignment: .center, spacing: 16.0) {
@@ -247,7 +250,7 @@ struct ReceiptDetailView: View {
                     }
                 }
                 HStack(alignment: .center, spacing: 4.0) {
-                    Text("Receipt.Total")
+                    Text(NSLocalizedString("Receipt.Total", comment: ""))
                     Spacer()
                     Text(format(receipt.sumOfItems()))
                         .monospaced()
@@ -256,20 +259,21 @@ struct ReceiptDetailView: View {
             }
             if !receipt.discountItems().isEmpty {
                 Divider()
-                ListSectionHeader(text: "Receipt.Discounts")
+                Text(NSLocalizedString("Receipt.Discounts", comment: ""))
+                    .bold()
                 ForEach(receipt.discountItems()) { item in
                     ReceiptItemRow(name: item.name, price: item.price, priceFontSize: 16.0)
                 }
             }
             if !receipt.taxItems().isEmpty {
                 Divider()
-                ListSectionHeader(text: "Receipt.Taxes")
-                    .font(.body)
+                Text(NSLocalizedString("Receipt.Taxes", comment: ""))
+                    .bold()
                 ForEach(receipt.taxItems()) { item in
                     ReceiptItemRow(name: item.name, price: item.price, priceFontSize: 16.0)
                 }
                 HStack(alignment: .center, spacing: 4.0) {
-                    Text("Receipt.Tax.Detail")
+                    Text(NSLocalizedString("Receipt.Tax.Detail", comment: ""))
                     Spacer()
                     Text("\(Int(receipt.taxRate() * 100), specifier: "%d")%")
                         .monospaced()
@@ -278,13 +282,13 @@ struct ReceiptDetailView: View {
             }
             Divider()
             HStack(alignment: .center, spacing: 4.0) {
-                Text("Receipt.Total.BeforeTax")
+                Text(NSLocalizedString("Receipt.Total.BeforeTax", comment: ""))
                 Spacer()
                 Text(format(receipt.sumOfItems()))
                     .monospaced()
             }
             HStack(alignment: .center, spacing: 4.0) {
-                Text("Receipt.Total.AfterTax")
+                Text(NSLocalizedString("Receipt.Total.AfterTax", comment: ""))
                 Spacer()
                 Text(format(receipt.sum()))
                     .monospaced()
