@@ -136,8 +136,11 @@ struct PDFExporterView: View {
             let totalBeforeTaxPriceSize = drawPriceText(receipt.sumOfItems(), x: minX, y: minY)
             minY += max(totalBeforeTaxSize.height, totalBeforeTaxPriceSize.height) + 10.0
             let totalAfterTaxSize = drawLeadingText(NSLocalizedString("Receipt.Total.AfterTax", comment: ""),
+                                                    font: .boldSystemFont(ofSize: 16.0),
                                                     x: minX, y: minY)
-            let totalAfterTaxPriceSize = drawPriceText(receipt.sum(), x: minX, y: minY)
+            let totalAfterTaxPriceSize = drawPriceText(receipt.sum(),
+                                                       font: .monospacedSystemFont(ofSize: 16.0, weight: .bold),
+                                                       x: minX, y: minY)
             minY += max(totalAfterTaxSize.height, totalAfterTaxPriceSize.height) + 20.0
             drawDivider(x: minX, y: minY)
         }
