@@ -149,17 +149,18 @@ struct ReceiptDetailView: View {
                     .foregroundStyle(.primary)
                 }
             }
-        }
-        .confettiCannon(counter: $confettiCounter, num: Int(receipt.sum()), rainHeight: 1000.0, radius: 500.0)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
+            Section {
                 Button {
                     isSharing = true
                 } label: {
-                    Image("PDF")
+                    HStack(spacing: 16.0) {
+                        Image("PDF")
+                        Text("Receipt.ExportPDF")
+                    }
                 }
             }
         }
+        .confettiCannon(counter: $confettiCounter, num: Int(receipt.sum()), rainHeight: 1000.0, radius: 500.0)
         .sheet(isPresented: $isSharing, content: {
             PDFExporterView(receipt: receipt)
                 .presentationDragIndicator(.visible)

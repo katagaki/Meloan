@@ -1129,6 +1129,23 @@
         }
       }
     },
+    "Receipt.ExportPDF" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export as PDF"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDFとして書き出す"
+          }
+        }
+      }
+    },
     "Receipt.Item.BasicInformation" : {
       "extractionState" : "manual",
       "localizations" : {
