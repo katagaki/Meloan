@@ -255,13 +255,6 @@ struct ReceiptDetailView: View {
                 ForEach(receipt.taxItems()) { item in
                     ReceiptItemRow(name: item.name, price: item.price, priceFontSize: 16.0)
                 }
-                HStack(alignment: .center, spacing: 4.0) {
-                    Text(NSLocalizedString("Receipt.Tax.Detail", comment: ""))
-                    Spacer()
-                    Text("\(Int(receipt.taxRate() * 100), specifier: "%d")%")
-                        .monospaced()
-                }
-                .bold()
             }
             Divider()
             HStack(alignment: .center, spacing: 4.0) {

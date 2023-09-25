@@ -80,6 +80,10 @@ struct PDFExporterView: View {
                 for item in receipt.items() {
                     let itemNameSize = drawLeadingText(item.name, x: minX, y: minY)
                     let priceSize = drawPriceText(item.price, x: minX, y: minY)
+                    if item.paid {
+                        drawHorizontalLine(x: minX, y: minY + itemNameSize.height / 2, length: itemNameSize.width)
+                        drawHorizontalLine(x: 587.6 - priceSize.width, y: minY + priceSize.height / 2, length: priceSize.width)
+                    }
                     minY += max(itemNameSize.height, priceSize.height) + 10.0
                     if let person = item.person {
                         let personNameSize = drawLeadingSecondaryText(person.name, x: minX + 26.0, y: minY)
@@ -213,6 +217,16 @@ struct PDFExporterView: View {
         divider.move(to: CGPoint(x: x, y: y))
         divider.addLine(to: CGPoint(x: 587.6, y: y))
         UIColor.separator.setStroke()
+        divider.stroke()
+    }
+
+    func drawHorizontalLine(x: Double, y: Double, length: Double, height: Double = 1.0) {
+        // Draw divider
+        let divider = UIBezierPath()
+        divider.lineWidth = height
+        divider.move(to: CGPoint(x: x, y: y))
+        divider.addLine(to: CGPoint(x: x + length, y: y))
+        UIColor.black.setStroke()
         divider.stroke()
     }
 
