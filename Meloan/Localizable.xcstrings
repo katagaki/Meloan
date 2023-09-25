@@ -585,6 +585,23 @@
         }
       }
     },
+    "More.Data.Sync.Description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your data is automatically synced to your iCloud account. You can manage this by going to Settings > Apple ID > iCloud."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリ内のデータは自動的にiCloudに同期されます。この設定を変更するには、「設定」アプリ＞Apple ID＞iCloudでご確認ください。"
+          }
+        }
+      }
+    },
     "More.Data.Sync.State.Error" : {
       "extractionState" : "manual",
       "localizations" : {

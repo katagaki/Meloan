@@ -15,6 +15,7 @@ struct MoreManageDataView: View {
     @Environment(\.modelContext) var modelContext
     @ObservedObject var syncMonitor = SyncMonitor.shared
     @AppStorage(wrappedValue: true, "EnableCloudSync", store: defaults) var enableCloudSync: Bool
+    @AppStorage(wrappedValue: false, "SampleDataCreated", store: defaults) var sampleDataCreated: Bool
 
     var body: some View {
         List {
@@ -78,19 +79,24 @@ struct MoreManageDataView: View {
             } header: {
                 ListSectionHeader(text: "More.Data.Sync")
                     .font(.body)
-            }
-            Section {
-                Button {
-                    createSampleData()
-                } label: {
-                    Text("More.Data.SampleData.Create")
-                }
-            } header: {
-                ListSectionHeader(text: "More.Data.SampleData")
-                    .font(.body)
             } footer: {
-                Text("More.Data.SampleData.Description")
+                Text("More.Data.Sync.Description")
                     .font(.body)
+            }
+            if !sampleDataCreated {
+                Section {
+                    Button {
+                        createSampleData()
+                    } label: {
+                        Text("More.Data.SampleData.Create")
+                    }
+                } header: {
+                    ListSectionHeader(text: "More.Data.SampleData")
+                        .font(.body)
+                } footer: {
+                    Text("More.Data.SampleData.Description")
+                        .font(.body)
+                }
             }
         }
         .navigationTitle("ViewTitle.Data")
@@ -120,12 +126,16 @@ struct MoreManageDataView: View {
         let taxItem2 = TaxItem(name: NSLocalizedString("SampleData.TaxItem2", comment: ""),
                                price: 6.48)
         let receipt = Receipt(name: NSLocalizedString("SampleData.ReceiptName", comment: ""))
+        person1.id = "SAMPLE-PERSON-1"
+        person2.id = "SAMPLE-PERSON-2"
+        person3.id = "SAMPLE-PERSON-3"
         modelContext.insert(person1)
         modelContext.insert(person2)
         modelContext.insert(person3)
         receiptItem2.setPurchaser(to: person1)
         receiptItem3.setPurchaser(to: person2)
         receiptItem4.setPurchaser(to: person3)
+        receipt.id = "SAMPLE-RECEIPT"
         receipt.addReceiptItems(from: [receiptItem1, receiptItem2, receiptItem3,
                                        receiptItem4, receiptItem5])
         receipt.addDiscountItems(from: [discountItem])
@@ -133,5 +143,8 @@ struct MoreManageDataView: View {
         receipt.setPersonWhoPaid(to: person1)
         receipt.addPeopleWhoParticipated(from: [person1, person2, person3])
         modelContext.insert(receipt)
+        withAnimation {
+            sampleDataCreated = true
+        }
     }
 }
