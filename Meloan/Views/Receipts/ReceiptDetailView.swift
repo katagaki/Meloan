@@ -203,49 +203,37 @@ struct ReceiptDetailView: View {
                     .resizable()
                     .frame(width: 40.0, height: 40.0)
             }
-            Divider()
-            if let personWhoPaid = receipt.personWhoPaid {
-                HStack(alignment: .center, spacing: 16.0) {
-                    ListRow(image: "ListIcon.Payer",
-                            title: NSLocalizedString("Receipt.Payer", comment: ""))
-                    Spacer()
-                    PersonRow(person: personWhoPaid)
-                }
-            }
-            Divider()
-            Text(NSLocalizedString("Receipt.Participants", comment: ""))
-                .bold()
-            ForEach(receipt.borrowers()) { person in
-                PersonRow(person: person)
-            }
             if !receipt.items().isEmpty {
                 Divider()
                 Text(NSLocalizedString("Receipt.PurchasedItems", comment: ""))
+                    .font(.system(size: 28.0))
                     .bold()
                 ForEach(receipt.items()) { item in
-                    if let person = item.person {
-                        HStack(alignment: .center, spacing: 16.0) {
-                            Group {
-                                if let data = person.photo, let image = UIImage(data: data) {
-                                    Image(uiImage: image)
-                                        .resizable()
-                                } else {
-                                    Image("Profile.Generic")
-                                        .resizable()
+                    VStack(alignment: .leading, spacing: 8.0) {
+                        ReceiptItemRow(name: item.name, price: item.price, priceFontSize: 16.0)
+                            .strikethrough(item.paid)
+                        HStack(alignment: .center, spacing: 8.0) {
+                            if let person = item.person {
+                                Group {
+                                    if let data = person.photo, let image = UIImage(data: data) {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                    } else {
+                                        Image("Profile.Generic")
+                                            .resizable()
+                                    }
                                 }
+                                .frame(width: 16.0, height: 16.0)
+                                .clipShape(Circle())
+                                Text(person.name)
+                                    .foregroundStyle(.gray)
+                            } else {
+                                Image("Profile.Shared.Circle")
+                                    .resizable()
+                                    .frame(width: 16.0, height: 16.0)
+                                Text(NSLocalizedString("Shared.Shared", comment: ""))
+                                    .foregroundStyle(.gray)
                             }
-                            .frame(width: 32.0, height: 32.0)
-                            .clipShape(Circle())
-                            ReceiptItemRow(name: item.name, price: item.price, priceFontSize: 16.0)
-                                .strikethrough(item.paid)
-                        }
-                    } else {
-                        HStack(alignment: .center, spacing: 16.0) {
-                            Image("Profile.Shared.Circle")
-                                .resizable()
-                            .frame(width: 32.0, height: 32.0)
-                            ReceiptItemRow(name: item.name, price: item.price, priceFontSize: 16.0)
-                                .strikethrough(item.paid)
                         }
                     }
                 }
@@ -253,6 +241,7 @@ struct ReceiptDetailView: View {
             if !receipt.discountItems().isEmpty {
                 Divider()
                 Text(NSLocalizedString("Receipt.Discounts", comment: ""))
+                    .font(.system(size: 28.0))
                     .bold()
                 ForEach(receipt.discountItems()) { item in
                     ReceiptItemRow(name: item.name, price: item.price, priceFontSize: 16.0)
@@ -261,6 +250,7 @@ struct ReceiptDetailView: View {
             if !receipt.taxItems().isEmpty {
                 Divider()
                 Text(NSLocalizedString("Receipt.Taxes", comment: ""))
+                    .font(.system(size: 28.0))
                     .bold()
                 ForEach(receipt.taxItems()) { item in
                     ReceiptItemRow(name: item.name, price: item.price, priceFontSize: 16.0)

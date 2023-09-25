@@ -182,7 +182,7 @@ struct PDFExporterView: View {
     func drawLeadingSecondaryText(_ text: String, font: UIFont = .systemFont(ofSize: 16.0),
                                   x: Double, y: Double) -> CGSize {
         let regularFontAttributes = [NSAttributedString.Key.font: font,
-                                     NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+                                     NSAttributedString.Key.foregroundColor: UIColor.gray]
         let text = NSAttributedString(string: text, attributes: regularFontAttributes)
         let textSize = text.size()
         let textRect = CGRect(x: x, y: y, width: textSize.width, height: textSize.height)
