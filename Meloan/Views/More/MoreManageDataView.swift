@@ -5,6 +5,7 @@
 //  Created by シン・ジャスティン on 2023/09/22.
 //
 
+import CloudKit
 import CloudKitSyncMonitor
 import Komponents
 import SwiftData
@@ -99,6 +100,23 @@ struct MoreManageDataView: View {
                 }
             }
         }
+//        .onChange(of: enableCloudSync) { _, newValue in
+//            sharedModelContainer = newContainer()
+//            if !newValue {
+//                let container = CKContainer(identifier: "iCloud.com.tsubuzaki.Meloan")
+//                container.privateCloudDatabase.fetchAllRecordZones { zones, error in
+//                    if let error = error {
+//                        debugPrint(error.localizedDescription)
+//                    } else if let zones = zones {
+//                        let zoneIDs = zones.map { $0.zoneID }
+//                        let deletionOperation = CKModifyRecordZonesOperation(recordZonesToSave: nil,
+//                                                                             recordZoneIDsToDelete: zoneIDs)
+//                        deletionOperation.modifyRecordZonesResultBlock = { _ in }
+//                        container.privateCloudDatabase.add(deletionOperation)
+//                    }
+//                }
+//            }
+//        }
         .navigationTitle("ViewTitle.Data")
     }
 

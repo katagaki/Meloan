@@ -82,7 +82,8 @@ struct PDFExporterView: View {
                     let priceSize = drawPriceText(item.price, x: minX, y: minY)
                     if item.paid {
                         drawHorizontalLine(x: minX, y: minY + itemNameSize.height / 2, length: itemNameSize.width)
-                        drawHorizontalLine(x: 587.6 - priceSize.width, y: minY + priceSize.height / 2, length: priceSize.width)
+                        drawHorizontalLine(x: 587.6 - priceSize.width, y: minY + priceSize.height / 2,
+                                           length: priceSize.width)
                     }
                     minY += max(itemNameSize.height, priceSize.height) + 10.0
                     if let person = item.person {
