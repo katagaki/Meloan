@@ -249,13 +249,6 @@ struct ReceiptDetailView: View {
                         }
                     }
                 }
-                HStack(alignment: .center, spacing: 4.0) {
-                    Text(NSLocalizedString("Receipt.Total", comment: ""))
-                    Spacer()
-                    Text(format(receipt.sumOfItems()))
-                        .monospaced()
-                }
-                .bold()
             }
             if !receipt.discountItems().isEmpty {
                 Divider()
