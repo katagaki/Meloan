@@ -155,6 +155,9 @@ struct ReceiptDetailView: View {
                 } label: {
                     HStack(spacing: 16.0) {
                         Image("PDF")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24.0, height: 24.0)
                         Text("Receipt.ExportPDF")
                     }
                 }
