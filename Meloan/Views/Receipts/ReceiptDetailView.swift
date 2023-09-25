@@ -137,6 +137,7 @@ struct ReceiptDetailView: View {
                                 .clipShape(Circle())
                                 ReceiptItemRow(name: item.name, price: item.price)
                                     .strikethrough(item.paid)
+                                    .multilineTextAlignment(.leading)
                             }
                         }
                     }
