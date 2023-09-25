@@ -115,14 +115,16 @@ struct PDFExporterView: View {
             startNewPageIfNextItemWillOverflowPage(context, estimatedHeight: 36.0, minY: &minY)
             let totalBeforeTaxPriceSize = drawPriceText(receipt.sumOfItems(), x: margin, y: minY)
             let totalBeforeTaxSize = drawLeadingText(NSLocalizedString("Receipt.Total.BeforeTax", comment: ""),
-                                                     x: margin, y: minY, maxWidth: 567.6 - totalBeforeTaxPriceSize.width)
+                                                     x: margin, y: minY,
+                                                     maxWidth: 567.6 - totalBeforeTaxPriceSize.width)
             minY += max(totalBeforeTaxSize.height, totalBeforeTaxPriceSize.height) + 10.0
             let totalAfterTaxPriceSize = drawPriceText(receipt.sum(),
                                                        font: .monospacedSystemFont(ofSize: 16.0, weight: .bold),
                                                        x: margin, y: minY)
             let totalAfterTaxSize = drawLeadingText(NSLocalizedString("Receipt.Total.AfterTax", comment: ""),
                                                     font: .boldSystemFont(ofSize: 16.0),
-                                                    x: margin, y: minY, maxWidth: 567.6 - totalAfterTaxPriceSize.width)
+                                                    x: margin, y: minY,
+                                                    maxWidth: 567.6 - totalAfterTaxPriceSize.width)
             minY += max(totalAfterTaxSize.height, totalAfterTaxPriceSize.height) + 20.0
             drawDivider(x: margin, y: minY)
         }
@@ -130,7 +132,8 @@ struct PDFExporterView: View {
     }
     // swiftlint:enable function_body_length
 
-    func startNewPageIfNextItemWillOverflowPage(_ context: UIGraphicsPDFRendererContext, estimatedHeight: Double, minY: inout Double) {
+    func startNewPageIfNextItemWillOverflowPage(_ context: UIGraphicsPDFRendererContext,
+                                                estimatedHeight: Double, minY: inout Double) {
         if minY + estimatedHeight > 842.4 {
             context.beginPage()
             minY = 10.0

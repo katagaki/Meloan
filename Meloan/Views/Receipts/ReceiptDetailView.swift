@@ -38,6 +38,7 @@ struct ReceiptDetailView: View {
                     }
                     .buttonStyle(.bordered)
                     .clipShape(RoundedRectangle(cornerRadius: 99))
+                    .disabled(receipt.items().count + receipt.discountItems().count + receipt.taxItems().count > 45)
                 }
                 .frame(maxWidth: .infinity)
                 .listRowInsets(EdgeInsets())
