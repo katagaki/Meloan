@@ -63,6 +63,13 @@ struct IOUView: View {
                                         .truncationMode(.middle)
                                         .allowsTightening(true)
                                         .font(.body)
+                                    Spacer()
+                                    ShareLink(item: hey(person, youOweMe: person.sumOwed(to: personWhoPaid))) {
+                                        Image(systemName: "square.and.arrow.up")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 24.0, height: 24.0)
+                                    }
                                 }
                                 .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 8.0, trailing: 0.0))
                             } footer: {

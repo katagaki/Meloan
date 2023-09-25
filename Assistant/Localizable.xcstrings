@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "IOU.ShareText" : {
+
+    },
     "Receipt" : {
       "localizations" : {
         "ja" : {

@@ -232,6 +232,23 @@
         }
       }
     },
+    "IOU.ShareText" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hey %1, you still have an outstanding loan of %2. Let me know when you can return it!"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1さん、今の借金はまだ%2残っていますが、いつまでに返済できそうですか？"
+          }
+        }
+      }
+    },
     "IOU.Tip.Text" : {
       "extractionState" : "manual",
       "localizations" : {
