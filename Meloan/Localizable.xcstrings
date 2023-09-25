@@ -1129,19 +1129,36 @@
         }
       }
     },
+    "Receipt.ExportImage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share Image"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "画像を共有"
+          }
+        }
+      }
+    },
     "Receipt.ExportPDF" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Export as PDF"
+            "value" : "Share PDF"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "PDFとして書き出す"
+            "value" : "PDFを共有"
           }
         }
       }

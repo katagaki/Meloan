@@ -39,7 +39,7 @@ struct ReceiptsView: View {
                             if !hidePaid || !receipt.isPaid() {
                                 ZStack(alignment: .bottom) {
                                     VStack(alignment: .center, spacing: 16.0) {
-                                        ActionButton(text: "Shared.Edit", icon: "Receipt.Edit", isPrimary: false) {
+                                        ActionButton(text: "Shared.Edit", icon: "Edit", isPrimary: false) {
                                             navigationManager.push(ViewPath.receiptEditor(receipt: receipt),
                                                                    for: .receipts)
                                         }
