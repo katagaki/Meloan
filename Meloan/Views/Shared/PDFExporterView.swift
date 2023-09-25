@@ -156,7 +156,8 @@ struct PDFExporterView: View {
     // swiftlint:enable function_body_length
 
     // swiftlint:disable identifier_name
-    func drawTitle(_ text: String, x: Double, y: Double) -> CGSize {
+    func drawTitle(_ text: String,
+                   x: Double, y: Double) -> CGSize {
         let largeFontAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 36.0)]
         let title = NSAttributedString(string: text, attributes: largeFontAttributes)
         let titleSize = title.size()
@@ -165,7 +166,8 @@ struct PDFExporterView: View {
         return titleSize
     }
 
-    func drawSubtitle(_ text: String, x: Double, y: Double) -> CGSize {
+    func drawSubtitle(_ text: String,
+                      x: Double, y: Double) -> CGSize {
         let largeFontAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 28.0)]
         let subtitle = NSAttributedString(string: text, attributes: largeFontAttributes)
         let subtitleSize = subtitle.size()
@@ -174,7 +176,8 @@ struct PDFExporterView: View {
         return subtitleSize
     }
 
-    func drawLeadingText(_ text: String, font: UIFont = .systemFont(ofSize: 16.0), x: Double, y: Double) -> CGSize {
+    func drawLeadingText(_ text: String, font: UIFont = .systemFont(ofSize: 16.0),
+                         x: Double, y: Double) -> CGSize {
         let regularFontAttributes = [NSAttributedString.Key.font: font]
         let text = NSAttributedString(string: text, attributes: regularFontAttributes)
         let textSize = text.size()
@@ -183,7 +186,8 @@ struct PDFExporterView: View {
         return textSize
     }
 
-    func drawLeadingSecondaryText(_ text: String, font: UIFont = .systemFont(ofSize: 16.0), x: Double, y: Double) -> CGSize {
+    func drawLeadingSecondaryText(_ text: String, font: UIFont = .systemFont(ofSize: 16.0),
+                                  x: Double, y: Double) -> CGSize {
         let regularFontAttributes = [NSAttributedString.Key.font: font,
                                      NSAttributedString.Key.foregroundColor: UIColor.lightGray]
         let text = NSAttributedString(string: text, attributes: regularFontAttributes)
@@ -193,7 +197,8 @@ struct PDFExporterView: View {
         return textSize
     }
 
-    func drawTrailingText(_ text: String, font: UIFont = .systemFont(ofSize: 16.0), x: Double, y: Double) -> CGSize {
+    func drawTrailingText(_ text: String, font: UIFont = .systemFont(ofSize: 16.0),
+                          x: Double, y: Double) -> CGSize {
         let regularFontAttributes = [NSAttributedString.Key.font: font]
         let text = NSAttributedString(string: text, attributes: regularFontAttributes)
         let textSize = text.size()

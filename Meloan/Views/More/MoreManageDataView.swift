@@ -5,6 +5,7 @@
 //  Created by シン・ジャスティン on 2023/09/22.
 //
 
+import CloudKitSyncMonitor
 import Komponents
 import SwiftData
 import SwiftUI
@@ -12,9 +13,72 @@ import SwiftUI
 struct MoreManageDataView: View {
 
     @Environment(\.modelContext) var modelContext
+    @ObservedObject var syncMonitor = SyncMonitor.shared
+    @AppStorage(wrappedValue: true, "EnableCloudSync", store: defaults) var enableCloudSync: Bool
 
     var body: some View {
         List {
+            Section {
+                VStack(alignment: .center, spacing: 16.0) {
+                    Group {
+                        if syncMonitor.syncStateSummary.isBroken {
+                            Image(systemName: "xmark.icloud.fill")
+                                .resizable()
+                                .foregroundStyle(.red)
+                        } else if syncMonitor.syncStateSummary.inProgress {
+                            Image(systemName: "arrow.triangle.2.circlepath.icloud.fill")
+                                .resizable()
+                                .foregroundStyle(.primary)
+                        } else {
+                            switch syncMonitor.syncStateSummary {
+                            case .notStarted, .succeeded:
+                                Image(systemName: "checkmark.icloud.fill")
+                                    .resizable()
+                                    .foregroundStyle(.green)
+                            case .noNetwork:
+                                Image(systemName: "bolt.horizontal.icloud.fill")
+                                    .resizable()
+                                    .foregroundStyle(.orange)
+                            default:
+                                Image(systemName: "exclamationmark.icloud.fill")
+                                    .resizable()
+                                    .foregroundStyle(.primary)
+                            }
+                        }
+                    }
+                    .symbolRenderingMode(.multicolor)
+                    .scaledToFit()
+                    .frame(width: 64.0, height: 64.0)
+                    Group {
+                        if syncMonitor.syncStateSummary.isBroken {
+                            Text("More.Data.Sync.State.Error")
+                        } else if syncMonitor.syncStateSummary.inProgress {
+                            Text("More.Data.Sync.State.InProgress")
+                        } else {
+                            switch syncMonitor.syncStateSummary {
+                            case .notStarted, .succeeded:
+                                Text("More.Data.Sync.State.Synced")
+                            case .noNetwork:
+                                Text("More.Data.Sync.State.NoNetwork")
+                            default:
+                                Text("More.Data.Sync.State.NotSyncing")
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                .padding()
+                .alignmentGuide(.listRowSeparatorLeading, computeValue: { _ in
+                    0
+                })
+                Toggle(isOn: $enableCloudSync) {
+                    ListRow(image: "ListIcon.CloudSync", title: "More.Data.Sync")
+                }
+                .disabled(true)
+            } header: {
+                ListSectionHeader(text: "More.Data.Sync")
+                    .font(.body)
+            }
             Section {
                 Button {
                     createSampleData()

@@ -88,6 +88,7 @@
 		E46082642AB9AC5A001CF504 /* ReceiptEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46082632AB9AC5A001CF504 /* ReceiptEntity.swift */; };
 		E46082742AB9FA9A001CF504 /* ReceiptItemsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460826B2AB9D173001CF504 /* ReceiptItemsWidget.swift */; };
 		E460828F2ABA02F6001CF504 /* TogglePaidIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46082662AB9CD63001CF504 /* TogglePaidIntent.swift */; };
+		E47420652AC13EBB00FC5D3B /* CloudKitSyncMonitor in Frameworks */ = {isa = PBXBuildFile; productRef = E47420642AC13EBB00FC5D3B /* CloudKitSyncMonitor */; };
 		E4766C1C2AB845EC005E4B47 /* ReceiptEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C1B2AB845EC005E4B47 /* ReceiptEditor.swift */; };
 		E4766C1F2AB8492B005E4B47 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C1E2AB8492B005E4B47 /* SearchView.swift */; };
 		E4766C212AB86086005E4B47 /* ReceiptMarkPaidTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C202AB86086005E4B47 /* ReceiptMarkPaidTip.swift */; };
@@ -228,6 +229,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E47420652AC13EBB00FC5D3B /* CloudKitSyncMonitor in Frameworks */,
 				E4766C2B2AB89500005E4B47 /* ConfettiSwiftUI in Frameworks */,
 				E44B68332AB56D0D00B243B0 /* Komponents in Frameworks */,
 			);
@@ -550,6 +552,7 @@
 			packageProductDependencies = (
 				E44B68322AB56D0D00B243B0 /* Komponents */,
 				E4766C2A2AB89500005E4B47 /* ConfettiSwiftUI */,
+				E47420642AC13EBB00FC5D3B /* CloudKitSyncMonitor */,
 			);
 			productName = Meloan;
 			productReference = E44B68142AB4ADCA00B243B0 /* Meloan.app */;
@@ -603,6 +606,7 @@
 			packageReferences = (
 				E44B68312AB56D0D00B243B0 /* XCRemoteSwiftPackageReference "Komponents" */,
 				E4766C292AB89500005E4B47 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+				E47420632AC13EBB00FC5D3B /* XCRemoteSwiftPackageReference "CloudKitSyncMonitor" */,
 			);
 			productRefGroup = E44B68152AB4ADCA00B243B0 /* Products */;
 			projectDirPath = "";
@@ -1046,6 +1050,14 @@
 				kind = branch;
 			};
 		};
+		E47420632AC13EBB00FC5D3B /* XCRemoteSwiftPackageReference "CloudKitSyncMonitor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ggruen/CloudKitSyncMonitor";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
 		E4766C292AB89500005E4B47 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI";
@@ -1061,6 +1073,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E44B68312AB56D0D00B243B0 /* XCRemoteSwiftPackageReference "Komponents" */;
 			productName = Komponents;
+		};
+		E47420642AC13EBB00FC5D3B /* CloudKitSyncMonitor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E47420632AC13EBB00FC5D3B /* XCRemoteSwiftPackageReference "CloudKitSyncMonitor" */;
+			productName = CloudKitSyncMonitor;
 		};
 		E4766C2A2AB89500005E4B47 /* ConfettiSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
