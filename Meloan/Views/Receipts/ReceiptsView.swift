@@ -11,12 +11,20 @@ import SwiftUI
 import TipKit
 import UIKit
 
+// swiftlint:disable type_body_length
 struct ReceiptsView: View {
 
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
     @Query(sort: \Receipt.dateAdded, order: .reverse, animation: .snappy.speed(2)) var receipts: [Receipt]
+    @Query(sort: \Person.name) var people: [Person]
+
+    // Filter variables
     @AppStorage(wrappedValue: false, "HidePaidReceipts", store: defaults) var hidePaid: Bool
+    @AppStorage(wrappedValue: "", "FilterPayerID", store: defaults) var filterPayerID: String
+    @State var filterPayer: Person?
+
+    // Gesture variables
     @State var offsets: [Receipt: CGSize] = [:]
     @State var previousOffsets: [Receipt: CGSize] = [:]
     @State var expectedOffset: CGFloat = 0.0
@@ -36,7 +44,8 @@ struct ReceiptsView: View {
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .top, spacing: 20.0) {
                         ForEach(receipts) { receipt in
-                            if !hidePaid || !receipt.isPaid() {
+                            if (!hidePaid || !receipt.isPaid()) &&
+                                (filterPayer == nil || filterPayer == receipt.personWhoPaid) {
                                 ZStack(alignment: .bottom) {
                                     VStack(alignment: .center, spacing: 16.0) {
                                         ActionButton(text: "Shared.Edit", icon: "Edit", isPrimary: false) {
@@ -107,10 +116,64 @@ struct ReceiptsView: View {
                              alignment: .bottom)
             }
             .safeAreaInset(edge: .bottom, spacing: 0.0) {
-                Toggle(isOn: $hidePaid.animation(.snappy.speed(2))) {
-                    Text("Receipts.HidePaidReceipts")
-                        .bold()
+                HStack(alignment: .center, spacing: 16.0) {
+                    Spacer()
+                    Menu {
+                        Toggle(isOn: $hidePaid.animation(.snappy.speed(2))) {
+                            Text("Receipts.HidePaidReceipts")
+                                .bold()
+                        }
+                        Divider()
+                        Menu {
+                            if let mePerson = people.first(where: { $0.id == "ME" }) {
+                                Button {
+                                    filterPayer = mePerson
+                                } label: {
+                                    personRowWithCheck(person: mePerson)
+                                }
+                            }
+                            ForEach(people.filter({ $0.id != "ME" })) { person in
+                                Button {
+                                    filterPayer = person
+                                } label: {
+                                    personRowWithCheck(person: person)
+                                }
+                            }
+                        } label: {
+                            Text("Receipt.Payer")
+                        }
+                        Divider()
+                        Button(role: .destructive) {
+                            withAnimation(.snappy.speed(2)) {
+                                hidePaid = false
+                                filterPayer = nil
+                            }
+                        } label: {
+                            Text("Shared.Filter.Reset")
+                        }
+                    } label: {
+                        HStack(alignment: .center, spacing: 4.0) {
+                            Image(systemName: "line.3.horizontal.decrease.circle")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 18.0, height: 18.0)
+                            Text("Shared.Filter")
+                                .bold()
+                        }
+                        .padding(.all, 2.0)
+                    }
+                    .buttonStyle(.plain)
+                    .foregroundStyle(isFilterActive() ? .white : .accent)
+                    .padding([.leading, .trailing], 8.0)
+                    .padding([.top, .bottom], 4.0)
+                    .background {
+                        if isFilterActive() {
+                            RoundedRectangle(cornerRadius: 99)
+                                .foregroundStyle(.accent)
+                        }
+                    }
                 }
+                .frame(maxWidth: .infinity)
                 .padding()
                 .background(.regularMaterial)
                 .overlay(Rectangle().frame(width: nil,
@@ -141,8 +204,37 @@ struct ReceiptsView: View {
                     }
                 }
             }
+            .onAppear {
+                if let filterPayer = people.first(where: { $0.id == filterPayerID }) {
+                    self.filterPayer = filterPayer
+                }
+            }
+            .onChange(of: filterPayer, { _, _ in
+                filterPayerID = filterPayer?.id ?? ""
+            })
             .navigationTitle("ViewTitle.Receipts")
         }
+    }
+
+    @ViewBuilder
+    func personRowWithCheck(person: Person) -> some View {
+        Text(person.name)
+        if filterPayer == person {
+            Image(systemName: "checkmark")
+        } else {
+            if let photo = person.photo, let image = UIImage(data: photo) {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+            } else {
+                Image("Profile.Generic.Circle")
+                    .resizable()
+            }
+        }
+    }
+
+    func isFilterActive() -> Bool {
+        return hidePaid || filterPayer != nil
     }
 
     func handleChange(of gesture: DragGesture.Value, for receipt: Receipt) {
@@ -187,3 +279,4 @@ struct ReceiptsView: View {
         previousOffsets[receipt] = offsets[receipt]
     }
 }
+// swiftlint:enable type_body_length
