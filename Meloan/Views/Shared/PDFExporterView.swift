@@ -5,6 +5,7 @@
 //  Created by シン・ジャスティン on 2023/09/24.
 //
 
+import Komponents
 import PDFKit
 import QuickLook
 import SwiftUI
@@ -21,15 +22,9 @@ struct PDFExporterView: View {
                 PDFKitView(document: pdfFile)
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing) {
-                            Button {
+                            CloseButton {
                                 dismiss()
-                            } label: {
-                                Image(systemName: "xmark.circle.fill")
-                                    .foregroundStyle(.primary)
-                                    .symbolRenderingMode(.hierarchical)
-                                    .font(.title2)
                             }
-                            .buttonStyle(.plain)
                         }
                         ToolbarItem(placement: .bottomBar) {
                             HStack {
