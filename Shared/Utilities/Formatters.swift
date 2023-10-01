@@ -31,7 +31,7 @@ func formatter() -> NumberFormatter {
 }
 
 func hey(_ person: Person, youOweMe price: Double) -> String {
-    var localizedText = NSLocalizedString("IOU.ShareText", comment: "")
+    let localizedText = NSLocalizedString("IOU.ShareText", comment: "")
     return localizedText
         .replacingOccurrences(of: "%1", with: person.name)
         .replacingOccurrences(of: "%2", with: format(price))

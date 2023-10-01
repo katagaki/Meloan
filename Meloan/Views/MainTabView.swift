@@ -7,6 +7,7 @@
 
 import CoreData
 import Komponents
+import StoreKit
 import SwiftData
 import SwiftUI
 import TipKit
@@ -15,8 +16,11 @@ struct MainTabView: View {
 
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.modelContext) var modelContext
+    @Environment(\.requestReview) var requestReview
     @EnvironmentObject var tabManager: TabManager
     @EnvironmentObject var navigationManager: NavigationManager
+    @AppStorage(wrappedValue: false, "ReviewPrompted", store: .standard) var hasReviewBeenPrompted: Bool
+    @AppStorage(wrappedValue: 0, "LaunchCount", store: .standard) var launchCount: Int
     @Query var people: [Person]
 
     var body: some View {
@@ -57,6 +61,11 @@ struct MainTabView: View {
                 .displayFrequency(.immediate),
                 .datastoreLocation(.applicationDefault)
             ])
+            launchCount += 1
+            if launchCount > 2 && !hasReviewBeenPrompted {
+                requestReview()
+                hasReviewBeenPrompted = true
+            }
         }
         .onReceive(tabManager.$selectedTab, perform: { newValue in
             if newValue == tabManager.previouslySelectedTab {
