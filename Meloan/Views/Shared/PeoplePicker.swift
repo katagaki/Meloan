@@ -5,11 +5,14 @@
 //  Created by シン・ジャスティン on 2023/09/17.
 //
 
+import Komponents
 import SwiftData
 import SwiftUI
+import UIKit
 
 struct PeoplePicker: View {
 
+    @Environment(\.dismiss) var dismiss
     @Query(sort: \Person.name) var people: [Person]
     @State var title: String
     @Binding var selection: [Person]?
@@ -64,6 +67,15 @@ struct PeoplePicker: View {
                                 .opacity(0)
                         }
                     }
+                }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    dismiss()
+                } label: {
+                    Text("Shared.Done")
                 }
             }
         }

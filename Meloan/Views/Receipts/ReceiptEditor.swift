@@ -9,6 +9,7 @@ import Combine
 import Komponents
 import SwiftData
 import SwiftUI
+import UIKit
 
 struct ReceiptEditor: View {
 
@@ -21,6 +22,7 @@ struct ReceiptEditor: View {
     @AppStorage(wrappedValue: false, "AddTenPercent", store: defaults) var addTenPercent: Bool
     @State var taxRates: TaxRate.List = Bundle.main.decode(TaxRate.List.self, from: "TaxRates.json")!
     @State var widgetReloadDebouncer = PassthroughSubject<String, Never>()
+    @State var isPersonPickerPresented: Bool = false
     @State var receipt: Receipt
 
     var body: some View {
@@ -39,19 +41,25 @@ struct ReceiptEditor: View {
                 .padding(.bottom, 16.0)
             }
             Section {
-                NavigationLink {
-                    PeoplePicker(title: "Receipt.Participants", selection: $receipt.peopleWhoParticipated)
+                Button {
+                    isPersonPickerPresented = true
                 } label: {
                     HStack {
                         Text("Receipt.Participants")
                             .bold()
+                            .tint(.primary)
                         Spacer()
                         Text(NSLocalizedString("Receipt.Participants.Label", comment: "")
                             .replacingOccurrences(of: "%1", with: String(receipt.participants().count)))
                         .lineLimit(1)
                         .truncationMode(.head)
-                        .foregroundStyle(.secondary)
                     }
+                }
+                .sheet(isPresented: $isPersonPickerPresented) {
+                    NavigationStack {
+                        PeoplePicker(title: "Receipt.Participants", selection: $receipt.peopleWhoParticipated)
+                    }
+                    .presentationDetents([.medium])
                 }
                 Picker(selection: $receipt.personWhoPaid) {
                     Text("Shared.NoSelection")
@@ -191,6 +199,15 @@ struct ReceiptEditor: View {
         .navigationTitle(receipt.name)
         .navigationBarTitleDisplayMode(.inline)
         // TODO: Implement manual saving
+        .toolbar {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                ToolbarItem(placement: .topBarTrailing) {
+                    CloseButton {
+                        dismiss()
+                    }
+                }
+            }
+        }
         .onDisappear {
             if defaults.value(forKey: "MarkSelfPaid") == nil || markSelfPaid {
                 receipt.setLenderItemsPaid()

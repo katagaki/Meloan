@@ -19,6 +19,9 @@ struct ReceiptsView: View {
     @Query(sort: \Receipt.dateAdded, order: .reverse, animation: .snappy.speed(2)) var receipts: [Receipt]
     @Query(sort: \Person.name) var people: [Person]
 
+    // State variables
+    @State var receiptBeingEdited: Receipt?
+
     // Filter variables
     @AppStorage(wrappedValue: false, "HidePaidReceipts", store: defaults) var hidePaid: Bool
     @AppStorage(wrappedValue: "", "FilterPayerID", store: defaults) var filterPayerID: String
@@ -49,8 +52,12 @@ struct ReceiptsView: View {
                                 ZStack(alignment: .bottom) {
                                     VStack(alignment: .center, spacing: 16.0) {
                                         ActionButton(text: "Shared.Edit", icon: "Edit", isPrimary: false) {
-                                            navigationManager.push(ViewPath.receiptEditor(receipt: receipt),
-                                                                   for: .receipts)
+                                            if UIDevice.current.userInterfaceIdiom == .phone {
+                                                navigationManager.push(ViewPath.receiptEditor(receipt: receipt),
+                                                                       for: .receipts)
+                                            } else {
+                                                receiptBeingEdited = receipt
+                                            }
                                         }
                                         ActionButton(text: "Shared.Delete", icon: "Delete", isPrimary: true) {
                                             withAnimation(.snappy.speed(2)) {
@@ -187,13 +194,23 @@ struct ReceiptsView: View {
                         Button {
                             let receipt = Receipt(name: NSLocalizedString("Receipt.Create.Name.Default", comment: ""))
                             modelContext.insert(receipt)
-                            navigationManager.push(ViewPath.receiptEditor(receipt: receipt), for: .receipts)
+                            if UIDevice.current.userInterfaceIdiom == .phone {
+                                navigationManager.push(ViewPath.receiptEditor(receipt: receipt),
+                                                       for: .receipts)
+                            } else {
+                                receiptBeingEdited = receipt
+                            }
                         } label: {
                             Image(systemName: "plus")
                         }
                     }
                 }
             }
+            .sheet(item: $receiptBeingEdited, content: { receipt in
+                NavigationStack {
+                    ReceiptEditor(receipt: receipt)
+                }
+            })
             .onDisappear {
                 withAnimation(.snappy.speed(2)) {
                     offsets.keys.forEach { key in
