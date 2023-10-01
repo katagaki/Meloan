@@ -58,6 +58,7 @@ struct ReceiptEditor: View {
                 .sheet(isPresented: $isPersonPickerPresented) {
                     NavigationStack {
                         PeoplePicker(title: "Receipt.Participants", selection: $receipt.peopleWhoParticipated)
+                            .navigationBarTitleDisplayMode(.inline)
                     }
                     .presentationDetents([.medium])
                 }
