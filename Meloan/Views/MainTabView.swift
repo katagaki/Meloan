@@ -42,6 +42,7 @@ struct MainTabView: View {
                 .tabItem {
                     Label("TabTitle.People", image: "Tab.People")
                 }
+                .toolbarBackground(.hidden, for: .tabBar)
                 .tag(TabType.people)
             SearchView()
                 .tabItem {

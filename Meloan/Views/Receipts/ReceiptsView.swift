@@ -124,7 +124,6 @@ struct ReceiptsView: View {
             }
             .safeAreaInset(edge: .bottom, spacing: 0.0) {
                 HStack(alignment: .center, spacing: 16.0) {
-                    Spacer()
                     Menu {
                         Toggle(isOn: $hidePaid.animation(.snappy.speed(2))) {
                             Text("Receipts.HidePaidReceipts")
@@ -159,7 +158,7 @@ struct ReceiptsView: View {
                             Text("Shared.Filter.Reset")
                         }
                     } label: {
-                        HStack(alignment: .center, spacing: 4.0) {
+                        HStack(alignment: .center, spacing: 8.0) {
                             Image(systemName: "line.3.horizontal.decrease.circle")
                                 .resizable()
                                 .scaledToFit()
@@ -179,6 +178,27 @@ struct ReceiptsView: View {
                                 .foregroundStyle(.accent)
                         }
                     }
+                    Spacer()
+                    Button {
+                        let receipt = Receipt(name: NSLocalizedString("Receipt.Create.Name.Default", comment: ""))
+                        modelContext.insert(receipt)
+                        if UIDevice.current.userInterfaceIdiom == .phone {
+                            navigationManager.push(ViewPath.receiptEditor(receipt: receipt),
+                                                   for: .receipts)
+                        } else {
+                            receiptBeingEdited = receipt
+                        }
+                    } label: {
+                        HStack(alignment: .center, spacing: 8.0) {
+                            Image(systemName: "plus")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 18.0, height: 18.0)
+                            Text("Shared.Create")
+                                .bold()
+                        }
+                        .padding([.leading, .trailing], 2.0)
+                    }
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
@@ -187,24 +207,6 @@ struct ReceiptsView: View {
                                            height: 1/3,
                                            alignment: .top).foregroundColor(.primary.opacity(0.3)),
                          alignment: .top)
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    HStack {
-                        Button {
-                            let receipt = Receipt(name: NSLocalizedString("Receipt.Create.Name.Default", comment: ""))
-                            modelContext.insert(receipt)
-                            if UIDevice.current.userInterfaceIdiom == .phone {
-                                navigationManager.push(ViewPath.receiptEditor(receipt: receipt),
-                                                       for: .receipts)
-                            } else {
-                                receiptBeingEdited = receipt
-                            }
-                        } label: {
-                            Image(systemName: "plus")
-                        }
-                    }
-                }
             }
             .sheet(item: $receiptBeingEdited, content: { receipt in
                 NavigationStack {
