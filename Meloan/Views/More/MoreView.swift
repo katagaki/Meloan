@@ -61,11 +61,14 @@ struct MoreView: View {
                                 }
                             }
                         }
-                        ForEach(Array(taxRates.keys).sorted(), id: \.self) { countryCode in
+                        ForEach(Array(taxRates.keys).sorted(by: { countryName(for: $0) < countryName(for: $1) }),
+                                id: \.self) { countryCode in
                             if let rate = taxRates[countryCode] {
                                if let states = rate.states {
                                    Menu(countryName(for: countryCode)) {
-                                       ForEach(Array(states.keys).sorted(), id: \.self) { stateCode in
+                                       ForEach(Array(states.keys)
+                                        .sorted(by: { countryName(for: $0) < countryName(for: $1) }),
+                                               id: \.self) { stateCode in
                                            if let state = states[stateCode] {
                                                taxRateButton(countryCode: "\(countryCode)-\(stateCode)",
                                                              rate: state)
@@ -124,17 +127,14 @@ struct MoreView: View {
                                 }
                             }
                         }
-                        ForEach(Array(taxRates.keys).sorted(), id: \.self) { countryCode in
-                            if let rate = taxRates[countryCode],
-                               let currencyCode = rate.currency {
-                                Button {
-                                    currencySymbol = currencyCode
-                                } label: {
-                                    Text(NSLocalizedString("Currency.\(currencyCode)", comment: ""))
-                                        .tag(currencyCode)
-                                    if currencySymbol == currencyCode {
-                                        Image(systemName: "checkmark")
-                                    }
+                        ForEach(currencies.sorted(), id: \.self) { currencyCode in
+                            Button {
+                                currencySymbol = currencyCode
+                            } label: {
+                                Text(NSLocalizedString("Currency.\(currencyCode)", comment: ""))
+                                    .tag(currencyCode)
+                                if currencySymbol == currencyCode {
+                                    Image(systemName: "checkmark")
                                 }
                             }
                         }

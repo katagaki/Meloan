@@ -7,7 +7,5 @@
 
 import Foundation
 
-let taxRates: TaxRate.List = Bundle.main.decode(TaxRate.List.self,
-                                                from: "TaxRates.json")!
-let stateNames: StateName.List = Bundle.main.decode(StateName.List.self,
-                                                    from: "StateNames.json")!
+let currencies: [String] = Bundle.main.decode([String].self, from: "Currencies.json")!
+let taxRates: TaxRate.List = Bundle.main.decode(TaxRate.List.self, from: "TaxRates.json")!

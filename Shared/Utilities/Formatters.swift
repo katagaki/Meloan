@@ -41,10 +41,7 @@ func countryName(for countryCode: String) -> String {
     let langCode = Locale.preferredLanguages[0]
     let current = Locale(identifier: langCode)
     if countryCode.contains("-") {
-        if let stateName = stateNames[countryCode] {
-            return stateName.name(language: current.language.languageCode?.identifier ?? "")
-        }
-        return countryCode
+        return NSLocalizedString("State.\(countryCode)", comment: "")
     } else {
         return current.localizedString(forRegionCode: countryCode) ?? countryCode
     }
