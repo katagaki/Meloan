@@ -121,6 +121,12 @@ struct SearchView: View {
                 default: Color.clear
                 }
             })
+            .overlay {
+                if searchTerm.trimmingCharacters(in: .whitespaces) != "" &&
+                    receiptsFound().isEmpty && receiptItemsFound().isEmpty && peopleFound().isEmpty {
+                    ContentUnavailableView.search
+                }
+            }
             .searchable(text: $searchTerm)
             .onSubmit(of: .search, {
                 if searchHistory.contains(where: { $0 == searchTerm }) {
