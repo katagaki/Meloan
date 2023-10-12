@@ -73,10 +73,10 @@ struct MoreManageDataView: View {
                 .alignmentGuide(.listRowSeparatorLeading, computeValue: { _ in
                     0
                 })
-                Toggle(isOn: $enableCloudSync) {
-                    ListRow(image: "ListIcon.CloudSync", title: "More.Data.Sync")
-                }
-                .disabled(true)
+//                Toggle(isOn: $enableCloudSync) {
+//                    ListRow(image: "ListIcon.CloudSync", title: "More.Data.Sync")
+//                }
+//                .disabled(true)
             } header: {
                 ListSectionHeader(text: "More.Data.Sync")
                     .font(.body)
