@@ -17,8 +17,6 @@ struct ReceiptEntity: AppEntity {
     static var defaultQuery = ReceiptQuery()
 
     var displayRepresentation: DisplayRepresentation {
-        // Do NOT use any other initializers! Widget settings page will stop working!
-        // DisplayRepresentation(title: "\(name)") will NOT work.
         DisplayRepresentation(stringLiteral: name)
     }
 
