@@ -57,11 +57,12 @@ struct PeopleView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(.regularMaterial)
-                    .overlay(Rectangle().frame(width: nil,
-                                               height: 1/3,
-                                               alignment: .top).foregroundColor(.primary.opacity(0.3)),
-                             alignment: .top)
+                    .background(Material.bar)
+                    .overlay(alignment: .top) {
+                        Rectangle()
+                            .frame(height: 1/3)
+                            .foregroundColor(.primary.opacity(0.2))
+                    }
                 }
             }
             .navigationDestination(for: ViewPath.self, destination: { viewPath in

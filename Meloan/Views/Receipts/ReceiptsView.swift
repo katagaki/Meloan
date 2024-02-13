@@ -116,11 +116,12 @@ struct ReceiptsView: View {
             .safeAreaInset(edge: .top, spacing: 0.0) {
                 Color.clear
                     .frame(maxWidth: .infinity, maxHeight: 0.0)
-                    .background(.regularMaterial)
-                    .overlay(Rectangle().frame(width: nil,
-                                               height: 1/3,
-                                               alignment: .bottom).foregroundColor(.primary.opacity(0.3)),
-                             alignment: .bottom)
+                    .background(Material.bar)
+                    .overlay(alignment: .bottom) {
+                        Rectangle()
+                            .frame(height: 1/3)
+                            .foregroundColor(.primary.opacity(0.2))
+                    }
             }
             .safeAreaInset(edge: .bottom, spacing: 0.0) {
                 HStack(alignment: .center, spacing: 16.0) {
@@ -202,11 +203,12 @@ struct ReceiptsView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
-                .background(.regularMaterial)
-                .overlay(Rectangle().frame(width: nil,
-                                           height: 1/3,
-                                           alignment: .top).foregroundColor(.primary.opacity(0.3)),
-                         alignment: .top)
+                .background(Material.bar)
+                .overlay(alignment: .top) {
+                    Rectangle()
+                        .frame(height: 1/3)
+                        .foregroundColor(.primary.opacity(0.2))
+                }
             }
             .sheet(item: $receiptBeingEdited, content: { receipt in
                 NavigationStack {

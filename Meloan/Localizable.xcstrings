@@ -2352,13 +2352,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "PDF File"
+            "value" : "Preview"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "PDFファイル"
+            "value" : "プレビュー"
           }
         }
       }
