@@ -12,7 +12,7 @@ import SwiftUI
 // Adapted from:
 // https://developer.apple.com/forums/thread/708538
 // Thanks to tomas.bek
-extension PDFDocument: Transferable {
+extension PDFDocument: @retroactive Transferable {
     public static var transferRepresentation: some TransferRepresentation {
         DataRepresentation(contentType: .pdf) { pdf in
             if let data = pdf.dataRepresentation() {

@@ -1,4 +1,5 @@
 {
+  "originHash" : "5db92355576c88e504e9d09ab7a34b866478e5a581744b5e3e53b2a824d62dcc",
   "pins" : [
     {
       "identity" : "cloudkitsyncmonitor",
@@ -24,9 +25,9 @@
       "location" : "https://github.com/katagaki/Komponents",
       "state" : {
         "branch" : "main",
-        "revision" : "1793b8b9dbe8dc8b1622236a49aa48f38ad675d8"
+        "revision" : "2431ce046638dc3b86fa187ddcab0f1ed00b321d"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

@@ -78,6 +78,7 @@
       }
     },
     "Currency.(currencyCode)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -85,9 +86,11 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "Currency.(currencySymbol)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -95,7 +98,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "Currency.BGN" : {
       "extractionState" : "manual",
@@ -2414,6 +2418,7 @@
       }
     },
     "State.(countryCode)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -2421,7 +2426,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "State.EU-AT" : {
       "extractionState" : "manual",

@@ -9,7 +9,7 @@ import Foundation
 
 // Adapted from:
 // https://stackoverflow.com/questions/63166706/how-to-store-nested-arrays-in-appstorage-for-swiftui
-extension Array: RawRepresentable where Element: Codable {
+extension Array: @retroactive RawRepresentable where Element: Codable {
     public init?(rawValue: String) {
         guard let data = rawValue.data(using: .utf8),
               let result = try? JSONDecoder().decode([Element].self, from: data)
