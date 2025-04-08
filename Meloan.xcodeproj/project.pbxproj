@@ -8,17 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E4130F212ABD203000AEF308 /* MoreManageDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F202ABD203000AEF308 /* MoreManageDataView.swift */; };
-		E4130F272ABD918600AEF308 /* JPY@3x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F232ABD918600AEF308 /* JPY@3x~ipad.png */; };
-		E4130F282ABD918600AEF308 /* JPY@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F242ABD918600AEF308 /* JPY@2x~ipad.png */; };
-		E4130F292ABD918600AEF308 /* JPY@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F252ABD918600AEF308 /* JPY@3x.png */; };
-		E4130F2A2ABD918600AEF308 /* JPY@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F262ABD918600AEF308 /* JPY@2x.png */; };
-		E4130F2F2ABD918E00AEF308 /* VND@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F2B2ABD918E00AEF308 /* VND@2x.png */; };
-		E4130F302ABD918E00AEF308 /* VND@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F2C2ABD918E00AEF308 /* VND@2x~ipad.png */; };
-		E4130F312ABD918E00AEF308 /* VND@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F2D2ABD918E00AEF308 /* VND@3x.png */; };
-		E4130F322ABD918E00AEF308 /* VND@3x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E4130F2E2ABD918E00AEF308 /* VND@3x~ipad.png */; };
 		E4130F342ABDA26600AEF308 /* MoreAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F332ABDA26600AEF308 /* MoreAppIconView.swift */; };
-		E4130F362ABDA27400AEF308 /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F352ABDA27400AEF308 /* AppIcon.swift */; };
-		E4130F382ABDA2C400AEF308 /* ListAppIconRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F372ABDA2C400AEF308 /* ListAppIconRow.swift */; };
 		E4130F3B2ABE9C5D00AEF308 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F3A2ABE9C5D00AEF308 /* Formatters.swift */; };
 		E4130F3C2ABE9C7C00AEF308 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F3A2ABE9C5D00AEF308 /* Formatters.swift */; };
 		E4130F412ABEA0AC00AEF308 /* TaxRates.json in Resources */ = {isa = PBXBuildFile; fileRef = E4130F402ABEA0AC00AEF308 /* TaxRates.json */; };
@@ -137,17 +127,7 @@
 
 /* Begin PBXFileReference section */
 		E4130F202ABD203000AEF308 /* MoreManageDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreManageDataView.swift; sourceTree = "<group>"; };
-		E4130F232ABD918600AEF308 /* JPY@3x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JPY@3x~ipad.png"; sourceTree = "<group>"; };
-		E4130F242ABD918600AEF308 /* JPY@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JPY@2x~ipad.png"; sourceTree = "<group>"; };
-		E4130F252ABD918600AEF308 /* JPY@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JPY@3x.png"; sourceTree = "<group>"; };
-		E4130F262ABD918600AEF308 /* JPY@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JPY@2x.png"; sourceTree = "<group>"; };
-		E4130F2B2ABD918E00AEF308 /* VND@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VND@2x.png"; sourceTree = "<group>"; };
-		E4130F2C2ABD918E00AEF308 /* VND@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VND@2x~ipad.png"; sourceTree = "<group>"; };
-		E4130F2D2ABD918E00AEF308 /* VND@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VND@3x.png"; sourceTree = "<group>"; };
-		E4130F2E2ABD918E00AEF308 /* VND@3x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VND@3x~ipad.png"; sourceTree = "<group>"; };
 		E4130F332ABDA26600AEF308 /* MoreAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreAppIconView.swift; sourceTree = "<group>"; };
-		E4130F352ABDA27400AEF308 /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
-		E4130F372ABDA2C400AEF308 /* ListAppIconRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAppIconRow.swift; sourceTree = "<group>"; };
 		E4130F3A2ABE9C5D00AEF308 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		E4130F402ABEA0AC00AEF308 /* TaxRates.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TaxRates.json; sourceTree = "<group>"; };
 		E4130F442ABEA2F400AEF308 /* TaxRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxRate.swift; sourceTree = "<group>"; };
@@ -267,21 +247,6 @@
 			path = More;
 			sourceTree = "<group>";
 		};
-		E4130F222ABD906A00AEF308 /* Icons */ = {
-			isa = PBXGroup;
-			children = (
-				E4130F262ABD918600AEF308 /* JPY@2x.png */,
-				E4130F242ABD918600AEF308 /* JPY@2x~ipad.png */,
-				E4130F252ABD918600AEF308 /* JPY@3x.png */,
-				E4130F232ABD918600AEF308 /* JPY@3x~ipad.png */,
-				E4130F2B2ABD918E00AEF308 /* VND@2x.png */,
-				E4130F2C2ABD918E00AEF308 /* VND@2x~ipad.png */,
-				E4130F2D2ABD918E00AEF308 /* VND@3x.png */,
-				E4130F2E2ABD918E00AEF308 /* VND@3x~ipad.png */,
-			);
-			path = Icons;
-			sourceTree = "<group>";
-		};
 		E4130F392ABE9C5400AEF308 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,7 +309,6 @@
 				E44B681D2AB4ADCB00B243B0 /* Assets.xcassets */,
 				E44B68512AB5B67F00B243B0 /* InfoPlist.xcstrings */,
 				E44B683F2AB573C300B243B0 /* Localizable.xcstrings */,
-				E4130F222ABD906A00AEF308 /* Icons */,
 				E44B68342AB56FEC00B243B0 /* Views */,
 				E44B686B2AB6CDE700B243B0 /* Structs */,
 				E44B68352AB56FF100B243B0 /* Classes */,
@@ -429,7 +393,6 @@
 				E44B68692AB6C6DB00B243B0 /* PeoplePicker.swift */,
 				E4766C252AB886C9005E4B47 /* ReceiptItemDetailView.swift */,
 				E4766C272AB88D41005E4B47 /* PeopleDetailView.swift */,
-				E4130F372ABDA2C400AEF308 /* ListAppIconRow.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -438,7 +401,6 @@
 			isa = PBXGroup;
 			children = (
 				E4130F432ABEA2C200AEF308 /* Tips */,
-				E4130F352ABDA27400AEF308 /* AppIcon.swift */,
 				E44B686E2AB72A8700B243B0 /* IOUViewSafe.swift */,
 				E4130F442ABEA2F400AEF308 /* TaxRate.swift */,
 			);
@@ -619,18 +581,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4130F272ABD918600AEF308 /* JPY@3x~ipad.png in Resources */,
-				E4130F322ABD918E00AEF308 /* VND@3x~ipad.png in Resources */,
-				E4130F2A2ABD918600AEF308 /* JPY@2x.png in Resources */,
 				E43DFB272AD76C34002A6317 /* Currencies.json in Resources */,
 				E44B68522AB5B67F00B243B0 /* InfoPlist.xcstrings in Resources */,
-				E4130F282ABD918600AEF308 /* JPY@2x~ipad.png in Resources */,
 				E4766C2C2AB89CEE005E4B47 /* Assets.xcassets in Resources */,
 				E44B68402AB573C300B243B0 /* Localizable.xcstrings in Resources */,
-				E4130F312ABD918E00AEF308 /* VND@3x.png in Resources */,
-				E4130F292ABD918600AEF308 /* JPY@3x.png in Resources */,
-				E4130F2F2ABD918E00AEF308 /* VND@2x.png in Resources */,
-				E4130F302ABD918E00AEF308 /* VND@2x~ipad.png in Resources */,
 				E4130F412ABEA0AC00AEF308 /* TaxRates.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -672,7 +626,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4130F382ABDA2C400AEF308 /* ListAppIconRow.swift in Sources */,
 				E48A28502ABC5C27009E7912 /* IOUTip.swift in Sources */,
 				E44B681A2AB4ADCA00B243B0 /* PeopleView.swift in Sources */,
 				E4130F632AC008A300AEF308 /* PDFDocument.swift in Sources */,
@@ -684,7 +637,6 @@
 				E4766C212AB86086005E4B47 /* ReceiptMarkPaidTip.swift in Sources */,
 				E44B68182AB4ADCA00B243B0 /* App.swift in Sources */,
 				E44B686F2AB72A8700B243B0 /* IOUViewSafe.swift in Sources */,
-				E4130F362ABDA27400AEF308 /* AppIcon.swift in Sources */,
 				E48A284E2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift in Sources */,
 				E4130F612AC0057700AEF308 /* PDFExporterView.swift in Sources */,
 				E44B68482AB58B9100B243B0 /* PersonCreator.swift in Sources */,
@@ -889,6 +841,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon.JPY AppIcon.VND";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Meloan/Meloan.entitlements;
@@ -925,6 +878,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon.JPY AppIcon.VND";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Meloan/Meloan.entitlements;

@@ -10,21 +10,26 @@ import SwiftUI
 
 struct MoreAppIconView: View {
 
-    var icons: [AppIcon] = [AppIcon(previewImageName: "AppIcon.Dollar",
-                                    name: "More.Customization.AppIcon.Dollar"),
-                            AppIcon(previewImageName: "AppIcon.JapaneseYen",
-                                    name: "More.Customization.AppIcon.JapaneseYen",
-                                    iconName: "JPY"),
-                            AppIcon(previewImageName: "AppIcon.VietnameseDong",
-                                    name: "More.Customization.AppIcon.VietnameseDong",
-                                    iconName: "VND")]
+    var icons: [AppIcon] = [
+        AppIcon("More.Customization.AppIcon.Dollar"),
+        AppIcon("More.Customization.AppIcon.JapaneseYen", imageName: "AppIcon.JPY"),
+        AppIcon("More.Customization.AppIcon.VietnameseDong", imageName: "AppIcon.VND")
+    ]
 
     var body: some View {
         List {
             ForEach(icons, id: \.name) { icon in
-                ListAppIconRow(image: icon.previewImageName,
-                               text: NSLocalizedString(icon.name, comment: ""),
-                               iconToSet: icon.iconName)
+                Button {
+                    UIApplication.shared.setAlternateIconName(icon.imageName, completionHandler: { error in
+                        if let error {
+                            debugPrint(error.localizedDescription)
+                        }
+                    })
+                } label: {
+                    ListAppIconRow(icon)
+                        .tint(.primary)
+                }
+                .contentShape(Rectangle())
             }
         }
         .font(.body)
