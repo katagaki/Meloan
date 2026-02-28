@@ -27,7 +27,7 @@ struct MainTabView: View {
         TabView(selection: $tabManager.selectedTab) {
             ReceiptsView()
                 .tabItem {
-                    Label("TabTitle.Receipts", image: "Tab.Receipts")
+                    Label("TabTitle.Receipts", systemImage: "receipt")
                 }
                 .toolbarBackground(.automatic, for: .tabBar)
                 .toolbarBackground(.visible, for: .navigationBar)
@@ -40,7 +40,7 @@ struct MainTabView: View {
                 .tag(TabType.iou)
             PeopleView()
                 .tabItem {
-                    Label("TabTitle.People", image: "Tab.People")
+                    Label("TabTitle.People", systemImage: "person.2")
                 }
                 .toolbarBackground(.hidden, for: .tabBar)
                 .tag(TabType.people)
