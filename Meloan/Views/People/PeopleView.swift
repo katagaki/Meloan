@@ -39,31 +39,6 @@ struct PeopleView: View {
                     })
                 }
                 .listStyle(.plain)
-                .safeAreaInset(edge: .bottom, spacing: 0.0) {
-                    HStack(alignment: .center, spacing: 16.0) {
-                        Spacer()
-                        NavigationLink(value: ViewPath.personCreator) {
-                            HStack(alignment: .center, spacing: 8.0) {
-                                Image(systemName: "plus")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 18.0, height: 18.0)
-                                Text("Shared.Create")
-                                    .bold()
-                            }
-                            .padding([.leading, .trailing], 2.0)
-                        }
-                        .padding([.top, .bottom], 6.0)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Material.bar)
-                    .overlay(alignment: .top) {
-                        Rectangle()
-                            .frame(height: 1/3)
-                            .foregroundColor(.primary.opacity(0.2))
-                    }
-                }
             }
             .navigationDestination(for: ViewPath.self, destination: { viewPath in
                 switch viewPath {
@@ -72,6 +47,15 @@ struct PeopleView: View {
                 default: Color.clear
                 }
             })
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        navigationManager.push(ViewPath.personCreator, for: .people)
+                    } label: {
+                        Label("Shared.Create", systemImage: "plus")
+                    }
+                }
+            }
             .navigationTitle("ViewTitle.People")
         }
     }
