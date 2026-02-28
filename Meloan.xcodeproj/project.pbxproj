@@ -3,92 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E4130F212ABD203000AEF308 /* MoreManageDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F202ABD203000AEF308 /* MoreManageDataView.swift */; };
-		E4130F342ABDA26600AEF308 /* MoreAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F332ABDA26600AEF308 /* MoreAppIconView.swift */; };
-		E4130F3B2ABE9C5D00AEF308 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F3A2ABE9C5D00AEF308 /* Formatters.swift */; };
-		E4130F3C2ABE9C7C00AEF308 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F3A2ABE9C5D00AEF308 /* Formatters.swift */; };
-		E4130F412ABEA0AC00AEF308 /* TaxRates.json in Resources */ = {isa = PBXBuildFile; fileRef = E4130F402ABEA0AC00AEF308 /* TaxRates.json */; };
-		E4130F452ABEA2F400AEF308 /* TaxRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F442ABEA2F400AEF308 /* TaxRate.swift */; };
-		E4130F472ABEA4AB00AEF308 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F462ABEA4AB00AEF308 /* Bundle.swift */; };
-		E4130F4D2ABEBCAE00AEF308 /* JSONs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F4C2ABEBCAE00AEF308 /* JSONs.swift */; };
-		E4130F502ABEBD8B00AEF308 /* JSONs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F4C2ABEBCAE00AEF308 /* JSONs.swift */; };
-		E4130F512ABEBD9200AEF308 /* TaxRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F442ABEA2F400AEF308 /* TaxRate.swift */; };
-		E4130F532ABEBDA000AEF308 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F462ABEA4AB00AEF308 /* Bundle.swift */; };
-		E4130F552ABF3B6400AEF308 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F542ABF3B6400AEF308 /* Array.swift */; };
-		E4130F5A2ABFF37000AEF308 /* NoReceiptHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F582ABFF32300AEF308 /* NoReceiptHintView.swift */; };
-		E4130F5C2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F5B2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift */; };
-		E4130F5E2AC0040D00AEF308 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F5D2AC0040D00AEF308 /* Defaults.swift */; };
-		E4130F5F2AC0041900AEF308 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F5D2AC0040D00AEF308 /* Defaults.swift */; };
-		E4130F612AC0057700AEF308 /* PDFExporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F602AC0057700AEF308 /* PDFExporterView.swift */; };
-		E4130F632AC008A300AEF308 /* PDFDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F622AC008A300AEF308 /* PDFDocument.swift */; };
-		E4130F652AC01E7400AEF308 /* PDFKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4130F642AC01E7400AEF308 /* PDFKitView.swift */; };
-		E43DFB272AD76C34002A6317 /* Currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = E43DFB262AD76C34002A6317 /* Currencies.json */; };
-		E44B68182AB4ADCA00B243B0 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68172AB4ADCA00B243B0 /* App.swift */; };
-		E44B681A2AB4ADCA00B243B0 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68192AB4ADCA00B243B0 /* PeopleView.swift */; };
-		E44B681C2AB4ADCA00B243B0 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B681B2AB4ADCA00B243B0 /* Person.swift */; };
-		E44B68292AB5667A00B243B0 /* ReceiptItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68282AB5667A00B243B0 /* ReceiptItem.swift */; };
-		E44B682C2AB5671600B243B0 /* TaxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B682B2AB5671600B243B0 /* TaxItem.swift */; };
-		E44B682E2AB5673B00B243B0 /* DiscountItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B682D2AB5673B00B243B0 /* DiscountItem.swift */; };
-		E44B68302AB5675E00B243B0 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B682F2AB5675E00B243B0 /* MainTabView.swift */; };
 		E44B68332AB56D0D00B243B0 /* Komponents in Frameworks */ = {isa = PBXBuildFile; productRef = E44B68322AB56D0D00B243B0 /* Komponents */; };
-		E44B68372AB5700300B243B0 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68362AB5700300B243B0 /* NavigationManager.swift */; };
-		E44B68392AB5702C00B243B0 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68382AB5702C00B243B0 /* TabManager.swift */; };
-		E44B683C2AB5704300B243B0 /* TabType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B683B2AB5704300B243B0 /* TabType.swift */; };
-		E44B683E2AB5705600B243B0 /* ViewPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B683D2AB5705600B243B0 /* ViewPath.swift */; };
-		E44B68402AB573C300B243B0 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E44B683F2AB573C300B243B0 /* Localizable.xcstrings */; };
-		E44B68432AB579D800B243B0 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68422AB579D800B243B0 /* MoreView.swift */; };
-		E44B68462AB5832900B243B0 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68452AB5832900B243B0 /* Receipt.swift */; };
-		E44B68482AB58B9100B243B0 /* PersonCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68472AB58B9100B243B0 /* PersonCreator.swift */; };
-		E44B684C2AB5931700B243B0 /* ReceiptsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B684B2AB5931700B243B0 /* ReceiptsView.swift */; };
-		E44B684E2AB5938700B243B0 /* ReceiptColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B684D2AB5938700B243B0 /* ReceiptColumn.swift */; };
-		E44B68502AB5A36A00B243B0 /* ReceiptItemCompactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B684F2AB5A36A00B243B0 /* ReceiptItemCompactRow.swift */; };
-		E44B68522AB5B67F00B243B0 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E44B68512AB5B67F00B243B0 /* InfoPlist.xcstrings */; };
-		E44B68562AB5BBFE00B243B0 /* PersonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68552AB5BBFE00B243B0 /* PersonRow.swift */; };
-		E44B68592AB5C2FB00B243B0 /* ReceiptItemEditableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68582AB5C2FB00B243B0 /* ReceiptItemEditableRow.swift */; };
-		E44B68612AB5FA0F00B243B0 /* ReceiptItemAssignableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68602AB5FA0F00B243B0 /* ReceiptItemAssignableRow.swift */; };
-		E44B68632AB6BA0100B243B0 /* IOUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68622AB6BA0100B243B0 /* IOUView.swift */; };
-		E44B686A2AB6C6DB00B243B0 /* PeoplePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68692AB6C6DB00B243B0 /* PeoplePicker.swift */; };
-		E44B686F2AB72A8700B243B0 /* IOUViewSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B686E2AB72A8700B243B0 /* IOUViewSafe.swift */; };
-		E44B68712AB731DF00B243B0 /* ReceiptDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68702AB731DF00B243B0 /* ReceiptDetailView.swift */; };
-		E44B68732AB7348700B243B0 /* ReceiptItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68722AB7348700B243B0 /* ReceiptItemRow.swift */; };
-		E44B68752AB7450900B243B0 /* PeopleTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68742AB7450900B243B0 /* PeopleTip.swift */; };
-		E44B68772AB7478A00B243B0 /* ReceiptsTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68762AB7478A00B243B0 /* ReceiptsTip.swift */; };
-		E44B68792AB80A8400B243B0 /* PeopleEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68782AB80A8400B243B0 /* PeopleEditor.swift */; };
 		E46082382AB9575D001CF504 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E46082372AB9575D001CF504 /* WidgetKit.framework */; };
 		E460823A2AB9575D001CF504 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E46082392AB9575D001CF504 /* SwiftUI.framework */; };
-		E460823D2AB9575D001CF504 /* Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460823C2AB9575D001CF504 /* Widgets.swift */; };
-		E460823F2AB9575D001CF504 /* ReceiptProgressWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460823E2AB9575D001CF504 /* ReceiptProgressWidget.swift */; };
-		E46082412AB9575E001CF504 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46082402AB9575E001CF504 /* Assets.xcassets */; };
 		E46082452AB9575E001CF504 /* AssistantExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E46082352AB9575D001CF504 /* AssistantExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E460824A2AB95818001CF504 /* ReceiptItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68282AB5667A00B243B0 /* ReceiptItem.swift */; };
-		E460824B2AB95818001CF504 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B681B2AB4ADCA00B243B0 /* Person.swift */; };
-		E460824C2AB95818001CF504 /* DiscountItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B682D2AB5673B00B243B0 /* DiscountItem.swift */; };
-		E460824D2AB95818001CF504 /* TaxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B682B2AB5671600B243B0 /* TaxItem.swift */; };
-		E460824E2AB95818001CF504 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B68452AB5832900B243B0 /* Receipt.swift */; };
-		E46082542AB96B07001CF504 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E46082522AB96AF4001CF504 /* Localizable.xcstrings */; };
-		E460825A2AB9A771001CF504 /* ReceiptEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46082592AB9A771001CF504 /* ReceiptEntry.swift */; };
-		E460825D2AB9A7A0001CF504 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460825C2AB9A7A0001CF504 /* Provider.swift */; };
-		E46082612AB9A90D001CF504 /* ReceiptIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46082602AB9A90D001CF504 /* ReceiptIntent.swift */; };
-		E46082642AB9AC5A001CF504 /* ReceiptEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46082632AB9AC5A001CF504 /* ReceiptEntity.swift */; };
-		E46082742AB9FA9A001CF504 /* ReceiptItemsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460826B2AB9D173001CF504 /* ReceiptItemsWidget.swift */; };
-		E460828F2ABA02F6001CF504 /* TogglePaidIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46082662AB9CD63001CF504 /* TogglePaidIntent.swift */; };
 		E47420652AC13EBB00FC5D3B /* CloudKitSyncMonitor in Frameworks */ = {isa = PBXBuildFile; productRef = E47420642AC13EBB00FC5D3B /* CloudKitSyncMonitor */; };
-		E4766C1C2AB845EC005E4B47 /* ReceiptEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C1B2AB845EC005E4B47 /* ReceiptEditor.swift */; };
-		E4766C1F2AB8492B005E4B47 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C1E2AB8492B005E4B47 /* SearchView.swift */; };
-		E4766C212AB86086005E4B47 /* ReceiptMarkPaidTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C202AB86086005E4B47 /* ReceiptMarkPaidTip.swift */; };
-		E4766C262AB886C9005E4B47 /* ReceiptItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C252AB886C9005E4B47 /* ReceiptItemDetailView.swift */; };
-		E4766C282AB88D41005E4B47 /* PeopleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4766C272AB88D41005E4B47 /* PeopleDetailView.swift */; };
 		E4766C2B2AB89500005E4B47 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E4766C2A2AB89500005E4B47 /* ConfettiSwiftUI */; };
-		E4766C2C2AB89CEE005E4B47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44B681D2AB4ADCB00B243B0 /* Assets.xcassets */; };
-		E48A28492ABB33AC009E7912 /* ReceiptIOUWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A28482ABB33AC009E7912 /* ReceiptIOUWidget.swift */; };
-		E48A284E2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A284D2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift */; };
-		E48A28502ABC5C27009E7912 /* IOUTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A284F2ABC5C27009E7912 /* IOUTip.swift */; };
-		E48A28532ABC61A1009E7912 /* ModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A28522ABC61A1009E7912 /* ModelContainer.swift */; };
-		E48A28542ABC61B7009E7912 /* ModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A28522ABC61A1009E7912 /* ModelContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,80 +50,43 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E4130F202ABD203000AEF308 /* MoreManageDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreManageDataView.swift; sourceTree = "<group>"; };
-		E4130F332ABDA26600AEF308 /* MoreAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreAppIconView.swift; sourceTree = "<group>"; };
-		E4130F3A2ABE9C5D00AEF308 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
-		E4130F402ABEA0AC00AEF308 /* TaxRates.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TaxRates.json; sourceTree = "<group>"; };
-		E4130F442ABEA2F400AEF308 /* TaxRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxRate.swift; sourceTree = "<group>"; };
-		E4130F462ABEA4AB00AEF308 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
-		E4130F4C2ABEBCAE00AEF308 /* JSONs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONs.swift; sourceTree = "<group>"; };
-		E4130F542ABF3B6400AEF308 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
-		E4130F582ABFF32300AEF308 /* NoReceiptHintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReceiptHintView.swift; sourceTree = "<group>"; };
-		E4130F5B2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTroubleshootingView.swift; sourceTree = "<group>"; };
-		E4130F5D2AC0040D00AEF308 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
-		E4130F602AC0057700AEF308 /* PDFExporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExporterView.swift; sourceTree = "<group>"; };
-		E4130F622AC008A300AEF308 /* PDFDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDocument.swift; sourceTree = "<group>"; };
-		E4130F642AC01E7400AEF308 /* PDFKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitView.swift; sourceTree = "<group>"; };
-		E43DFB262AD76C34002A6317 /* Currencies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Currencies.json; sourceTree = "<group>"; };
 		E44B68142AB4ADCA00B243B0 /* Meloan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meloan.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E44B68172AB4ADCA00B243B0 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		E44B68192AB4ADCA00B243B0 /* PeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
-		E44B681B2AB4ADCA00B243B0 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		E44B681D2AB4ADCB00B243B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E44B68282AB5667A00B243B0 /* ReceiptItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItem.swift; sourceTree = "<group>"; };
-		E44B682B2AB5671600B243B0 /* TaxItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxItem.swift; sourceTree = "<group>"; };
-		E44B682D2AB5673B00B243B0 /* DiscountItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountItem.swift; sourceTree = "<group>"; };
-		E44B682F2AB5675E00B243B0 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-		E44B68362AB5700300B243B0 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
-		E44B68382AB5702C00B243B0 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
-		E44B683B2AB5704300B243B0 /* TabType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabType.swift; sourceTree = "<group>"; };
-		E44B683D2AB5705600B243B0 /* ViewPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPath.swift; sourceTree = "<group>"; };
-		E44B683F2AB573C300B243B0 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		E44B68412AB5748900B243B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		E44B68422AB579D800B243B0 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
-		E44B68452AB5832900B243B0 /* Receipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
-		E44B68472AB58B9100B243B0 /* PersonCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCreator.swift; sourceTree = "<group>"; };
-		E44B684B2AB5931700B243B0 /* ReceiptsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsView.swift; sourceTree = "<group>"; };
-		E44B684D2AB5938700B243B0 /* ReceiptColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptColumn.swift; sourceTree = "<group>"; };
-		E44B684F2AB5A36A00B243B0 /* ReceiptItemCompactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemCompactRow.swift; sourceTree = "<group>"; };
-		E44B68512AB5B67F00B243B0 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
-		E44B68552AB5BBFE00B243B0 /* PersonRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonRow.swift; sourceTree = "<group>"; };
-		E44B68582AB5C2FB00B243B0 /* ReceiptItemEditableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemEditableRow.swift; sourceTree = "<group>"; };
-		E44B68602AB5FA0F00B243B0 /* ReceiptItemAssignableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemAssignableRow.swift; sourceTree = "<group>"; };
-		E44B68622AB6BA0100B243B0 /* IOUView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOUView.swift; sourceTree = "<group>"; };
-		E44B68692AB6C6DB00B243B0 /* PeoplePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeoplePicker.swift; sourceTree = "<group>"; };
-		E44B686E2AB72A8700B243B0 /* IOUViewSafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOUViewSafe.swift; sourceTree = "<group>"; };
-		E44B68702AB731DF00B243B0 /* ReceiptDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDetailView.swift; sourceTree = "<group>"; };
-		E44B68722AB7348700B243B0 /* ReceiptItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemRow.swift; sourceTree = "<group>"; };
-		E44B68742AB7450900B243B0 /* PeopleTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTip.swift; sourceTree = "<group>"; };
-		E44B68762AB7478A00B243B0 /* ReceiptsTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsTip.swift; sourceTree = "<group>"; };
-		E44B68782AB80A8400B243B0 /* PeopleEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleEditor.swift; sourceTree = "<group>"; };
 		E46082352AB9575D001CF504 /* AssistantExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AssistantExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E46082372AB9575D001CF504 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		E46082392AB9575D001CF504 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		E460823C2AB9575D001CF504 /* Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets.swift; sourceTree = "<group>"; };
-		E460823E2AB9575D001CF504 /* ReceiptProgressWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptProgressWidget.swift; sourceTree = "<group>"; };
-		E46082402AB9575E001CF504 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E46082422AB9575E001CF504 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E46082502AB96603001CF504 /* Meloan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Meloan.entitlements; sourceTree = "<group>"; };
-		E46082512AB96991001CF504 /* AssistantExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AssistantExtension.entitlements; sourceTree = "<group>"; };
-		E46082522AB96AF4001CF504 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		E46082592AB9A771001CF504 /* ReceiptEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptEntry.swift; sourceTree = "<group>"; };
-		E460825C2AB9A7A0001CF504 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
-		E46082602AB9A90D001CF504 /* ReceiptIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptIntent.swift; sourceTree = "<group>"; };
-		E46082632AB9AC5A001CF504 /* ReceiptEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptEntity.swift; sourceTree = "<group>"; };
-		E46082662AB9CD63001CF504 /* TogglePaidIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TogglePaidIntent.swift; sourceTree = "<group>"; };
-		E460826B2AB9D173001CF504 /* ReceiptItemsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemsWidget.swift; sourceTree = "<group>"; };
-		E4766C1B2AB845EC005E4B47 /* ReceiptEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptEditor.swift; sourceTree = "<group>"; };
-		E4766C1E2AB8492B005E4B47 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		E4766C202AB86086005E4B47 /* ReceiptMarkPaidTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptMarkPaidTip.swift; sourceTree = "<group>"; };
-		E4766C252AB886C9005E4B47 /* ReceiptItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemDetailView.swift; sourceTree = "<group>"; };
-		E4766C272AB88D41005E4B47 /* PeopleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleDetailView.swift; sourceTree = "<group>"; };
-		E48A28482ABB33AC009E7912 /* ReceiptIOUWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptIOUWidget.swift; sourceTree = "<group>"; };
-		E48A284D2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDeleteAndEditTip.swift; sourceTree = "<group>"; };
-		E48A284F2ABC5C27009E7912 /* IOUTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOUTip.swift; sourceTree = "<group>"; };
-		E48A28522ABC61A1009E7912 /* ModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E4980B7C2F533DF300EFFB8B /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = E44B68132AB4ADCA00B243B0 /* Meloan */;
+		};
+		E4980B7D2F533DF300EFFB8B /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Structs/TaxRate.swift,
+				Utilities/Bundle.swift,
+				Utilities/JSONs.swift,
+			);
+			target = E46082342AB9575D001CF504 /* AssistantExtension */;
+		};
+		E4980BB92F533DF800EFFB8B /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = E46082342AB9575D001CF504 /* AssistantExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		E4980B4A2F533DF300EFFB8B /* Meloan */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (E4980B7C2F533DF300EFFB8B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, E4980B7D2F533DF300EFFB8B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Meloan; sourceTree = "<group>"; };
+		E4980B882F533DF500EFFB8B /* Shared */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Shared; sourceTree = "<group>"; };
+		E4980BAB2F533DF800EFFB8B /* Assistant */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (E4980BB92F533DF800EFFB8B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Assistant; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E44B68112AB4ADCA00B243B0 /* Frameworks */ = {
@@ -224,69 +111,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E4130F1B2ABD134E00AEF308 /* Data Models */ = {
-			isa = PBXGroup;
-			children = (
-				E44B68452AB5832900B243B0 /* Receipt.swift */,
-				E44B681B2AB4ADCA00B243B0 /* Person.swift */,
-				E44B68282AB5667A00B243B0 /* ReceiptItem.swift */,
-				E44B682D2AB5673B00B243B0 /* DiscountItem.swift */,
-				E44B682B2AB5671600B243B0 /* TaxItem.swift */,
-			);
-			path = "Data Models";
-			sourceTree = "<group>";
-		};
-		E4130F1F2ABD201B00AEF308 /* More */ = {
-			isa = PBXGroup;
-			children = (
-				E44B68422AB579D800B243B0 /* MoreView.swift */,
-				E4130F202ABD203000AEF308 /* MoreManageDataView.swift */,
-				E4130F332ABDA26600AEF308 /* MoreAppIconView.swift */,
-				E4130F5B2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift */,
-			);
-			path = More;
-			sourceTree = "<group>";
-		};
-		E4130F392ABE9C5400AEF308 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				E4130F5D2AC0040D00AEF308 /* Defaults.swift */,
-				E4130F3A2ABE9C5D00AEF308 /* Formatters.swift */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		E4130F3D2ABE9FFD00AEF308 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				E4130F542ABF3B6400AEF308 /* Array.swift */,
-				E4130F462ABEA4AB00AEF308 /* Bundle.swift */,
-				E4130F4C2ABEBCAE00AEF308 /* JSONs.swift */,
-				E4130F622AC008A300AEF308 /* PDFDocument.swift */,
-				E43DFB262AD76C34002A6317 /* Currencies.json */,
-				E4130F402ABEA0AC00AEF308 /* TaxRates.json */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		E4130F432ABEA2C200AEF308 /* Tips */ = {
-			isa = PBXGroup;
-			children = (
-				E48A284F2ABC5C27009E7912 /* IOUTip.swift */,
-				E44B68742AB7450900B243B0 /* PeopleTip.swift */,
-				E48A284D2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift */,
-				E4766C202AB86086005E4B47 /* ReceiptMarkPaidTip.swift */,
-				E44B68762AB7478A00B243B0 /* ReceiptsTip.swift */,
-			);
-			path = Tips;
-			sourceTree = "<group>";
-		};
 		E44B680B2AB4ADCA00B243B0 = {
 			isa = PBXGroup;
 			children = (
-				E48A28512ABC6197009E7912 /* Shared */,
-				E44B68162AB4ADCA00B243B0 /* Meloan */,
-				E460823B2AB9575D001CF504 /* Assistant */,
+				E4980B882F533DF500EFFB8B /* Shared */,
+				E4980B4A2F533DF300EFFB8B /* Meloan */,
+				E4980BAB2F533DF800EFFB8B /* Assistant */,
 				E46082362AB9575D001CF504 /* Frameworks */,
 				E44B68152AB4ADCA00B243B0 /* Products */,
 			);
@@ -301,112 +131,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E44B68162AB4ADCA00B243B0 /* Meloan */ = {
-			isa = PBXGroup;
-			children = (
-				E46082502AB96603001CF504 /* Meloan.entitlements */,
-				E44B68412AB5748900B243B0 /* Info.plist */,
-				E44B681D2AB4ADCB00B243B0 /* Assets.xcassets */,
-				E44B68512AB5B67F00B243B0 /* InfoPlist.xcstrings */,
-				E44B683F2AB573C300B243B0 /* Localizable.xcstrings */,
-				E44B68342AB56FEC00B243B0 /* Views */,
-				E44B686B2AB6CDE700B243B0 /* Structs */,
-				E44B68352AB56FF100B243B0 /* Classes */,
-				E44B683A2AB5703C00B243B0 /* Enums */,
-				E4130F3D2ABE9FFD00AEF308 /* Utilities */,
-			);
-			path = Meloan;
-			sourceTree = "<group>";
-		};
-		E44B68342AB56FEC00B243B0 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				E44B68172AB4ADCA00B243B0 /* App.swift */,
-				E44B682F2AB5675E00B243B0 /* MainTabView.swift */,
-				E44B68492AB592F400B243B0 /* Receipts */,
-				E44B684A2AB592F800B243B0 /* IOU */,
-				E44B68442AB5806A00B243B0 /* People */,
-				E4766C1D2AB84921005E4B47 /* Search */,
-				E44B68572AB5BC0600B243B0 /* Shared */,
-				E4130F1F2ABD201B00AEF308 /* More */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		E44B68352AB56FF100B243B0 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				E44B68362AB5700300B243B0 /* NavigationManager.swift */,
-				E44B68382AB5702C00B243B0 /* TabManager.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		E44B683A2AB5703C00B243B0 /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				E44B683D2AB5705600B243B0 /* ViewPath.swift */,
-				E44B683B2AB5704300B243B0 /* TabType.swift */,
-			);
-			path = Enums;
-			sourceTree = "<group>";
-		};
-		E44B68442AB5806A00B243B0 /* People */ = {
-			isa = PBXGroup;
-			children = (
-				E44B68192AB4ADCA00B243B0 /* PeopleView.swift */,
-				E44B68472AB58B9100B243B0 /* PersonCreator.swift */,
-				E44B68782AB80A8400B243B0 /* PeopleEditor.swift */,
-			);
-			path = People;
-			sourceTree = "<group>";
-		};
-		E44B68492AB592F400B243B0 /* Receipts */ = {
-			isa = PBXGroup;
-			children = (
-				E44B684B2AB5931700B243B0 /* ReceiptsView.swift */,
-				E44B68702AB731DF00B243B0 /* ReceiptDetailView.swift */,
-				E4766C1B2AB845EC005E4B47 /* ReceiptEditor.swift */,
-				E44B684D2AB5938700B243B0 /* ReceiptColumn.swift */,
-				E44B68722AB7348700B243B0 /* ReceiptItemRow.swift */,
-				E44B684F2AB5A36A00B243B0 /* ReceiptItemCompactRow.swift */,
-				E44B68582AB5C2FB00B243B0 /* ReceiptItemEditableRow.swift */,
-				E44B68602AB5FA0F00B243B0 /* ReceiptItemAssignableRow.swift */,
-			);
-			path = Receipts;
-			sourceTree = "<group>";
-		};
-		E44B684A2AB592F800B243B0 /* IOU */ = {
-			isa = PBXGroup;
-			children = (
-				E44B68622AB6BA0100B243B0 /* IOUView.swift */,
-			);
-			path = IOU;
-			sourceTree = "<group>";
-		};
-		E44B68572AB5BC0600B243B0 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				E4130F602AC0057700AEF308 /* PDFExporterView.swift */,
-				E4130F642AC01E7400AEF308 /* PDFKitView.swift */,
-				E44B68552AB5BBFE00B243B0 /* PersonRow.swift */,
-				E44B68692AB6C6DB00B243B0 /* PeoplePicker.swift */,
-				E4766C252AB886C9005E4B47 /* ReceiptItemDetailView.swift */,
-				E4766C272AB88D41005E4B47 /* PeopleDetailView.swift */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		E44B686B2AB6CDE700B243B0 /* Structs */ = {
-			isa = PBXGroup;
-			children = (
-				E4130F432ABEA2C200AEF308 /* Tips */,
-				E44B686E2AB72A8700B243B0 /* IOUViewSafe.swift */,
-				E4130F442ABEA2F400AEF308 /* TaxRate.swift */,
-			);
-			path = Structs;
-			sourceTree = "<group>";
-		};
 		E46082362AB9575D001CF504 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,77 +138,6 @@
 				E46082392AB9575D001CF504 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E460823B2AB9575D001CF504 /* Assistant */ = {
-			isa = PBXGroup;
-			children = (
-				E46082512AB96991001CF504 /* AssistantExtension.entitlements */,
-				E46082422AB9575E001CF504 /* Info.plist */,
-				E46082402AB9575E001CF504 /* Assets.xcassets */,
-				E46082522AB96AF4001CF504 /* Localizable.xcstrings */,
-				E46082552AB9A6F3001CF504 /* Widgets */,
-				E460825F2AB9A8FD001CF504 /* Intents */,
-				E46082622AB9AC4E001CF504 /* Entities */,
-				E460825E2AB9A7B9001CF504 /* Utilities */,
-			);
-			path = Assistant;
-			sourceTree = "<group>";
-		};
-		E46082552AB9A6F3001CF504 /* Widgets */ = {
-			isa = PBXGroup;
-			children = (
-				E460823C2AB9575D001CF504 /* Widgets.swift */,
-				E460823E2AB9575D001CF504 /* ReceiptProgressWidget.swift */,
-				E460826B2AB9D173001CF504 /* ReceiptItemsWidget.swift */,
-				E48A28482ABB33AC009E7912 /* ReceiptIOUWidget.swift */,
-				E4130F582ABFF32300AEF308 /* NoReceiptHintView.swift */,
-			);
-			path = Widgets;
-			sourceTree = "<group>";
-		};
-		E460825E2AB9A7B9001CF504 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				E46082592AB9A771001CF504 /* ReceiptEntry.swift */,
-				E460825C2AB9A7A0001CF504 /* Provider.swift */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		E460825F2AB9A8FD001CF504 /* Intents */ = {
-			isa = PBXGroup;
-			children = (
-				E46082602AB9A90D001CF504 /* ReceiptIntent.swift */,
-				E46082662AB9CD63001CF504 /* TogglePaidIntent.swift */,
-			);
-			path = Intents;
-			sourceTree = "<group>";
-		};
-		E46082622AB9AC4E001CF504 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				E46082632AB9AC5A001CF504 /* ReceiptEntity.swift */,
-			);
-			path = Entities;
-			sourceTree = "<group>";
-		};
-		E4766C1D2AB84921005E4B47 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				E4766C1E2AB8492B005E4B47 /* SearchView.swift */,
-			);
-			path = Search;
-			sourceTree = "<group>";
-		};
-		E48A28512ABC6197009E7912 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				E4130F392ABE9C5400AEF308 /* Utilities */,
-				E48A28522ABC61A1009E7912 /* ModelContainer.swift */,
-				E4130F1B2ABD134E00AEF308 /* Data Models */,
-			);
-			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -505,6 +158,10 @@
 			);
 			dependencies = (
 				E46082442AB9575E001CF504 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				E4980B4A2F533DF300EFFB8B /* Meloan */,
+				E4980B882F533DF500EFFB8B /* Shared */,
 			);
 			name = Meloan;
 			packageProductDependencies = (
@@ -527,6 +184,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E4980B882F533DF500EFFB8B /* Shared */,
+				E4980BAB2F533DF800EFFB8B /* Assistant */,
 			);
 			name = AssistantExtension;
 			productName = AssistantExtension;
@@ -581,11 +242,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E43DFB272AD76C34002A6317 /* Currencies.json in Resources */,
-				E44B68522AB5B67F00B243B0 /* InfoPlist.xcstrings in Resources */,
-				E4766C2C2AB89CEE005E4B47 /* Assets.xcassets in Resources */,
-				E44B68402AB573C300B243B0 /* Localizable.xcstrings in Resources */,
-				E4130F412ABEA0AC00AEF308 /* TaxRates.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,8 +249,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E46082542AB96B07001CF504 /* Localizable.xcstrings in Resources */,
-				E46082412AB9575E001CF504 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,54 +280,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E48A28502ABC5C27009E7912 /* IOUTip.swift in Sources */,
-				E44B681A2AB4ADCA00B243B0 /* PeopleView.swift in Sources */,
-				E4130F632AC008A300AEF308 /* PDFDocument.swift in Sources */,
-				E44B683E2AB5705600B243B0 /* ViewPath.swift in Sources */,
-				E44B686A2AB6C6DB00B243B0 /* PeoplePicker.swift in Sources */,
-				E44B681C2AB4ADCA00B243B0 /* Person.swift in Sources */,
-				E44B68462AB5832900B243B0 /* Receipt.swift in Sources */,
-				E44B684C2AB5931700B243B0 /* ReceiptsView.swift in Sources */,
-				E4766C212AB86086005E4B47 /* ReceiptMarkPaidTip.swift in Sources */,
-				E44B68182AB4ADCA00B243B0 /* App.swift in Sources */,
-				E44B686F2AB72A8700B243B0 /* IOUViewSafe.swift in Sources */,
-				E48A284E2ABC572A009E7912 /* ReceiptDeleteAndEditTip.swift in Sources */,
-				E4130F612AC0057700AEF308 /* PDFExporterView.swift in Sources */,
-				E44B68482AB58B9100B243B0 /* PersonCreator.swift in Sources */,
-				E4130F5C2ABFFB6E00AEF308 /* MoreTroubleshootingView.swift in Sources */,
-				E44B68732AB7348700B243B0 /* ReceiptItemRow.swift in Sources */,
-				E44B682E2AB5673B00B243B0 /* DiscountItem.swift in Sources */,
-				E4766C1C2AB845EC005E4B47 /* ReceiptEditor.swift in Sources */,
-				E4130F452ABEA2F400AEF308 /* TaxRate.swift in Sources */,
-				E44B684E2AB5938700B243B0 /* ReceiptColumn.swift in Sources */,
-				E44B68302AB5675E00B243B0 /* MainTabView.swift in Sources */,
-				E44B68372AB5700300B243B0 /* NavigationManager.swift in Sources */,
-				E4130F212ABD203000AEF308 /* MoreManageDataView.swift in Sources */,
-				E44B68612AB5FA0F00B243B0 /* ReceiptItemAssignableRow.swift in Sources */,
-				E4130F652AC01E7400AEF308 /* PDFKitView.swift in Sources */,
-				E44B68432AB579D800B243B0 /* MoreView.swift in Sources */,
-				E44B68632AB6BA0100B243B0 /* IOUView.swift in Sources */,
-				E44B682C2AB5671600B243B0 /* TaxItem.swift in Sources */,
-				E44B68752AB7450900B243B0 /* PeopleTip.swift in Sources */,
-				E4130F472ABEA4AB00AEF308 /* Bundle.swift in Sources */,
-				E4130F552ABF3B6400AEF308 /* Array.swift in Sources */,
-				E4766C262AB886C9005E4B47 /* ReceiptItemDetailView.swift in Sources */,
-				E44B683C2AB5704300B243B0 /* TabType.swift in Sources */,
-				E4130F5E2AC0040D00AEF308 /* Defaults.swift in Sources */,
-				E44B68292AB5667A00B243B0 /* ReceiptItem.swift in Sources */,
-				E44B68392AB5702C00B243B0 /* TabManager.swift in Sources */,
-				E44B68712AB731DF00B243B0 /* ReceiptDetailView.swift in Sources */,
-				E44B68502AB5A36A00B243B0 /* ReceiptItemCompactRow.swift in Sources */,
-				E4130F4D2ABEBCAE00AEF308 /* JSONs.swift in Sources */,
-				E4766C282AB88D41005E4B47 /* PeopleDetailView.swift in Sources */,
-				E44B68592AB5C2FB00B243B0 /* ReceiptItemEditableRow.swift in Sources */,
-				E4130F342ABDA26600AEF308 /* MoreAppIconView.swift in Sources */,
-				E48A28532ABC61A1009E7912 /* ModelContainer.swift in Sources */,
-				E4766C1F2AB8492B005E4B47 /* SearchView.swift in Sources */,
-				E4130F3B2ABE9C5D00AEF308 /* Formatters.swift in Sources */,
-				E44B68772AB7478A00B243B0 /* ReceiptsTip.swift in Sources */,
-				E44B68562AB5BBFE00B243B0 /* PersonRow.swift in Sources */,
-				E44B68792AB80A8400B243B0 /* PeopleEditor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,27 +287,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E460823F2AB9575D001CF504 /* ReceiptProgressWidget.swift in Sources */,
-				E48A28542ABC61B7009E7912 /* ModelContainer.swift in Sources */,
-				E4130F3C2ABE9C7C00AEF308 /* Formatters.swift in Sources */,
-				E460824C2AB95818001CF504 /* DiscountItem.swift in Sources */,
-				E48A28492ABB33AC009E7912 /* ReceiptIOUWidget.swift in Sources */,
-				E4130F512ABEBD9200AEF308 /* TaxRate.swift in Sources */,
-				E460824E2AB95818001CF504 /* Receipt.swift in Sources */,
-				E460824A2AB95818001CF504 /* ReceiptItem.swift in Sources */,
-				E4130F5A2ABFF37000AEF308 /* NoReceiptHintView.swift in Sources */,
-				E460828F2ABA02F6001CF504 /* TogglePaidIntent.swift in Sources */,
-				E460824B2AB95818001CF504 /* Person.swift in Sources */,
-				E460825D2AB9A7A0001CF504 /* Provider.swift in Sources */,
-				E46082612AB9A90D001CF504 /* ReceiptIntent.swift in Sources */,
-				E4130F532ABEBDA000AEF308 /* Bundle.swift in Sources */,
-				E460824D2AB95818001CF504 /* TaxItem.swift in Sources */,
-				E46082742AB9FA9A001CF504 /* ReceiptItemsWidget.swift in Sources */,
-				E46082642AB9AC5A001CF504 /* ReceiptEntity.swift in Sources */,
-				E460825A2AB9A771001CF504 /* ReceiptEntry.swift in Sources */,
-				E460823D2AB9575D001CF504 /* Widgets.swift in Sources */,
-				E4130F502ABEBD8B00AEF308 /* JSONs.swift in Sources */,
-				E4130F5F2AC0041900AEF308 /* Defaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
