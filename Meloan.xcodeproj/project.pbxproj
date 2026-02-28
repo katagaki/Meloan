@@ -67,6 +67,7 @@
 		E4980B7D2F533DF300EFFB8B /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				AppIcon.icon,
 				Structs/TaxRate.swift,
 				Utilities/Bundle.swift,
 				Utilities/JSONs.swift,

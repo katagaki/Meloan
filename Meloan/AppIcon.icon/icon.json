@@ -1,0 +1,109 @@
+{
+  "fill" : {
+    "linear-gradient" : [
+      "display-p3:0.97371,0.93266,0.87839,1.00000",
+      "display-p3:0.96156,0.79900,0.38665,1.00000"
+    ],
+    "orientation" : {
+      "start" : {
+        "x" : 0.5,
+        "y" : 0
+      },
+      "stop" : {
+        "x" : 0.5,
+        "y" : 0.7
+      }
+    }
+  },
+  "groups" : [
+    {
+      "blur-material" : 1,
+      "layers" : [
+        {
+          "image-name" : "Meloan.020.png",
+          "name" : "Seeds"
+        },
+        {
+          "image-name" : "Meloan.019.png",
+          "name" : "Juicy Part"
+        },
+        {
+          "image-name" : "Meloan.018.png",
+          "name" : "Peel"
+        }
+      ],
+      "name" : "Melon",
+      "shadow" : {
+        "kind" : "layer-color",
+        "opacity" : 1
+      },
+      "translucency-specializations" : [
+        {
+          "value" : {
+            "enabled" : true,
+            "value" : 0.6
+          }
+        },
+        {
+          "appearance" : "dark",
+          "value" : {
+            "enabled" : true,
+            "value" : 0.3
+          }
+        },
+        {
+          "appearance" : "tinted",
+          "value" : {
+            "enabled" : true,
+            "value" : 0.8
+          }
+        }
+      ]
+    },
+    {
+      "blur-material" : 0.5,
+      "layers" : [
+        {
+          "image-name" : "Meloan.021.png",
+          "name" : "Cash"
+        },
+        {
+          "image-name" : "Meloan.022.png",
+          "name" : "Cash"
+        },
+        {
+          "image-name" : "Meloan.023.png",
+          "name" : "Baby"
+        }
+      ],
+      "lighting" : "individual",
+      "name" : "Bank Notes",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 1
+      },
+      "specular" : true,
+      "translucency-specializations" : [
+        {
+          "value" : {
+            "enabled" : true,
+            "value" : 0.5
+          }
+        },
+        {
+          "appearance" : "tinted",
+          "value" : {
+            "enabled" : true,
+            "value" : 0.65
+          }
+        }
+      ]
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}

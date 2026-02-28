@@ -4040,6 +4040,7 @@
       }
     },
     "ViewTitle.More.Customization.AppIcon" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

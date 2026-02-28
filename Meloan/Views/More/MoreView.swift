@@ -33,15 +33,6 @@ struct MoreView: View {
                         .font(.body)
                 }
                 Section {
-                    NavigationLink(value: ViewPath.moreAppIcon) {
-                        ListRow(image: "ListIcon.AppIcon",
-                                title: "More.Customization.AppIcon")
-                    }
-                } header: {
-                    ListSectionHeader(text: "More.Customization")
-                        .font(.body)
-                }
-                Section {
                     Toggle(isOn: $markSelfPaid, label: {
                         ListRow(image: "ListIcon.MarkSelfPaid",
                                 title: "More.Receipts.MarkSelfPaid",
@@ -181,7 +172,6 @@ struct MoreView: View {
             .navigationDestination(for: ViewPath.self) { viewPath in
                 switch viewPath {
                 case .moreData: MoreManageDataView()
-                case .moreAppIcon: MoreAppIconView()
                 case .moreTroubleshooting: MoreTroubleshootingView()
                 case .moreAttributions: LicensesView(licenses: [
                     License(libraryName: "CloudKitSyncMonitor",
