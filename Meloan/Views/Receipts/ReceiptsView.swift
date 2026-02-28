@@ -113,18 +113,8 @@ struct ReceiptsView: View {
                 default: Color.clear
                 }
             })
-            .safeAreaInset(edge: .top, spacing: 0.0) {
-                Color.clear
-                    .frame(maxWidth: .infinity, maxHeight: 0.0)
-                    .background(Material.bar)
-                    .overlay(alignment: .bottom) {
-                        Rectangle()
-                            .frame(height: 1/3)
-                            .foregroundColor(.primary.opacity(0.2))
-                    }
-            }
-            .safeAreaInset(edge: .bottom, spacing: 0.0) {
-                HStack(alignment: .center, spacing: 16.0) {
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
                     Menu {
                         Toggle(isOn: $hidePaid.animation(.snappy.speed(2))) {
                             Text("Receipts.HidePaidReceipts")
@@ -159,27 +149,13 @@ struct ReceiptsView: View {
                             Text("Shared.Filter.Reset")
                         }
                     } label: {
-                        HStack(alignment: .center, spacing: 8.0) {
-                            Image(systemName: "line.3.horizontal.decrease.circle")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 18.0, height: 18.0)
-                            Text("Shared.Filter")
-                                .bold()
-                        }
-                        .padding(.all, 2.0)
+                        Label("Shared.Filter",
+                              systemImage: isFilterActive()
+                                ? "line.3.horizontal.decrease.circle.fill"
+                                : "line.3.horizontal.decrease.circle")
                     }
-                    .buttonStyle(.plain)
-                    .foregroundStyle(isFilterActive() ? .white : .accent)
-                    .padding([.leading, .trailing], 8.0)
-                    .padding([.top, .bottom], 4.0)
-                    .background {
-                        if isFilterActive() {
-                            RoundedRectangle(cornerRadius: 99)
-                                .foregroundStyle(.accent)
-                        }
-                    }
-                    Spacer()
+                }
+                ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         let receipt = Receipt(name: NSLocalizedString("Receipt.Create.Name.Default", comment: ""))
                         modelContext.insert(receipt)
@@ -190,24 +166,8 @@ struct ReceiptsView: View {
                             receiptBeingEdited = receipt
                         }
                     } label: {
-                        HStack(alignment: .center, spacing: 8.0) {
-                            Image(systemName: "plus")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 18.0, height: 18.0)
-                            Text("Shared.Create")
-                                .bold()
-                        }
-                        .padding([.leading, .trailing], 2.0)
+                        Label("Shared.Create", systemImage: "plus")
                     }
-                }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Material.bar)
-                .overlay(alignment: .top) {
-                    Rectangle()
-                        .frame(height: 1/3)
-                        .foregroundColor(.primary.opacity(0.2))
                 }
             }
             .sheet(item: $receiptBeingEdited, content: { receipt in

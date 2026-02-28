@@ -14,6 +14,14 @@ struct ReceiptColumn: View {
     @EnvironmentObject var navigationManager: NavigationManager
     @State var receipt: Receipt
 
+    var receiptCornerRadius: CGFloat {
+        if #available(iOS 26.0, *) {
+            return 20.0
+        } else {
+            return 10.0
+        }
+    }
+
     var body: some View {
         VStack(alignment: .center, spacing: 0.0) {
             Text(receipt.name)
@@ -84,6 +92,6 @@ struct ReceiptColumn: View {
         }
         .background(Color(uiColor: UIColor.secondarySystemGroupedBackground))
         .frame(width: 288.0)
-        .clipShape(RoundedRectangle(cornerRadius: 10.0))
+        .clipShape(RoundedRectangle(cornerRadius: receiptCornerRadius))
     }
 }

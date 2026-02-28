@@ -112,12 +112,7 @@ struct IOUView: View {
                     }
                     .pickerStyle(.navigationLink)
                     .padding()
-                    .background(Material.bar)
-                    .overlay(alignment: .top) {
-                        Rectangle()
-                            .frame(height: 1/3)
-                            .foregroundColor(.primary.opacity(0.2))
-                    }
+                    .background(.regularMaterial)
                 }
             }
             .navigationTitle("ViewTitle.IOU")

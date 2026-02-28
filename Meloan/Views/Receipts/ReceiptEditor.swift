@@ -188,27 +188,8 @@ struct ReceiptEditor: View {
                 }
             }
         }
-        .toolbarBackground(.hidden, for: .navigationBar)
         .navigationTitle(receipt.name)
         .navigationBarTitleDisplayMode(.inline)
-        // TODO: Implement manual saving
-        .safeAreaInset(edge: .top) {
-            HStack(alignment: .center, spacing: 8.0) {
-                Image(systemName: "info.circle.fill")
-                    .font(.subheadline)
-                Text("Shared.AutoSaving")
-                    .font(.subheadline)
-            }
-            .foregroundColor(.secondary)
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(Material.bar)
-            .overlay(alignment: .bottom) {
-                Rectangle()
-                    .frame(height: 1/3)
-                    .foregroundColor(.primary.opacity(0.2))
-            }
-        }
         .toolbar {
             if UIDevice.current.userInterfaceIdiom == .pad {
                 ToolbarItem(placement: .topBarTrailing) {
