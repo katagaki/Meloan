@@ -25,35 +25,23 @@ struct MainTabView: View {
 
     var body: some View {
         TabView(selection: $tabManager.selectedTab) {
-            ReceiptsView()
-                .tabItem {
-                    Label("TabTitle.Receipts", systemImage: "receipt")
-                }
-                .toolbarBackground(.automatic, for: .tabBar)
-                .toolbarBackground(.visible, for: .navigationBar)
-                .tag(TabType.receipts)
-            IOUView()
-                .tabItem {
-                    Label("TabTitle.IOU", image: "Tab.IOU")
-                }
-                .toolbarBackground(.hidden, for: .tabBar)
-                .tag(TabType.iou)
-            PeopleView()
-                .tabItem {
-                    Label("TabTitle.People", systemImage: "person.2")
-                }
-                .toolbarBackground(.hidden, for: .tabBar)
-                .tag(TabType.people)
-            SearchView()
-                .tabItem {
-                    Label("TabTitle.Search", systemImage: "magnifyingglass")
-                }
-                .tag(TabType.search)
-            MoreView()
-                .tabItem {
-                    Label("TabTitle.More", systemImage: "ellipsis")
-                }
-                .tag(TabType.more)
+            Tab("TabTitle.Receipts", systemImage: "receipt", value: TabType.receipts) {
+                ReceiptsView()
+            }
+            Tab(value: TabType.iou) {
+                IOUView()
+            } label: {
+                Label("TabTitle.IOU", image: "Tab.IOU")
+            }
+            Tab("TabTitle.People", systemImage: "person.2", value: TabType.people) {
+                PeopleView()
+            }
+            Tab("TabTitle.Search", systemImage: "magnifyingglass", value: TabType.search, role: .search) {
+                SearchView()
+            }
+            Tab("TabTitle.More", systemImage: "ellipsis", value: TabType.more) {
+                MoreView()
+            }
         }
         .task {
             createMePerson()
