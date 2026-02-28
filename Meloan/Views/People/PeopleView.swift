@@ -48,10 +48,7 @@ struct PeopleView: View {
                 }
             })
             .toolbar {
-                ToolbarItem(placement: .bottomBar) {
-                    Spacer()
-                }
-                ToolbarItem(placement: .bottomBar) {
+                ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         navigationManager.push(ViewPath.personCreator, for: .people)
                     } label: {

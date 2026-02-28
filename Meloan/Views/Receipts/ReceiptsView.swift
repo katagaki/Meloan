@@ -114,7 +114,7 @@ struct ReceiptsView: View {
                 }
             })
             .toolbar {
-                ToolbarItem(placement: .bottomBar) {
+                ToolbarItem(placement: .topBarLeading) {
                     Menu {
                         Toggle(isOn: $hidePaid.animation(.snappy.speed(2))) {
                             Text("Receipts.HidePaidReceipts")
@@ -155,10 +155,7 @@ struct ReceiptsView: View {
                                 : "line.3.horizontal.decrease.circle")
                     }
                 }
-                ToolbarItem(placement: .bottomBar) {
-                    Spacer()
-                }
-                ToolbarItem(placement: .bottomBar) {
+                ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         let receipt = Receipt(name: NSLocalizedString("Receipt.Create.Name.Default", comment: ""))
                         modelContext.insert(receipt)
