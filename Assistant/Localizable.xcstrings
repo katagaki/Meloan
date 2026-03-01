@@ -81,12 +81,6 @@
         }
       }
     },
-    "Widget.LenderIOU.Description" : {
-      "extractionState" : "manual"
-    },
-    "Widget.LenderIOU.Title" : {
-      "extractionState" : "manual"
-    },
     "Widget.Paid.No" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -99,7 +93,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "未払"
+            "value" : "未払あり"
           }
         }
       }

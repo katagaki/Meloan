@@ -32,56 +32,39 @@ struct ReceiptIOUWidgetView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8.0) {
             if let receipt = entry.receipt {
-                HStack(alignment: .center, spacing: 8.0) {
-                    Text(receipt.name)
-                        .font(.system(size: 17.0))
+                switch family {
+                case .systemLarge:
+                    HStack(alignment: .center, spacing: 8.0) {
+                        Text(receipt.name)
+                            .font(.system(size: 17.0))
+                            .bold()
+                            .lineLimit(1)
+                            .truncationMode(.middle)
+                        Spacer()
+                        Text(receipt.isPaid() ? LocalizedStringKey("Widget.Paid.Yes") :
+                                LocalizedStringKey("Widget.Paid.No"))
+                        .textCase(.uppercase)
+                        .foregroundStyle(.white)
+                        .font(.system(size: 15.0))
                         .bold()
-                        .lineLimit(1)
-                        .truncationMode(.middle)
-                    Spacer()
-                    Text(receipt.isPaid() ? LocalizedStringKey("Widget.Paid.Yes") :
-                            LocalizedStringKey("Widget.Paid.No"))
-                    .textCase(.uppercase)
-                    .foregroundStyle(.white)
-                    .font(.system(size: 15.0))
-                    .bold()
-                    .padding([.leading, .trailing], 4.0)
-                    .padding([.top, .bottom], 2.0)
-                    .background(receipt.isPaid() ? Color.green : Color.red)
-                    .clipShape(RoundedRectangle(cornerRadius: 8.0))
-                }
-                Divider()
-                if let personWhoPaid = receipt.personWhoPaid {
-                    VStack(alignment: .leading, spacing: 8.0) {
-                        HStack(alignment: .center, spacing: 8.0) {
-                            ForEach(receipt.borrowers().prefix(4)) { person in
-                                    ReceiptIOUPersonView(photoData: person.photo,
-                                                         name: person.name,
-                                                         amount: receipt.sumOwed(to: personWhoPaid, for: person))
-                                if person != receipt.borrowers().prefix(4).last {
-                                    Divider()
-                                }
-                            }
-                        }
-                        if family == .systemLarge && receipt.borrowers().count > 4 {
-                            Divider()
-                            HStack(alignment: .center, spacing: 8.0) {
-                                ForEach(receipt.borrowers()[4..<min(8, receipt.borrowers().count)]) { person in
-                                    ReceiptIOUPersonView(photoData: person.photo,
-                                                         name: person.name,
-                                                         amount: receipt.sumOwed(to: personWhoPaid, for: person))
-                                    if person != receipt.borrowers().prefix(8).last {
-                                        Divider()
-                                    }
-                                }
+                        .padding([.leading, .trailing], 4.0)
+                        .padding([.top, .bottom], 2.0)
+                        .background(receipt.isPaid() ? Color.green : Color.red)
+                        .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                    }
+                    Divider()
+                    if let personWhoPaid = receipt.personWhoPaid {
+                        VStack(alignment: .leading, spacing: 8.0) {
+                            ForEach(receipt.borrowers().prefix(7)) { person in
+                                ReceiptIOUPersonRowView(photoData: person.photo,
+                                                        name: person.name,
+                                                        amount: receipt.sumOwed(to: personWhoPaid, for: person))
                             }
                         }
                     }
-                }
-                if receipt.borrowers().count == 0 {
-                    Spacer(minLength: 0)
-                }
-                if family == .systemLarge {
+                    if receipt.borrowers().count == 0 {
+                        Spacer(minLength: 0)
+                    }
                     Spacer(minLength: 0)
                     Divider()
                     HStack(alignment: .center, spacing: 8.0) {
@@ -91,6 +74,41 @@ struct ReceiptIOUWidgetView: View {
                     }
                     .font(.system(size: 14.0))
                     .monospaced()
+                default:
+                    HStack(alignment: .center, spacing: 8.0) {
+                        Text(receipt.name)
+                            .font(.system(size: 17.0))
+                            .bold()
+                            .lineLimit(1)
+                            .truncationMode(.middle)
+                        Spacer()
+                        Text(receipt.isPaid() ? LocalizedStringKey("Widget.Paid.Yes") :
+                                LocalizedStringKey("Widget.Paid.No"))
+                        .textCase(.uppercase)
+                        .foregroundStyle(.white)
+                        .font(.system(size: 15.0))
+                        .bold()
+                        .padding([.leading, .trailing], 4.0)
+                        .padding([.top, .bottom], 2.0)
+                        .background(receipt.isPaid() ? Color.green : Color.red)
+                        .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                    }
+                    Divider()
+                    if let personWhoPaid = receipt.personWhoPaid {
+                        HStack(alignment: .center, spacing: 8.0) {
+                            ForEach(receipt.borrowers().prefix(4)) { person in
+                                ReceiptIOUPersonView(photoData: person.photo,
+                                                     name: person.name,
+                                                     amount: receipt.sumOwed(to: personWhoPaid, for: person))
+                                if person != receipt.borrowers().prefix(4).last {
+                                    Divider()
+                                }
+                            }
+                        }
+                    }
+                    if receipt.borrowers().count == 0 {
+                        Spacer(minLength: 0)
+                    }
                 }
             } else {
                 NoReceiptHintView()
@@ -128,6 +146,40 @@ struct ReceiptIOUPersonView: View {
             }
             .lineLimit(1)
             .frame(maxWidth: .infinity)
+        }
+    }
+}
+
+struct ReceiptIOUPersonRowView: View {
+
+    var photoData: Data?
+    var name: String
+    var amount: Double
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8.0) {
+            HStack(alignment: .center, spacing: 8.0) {
+                Group {
+                    if let photoData = photoData, let image = UIImage(data: photoData) {
+                        Image(uiImage: image)
+                            .resizable()
+                    } else {
+                        Image("Profile.Generic.Circle")
+                            .resizable()
+                    }
+                }
+                .frame(width: 16.0, height: 16.0)
+                .clipShape(Circle())
+                Text(name)
+                Spacer()
+                Text(format(amount))
+                    .foregroundStyle(.secondary)
+            }
+            .font(.system(size: 14.0))
+            .monospaced()
+            .lineLimit(1)
+            .frame(maxWidth: .infinity)
+            Divider()
         }
     }
 }
