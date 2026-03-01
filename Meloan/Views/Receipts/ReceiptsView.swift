@@ -25,6 +25,8 @@ struct ReceiptsView: View {
     // Filter variables
     @AppStorage(wrappedValue: false, "HidePaidReceipts", store: defaults) var hidePaid: Bool
     @AppStorage(wrappedValue: "", "FilterPayerID", store: defaults) var filterPayerID: String
+    @AppStorage(wrappedValue: true, "FilterShowIPaid", store: defaults) var filterShowIPaid: Bool
+    @AppStorage(wrappedValue: true, "FilterShowOthersPaid", store: defaults) var filterShowOthersPaid: Bool
     @State var filterPayer: Person?
 
     // Gesture variables
@@ -47,8 +49,7 @@ struct ReceiptsView: View {
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .top, spacing: 20.0) {
                         ForEach(receipts) { receipt in
-                            if (!hidePaid || !receipt.isPaid()) &&
-                                (filterPayer == nil || filterPayer == receipt.personWhoPaid) {
+                            if shouldShowReceipt(receipt) {
                                 ZStack(alignment: .bottom) {
                                     VStack(alignment: .center, spacing: 16.0) {
                                         ActionButton(text: "Shared.Edit", icon: "Edit", isPrimary: false) {
@@ -121,6 +122,13 @@ struct ReceiptsView: View {
                                 .bold()
                         }
                         Divider()
+                        Toggle(isOn: $filterShowIPaid.animation(.snappy.speed(2))) {
+                            Text("Receipts.Filter.IPaid")
+                        }
+                        Toggle(isOn: $filterShowOthersPaid.animation(.snappy.speed(2))) {
+                            Text("Receipts.Filter.OthersPaid")
+                        }
+                        Divider()
                         Menu {
                             if let mePerson = people.first(where: { $0.id == "ME" }) {
                                 Button {
@@ -144,6 +152,8 @@ struct ReceiptsView: View {
                             withAnimation(.snappy.speed(2)) {
                                 hidePaid = false
                                 filterPayer = nil
+                                filterShowIPaid = true
+                                filterShowOthersPaid = true
                             }
                         } label: {
                             Text("Shared.Filter.Reset")
@@ -215,7 +225,28 @@ struct ReceiptsView: View {
     }
 
     func isFilterActive() -> Bool {
-        return hidePaid || filterPayer != nil
+        return hidePaid || filterPayer != nil || !filterShowIPaid || !filterShowOthersPaid
+    }
+
+    func shouldShowReceipt(_ receipt: Receipt) -> Bool {
+        // Hide paid receipts filter
+        if hidePaid && receipt.isPaid() {
+            return false
+        }
+        // Specific payer filter
+        if let filterPayer = filterPayer, filterPayer != receipt.personWhoPaid {
+            return false
+        }
+        // "I paid" / "Others paid" filter
+        let mePersonID = "ME"
+        let iPaid = receipt.personWhoPaid?.id == mePersonID
+        if !filterShowIPaid && iPaid {
+            return false
+        }
+        if !filterShowOthersPaid && !iPaid {
+            return false
+        }
+        return true
     }
 
     func handleChange(of gesture: DragGesture.Value, for receipt: Receipt) {

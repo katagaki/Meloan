@@ -30,21 +30,19 @@ struct ReceiptItemEditableRow: View {
     }
 
     var body: some View {
-        GeometryReader { metrics in
-            HStack(alignment: .center, spacing: 16.0) {
-                TextField(LocalizedStringKey(placeholderText), text: $name)
-                    .textInputAutocapitalization(.words)
-                    .frame(minWidth: metrics.size.width * 0.65)
-                Divider()
-                TextField("Receipt.Price", value: $price, formatter: formatter())
-                    .multilineTextAlignment(.trailing)
-                    .keyboardType(.decimalPad)
-                    .monospaced()
-                    .font(.system(size: 14.0))
-            }
-            .disabled(shouldBeDisabled())
-            .foregroundStyle(shouldBeDisabled() ? Color.secondary : Color.primary)
+        HStack(alignment: .center, spacing: 16.0) {
+            TextField(LocalizedStringKey(placeholderText), text: $name)
+                .textInputAutocapitalization(.words)
+            Divider()
+            TextField("Receipt.Price", value: $price, formatter: formatter())
+                .multilineTextAlignment(.trailing)
+                .keyboardType(.decimalPad)
+                .monospaced()
+                .font(.system(size: 14.0))
+                .frame(maxWidth: 120.0)
         }
+        .disabled(shouldBeDisabled())
+        .foregroundStyle(shouldBeDisabled() ? Color.secondary : Color.primary)
         .onChange(of: name, initial: false) { _, _ in
             if let discountItem = discountItem {
                 discountItem.name = name

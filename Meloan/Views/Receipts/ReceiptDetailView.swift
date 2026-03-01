@@ -39,6 +39,20 @@ struct ReceiptDetailView: View {
                     .buttonStyle(.bordered)
                     .clipShape(RoundedRectangle(cornerRadius: 99))
                     .disabled(receipt.items().count + receipt.discountItems().count + receipt.taxItems().count > 45)
+                    ShareLink(item: createTextToShare()) {
+                        HStack(alignment: .center, spacing: 4.0) {
+                            Image(systemName: "text.alignleft")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 18.0, height: 18.0)
+                            Text("Receipt.ExportText")
+                                .bold()
+                        }
+                        .frame(minHeight: 24.0)
+                        .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.bordered)
+                    .clipShape(RoundedRectangle(cornerRadius: 99))
                 }
                 .frame(maxWidth: .infinity)
                 .listRowInsets(EdgeInsets())
@@ -289,6 +303,42 @@ struct ReceiptDetailView: View {
         } else {
             fatalError("Could not export image.")
         }
+    }
+
+    func createTextToShare() -> String {
+        var lines: [String] = []
+        lines.append(receipt.name)
+        lines.append(String(repeating: "-", count: 30))
+        if let personWhoPaid = receipt.personWhoPaid {
+            lines.append("\(NSLocalizedString("Receipt.Payer", comment: "")): \(personWhoPaid.name)")
+            lines.append("")
+        }
+        if !receipt.items().isEmpty {
+            lines.append(NSLocalizedString("Receipt.PurchasedItems", comment: ""))
+            for item in receipt.items() {
+                let assignee = item.person?.name ?? NSLocalizedString("Shared.Shared", comment: "")
+                lines.append("  \(item.name) - \(format(item.price)) [\(assignee)]")
+            }
+            lines.append("")
+        }
+        if !receipt.discountItems().isEmpty {
+            lines.append(NSLocalizedString("Receipt.Discounts", comment: ""))
+            for item in receipt.discountItems() {
+                lines.append("  \(item.name) - \(format(item.price))")
+            }
+            lines.append("")
+        }
+        if !receipt.taxItems().isEmpty {
+            lines.append(NSLocalizedString("Receipt.Taxes", comment: ""))
+            for item in receipt.taxItems() {
+                lines.append("  \(item.name) - \(format(item.price))")
+            }
+            lines.append("")
+        }
+        lines.append(String(repeating: "-", count: 30))
+        lines.append("\(NSLocalizedString("Receipt.Total.BeforeTax", comment: "")): \(format(receipt.sumOfItems()))")
+        lines.append("\(NSLocalizedString("Receipt.Total.AfterTax", comment: "")): \(format(receipt.sum()))")
+        return lines.joined(separator: "\n")
     }
 }
 // swiftlint:enable type_body_length
