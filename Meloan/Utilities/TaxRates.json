@@ -149,12 +149,12 @@
     "JP": {
         "type": "vat",
         "currency": "JPY",
-        "rate": 0.08
+        "rate": 0.10
     },
     "SG": {
         "type": "gst",
         "currency": "SGD",
-        "rate": 0.08
+        "rate": 0.09
     },
     "US": {
         "type": "none",
