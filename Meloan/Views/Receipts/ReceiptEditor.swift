@@ -186,11 +186,58 @@ struct ReceiptEditor: View {
         }
         .sensoryFeedback(.success, trigger: isSaveConfirmed)
         .interactiveDismissDisabled()
-        .onChange(of: draft.peopleWhoParticipated) { _, _ in
-            if let personWhoPaid = draft.personWhoPaid {
+        .onChange(of: draft.name) { oldValue, newValue in
+            guard oldValue != newValue, !draft.isApplyingUndoRedo else { return }
+            undoManager?.registerUndo(withTarget: draft) { draft in
+                draft.isApplyingUndoRedo = true
+                draft.name = oldValue
+                DispatchQueue.main.async { draft.isApplyingUndoRedo = false }
+            }
+        }
+        .onChange(of: draft.personWhoPaid) { oldValue, newValue in
+            guard oldValue != newValue, !draft.isApplyingUndoRedo else { return }
+            undoManager?.registerUndo(withTarget: draft) { draft in
+                draft.isApplyingUndoRedo = true
+                draft.personWhoPaid = oldValue
+                DispatchQueue.main.async { draft.isApplyingUndoRedo = false }
+            }
+        }
+        .onChange(of: draft.peopleWhoParticipated) { oldValue, newValue in
+            if oldValue != newValue, !draft.isApplyingUndoRedo {
+                undoManager?.registerUndo(withTarget: draft) { draft in
+                    draft.isApplyingUndoRedo = true
+                    draft.peopleWhoParticipated = oldValue
+                    DispatchQueue.main.async { draft.isApplyingUndoRedo = false }
+                }
+            }
+            if !draft.isApplyingUndoRedo, let personWhoPaid = draft.personWhoPaid {
                 if !draft.participants().contains(where: { $0.id == personWhoPaid.id }) {
                     draft.personWhoPaid = nil
                 }
+            }
+        }
+        .onChange(of: draft.receiptItems) { oldValue, newValue in
+            guard oldValue != newValue, !draft.isApplyingUndoRedo else { return }
+            undoManager?.registerUndo(withTarget: draft) { draft in
+                draft.isApplyingUndoRedo = true
+                draft.receiptItems = oldValue
+                DispatchQueue.main.async { draft.isApplyingUndoRedo = false }
+            }
+        }
+        .onChange(of: draft.discountItems) { oldValue, newValue in
+            guard oldValue != newValue, !draft.isApplyingUndoRedo else { return }
+            undoManager?.registerUndo(withTarget: draft) { draft in
+                draft.isApplyingUndoRedo = true
+                draft.discountItems = oldValue
+                DispatchQueue.main.async { draft.isApplyingUndoRedo = false }
+            }
+        }
+        .onChange(of: draft.taxItems) { oldValue, newValue in
+            guard oldValue != newValue, !draft.isApplyingUndoRedo else { return }
+            undoManager?.registerUndo(withTarget: draft) { draft in
+                draft.isApplyingUndoRedo = true
+                draft.taxItems = oldValue
+                DispatchQueue.main.async { draft.isApplyingUndoRedo = false }
             }
         }
     }

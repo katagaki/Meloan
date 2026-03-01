@@ -11,7 +11,7 @@ import Observation
 @Observable
 class ReceiptDraft {
 
-    struct Item: Identifiable {
+    struct Item: Identifiable, Equatable {
         var id: String
         var name: String
         var price: Double
@@ -19,14 +19,14 @@ class ReceiptDraft {
         var dateAdded: Date
     }
 
-    struct Discount: Identifiable {
+    struct Discount: Identifiable, Equatable {
         var id = UUID().uuidString
         var name: String
         var price: Double
         var dateAdded: Date
     }
 
-    struct Tax: Identifiable {
+    struct Tax: Identifiable, Equatable {
         var id: String
         var name: String
         var price: Double
@@ -39,6 +39,7 @@ class ReceiptDraft {
     var taxItems: [Tax]
     var personWhoPaid: Person?
     var peopleWhoParticipated: [Person]?
+    var isApplyingUndoRedo: Bool = false
 
     init(from receipt: Receipt) {
         self.name = receipt.name
