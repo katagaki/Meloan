@@ -18,46 +18,6 @@ struct ReceiptDetailView: View {
 
     var body: some View {
         List {
-            Section {
-                HStack(alignment: .center, spacing: 8.0) {
-                    ActionButton(text: "Receipt.ExportPDF", icon: "PDF", isPrimary: false) {
-                        isSharing = true
-                    }
-                    ShareLink(item: createImageToShare(),
-                              preview: SharePreview(receipt.name, image: createImageToShare())) {
-                        HStack(alignment: .center, spacing: 4.0) {
-                            Image("Image")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 18.0, height: 18.0)
-                            Text("Receipt.ExportImage")
-                                .bold()
-                        }
-                        .frame(minHeight: 24.0)
-                        .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(.bordered)
-                    .clipShape(RoundedRectangle(cornerRadius: 99))
-                    .disabled(receipt.items().count + receipt.discountItems().count + receipt.taxItems().count > 45)
-                    ShareLink(item: createTextToShare()) {
-                        HStack(alignment: .center, spacing: 4.0) {
-                            Image(systemName: "text.alignleft")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 18.0, height: 18.0)
-                            Text("Receipt.ExportText")
-                                .bold()
-                        }
-                        .frame(minHeight: 24.0)
-                        .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(.bordered)
-                    .clipShape(RoundedRectangle(cornerRadius: 99))
-                }
-                .frame(maxWidth: .infinity)
-                .listRowInsets(EdgeInsets())
-                .listRowBackground(Color.clear)
-            }
             receiptDetails()
         }
         .confettiCannon(counter: $confettiCounter, num: Int(receipt.sum()), rainHeight: 1000.0, radius: 500.0)
@@ -65,6 +25,27 @@ struct ReceiptDetailView: View {
             PDFExporterView(receipt: receipt)
                 .presentationDragIndicator(.visible)
         })
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button {
+                        isSharing = true
+                    } label: {
+                        Label("Receipt.ExportPDF", systemImage: "doc.richtext")
+                    }
+                    ShareLink(item: createImageToShare(),
+                              preview: SharePreview(receipt.name, image: createImageToShare())) {
+                        Label("Receipt.ExportImage", systemImage: "photo")
+                    }
+                    .disabled(receipt.items().count + receipt.discountItems().count + receipt.taxItems().count > 45)
+                    ShareLink(item: createTextToShare()) {
+                        Label("Receipt.ExportText", systemImage: "text.alignleft")
+                    }
+                } label: {
+                    Label("Shared.Share", systemImage: "square.and.arrow.up")
+                }
+            }
+        }
         .navigationTitle(receipt.name)
         .navigationBarTitleDisplayMode(.inline)
     }
