@@ -16,6 +16,14 @@ func format(_ price: Double) -> String {
     }
 }
 
+func priceFormatStyle() -> FloatingPointFormatStyle<Double> {
+    if defaults.value(forKey: "ShowDecimals") == nil || defaults.bool(forKey: "ShowDecimals") {
+        return .number.precision(.fractionLength(0...2))
+    } else {
+        return .number.precision(.fractionLength(0))
+    }
+}
+
 func formatter() -> NumberFormatter {
     let numberFormatter = NumberFormatter()
     numberFormatter.numberStyle = .decimal

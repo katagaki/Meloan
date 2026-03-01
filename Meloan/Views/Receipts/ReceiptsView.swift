@@ -21,6 +21,7 @@ struct ReceiptsView: View {
 
     // State variables
     @State var receiptBeingEdited: Receipt?
+    @State var isNewReceipt: Bool = false
 
     // Filter variables
     @AppStorage(wrappedValue: false, "HidePaidReceipts", store: defaults) var hidePaid: Bool
@@ -53,12 +54,8 @@ struct ReceiptsView: View {
                                 ZStack(alignment: .bottom) {
                                     VStack(alignment: .center, spacing: 16.0) {
                                         ActionButton(text: "Shared.Edit", icon: "Edit", isPrimary: false) {
-                                            if UIDevice.current.userInterfaceIdiom == .phone {
-                                                navigationManager.push(ViewPath.receiptEditor(receipt: receipt),
-                                                                       for: .receipts)
-                                            } else {
-                                                receiptBeingEdited = receipt
-                                            }
+                                            isNewReceipt = false
+                                            receiptBeingEdited = receipt
                                         }
                                         ActionButton(text: "Shared.Delete", icon: "Delete", isPrimary: true) {
                                             withAnimation(.snappy.speed(2)) {
@@ -78,6 +75,18 @@ struct ReceiptsView: View {
                                     }
                                     ReceiptColumn(receipt: receipt)
                                         .offset(y: offsets[receipt]?.height ?? 0.0)
+                                        .mask {
+                                            VStack(spacing: 0.0) {
+                                                let progress = fadeProgress(for: receipt)
+                                                LinearGradient(
+                                                    colors: [.clear, .black],
+                                                    startPoint: .top,
+                                                    endPoint: UnitPoint(x: 0.5, y: min(progress * 2.0, 1.0))
+                                                )
+                                                .frame(height: progress > 0.0 ? 24.0 : 0.0)
+                                                Rectangle()
+                                            }
+                                        }
                                         .gesture(
                                             DragGesture(minimumDistance: 20)
                                                 .onChanged { gesture in
@@ -109,7 +118,6 @@ struct ReceiptsView: View {
             .navigationDestination(for: ViewPath.self, destination: { viewPath in
                 switch viewPath {
                 case .receiptDetail(let receipt): ReceiptDetailView(receipt: receipt)
-                case .receiptEditor(let receipt): ReceiptEditor(receipt: receipt)
                 case .personDetail(let person): PeopleDetailView(person: person)
                 default: Color.clear
                 }
@@ -169,12 +177,8 @@ struct ReceiptsView: View {
                     Button {
                         let receipt = Receipt(name: NSLocalizedString("Receipt.Create.Name.Default", comment: ""))
                         modelContext.insert(receipt)
-                        if UIDevice.current.userInterfaceIdiom == .phone {
-                            navigationManager.push(ViewPath.receiptEditor(receipt: receipt),
-                                                   for: .receipts)
-                        } else {
-                            receiptBeingEdited = receipt
-                        }
+                        isNewReceipt = true
+                        receiptBeingEdited = receipt
                     } label: {
                         Label("Shared.Create", systemImage: "plus")
                     }
@@ -182,7 +186,7 @@ struct ReceiptsView: View {
             }
             .sheet(item: $receiptBeingEdited, content: { receipt in
                 NavigationStack {
-                    ReceiptEditor(receipt: receipt)
+                    ReceiptEditor(receipt: receipt, isNewReceipt: isNewReceipt)
                 }
             })
             .onDisappear {
@@ -249,46 +253,51 @@ struct ReceiptsView: View {
         return true
     }
 
+    func fadeProgress(for receipt: Receipt) -> CGFloat {
+        let offset = offsets[receipt]?.height ?? 0.0
+        guard offset < 0.0, expectedOffset > 0.0 else { return 0.0 }
+        return min(-offset / expectedOffset, 1.0)
+    }
+
     func handleChange(of gesture: DragGesture.Value, for receipt: Receipt) {
         if offsets[receipt] == nil { offsets[receipt] = .zero }
         if previousOffsets[receipt] == nil { previousOffsets[receipt] = .zero }
-        if let previousOffset = previousOffsets[receipt] {
-            let translationHeight = gesture.translation.height
-            let expectedTranslation = previousOffset.height + translationHeight
-            var newOffset = CGSize(width: 0.0, height: previousOffset.height)
-            if expectedTranslation >= 0.0 {
-                if previousOffset.height <= -expectedOffset {
-                    newOffset.height = (translationHeight - expectedOffset) / 2.0
-                } else {
-                    newOffset.height = translationHeight / 2.0
-                }
-            } else if expectedTranslation <= -expectedOffset {
-                if previousOffset.height <= -expectedOffset {
-                    newOffset.height = -expectedOffset + translationHeight / 2.0
-                } else {
-                    newOffset.height = -expectedOffset + (translationHeight + expectedOffset) / 2.0
-                }
-            } else {
-                newOffset.height += translationHeight
-            }
-            offsets.updateValue(newOffset, forKey: receipt)
+        let baseOffset = previousOffsets[receipt]?.height ?? 0.0
+        let rawOffset = baseOffset + gesture.translation.height
+        if rawOffset > 0.0 {
+            // Rubber-band above rest position
+            offsets[receipt]!.height = rubberBand(rawOffset, limit: expectedOffset)
+        } else if rawOffset < -expectedOffset {
+            // Rubber-band below the revealed position
+            let excess = rawOffset + expectedOffset
+            offsets[receipt]!.height = -expectedOffset + rubberBand(excess, limit: expectedOffset)
+        } else {
+            // Normal range between 0 and -expectedOffset
+            offsets[receipt]!.height = rawOffset
         }
     }
 
     func handleEndOfGesture(of gesture: DragGesture.Value, for receipt: Receipt) {
-        if let offset = offsets[receipt] {
-            if (previousOffsets[receipt]?.height ?? 0.0) + gesture.predictedEndTranslation.height <= -expectedOffset ||
-                offset.height <= -expectedOffset {
-                withAnimation(.snappy.speed(2)) {
-                    offsets[receipt]!.height = -expectedOffset
-                }
-            } else {
-                withAnimation(.snappy.speed(2)) {
-                    offsets[receipt]!.height = 0.0
-                }
+        guard offsets[receipt] != nil else { return }
+        let currentOffset = offsets[receipt]!.height
+        let velocity = gesture.velocity.height
+        let projectedOffset = currentOffset + velocity * 0.15
+        let midpoint = -expectedOffset / 2.0
+        if projectedOffset <= midpoint {
+            withAnimation(.snappy.speed(2)) {
+                offsets[receipt]!.height = -expectedOffset
+            }
+        } else {
+            withAnimation(.snappy.speed(2)) {
+                offsets[receipt]!.height = 0.0
             }
         }
         previousOffsets[receipt] = offsets[receipt]
+    }
+
+    func rubberBand(_ offset: CGFloat, limit: CGFloat) -> CGFloat {
+        let clamped = max(limit, 1.0)
+        return offset * clamped / (abs(offset) + clamped)
     }
 }
 // swiftlint:enable type_body_length
