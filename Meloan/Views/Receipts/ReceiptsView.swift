@@ -168,9 +168,7 @@ struct ReceiptsView: View {
                         }
                     } label: {
                         Label("Shared.Filter",
-                              systemImage: isFilterActive()
-                                ? "line.3.horizontal.decrease.circle.fill"
-                                : "line.3.horizontal.decrease.circle")
+                              systemImage: "line.3.horizontal.decrease")
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
@@ -226,10 +224,6 @@ struct ReceiptsView: View {
                     .resizable()
             }
         }
-    }
-
-    func isFilterActive() -> Bool {
-        return hidePaid || filterPayer != nil || !filterShowIPaid || !filterShowOthersPaid
     }
 
     func shouldShowReceipt(_ receipt: Receipt) -> Bool {

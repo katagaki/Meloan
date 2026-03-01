@@ -78,7 +78,7 @@
       }
     },
     "Currency.(currencyCode)" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -90,7 +90,7 @@
       "shouldTranslate" : false
     },
     "Currency.(currencySymbol)" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -355,6 +355,23 @@
         }
       }
     },
+    "IOU.SelectBorrower" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Borrower"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "借り手を選択"
+          }
+        }
+      }
+    },
     "IOU.SelectLender" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -401,7 +418,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1さん、今の借金はまだ%2残っていますが、いつまでに返済できそうですか？"
+            "value" : "%1さん、借りたお金はまだ%2残っていますが、いつまでに返済できそうですか？"
           }
         }
       }
@@ -457,6 +474,23 @@
         }
       }
     },
+    "IOU.TotalOwed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Owed"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "合計負債"
+          }
+        }
+      }
+    },
     "IOU.ViewMode" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -470,6 +504,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "表示モード"
+          }
+        }
+      }
+    },
+    "IOU.ViewMode.ByLender" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By Lender"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貸し手別"
           }
         }
       }
@@ -504,57 +555,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "領収書別"
-          }
-        }
-      }
-    },
-    "IOU.ViewMode.ByLender" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "By Lender"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "貸し手別"
-          }
-        }
-      }
-    },
-    "IOU.SelectBorrower" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Select Borrower"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "借り手を選択"
-          }
-        }
-      }
-    },
-    "IOU.TotalOwed" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total Owed"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "合計負債"
           }
         }
       }
@@ -878,6 +878,57 @@
         }
       }
     },
+    "More.Data.Sync.RestartRequired.Message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please restart the app for the iCloud sync change to take effect."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud同期の変更を反映するには、アプリを再起動してください。"
+          }
+        }
+      }
+    },
+    "More.Data.Sync.RestartRequired.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restart Required"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "再起動が必要です"
+          }
+        }
+      }
+    },
+    "More.Data.Sync.State.Disabled" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud Sync Disabled"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud同期は無効です"
+          }
+        }
+      }
+    },
     "More.Data.Sync.State.Error" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -959,74 +1010,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "同期済み"
-          }
-        }
-      }
-    },
-    "More.Data.Sync.State.Disabled" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iCloud Sync Disabled"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iCloud同期は無効です"
-          }
-        }
-      }
-    },
-    "More.Data.Sync.RestartRequired.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Restart Required"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "再起動が必要です"
-          }
-        }
-      }
-    },
-    "More.Data.Sync.RestartRequired.Message" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please restart the app for the iCloud sync change to take effect."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iCloud同期の変更を反映するには、アプリを再起動してください。"
-          }
-        }
-      }
-    },
-    "Shared.OK" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OK"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OK"
           }
         }
       }
@@ -1507,6 +1490,23 @@
         }
       }
     },
+    "Receipt.ExportPDF" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share PDF"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDFを共有"
+          }
+        }
+      }
+    },
     "Receipt.ExportText" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1537,23 +1537,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "借用サマリー"
-          }
-        }
-      }
-    },
-    "Receipt.ExportPDF" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Share PDF"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PDFを共有"
           }
         }
       }
@@ -2084,22 +2067,6 @@
         }
       }
     },
-    "Receipts.HidePaidReceipts" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hide Paid Receipts"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "完済した領収書を非表示"
-          }
-        }
-      }
-    },
     "Receipts.Filter.IPaid" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2130,6 +2097,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "他の人が支払った"
+          }
+        }
+      }
+    },
+    "Receipts.HidePaidReceipts" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hide Paid Receipts"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完済した領収書を非表示"
           }
         }
       }
@@ -2622,6 +2605,23 @@
         }
       }
     },
+    "Shared.OK" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
     "Shared.PDFExport" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2656,12 +2656,13 @@
         }
       }
     },
-    "Shared.Shared" : {
+    "Shared.Share" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Shared"
+            "value" : "Share"
           }
         },
         "ja" : {
@@ -2672,13 +2673,12 @@
         }
       }
     },
-    "Shared.Share" : {
-      "extractionState" : "manual",
+    "Shared.Shared" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Share"
+            "value" : "Shared"
           }
         },
         "ja" : {
@@ -2707,7 +2707,7 @@
       }
     },
     "State.(countryCode)" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -4324,23 +4324,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "貸し借り"
-          }
-        }
-      }
-    },
-    "ViewTitle.More.Customization.AppIcon" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "App Icon"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "アイコン"
           }
         }
       }
