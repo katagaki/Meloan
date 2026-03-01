@@ -27,55 +27,54 @@ struct ReceiptItemAssignableRow: View {
     }
 
     var body: some View {
-        GeometryReader { metrics in
-            HStack(alignment: .center, spacing: 16.0) {
-                Menu {
-                    Button {
-                        personWhoOrdered = nil
-                    } label: {
-                        Image("Profile.Shared.Circle")
-                        Text("Shared.Shared")
-                    }
-                    ForEach(peopleWhoParticipated) { person in
-                        Button {
-                            personWhoOrdered = person
-                        } label: {
-                            PersonRow(person: person)
-                        }
-                    }
+        HStack(alignment: .center, spacing: 16.0) {
+            Menu {
+                Button {
+                    personWhoOrdered = nil
                 } label: {
-                    if let personWhoOrdered = personWhoOrdered {
-                        Group {
-                            if let photo = personWhoOrdered.photo, let image = UIImage(data: photo) {
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .scaledToFill()
-                            } else {
-                                Image("Profile.Generic")
-                                    .resizable()
-                            }
-                        }
-                        .frame(width: 30.0, height: 30.0)
-                        .clipShape(Circle())
-                    } else {
-                        HStack(alignment: .center, spacing: 16.0) {
-                            Image("Profile.Shared")
-                                .resizable()
-                                .frame(width: 30.0, height: 30.0)
-                                .clipShape(Circle())
-                        }
+                    Image("Profile.Shared.Circle")
+                    Text("Shared.Shared")
+                }
+                ForEach(peopleWhoParticipated) { person in
+                    Button {
+                        personWhoOrdered = person
+                    } label: {
+                        PersonRow(person: person)
                     }
                 }
-                TextField(LocalizedStringKey(placeholderText), text: $name)
-                    .textInputAutocapitalization(.words)
-                    .frame(minWidth: (metrics.size.width * 0.65) - 46.0)
-                Divider()
-                TextField("Receipt.Price", value: $price, formatter: formatter())
+            } label: {
+                if let personWhoOrdered = personWhoOrdered {
+                    Group {
+                        if let photo = personWhoOrdered.photo, let image = UIImage(data: photo) {
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFill()
+                        } else {
+                            Image("Profile.Generic")
+                                .resizable()
+                        }
+                    }
+                    .frame(width: 30.0, height: 30.0)
+                    .clipShape(Circle())
+                } else {
+                    HStack(alignment: .center, spacing: 16.0) {
+                        Image("Profile.Shared")
+                            .resizable()
+                            .frame(width: 30.0, height: 30.0)
+                            .clipShape(Circle())
+                    }
+                }
+            }
+            .fixedSize()
+            TextField(LocalizedStringKey(placeholderText), text: $name)
+                .textInputAutocapitalization(.words)
+            Divider()
+            TextField("Receipt.Price", value: $price, formatter: formatter())
                 .multilineTextAlignment(.trailing)
                 .keyboardType(.decimalPad)
                 .font(.system(size: 14.0))
                 .monospaced()
-            }
+                .frame(maxWidth: 120.0)
         }
         .onChange(of: name, initial: false) { _, _ in
             item.name = name

@@ -18,32 +18,6 @@ struct ReceiptDetailView: View {
 
     var body: some View {
         List {
-            Section {
-                HStack(alignment: .center, spacing: 8.0) {
-                    ActionButton(text: "Receipt.ExportPDF", icon: "PDF", isPrimary: false) {
-                        isSharing = true
-                    }
-                    ShareLink(item: createImageToShare(),
-                              preview: SharePreview(receipt.name, image: createImageToShare())) {
-                        HStack(alignment: .center, spacing: 4.0) {
-                            Image("Image")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 18.0, height: 18.0)
-                            Text("Receipt.ExportImage")
-                                .bold()
-                        }
-                        .frame(minHeight: 24.0)
-                        .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(.bordered)
-                    .clipShape(RoundedRectangle(cornerRadius: 99))
-                    .disabled(receipt.items().count + receipt.discountItems().count + receipt.taxItems().count > 45)
-                }
-                .frame(maxWidth: .infinity)
-                .listRowInsets(EdgeInsets())
-                .listRowBackground(Color.clear)
-            }
             receiptDetails()
         }
         .confettiCannon(counter: $confettiCounter, num: Int(receipt.sum()), rainHeight: 1000.0, radius: 500.0)
@@ -51,6 +25,27 @@ struct ReceiptDetailView: View {
             PDFExporterView(receipt: receipt)
                 .presentationDragIndicator(.visible)
         })
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button {
+                        isSharing = true
+                    } label: {
+                        Label("Receipt.ExportPDF", systemImage: "doc.richtext")
+                    }
+                    ShareLink(item: createImageToShare(),
+                              preview: SharePreview(receipt.name, image: createImageToShare())) {
+                        Label("Receipt.ExportImage", systemImage: "photo")
+                    }
+                    .disabled(receipt.items().count + receipt.discountItems().count + receipt.taxItems().count > 45)
+                    ShareLink(item: createTextToShare()) {
+                        Label("Receipt.ExportText", systemImage: "text.alignleft")
+                    }
+                } label: {
+                    Label("Shared.Share", systemImage: "square.and.arrow.up")
+                }
+            }
+        }
         .navigationTitle(receipt.name)
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -83,15 +78,23 @@ struct ReceiptDetailView: View {
         if !receipt.items().isEmpty {
             Section {
                 ForEach(receipt.items()) { item in
-                    if let person = item.person {
-                        Button {
-                            item.paid.toggle()
-                            MeloanApp.reloadWidget()
-                            if receipt.isPaid() {
-                                confettiCounter += 1
+                    HStack(alignment: .center, spacing: 16.0) {
+                        Menu {
+                            Button {
+                                item.person = nil
+                            } label: {
+                                Image("Profile.Shared.Circle")
+                                Text("Shared.Shared")
+                            }
+                            ForEach(receipt.participants()) { person in
+                                Button {
+                                    item.person = person
+                                } label: {
+                                    PersonRow(person: person)
+                                }
                             }
                         } label: {
-                            HStack(alignment: .center, spacing: 16.0) {
+                            if let person = item.person {
                                 Group {
                                     if let data = person.photo, let image = UIImage(data: data) {
                                         Image(uiImage: image)
@@ -103,43 +106,35 @@ struct ReceiptDetailView: View {
                                 }
                                 .frame(width: 32.0, height: 32.0)
                                 .clipShape(Circle())
-                                ReceiptItemRow(name: item.name, price: item.price)
-                                    .strikethrough(item.paid)
-                            }
-                        }
-                    } else {
-                        Menu {
-                            ForEach(receipt.participants()) { person in
-                                Button {
-                                    if item.personHasPaid(person) {
-                                        item.removePersonWhoPaid(withID: person.id)
-                                        item.paid = false
-                                    } else {
-                                        item.addPersonWhoPaid(from: [person])
-                                        item.paid =  receipt.participants().count == item.peopleWhoPaid?.count
-                                    }
-                                    if receipt.isPaid() {
-                                        confettiCounter += 1
-                                    }
-                                } label: {
-                                    HStack {
-                                        if item.personHasPaid(person) {
-                                            Image(systemName: "checkmark")
-                                        }
-                                        PersonRow(person: person)
-                                    }
-                                }
-                            }
-                        } label: {
-                            HStack(alignment: .center, spacing: 16.0) {
+                            } else {
                                 Image("Profile.Shared")
                                     .resizable()
-                                .frame(width: 32.0, height: 32.0)
-                                .clipShape(Circle())
-                                ReceiptItemRow(name: item.name, price: item.price)
-                                    .strikethrough(item.paid)
-                                    .multilineTextAlignment(.leading)
+                                    .frame(width: 32.0, height: 32.0)
+                                    .clipShape(Circle())
                             }
+                        }
+                        Button {
+                            if item.person != nil {
+                                item.paid.toggle()
+                            } else {
+                                // Shared item: toggle all participants
+                                let allPaid = receipt.participants().count == item.peopleWhoPaid?.count
+                                if allPaid {
+                                    item.peopleWhoPaid?.removeAll()
+                                    item.paid = false
+                                } else {
+                                    item.addPersonWhoPaid(from: receipt.participants())
+                                    item.paid = true
+                                }
+                            }
+                            MeloanApp.reloadWidget()
+                            if receipt.isPaid() {
+                                confettiCounter += 1
+                            }
+                        } label: {
+                            ReceiptItemRow(name: item.name, price: item.price)
+                                .strikethrough(item.paid)
+                                .multilineTextAlignment(.leading)
                         }
                     }
                 }
@@ -289,6 +284,42 @@ struct ReceiptDetailView: View {
         } else {
             fatalError("Could not export image.")
         }
+    }
+
+    func createTextToShare() -> String {
+        var lines: [String] = []
+        lines.append(receipt.name)
+        lines.append(String(repeating: "-", count: 30))
+        if let personWhoPaid = receipt.personWhoPaid {
+            lines.append("\(NSLocalizedString("Receipt.Payer", comment: "")): \(personWhoPaid.name)")
+            lines.append("")
+        }
+        if !receipt.items().isEmpty {
+            lines.append(NSLocalizedString("Receipt.PurchasedItems", comment: ""))
+            for item in receipt.items() {
+                let assignee = item.person?.name ?? NSLocalizedString("Shared.Shared", comment: "")
+                lines.append("  \(item.name) - \(format(item.price)) [\(assignee)]")
+            }
+            lines.append("")
+        }
+        if !receipt.discountItems().isEmpty {
+            lines.append(NSLocalizedString("Receipt.Discounts", comment: ""))
+            for item in receipt.discountItems() {
+                lines.append("  \(item.name) - \(format(item.price))")
+            }
+            lines.append("")
+        }
+        if !receipt.taxItems().isEmpty {
+            lines.append(NSLocalizedString("Receipt.Taxes", comment: ""))
+            for item in receipt.taxItems() {
+                lines.append("  \(item.name) - \(format(item.price))")
+            }
+            lines.append("")
+        }
+        lines.append(String(repeating: "-", count: 30))
+        lines.append("\(NSLocalizedString("Receipt.Total.BeforeTax", comment: "")): \(format(receipt.sumOfItems()))")
+        lines.append("\(NSLocalizedString("Receipt.Total.AfterTax", comment: "")): \(format(receipt.sum()))")
+        return lines.joined(separator: "\n")
     }
 }
 // swiftlint:enable type_body_length

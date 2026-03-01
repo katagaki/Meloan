@@ -31,6 +31,8 @@ struct TogglePaidIntent: AppIntent {
         if let receiptItem = getReceiptItem() {
             receiptItem.paid.toggle()
             try? sharedModelContainer.mainContext.save()
+            // Set flag so main app knows to reload data
+            defaults.set(true, forKey: "WidgetDidUpdate")
             WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptWidget")
             WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptItemsWidget")
             WidgetCenter.shared.reloadTimelines(ofKind: "com.tsubuzaki.Meloan.ReceiptIOUWidget")

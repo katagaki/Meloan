@@ -64,6 +64,7 @@ struct MainTabView: View {
         })
         .onChange(of: scenePhase) { _, newValue in
             if newValue == .active {
+                checkForWidgetUpdates()
                 tryToReloadData()
             }
         }
@@ -90,6 +91,16 @@ struct MainTabView: View {
         } else {
             if let mePerson = people.first(where: { $0.id == "ME" }) {
                 mePerson.name = NSLocalizedString("People.Me", comment: "")
+            }
+        }
+    }
+
+    func checkForWidgetUpdates() {
+        if defaults.bool(forKey: "WidgetDidUpdate") {
+            defaults.set(false, forKey: "WidgetDidUpdate")
+            Task { @MainActor in
+                _ = try? modelContext.fetch(FetchDescriptor<ReceiptItem>())
+                _ = try? modelContext.fetch(FetchDescriptor<Receipt>())
             }
         }
     }

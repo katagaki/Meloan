@@ -17,6 +17,7 @@ struct MoreView: View {
     @AppStorage(wrappedValue: "", "TaxRateCountry", store: defaults) var taxRateCountry: String
     @AppStorage(wrappedValue: "", "TaxRateType", store: defaults) var taxRateType: String
     @AppStorage(wrappedValue: false, "AddTenPercent", store: defaults) var addTenPercent: Bool
+    @AppStorage(wrappedValue: false, "TaxAboveServiceCharge", store: defaults) var taxAboveServiceCharge: Bool
     @AppStorage(wrappedValue: "", "CurrencySymbol", store: defaults) var currencySymbol: String
     @AppStorage(wrappedValue: true, "ShowDecimals", store: defaults) var showDecimals: Bool
 
@@ -99,6 +100,14 @@ struct MoreView: View {
                                 subtitle: "More.Receipts.ServiceCharge.Description",
                                 includeSpacer: true)
                     })
+                    if addTenPercent && taxRateCountry != "" {
+                        Toggle(isOn: $taxAboveServiceCharge, label: {
+                            ListRow(image: "ListIcon.TaxRate",
+                                    title: "More.Receipts.TaxAboveServiceCharge",
+                                    subtitle: "More.Receipts.TaxAboveServiceCharge.Description",
+                                    includeSpacer: true)
+                        })
+                    }
                 } header: {
                     ListSectionHeader(text: "More.Receipts")
                         .font(.body)

@@ -14,15 +14,18 @@ import UIKit
 struct ReceiptEditor: View {
 
     @Environment(\.modelContext) var modelContext
+    @Environment(\.undoManager) var undoManager
     @Environment(\.dismiss) var dismiss
     @AppStorage(wrappedValue: true, "MarkSelfPaid", store: defaults) var markSelfPaid: Bool
     @AppStorage(wrappedValue: 0.0, "TaxRate", store: defaults) var taxRate: Double
     @AppStorage(wrappedValue: "", "TaxRateCountry", store: defaults) var taxRateCountry: String
     @AppStorage(wrappedValue: "", "TaxRateType", store: defaults) var taxRateType: String
     @AppStorage(wrappedValue: false, "AddTenPercent", store: defaults) var addTenPercent: Bool
+    @AppStorage(wrappedValue: false, "TaxAboveServiceCharge", store: defaults) var taxAboveServiceCharge: Bool
     @State var taxRates: TaxRate.List = Bundle.main.decode(TaxRate.List.self, from: "TaxRates.json")!
     @State var widgetReloadDebouncer = PassthroughSubject<String, Never>()
     @State var isPersonPickerPresented: Bool = false
+    @State var isSaveConfirmed: Bool = false
     @State var receipt: Receipt
 
     var body: some View {
@@ -191,11 +194,40 @@ struct ReceiptEditor: View {
         .navigationTitle(receipt.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                ToolbarItem(placement: .topBarTrailing) {
+            ToolbarItemGroup(placement: .topBarLeading) {
+                Button {
+                    undoManager?.undo()
+                } label: {
+                    Image(systemName: "arrow.uturn.backward")
+                }
+                .disabled(!(undoManager?.canUndo ?? false))
+                Button {
+                    undoManager?.redo()
+                } label: {
+                    Image(systemName: "arrow.uturn.forward")
+                }
+                .disabled(!(undoManager?.canRedo ?? false))
+            }
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button {
+                    try? modelContext.save()
+                    isSaveConfirmed = true
+                    MeloanApp.reloadWidget()
+                } label: {
+                    Image(systemName: "square.and.arrow.down")
+                }
+                if UIDevice.current.userInterfaceIdiom == .pad {
                     CloseButton {
                         dismiss()
                     }
+                }
+            }
+        }
+        .sensoryFeedback(.success, trigger: isSaveConfirmed)
+        .onChange(of: isSaveConfirmed) { _, newValue in
+            if newValue {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    isSaveConfirmed = false
                 }
             }
         }
@@ -203,12 +235,36 @@ struct ReceiptEditor: View {
             if defaults.value(forKey: "MarkSelfPaid") == nil || markSelfPaid {
                 receipt.setLenderItemsPaid()
             }
+            // Calculate service charge first (needed for tax-above-service-charge)
+            let serviceChargeAmount: Double
+            if addTenPercent {
+                serviceChargeAmount = receipt.sumOfItems() * 0.1
+                if let serviceChargeItem = receipt.taxItems?.first(where: { $0.id == "AUTOTEN-\(receipt.id)" }) {
+                    serviceChargeItem.price = serviceChargeAmount
+                } else {
+                    let automaticServiceCharge = TaxItem(name: NSLocalizedString("Receipt.ServiceCharge", comment: ""),
+                                                         price: serviceChargeAmount)
+                    automaticServiceCharge.id = "AUTOTEN-\(receipt.id)"
+                    receipt.addTaxItems(from: [automaticServiceCharge])
+                }
+            } else {
+                serviceChargeAmount = 0.0
+            }
+            // Calculate tax (supports tax above service charge)
             if taxRateCountry != "" {
+                let taxBase: Double
+                if taxAboveServiceCharge && addTenPercent {
+                    // Tax is calculated on top of the service charge
+                    taxBase = serviceChargeAmount
+                } else {
+                    // Tax is calculated alongside service charge on the item total
+                    taxBase = receipt.sumOfItems()
+                }
                 if let taxItem = receipt.taxItems?.first(where: { $0.id == "AUTOTAX-\(receipt.id)" }) {
-                    taxItem.price = receipt.sumOfItems() * taxRate
+                    taxItem.price = taxBase * taxRate
                 } else {
                     let automaticTaxItem = TaxItem(name: "",
-                                                   price: receipt.sumOfItems() * taxRate)
+                                                   price: taxBase * taxRate)
                     automaticTaxItem.id = "AUTOTAX-\(receipt.id)"
                     switch taxRateType {
                     case "gst":
@@ -219,16 +275,6 @@ struct ReceiptEditor: View {
                         automaticTaxItem.name = ""
                     }
                     receipt.addTaxItems(from: [automaticTaxItem])
-                }
-            }
-            if addTenPercent {
-                if let serviceChargeItem = receipt.taxItems?.first(where: { $0.id == "AUTOTEN-\(receipt.id)" }) {
-                    serviceChargeItem.price = receipt.sumOfItems() * 0.1
-                } else {
-                    let automaticServiceCharge = TaxItem(name: NSLocalizedString("Receipt.ServiceCharge", comment: ""),
-                                                         price: receipt.sumOfItems() * 0.1)
-                    automaticServiceCharge.id = "AUTOTEN-\(receipt.id)"
-                    receipt.addTaxItems(from: [automaticServiceCharge])
                 }
             }
         }

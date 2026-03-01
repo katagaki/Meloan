@@ -17,66 +17,83 @@ struct MoreManageDataView: View {
     @ObservedObject var syncMonitor = SyncMonitor.shared
     @AppStorage(wrappedValue: true, "EnableCloudSync", store: defaults) var enableCloudSync: Bool
     @AppStorage(wrappedValue: false, "SampleDataCreated", store: defaults) var sampleDataCreated: Bool
+    @State var isRestartAlertPresented: Bool = false
 
     var body: some View {
         List {
             Section {
-                VStack(alignment: .center, spacing: 16.0) {
-                    Group {
-                        if syncMonitor.syncStateSummary.isBroken {
-                            Image(systemName: "xmark.icloud.fill")
-                                .resizable()
-                                .foregroundStyle(.red)
-                        } else if syncMonitor.syncStateSummary.inProgress {
-                            Image(systemName: "arrow.triangle.2.circlepath.icloud.fill")
-                                .resizable()
-                                .foregroundStyle(.primary)
-                        } else {
-                            switch syncMonitor.syncStateSummary {
-                            case .notStarted, .succeeded:
-                                Image(systemName: "checkmark.icloud.fill")
+                if enableCloudSync {
+                    VStack(alignment: .center, spacing: 16.0) {
+                        Group {
+                            if syncMonitor.syncStateSummary.isBroken {
+                                Image(systemName: "xmark.icloud.fill")
                                     .resizable()
-                                    .foregroundStyle(.green)
-                            case .noNetwork:
-                                Image(systemName: "bolt.horizontal.icloud.fill")
-                                    .resizable()
-                                    .foregroundStyle(.orange)
-                            default:
-                                Image(systemName: "exclamationmark.icloud.fill")
+                                    .foregroundStyle(.red)
+                            } else if syncMonitor.syncStateSummary.inProgress {
+                                Image(systemName: "arrow.triangle.2.circlepath.icloud.fill")
                                     .resizable()
                                     .foregroundStyle(.primary)
+                            } else {
+                                switch syncMonitor.syncStateSummary {
+                                case .notStarted, .succeeded:
+                                    Image(systemName: "checkmark.icloud.fill")
+                                        .resizable()
+                                        .foregroundStyle(.green)
+                                case .noNetwork:
+                                    Image(systemName: "bolt.horizontal.icloud.fill")
+                                        .resizable()
+                                        .foregroundStyle(.orange)
+                                default:
+                                    Image(systemName: "exclamationmark.icloud.fill")
+                                        .resizable()
+                                        .foregroundStyle(.primary)
+                                }
                             }
                         }
-                    }
-                    .symbolRenderingMode(.multicolor)
-                    .scaledToFit()
-                    .frame(width: 64.0, height: 64.0)
-                    Group {
-                        if syncMonitor.syncStateSummary.isBroken {
-                            Text("More.Data.Sync.State.Error")
-                        } else if syncMonitor.syncStateSummary.inProgress {
-                            Text("More.Data.Sync.State.InProgress")
-                        } else {
-                            switch syncMonitor.syncStateSummary {
-                            case .notStarted, .succeeded:
-                                Text("More.Data.Sync.State.Synced")
-                            case .noNetwork:
-                                Text("More.Data.Sync.State.NoNetwork")
-                            default:
-                                Text("More.Data.Sync.State.NotSyncing")
+                        .symbolRenderingMode(.multicolor)
+                        .scaledToFit()
+                        .frame(width: 64.0, height: 64.0)
+                        Group {
+                            if syncMonitor.syncStateSummary.isBroken {
+                                Text("More.Data.Sync.State.Error")
+                            } else if syncMonitor.syncStateSummary.inProgress {
+                                Text("More.Data.Sync.State.InProgress")
+                            } else {
+                                switch syncMonitor.syncStateSummary {
+                                case .notStarted, .succeeded:
+                                    Text("More.Data.Sync.State.Synced")
+                                case .noNetwork:
+                                    Text("More.Data.Sync.State.NoNetwork")
+                                default:
+                                    Text("More.Data.Sync.State.NotSyncing")
+                                }
                             }
                         }
+                        .frame(maxWidth: .infinity)
                     }
-                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .alignmentGuide(.listRowSeparatorLeading, computeValue: { _ in
+                        0
+                    })
+                } else {
+                    VStack(alignment: .center, spacing: 16.0) {
+                        Image(systemName: "icloud.slash.fill")
+                            .resizable()
+                            .symbolRenderingMode(.multicolor)
+                            .scaledToFit()
+                            .frame(width: 64.0, height: 64.0)
+                            .foregroundStyle(.secondary)
+                        Text("More.Data.Sync.State.Disabled")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .padding()
+                    .alignmentGuide(.listRowSeparatorLeading, computeValue: { _ in
+                        0
+                    })
                 }
-                .padding()
-                .alignmentGuide(.listRowSeparatorLeading, computeValue: { _ in
-                    0
-                })
-//                Toggle(isOn: $enableCloudSync) {
-//                    ListRow(image: "ListIcon.CloudSync", title: "More.Data.Sync")
-//                }
-//                .disabled(true)
+                Toggle(isOn: $enableCloudSync) {
+                    ListRow(image: "ListIcon.CloudSync", title: "More.Data.Sync")
+                }
             } header: {
                 ListSectionHeader(text: "More.Data.Sync")
                     .font(.body)
@@ -100,23 +117,14 @@ struct MoreManageDataView: View {
                 }
             }
         }
-//        .onChange(of: enableCloudSync) { _, newValue in
-//            sharedModelContainer = newContainer()
-//            if !newValue {
-//                let container = CKContainer(identifier: "iCloud.com.tsubuzaki.Meloan")
-//                container.privateCloudDatabase.fetchAllRecordZones { zones, error in
-//                    if let error = error {
-//                        debugPrint(error.localizedDescription)
-//                    } else if let zones = zones {
-//                        let zoneIDs = zones.map { $0.zoneID }
-//                        let deletionOperation = CKModifyRecordZonesOperation(recordZonesToSave: nil,
-//                                                                             recordZoneIDsToDelete: zoneIDs)
-//                        deletionOperation.modifyRecordZonesResultBlock = { _ in }
-//                        container.privateCloudDatabase.add(deletionOperation)
-//                    }
-//                }
-//            }
-//        }
+        .onChange(of: enableCloudSync) { _, _ in
+            isRestartAlertPresented = true
+        }
+        .alert("More.Data.Sync.RestartRequired.Title", isPresented: $isRestartAlertPresented) {
+            Button("Shared.OK") { }
+        } message: {
+            Text("More.Data.Sync.RestartRequired.Message")
+        }
         .navigationTitle("ViewTitle.Data")
     }
 

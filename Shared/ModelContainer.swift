@@ -13,7 +13,7 @@ var sharedModelContainer: ModelContainer = {
 }()
 
 func isCloudSyncEnabled() -> Bool {
-    return true // TODO: Wait for SwiftData implementation to toggle iCloud syncing
+    return defaults.object(forKey: "EnableCloudSync") == nil || defaults.bool(forKey: "EnableCloudSync")
 }
 
 func newContainer() -> ModelContainer {

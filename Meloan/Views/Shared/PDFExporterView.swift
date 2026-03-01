@@ -65,6 +65,13 @@ struct PDFExporterView: View {
             drawImage(UIImage(named: "PDF.Watermark")!, x: 597.6 - 10.0 - titleSize.height, y: 10.0,
                       width: titleSize.height, height: titleSize.height)
             minY += titleSize.height + 10.0
+            // Draw payer info
+            if let personWhoPaid = receipt.personWhoPaid {
+                let payerLabel = NSLocalizedString("Receipt.Payer", comment: "") + ": "
+                let payerText = payerLabel + personWhoPaid.name
+                let payerSize = drawLeadingText(payerText, x: margin, y: minY, maxWidth: 567.6)
+                minY += payerSize.height + 10.0
+            }
             drawDivider(x: margin, y: minY)
             minY += 1.0 + 20.0
             // Draw receipt items
@@ -122,6 +129,25 @@ struct PDFExporterView: View {
                                                     maxWidth: 567.6 - totalAfterTaxPriceSize.width)
             minY += max(totalAfterTaxSize.height, totalAfterTaxPriceSize.height) + 20.0
             drawDivider(x: margin, y: minY)
+            // Draw IOU summary
+            if let personWhoPaid = receipt.personWhoPaid, !receipt.borrowers().isEmpty {
+                minY += 20.0
+                startNewPageIfNextItemWillOverflowPage(context, estimatedHeight: 52.0, minY: &minY)
+                let iouSubtitleSize = drawSubtitle(NSLocalizedString("Receipt.IOUSummary", comment: ""),
+                                                    x: margin, y: minY)
+                minY += iouSubtitleSize.height + 10.0
+                for borrower in receipt.borrowers() {
+                    let owedAmount = receipt.sumOwed(to: personWhoPaid, for: borrower)
+                    if owedAmount > 0 {
+                        startNewPageIfNextItemWillOverflowPage(context, estimatedHeight: 36.0, minY: &minY)
+                        let priceSize = drawPriceText(owedAmount, x: margin, y: minY)
+                        let nameSize = drawLeadingText(borrower.name, x: margin, y: minY,
+                                                        maxWidth: 567.6 - priceSize.width)
+                        minY += max(nameSize.height, priceSize.height) + 10.0
+                    }
+                }
+                drawDivider(x: margin, y: minY)
+            }
         }
         return pdfData
     }
