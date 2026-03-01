@@ -97,15 +97,23 @@ struct ReceiptDetailView: View {
         if !receipt.items().isEmpty {
             Section {
                 ForEach(receipt.items()) { item in
-                    if let person = item.person {
-                        Button {
-                            item.paid.toggle()
-                            MeloanApp.reloadWidget()
-                            if receipt.isPaid() {
-                                confettiCounter += 1
+                    HStack(alignment: .center, spacing: 16.0) {
+                        Menu {
+                            Button {
+                                item.person = nil
+                            } label: {
+                                Image("Profile.Shared.Circle")
+                                Text("Shared.Shared")
+                            }
+                            ForEach(receipt.participants()) { person in
+                                Button {
+                                    item.person = person
+                                } label: {
+                                    PersonRow(person: person)
+                                }
                             }
                         } label: {
-                            HStack(alignment: .center, spacing: 16.0) {
+                            if let person = item.person {
                                 Group {
                                     if let data = person.photo, let image = UIImage(data: data) {
                                         Image(uiImage: image)
@@ -117,43 +125,35 @@ struct ReceiptDetailView: View {
                                 }
                                 .frame(width: 32.0, height: 32.0)
                                 .clipShape(Circle())
-                                ReceiptItemRow(name: item.name, price: item.price)
-                                    .strikethrough(item.paid)
-                            }
-                        }
-                    } else {
-                        Menu {
-                            ForEach(receipt.participants()) { person in
-                                Button {
-                                    if item.personHasPaid(person) {
-                                        item.removePersonWhoPaid(withID: person.id)
-                                        item.paid = false
-                                    } else {
-                                        item.addPersonWhoPaid(from: [person])
-                                        item.paid =  receipt.participants().count == item.peopleWhoPaid?.count
-                                    }
-                                    if receipt.isPaid() {
-                                        confettiCounter += 1
-                                    }
-                                } label: {
-                                    HStack {
-                                        if item.personHasPaid(person) {
-                                            Image(systemName: "checkmark")
-                                        }
-                                        PersonRow(person: person)
-                                    }
-                                }
-                            }
-                        } label: {
-                            HStack(alignment: .center, spacing: 16.0) {
+                            } else {
                                 Image("Profile.Shared")
                                     .resizable()
-                                .frame(width: 32.0, height: 32.0)
-                                .clipShape(Circle())
-                                ReceiptItemRow(name: item.name, price: item.price)
-                                    .strikethrough(item.paid)
-                                    .multilineTextAlignment(.leading)
+                                    .frame(width: 32.0, height: 32.0)
+                                    .clipShape(Circle())
                             }
+                        }
+                        Button {
+                            if item.person != nil {
+                                item.paid.toggle()
+                            } else {
+                                // Shared item: toggle all participants
+                                let allPaid = receipt.participants().count == item.peopleWhoPaid?.count
+                                if allPaid {
+                                    item.peopleWhoPaid?.removeAll()
+                                    item.paid = false
+                                } else {
+                                    item.addPersonWhoPaid(from: receipt.participants())
+                                    item.paid = true
+                                }
+                            }
+                            MeloanApp.reloadWidget()
+                            if receipt.isPaid() {
+                                confettiCounter += 1
+                            }
+                        } label: {
+                            ReceiptItemRow(name: item.name, price: item.price)
+                                .strikethrough(item.paid)
+                                .multilineTextAlignment(.leading)
                         }
                     }
                 }
