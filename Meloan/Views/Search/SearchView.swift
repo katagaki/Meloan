@@ -5,7 +5,6 @@
 //  Created by シン・ジャスティン on 2023/09/18.
 //
 
-import Komponents
 import SwiftData
 import SwiftUI
 
@@ -44,8 +43,7 @@ struct SearchView: View {
                         }
                     } header: {
                         HStack(alignment: .center, spacing: 4.0) {
-                            ListSectionHeader(text: "Search.History")
-                                .font(.body)
+                            Text("Search.History")
                             Spacer()
                             Button {
                                 searchHistory.removeAll()
@@ -60,28 +58,40 @@ struct SearchView: View {
                         Section {
                             ForEach(receiptsFound()) { receipt in
                                 NavigationLink(value: ViewPath.receiptDetail(receipt: receipt)) {
-                                    ListRow(image: "ListIcon.Receipt",
-                                            title: receipt.name,
-                                            subtitle: format(receipt.sum()))
+                                    Label {
+                                        HStack {
+                                            Text(receipt.name)
+                                            Spacer()
+                                            Text(format(receipt.sum()))
+                                                .foregroundStyle(.secondary)
+                                        }
+                                    } icon: {
+                                        Image(systemName: "receipt")
+                                    }
                                 }
                             }
                         } header: {
-                            ListSectionHeader(text: "Search.Receipts")
-                                .font(.body)
+                            Text("Search.Receipts")
                         }
                     }
                     if !receiptItemsFound().isEmpty {
                         Section {
                             ForEach(receiptItemsFound()) { receiptItem in
                                 NavigationLink(value: ViewPath.receiptItemDetail(receiptItem: receiptItem)) {
-                                    ListRow(image: "ListIcon.ReceiptItem",
-                                            title: receiptItem.name,
-                                            subtitle: format(receiptItem.price))
+                                    Label {
+                                        HStack {
+                                            Text(receiptItem.name)
+                                            Spacer()
+                                            Text(format(receiptItem.price))
+                                                .foregroundStyle(.secondary)
+                                        }
+                                    } icon: {
+                                        Image(systemName: "cart")
+                                    }
                                 }
                             }
                         } header: {
-                            ListSectionHeader(text: "Search.ReceiptItems")
-                                .font(.body)
+                            Text("Search.ReceiptItems")
                         }
                     }
                     if !peopleFound().isEmpty {
@@ -107,8 +117,7 @@ struct SearchView: View {
                                 }
                             }
                         } header: {
-                            ListSectionHeader(text: "Search.People")
-                                .font(.body)
+                            Text("Search.People")
                         }
                     }
                 }

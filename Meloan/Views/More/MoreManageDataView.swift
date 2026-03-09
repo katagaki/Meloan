@@ -7,7 +7,7 @@
 
 import CloudKit
 import CloudKitSyncMonitor
-import Komponents
+
 import SwiftData
 import SwiftUI
 
@@ -91,12 +91,9 @@ struct MoreManageDataView: View {
                         0
                     })
                 }
-                Toggle(isOn: $enableCloudSync) {
-                    ListRow(image: "ListIcon.CloudSync", title: "More.Data.Sync")
-                }
+                Toggle("More.Data.Sync", isOn: $enableCloudSync)
             } header: {
-                ListSectionHeader(text: "More.Data.Sync")
-                    .font(.body)
+                Text("More.Data.Sync")
             } footer: {
                 Text("More.Data.Sync.Description")
                     .font(.body)
@@ -109,8 +106,7 @@ struct MoreManageDataView: View {
                         Text("More.Data.SampleData.Create")
                     }
                 } header: {
-                    ListSectionHeader(text: "More.Data.SampleData")
-                        .font(.body)
+                    Text("More.Data.SampleData")
                 } footer: {
                     Text("More.Data.SampleData.Description")
                         .font(.body)

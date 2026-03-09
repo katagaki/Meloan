@@ -5,7 +5,6 @@
 //  Created by シン・ジャスティン on 2023/09/18.
 //
 
-import Komponents
 import SwiftUI
 
 struct PeopleDetailView: View {
@@ -37,37 +36,34 @@ struct PeopleDetailView: View {
             }
             Section {
                 HStack(alignment: .center, spacing: 16.0) {
-                    ListRow(image: "ListIcon.Person.Name", title: "Person.Name")
+                    Label("Person.Name", systemImage: "person")
                     Spacer()
                     Text(person.name)
                         .foregroundStyle(.secondary)
                 }
             } header: {
-                ListSectionHeader(text: "Person.BasicInformation")
-                    .font(.body)
+                Text("Person.BasicInformation")
             }
             if let receiptsPaid = person.receiptsPaid, !receiptsPaid.isEmpty {
                 Section {
                     ForEach(receiptsPaid) { receipt in
                         NavigationLink(value: ViewPath.receiptDetail(receipt: receipt)) {
-                            ListRow(image: "ListIcon.Receipt", title: receipt.name)
+                            Label(receipt.name, systemImage: "receipt")
                         }
                     }
                 } header: {
-                    ListSectionHeader(text: "Person.ReceiptsPaid")
-                        .font(.body)
+                    Text("Person.ReceiptsPaid")
                 }
             }
             if let receiptsParticipated = person.receiptsParticipated, !receiptsParticipated.isEmpty {
                 Section {
                     ForEach(receiptsParticipated) { receipt in
                         NavigationLink(value: ViewPath.receiptDetail(receipt: receipt)) {
-                            ListRow(image: "ListIcon.Receipt", title: receipt.name)
+                            Label(receipt.name, systemImage: "receipt")
                         }
                     }
                 } header: {
-                    ListSectionHeader(text: "Person.ReceiptsParticipated")
-                        .font(.body)
+                    Text("Person.ReceiptsParticipated")
                 }
             }
         }

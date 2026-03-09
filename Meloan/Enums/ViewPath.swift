@@ -16,4 +16,5 @@ enum ViewPath: Hashable {
     case moreData
     case moreTroubleshooting
     case moreAttributions
+    case moreLicenses
 }

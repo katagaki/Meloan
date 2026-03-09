@@ -559,6 +559,9 @@
         }
       }
     },
+    "katagaki/Meloan" : {
+
+    },
     "More.Advanced" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -572,6 +575,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "高度オプション"
+          }
+        }
+      }
+    },
+    "More.Attributions" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attributions"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "著作権表記"
           }
         }
       }
@@ -1027,6 +1046,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "一般"
+          }
+        }
+      }
+    },
+    "More.GitHub" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Source Code"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ソースコード"
           }
         }
       }
@@ -4324,6 +4359,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "貸し借り"
+          }
+        }
+      }
+    },
+    "ViewTitle.More" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "その他"
           }
         }
       }

@@ -68,6 +68,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				AppIcon.icon,
+				Assets.xcassets,
 				Structs/TaxRate.swift,
 				Utilities/Bundle.swift,
 				Utilities/JSONs.swift,

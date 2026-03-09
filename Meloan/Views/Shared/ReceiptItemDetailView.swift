@@ -5,7 +5,6 @@
 //  Created by シン・ジャスティン on 2023/09/18.
 //
 
-import Komponents
 import SwiftUI
 
 struct ReceiptItemDetailView: View {
@@ -16,38 +15,36 @@ struct ReceiptItemDetailView: View {
         List {
             Section {
                 HStack(alignment: .center, spacing: 16.0) {
-                    ListRow(image: "ListIcon.Price", title: "Receipt.Item.Price")
+                    Label("Receipt.Item.Price", systemImage: "tag")
                     Spacer()
                     Text(format(receiptItem.price))
                         .foregroundStyle(.secondary)
                 }
                 if let personWhoOrdered = receiptItem.person {
                     HStack(alignment: .center, spacing: 16.0) {
-                        ListRow(image: "ListIcon.Orderer", title: "Receipt.Item.Orderer")
+                        Label("Receipt.Item.Orderer", systemImage: "person.crop.circle")
                         Spacer()
                         PersonRow(person: personWhoOrdered)
                             .foregroundStyle(.secondary)
                     }
                 }
                 HStack(alignment: .center, spacing: 16.0) {
-                    ListRow(image: "ListIcon.Paid", title: "Receipt.Item.Paid")
+                    Label("Receipt.Item.Paid", systemImage: "checkmark.circle")
                     Spacer()
                     Text(receiptItem.paid ? "Receipt.Item.Paid.Yes" : "Receipt.Item.Paid.No")
                         .foregroundStyle(.secondary)
                 }
             } header: {
-                ListSectionHeader(text: "Receipt.Item.BasicInformation")
-                    .font(.body)
+                Text("Receipt.Item.BasicInformation")
             }
             Section {
                 ForEach(receiptItem.receipts ?? []) { receipt in
                     NavigationLink(value: ViewPath.receiptDetail(receipt: receipt)) {
-                        ListRow(image: "ListIcon.Receipt", title: receipt.name)
+                        Label(receipt.name, systemImage: "receipt")
                     }
                 }
             } header: {
-                ListSectionHeader(text: "Receipt.Item.ReceiptInformation")
-                    .font(.body)
+                Text("Receipt.Item.ReceiptInformation")
             }
         }
         .navigationTitle(receiptItem.name)

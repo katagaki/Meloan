@@ -6,7 +6,6 @@
 //
 
 import ConfettiSwiftUI
-import Komponents
 import SwiftUI
 
 // swiftlint:disable type_body_length
@@ -57,7 +56,7 @@ struct ReceiptDetailView: View {
             Section {
                 NavigationLink(value: ViewPath.personDetail(person: personWhoPaid)) {
                     HStack(alignment: .center, spacing: 16.0) {
-                        ListRow(image: "ListIcon.Payer", title: "Receipt.Payer")
+                        Label("Receipt.Payer", systemImage: "creditcard")
                         Spacer()
                         PersonRow(person: personWhoPaid)
                             .foregroundStyle(.secondary)
@@ -72,8 +71,7 @@ struct ReceiptDetailView: View {
                 }
             }
         } header: {
-            ListSectionHeader(text: "Receipt.Participants")
-                .font(.body)
+            Text("Receipt.Participants")
         }
         if !receipt.items().isEmpty {
             Section {
@@ -139,8 +137,7 @@ struct ReceiptDetailView: View {
                     }
                 }
             } header: {
-                ListSectionHeader(text: "Receipt.PurchasedItems")
-                    .font(.body)
+                Text("Receipt.PurchasedItems")
                     .popoverTip(ReceiptMarkPaidTip())
             } footer: {
                 HStack(alignment: .center, spacing: 4.0) {
@@ -161,8 +158,7 @@ struct ReceiptDetailView: View {
                     ReceiptItemRow(name: item.name, price: item.price)
                 }
             } header: {
-                ListSectionHeader(text: "Receipt.Discounts")
-                    .font(.body)
+                Text("Receipt.Discounts")
             }
         }
         if !receipt.taxItems().isEmpty {
@@ -171,8 +167,7 @@ struct ReceiptDetailView: View {
                     ReceiptItemRow(name: item.name, price: item.price)
                 }
             } header: {
-                ListSectionHeader(text: "Receipt.Taxes")
-                    .font(.body)
+                Text("Receipt.Taxes")
             } footer: {
                 HStack(alignment: .center, spacing: 4.0) {
                     Text("Receipt.Tax.Detail")
