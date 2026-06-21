@@ -9,9 +9,17 @@ import Vision
 
 enum ReceiptOCRService {
 
+    /// Wraps the scanned images so they can cross into the detached recognition task
+    /// without a Sendable warning. UIImage is documented thread-safe (we only read
+    /// from it here), so vouching for it with @unchecked Sendable is sound.
+    private struct ImageBatch: @unchecked Sendable {
+        let images: [UIImage]
+    }
+
     static func recognizeRows(in images: [UIImage]) async -> [String] {
-        await Task.detached(priority: .userInitiated) {
-            images.flatMap { recognizeRows(in: $0) }
+        let batch = ImageBatch(images: images)
+        return await Task.detached(priority: .userInitiated) {
+            batch.images.flatMap { recognizeRows(in: $0) }
         }.value
     }
 
