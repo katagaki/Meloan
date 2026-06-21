@@ -61,11 +61,14 @@ final class Receipt: Identifiable {
     }
 
     func sumUnpaid() -> Double {
-        return receiptItems?.reduce(into: 0.0, { partialResult, item in
+        // The parentheses around the nil-coalesced subtotal are required so that
+        // overallRate() scales the entire unpaid subtotal (including its pro-rata
+        // share of tax and discounts), not just the `.zero` fallback.
+        return (receiptItems?.reduce(into: 0.0, { partialResult, item in
             if !item.paid {
                 partialResult += item.price
             }
-        }) ?? .zero * overallRate()
+        }) ?? .zero) * overallRate()
     }
 
     func sumPaid() -> Double {
@@ -99,7 +102,9 @@ final class Receipt: Identifiable {
 
     func overallRate() -> Double {
         if sumOfItems() > 0 {
-            return sum() / sumOfItems()
+            // Clamp to a non-negative floor so that an over-sized discount
+            // (greater than items + tax) can never produce negative amounts owed.
+            return max(0.0, sum() / sumOfItems())
         }
         return .zero
     }
@@ -187,18 +192,58 @@ final class Receipt: Identifiable {
     }
 
     func setLenderItemsPaid() {
-        if let personWhoPaid = personWhoPaid {
-            for item in receiptItems ?? [] where item.person == personWhoPaid {
-                item.paid = true
-            }
-            for item in receiptItems ?? [] where item.person == nil {
-                item.addPersonWhoPaid(from: [personWhoPaid])
-                if (peopleWhoParticipated?.count ?? -1) == (item.peopleWhoPaid?.count ?? -2) {
-                    item.paid = true
-                } else {
-                    item.paid = false
-                }
-            }
+        guard let personWhoPaid = personWhoPaid else { return }
+        let participantIDs = Set(participants().map { $0.id })
+        for item in receiptItems ?? [] where item.person?.id == personWhoPaid.id {
+            item.paid = true
         }
+        for item in receiptItems ?? [] where item.person == nil {
+            // addPersonWhoPaid is now idempotent, but guard anyway for clarity.
+            if !item.personHasPaid(personWhoPaid) {
+                item.addPersonWhoPaid(from: [personWhoPaid])
+            }
+            item.refreshSharedPaidState(participantIDs: participantIDs)
+        }
+    }
+
+    /// Toggles a single item's settlement, mirroring the in-app behavior so the
+    /// widget intent and the detail view stay perfectly consistent.
+    /// - For an assigned item, flips its `paid` flag.
+    /// - For a shared item, settles or un-settles every participant at once.
+    func toggleSettled(_ item: ReceiptItem) {
+        if item.person != nil {
+            item.paid.toggle()
+            return
+        }
+        let participantList = participants()
+        let participantIDs = Set(participantList.map { $0.id })
+        let paidIDs = Set((item.peopleWhoPaid ?? []).map { $0.id })
+        let allPaid = !participantIDs.isEmpty && participantIDs.isSubset(of: paidIDs)
+        if allPaid {
+            // Clear the borrowers, but keep the payer settled — they paid the bill.
+            item.peopleWhoPaid?.removeAll()
+            if let personWhoPaid = personWhoPaid {
+                item.addPersonWhoPaid(from: [personWhoPaid])
+            }
+        } else {
+            item.addPersonWhoPaid(from: participantList)
+        }
+        // Recompute paid from the set membership so an empty participant list can
+        // never leave a shared item wrongly marked paid.
+        item.refreshSharedPaidState(participantIDs: participantIDs)
+    }
+
+    /// Toggles whether a single participant has settled their share of a shared item.
+    func toggleSettled(_ item: ReceiptItem, for person: Person) {
+        if item.person != nil {
+            item.paid.toggle()
+            return
+        }
+        if item.personHasPaid(person) {
+            item.removePersonWhoPaid(withID: person.id)
+        } else {
+            item.addPersonWhoPaid(from: [person])
+        }
+        item.refreshSharedPaidState(participantIDs: Set(participants().map { $0.id }))
     }
 }

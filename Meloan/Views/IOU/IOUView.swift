@@ -16,6 +16,7 @@ enum IOUViewMode: String, CaseIterable {
     case byLender = "IOU.ViewMode.ByLender"
 }
 
+// swiftlint:disable type_body_length
 struct IOUView: View {
 
     @EnvironmentObject var navigationManager: NavigationManager
@@ -41,6 +42,7 @@ struct IOUView: View {
                     .pickerStyle(.segmented)
                     .padding(.horizontal, 20.0)
                     .padding(.bottom, 8.0)
+                    summaryBanner()
                 }
                 Group {
                     switch viewMode {
@@ -86,6 +88,45 @@ struct IOUView: View {
                     personWhoPaid = people.first(where: { $0.id == "ME" })
                     isInitialLoadCompleted = true
                 }
+            }
+        }
+    }
+
+    @ViewBuilder
+    func summaryBanner() -> some View {
+        if let personWhoPaid = personWhoPaid {
+            let total = grandTotal(for: personWhoPaid)
+            if total > 0 {
+                HStack(alignment: .center, spacing: 8.0) {
+                    Text(viewMode == .byLender ? "IOU.Summary.TotalYouOwe" : "IOU.Summary.TotalOwedToYou")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                    Text(format(total))
+                        .font(.subheadline)
+                        .monospaced()
+                        .bold()
+                }
+                .padding(.horizontal, 20.0)
+                .padding(.bottom, 8.0)
+            }
+        }
+    }
+
+    /// Grand total across every counterparty for the selected person.
+    /// - In by-person / by-receipt modes the selected person is the lender, so this is
+    ///   the total owed to them by everyone else.
+    /// - In by-lender mode the selected person is the borrower, so this is the total
+    ///   they owe across all lenders.
+    func grandTotal(for selected: Person) -> Double {
+        switch viewMode {
+        case .byLender:
+            return people.reduce(0.0) { partial, lender in
+                lender.id == selected.id ? partial : partial + selected.sumOwed(to: lender)
+            }
+        default:
+            return people.reduce(0.0) { partial, borrower in
+                borrower.id == selected.id ? partial : partial + borrower.sumOwed(to: selected)
             }
         }
     }
@@ -140,12 +181,14 @@ struct IOUView: View {
                                     .scaledToFit()
                                     .frame(width: 20.0, height: 20.0)
                             }
+                            .accessibilityLabel(Text("Shared.CopyAmount"))
                             ShareLink(item: hey(person, youOweMe: person.sumOwed(to: personWhoPaid))) {
                                 Image(systemName: "square.and.arrow.up")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 24.0, height: 24.0)
                             }
+                            .accessibilityLabel(Text("Shared.SendReminder"))
                         }
                         .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 8.0, trailing: 0.0))
                     } footer: {
@@ -281,3 +324,4 @@ struct IOUView: View {
         }
     }
 }
+// swiftlint:enable type_body_length

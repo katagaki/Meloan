@@ -33,8 +33,11 @@ struct PeopleView: View {
                                         !(person.receiptsParticipated?.isEmpty ?? true))
                     }
                     .onDelete(perform: { indexSet in
-                        for index in indexSet {
-                            modelContext.delete(people[index + 1])
+                        // indexSet indexes into the filtered (non-ME) list shown by the
+                        // ForEach, which is NOT the same as `people` (ME may sort anywhere).
+                        let others = people.filter { $0.id != "ME" }
+                        for index in indexSet where index < others.count {
+                            modelContext.delete(others[index])
                         }
                     })
                 }

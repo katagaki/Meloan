@@ -29,7 +29,13 @@ struct TogglePaidIntent: AppIntent {
     @MainActor
     func perform() async throws -> some IntentResult {
         if let receiptItem = getReceiptItem() {
-            receiptItem.paid.toggle()
+            // Mirror the in-app settlement logic so shared items keep peopleWhoPaid
+            // consistent with the paid flag (otherwise IOU totals desync).
+            if let receipt = receiptItem.receipts?.first {
+                receipt.toggleSettled(receiptItem)
+            } else {
+                receiptItem.paid.toggle()
+            }
             try? sharedModelContainer.mainContext.save()
             // Set flag so main app knows to reload data
             defaults.set(true, forKey: "WidgetDidUpdate")

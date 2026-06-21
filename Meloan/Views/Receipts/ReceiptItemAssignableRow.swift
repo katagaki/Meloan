@@ -54,6 +54,8 @@ struct ReceiptItemAssignableRow: View {
                 }
             }
             .fixedSize()
+            .accessibilityLabel(Text("Receipt.Item.Assignee"))
+            .accessibilityValue(Text(item.person?.name ?? NSLocalizedString("Shared.Shared", comment: "")))
             TextField(LocalizedStringKey(placeholderText), text: $item.name)
                 .textInputAutocapitalization(.words)
             Divider()

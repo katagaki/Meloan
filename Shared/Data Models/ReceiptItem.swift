@@ -31,13 +31,25 @@ final class ReceiptItem {
     }
 
     func personHasPaid(_ person: Person) -> Bool {
-        return peopleWhoPaid?.contains(person) ?? false
+        return peopleWhoPaid?.contains(where: { $0.id == person.id }) ?? false
     }
+
+    /// Appends people to `peopleWhoPaid`, skipping anyone already present.
+    /// Idempotent so repeated saves can't corrupt the to-many relationship.
     func addPersonWhoPaid(from people: [Person]) {
-        peopleWhoPaid?.append(contentsOf: people)
+        for person in people where !personHasPaid(person) {
+            peopleWhoPaid?.append(person)
+        }
     }
 
     func removePersonWhoPaid(withID id: String) {
         peopleWhoPaid?.removeAll(where: { $0.id == id })
+    }
+
+    /// Recomputes `paid` for a shared item by comparing unique paid-person ids
+    /// against the participant ids, robust to duplicates and object identity.
+    func refreshSharedPaidState(participantIDs: Set<String>) {
+        let paidIDs = Set((peopleWhoPaid ?? []).map { $0.id })
+        paid = !participantIDs.isEmpty && participantIDs.isSubset(of: paidIDs)
     }
 }

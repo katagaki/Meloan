@@ -16,9 +16,16 @@ struct PeoplePicker: View {
     @Query(sort: \Person.name) var people: [Person]
     @State var title: String
     @Binding var selection: [Person]?
+    @State private var isAddingPerson: Bool = false
 
     var body: some View {
         List {
+            if people.filter({ $0.id != "ME" }).isEmpty {
+                Text("PeoplePicker.Empty")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .listRowBackground(Color.clear)
+            }
             if let mePerson = people.first(where: { $0.id == "ME" }) {
                 Button {
                     if selection?.contains(where: { $0.id == "ME" }) ?? false {
@@ -69,6 +76,11 @@ struct PeoplePicker: View {
                     }
                 }
             }
+            Button {
+                isAddingPerson = true
+            } label: {
+                Label("PeoplePicker.AddPerson", systemImage: "person.badge.plus")
+            }
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -77,6 +89,11 @@ struct PeoplePicker: View {
                 } label: {
                     Text("Shared.Done")
                 }
+            }
+        }
+        .sheet(isPresented: $isAddingPerson) {
+            NavigationStack {
+                PersonCreator()
             }
         }
         .navigationTitle(LocalizedStringKey(title))

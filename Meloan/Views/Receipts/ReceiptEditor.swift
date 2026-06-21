@@ -10,6 +10,7 @@ import SwiftData
 import SwiftUI
 import UIKit
 
+// swiftlint:disable type_body_length file_length
 struct ReceiptEditor: View {
 
     @Environment(\.modelContext) var modelContext
@@ -24,6 +25,8 @@ struct ReceiptEditor: View {
     @State var taxRates: TaxRate.List = Bundle.main.decode(TaxRate.List.self, from: "TaxRates.json")!
     @State var isPersonPickerPresented: Bool = false
     @State var isSaveConfirmed: Bool = false
+    @State private var isSaveErrorPresented: Bool = false
+    @State private var saveErrorMessage: String = ""
     @State var draft: ReceiptDraft
     var receipt: Receipt
     var isNewReceipt: Bool = false
@@ -186,6 +189,12 @@ struct ReceiptEditor: View {
         }
         .sensoryFeedback(.success, trigger: isSaveConfirmed)
         .interactiveDismissDisabled()
+        .alert("Alert.SaveFailed.Title", isPresented: $isSaveErrorPresented) {
+            Button("Shared.OK", role: .cancel) { }
+        } message: {
+            Text(saveErrorMessage.isEmpty ?
+                 NSLocalizedString("Alert.SaveFailed.Message", comment: "") : saveErrorMessage)
+        }
         .onChange(of: draft.name) { oldValue, newValue in
             guard oldValue != newValue, !draft.isApplyingUndoRedo else { return }
             undoManager?.registerUndo(withTarget: draft) { draft in
@@ -270,12 +279,21 @@ struct ReceiptEditor: View {
         if isNewReceipt {
             modelContext.delete(receipt)
             try? modelContext.save()
+        } else {
+            // Discard any unsaved edits (e.g. from a failed save attempt) so backing
+            // out never persists changes the user abandoned.
+            modelContext.rollback()
         }
         dismiss()
     }
 
-    // swiftlint:disable function_body_length
+    // swiftlint:disable function_body_length cyclomatic_complexity
     func saveEditing() {
+        // A previous failed save may have rolled the context back, detaching a brand-new
+        // receipt. Re-insert it so a retry persists cleanly from the draft.
+        if isNewReceipt && receipt.modelContext == nil {
+            modelContext.insert(receipt)
+        }
         // Apply draft data to the model
         receipt.name = draft.name
         receipt.personWhoPaid = draft.personWhoPaid
@@ -329,12 +347,25 @@ struct ReceiptEditor: View {
             }
         }
 
-        if defaults.value(forKey: "MarkSelfPaid") == nil || markSelfPaid {
+        // Only auto-mark the payer's own items as paid on first creation, so manual
+        // paid/unpaid toggles made later are never silently overwritten on re-save.
+        if isNewReceipt && (defaults.value(forKey: "MarkSelfPaid") == nil || markSelfPaid) {
             receipt.setLenderItemsPaid()
         }
+        // Keep every shared item's paid flag consistent with the (possibly edited)
+        // participant list — e.g. adding a participant un-settles a fully-paid item.
+        let participantIDs = Set(receipt.participants().map { $0.id })
+        for item in receipt.receiptItems ?? [] where item.person == nil {
+            item.refreshSharedPaidState(participantIDs: participantIDs)
+        }
+        // Auto charges only apply when the user hasn't supplied their own tax/charge
+        // lines (e.g. scanned or hand-entered), preventing double taxation.
+        let hasManualTax = receipt.taxItems?.contains(where: {
+            !$0.id.hasPrefix("AUTOTAX-") && !$0.id.hasPrefix("AUTOTEN-")
+        }) ?? false
         // Calculate service charge first (needed for tax-above-service-charge)
         let serviceChargeAmount: Double
-        if addTenPercent {
+        if addTenPercent && !hasManualTax {
             serviceChargeAmount = receipt.sumOfItems() * 0.1
             if let serviceChargeItem = receipt.taxItems?.first(where: { $0.id == "AUTOTEN-\(receipt.id)" }) {
                 serviceChargeItem.price = serviceChargeAmount
@@ -346,9 +377,10 @@ struct ReceiptEditor: View {
             }
         } else {
             serviceChargeAmount = 0.0
+            // Service charge off, or the user supplied their own — remove any stale auto item.
+            removeAutoTaxItem(withID: "AUTOTEN-\(receipt.id)")
         }
-        // Calculate tax (supports tax above service charge)
-        if taxRateCountry != "" {
+        if taxRateCountry != "" && !hasManualTax {
             let taxBase: Double
             if taxAboveServiceCharge && addTenPercent {
                 taxBase = serviceChargeAmount
@@ -371,11 +403,33 @@ struct ReceiptEditor: View {
                 }
                 receipt.addTaxItems(from: [automaticTaxItem])
             }
+        } else {
+            // Tax region cleared, or the user provided their own tax — drop the auto item.
+            removeAutoTaxItem(withID: "AUTOTAX-\(receipt.id)")
         }
-        try? modelContext.save()
+        do {
+            try modelContext.save()
+        } catch {
+            // Surface the failure and discard the partially-applied, unsaved mutations
+            // so autosave can't later persist exactly the changes the user backs out of.
+            // The draft is untouched, so a retry re-applies everything cleanly.
+            saveErrorMessage = error.localizedDescription
+            modelContext.rollback()
+            isSaveErrorPresented = true
+            return
+        }
         isSaveConfirmed = true
         MeloanApp.reloadWidget()
         dismiss()
     }
-    // swiftlint:enable function_body_length
+    // swiftlint:enable function_body_length cyclomatic_complexity
+
+    /// Removes an auto-generated tax/service-charge item (if present) from both the
+    /// receipt and the model context.
+    func removeAutoTaxItem(withID id: String) {
+        guard let item = receipt.taxItems?.first(where: { $0.id == id }) else { return }
+        receipt.taxItems?.removeAll { $0.id == id }
+        modelContext.delete(item)
+    }
 }
+// swiftlint:enable type_body_length
