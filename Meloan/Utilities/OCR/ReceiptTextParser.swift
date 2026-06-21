@@ -99,7 +99,10 @@ enum ReceiptTextParser {
         // Fallback: a lone integer at the end (e.g. whole-number currencies like JPY/VND/IDR).
         if let last = matches.last {
             let raw = nsLine.substring(with: last.range)
-            if let value = normalizeAmount(raw), value >= 1 {
+            // Require at least two digits: a single stray digit is far more likely a
+            // quantity, line count, or code (e.g. "Latte x 2", "Table 5") than a price.
+            let digitCount = raw.filter { $0.isNumber }.count
+            if let value = normalizeAmount(raw), value >= 1, digitCount >= 2 {
                 let tail = trailingContext(of: nsLine, after: last.range)
                 if tail.hasPrefix("%") { return nil }
                 let negative = raw.hasPrefix("-") || tail.hasPrefix(")") || tail.hasPrefix("-")
