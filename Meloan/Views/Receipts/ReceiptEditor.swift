@@ -298,6 +298,7 @@ struct ReceiptEditor: View {
             modelContext.insert(receipt)
         }
         // Apply draft data to the model
+        let previousPayerID = receipt.personWhoPaid?.id
         receipt.name = draft.name
         receipt.personWhoPaid = draft.personWhoPaid
         receipt.peopleWhoParticipated = draft.peopleWhoParticipated
@@ -350,8 +351,12 @@ struct ReceiptEditor: View {
             }
         }
 
-        // Only auto-mark self-paid on first creation, never overwriting later edits.
-        if isNewReceipt && (defaults.value(forKey: "MarkSelfPaid") == nil || markSelfPaid) {
+        // Honor the MarkSelfPaid setting on first creation or whenever the payer
+        // changes, but skip it when the payer is unchanged so manual paid/unpaid
+        // toggles made on an existing receipt are never silently overwritten.
+        let shouldMarkSelfPaid = defaults.value(forKey: "MarkSelfPaid") == nil || markSelfPaid
+        let payerChanged = previousPayerID != receipt.personWhoPaid?.id
+        if shouldMarkSelfPaid && (isNewReceipt || payerChanged) {
             receipt.setLenderItemsPaid()
         }
         // Keep shared items' paid flags consistent with the edited participant list.
