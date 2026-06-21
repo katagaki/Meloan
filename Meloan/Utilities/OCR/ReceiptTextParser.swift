@@ -274,10 +274,19 @@ enum ReceiptTextParser {
         let symbolMap: [(String, String)] = [
             ("€", "EUR"), ("£", "GBP"), ("₫", "VND"), ("₱", "PHP"), ("฿", "THB"),
             ("Rp", "IDR"), ("RM", "MYR"), ("S$", "SGD"), ("zł", "PLN"), ("Kč", "CZK"),
-            ("Ft", "HUF"), ("円", "JPY"), ("¥", "JPY")
+            ("Ft", "HUF"), ("円", "JPY")
         ]
         for (symbol, code) in symbolMap where blob.contains(symbol) {
             return code
+        }
+        // The ¥ glyph is shared by Japanese yen and Chinese yuan. Map it to JPY only
+        // when there's no explicit yuan marker (元/圆/CNY/RMB); otherwise leave the
+        // currency undetected rather than mislabel a yuan receipt as yen.
+        if blob.contains("¥") {
+            let upperBlob = blob.uppercased()
+            let looksLikeYuan = blob.contains("元") || blob.contains("圆")
+                || upperBlob.contains("CNY") || upperBlob.contains("RMB")
+            if !looksLikeYuan { return "JPY" }
         }
         // Explicit ISO codes in the text.
         let isoCodes = ["USD", "CAD", "MXN", "EUR", "GBP", "SGD", "MYR", "IDR", "THB",
