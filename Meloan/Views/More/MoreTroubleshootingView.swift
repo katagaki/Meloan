@@ -85,8 +85,7 @@ struct MoreTroubleshootingView: View {
             modelContext.delete(person)
         }
         try? modelContext.save()
-        // Return to a clean first-run state: re-allow sample data and drop search
-        // history that now points at deleted receipts.
+        // Return to a clean first-run state.
         defaults.set(false, forKey: "SampleDataCreated")
         defaults.removeObject(forKey: "SearchHistory")
         MeloanApp.reloadWidget()

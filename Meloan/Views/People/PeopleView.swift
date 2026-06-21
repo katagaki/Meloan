@@ -34,8 +34,7 @@ struct PeopleView: View {
                                         !(person.receiptsParticipated?.isEmpty ?? true))
                     }
                     .onDelete(perform: { indexSet in
-                        // indexSet indexes into the filtered (non-ME) list shown by the
-                        // ForEach, which is NOT the same as `people` (ME may sort anywhere).
+                        // indexSet is into the filtered (non-ME) list, not `people`.
                         let others = people.filter { $0.id != "ME" }
                         deleteWithUndo(indexSet.compactMap { $0 < others.count ? others[$0] : nil })
                     })
@@ -64,8 +63,6 @@ struct PeopleView: View {
 
     func deleteWithUndo(_ peopleToDelete: [Person]) {
         guard !peopleToDelete.isEmpty else { return }
-        // Only people with no receipts are deletable (see deleteDisabled), so a plain
-        // record snapshot is enough to rebuild them on Undo.
         let snapshots = peopleToDelete.map {
             (id: $0.id, name: $0.name, photo: $0.photo, dateAdded: $0.dateAdded)
         }

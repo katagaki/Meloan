@@ -2,10 +2,6 @@
 //  ReceiptSnapshot.swift
 //  Meloan
 //
-//  A value-type capture of a Receipt's full graph, taken before deletion so the
-//  exact same receipt can be reconstructed if the user taps Undo. Persons are
-//  referenced by id (they survive a receipt delete) and re-linked on restore.
-//
 
 import Foundation
 import SwiftData

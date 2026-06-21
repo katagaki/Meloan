@@ -21,8 +21,6 @@ struct ReceiptDetailView: View {
             receiptDetails()
         }
         .task(id: shareSignature) {
-            // Render the shareable image once per data change, off the view-update
-            // path, so opening the Share menu never renders twice or blocks.
             shareImage = createImageToShare()
         }
         .confettiCannon(counter: $confettiCounter, num: Int(receipt.sum()), rainHeight: 1000.0, radius: 500.0)
@@ -339,8 +337,6 @@ struct ReceiptDetailView: View {
     }
     // swiftlint:enable function_body_length
 
-    /// A cheap signature that changes whenever anything visible in the export
-    /// changes, used to invalidate the cached share image.
     var shareSignature: String {
         let items = receipt.items().map { "\($0.id):\($0.price):\($0.paid)" }.joined(separator: ",")
         return "\(receipt.name)|\(items)|\(receipt.discountItems().count)|\(receipt.taxItems().count)|\(receipt.sum())"

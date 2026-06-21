@@ -2,14 +2,10 @@
 //  ToastView.swift
 //  Meloan
 //
-//  A Liquid Glass capsule toast with an Undo action, presented app-wide.
-//
 
 import SwiftUI
 
 extension View {
-    /// Applies an iOS 26 Liquid Glass background clipped to a capsule, falling back
-    /// to a material on older systems.
     @ViewBuilder
     func liquidGlassCapsule() -> some View {
         if #available(iOS 26.0, *) {

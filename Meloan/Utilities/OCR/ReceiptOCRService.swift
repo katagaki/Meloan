@@ -2,9 +2,6 @@
 //  ReceiptOCRService.swift
 //  Meloan
 //
-//  Runs Vision text recognition over scanned receipt images and reconstructs the
-//  visual rows (top-to-bottom, left-to-right) that ReceiptTextParser consumes.
-//
 
 import Foundation
 import UIKit
@@ -12,8 +9,6 @@ import Vision
 
 enum ReceiptOCRService {
 
-    /// Recognizes text across all scanned pages and returns reconstructed rows.
-    /// Runs off the main actor since Vision is CPU-heavy.
     static func recognizeRows(in images: [UIImage]) async -> [String] {
         await Task.detached(priority: .userInitiated) {
             images.flatMap { recognizeRows(in: $0) }
@@ -49,10 +44,6 @@ enum ReceiptOCRService {
         let height: CGFloat
     }
 
-    /// Groups recognized text fragments whose vertical centers are close into a
-    /// single row, ordered left-to-right. Vision text often arrives as one
-    /// observation per line, but long rows (item name far from price) can split —
-    /// this rejoins them so the parser sees "Item ........ 12.50" as one line.
     private static func groupIntoRows(_ observations: [VNRecognizedTextObservation]) -> [String] {
         let fragments: [Fragment] = observations.compactMap { observation in
             guard let candidate = observation.topCandidates(1).first else { return nil }

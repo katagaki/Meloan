@@ -113,11 +113,6 @@ struct IOUView: View {
         }
     }
 
-    /// Grand total across every counterparty for the selected person.
-    /// - In by-person / by-receipt modes the selected person is the lender, so this is
-    ///   the total owed to them by everyone else.
-    /// - In by-lender mode the selected person is the borrower, so this is the total
-    ///   they owe across all lenders.
     func grandTotal(for selected: Person) -> Double {
         switch viewMode {
         case .byLender:

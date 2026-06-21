@@ -61,9 +61,6 @@ final class Receipt: Identifiable {
     }
 
     func sumUnpaid() -> Double {
-        // The parentheses around the nil-coalesced subtotal are required so that
-        // overallRate() scales the entire unpaid subtotal (including its pro-rata
-        // share of tax and discounts), not just the `.zero` fallback.
         return (receiptItems?.reduce(into: 0.0, { partialResult, item in
             if !item.paid {
                 partialResult += item.price
@@ -102,8 +99,6 @@ final class Receipt: Identifiable {
 
     func overallRate() -> Double {
         if sumOfItems() > 0 {
-            // Clamp to a non-negative floor so that an over-sized discount
-            // (greater than items + tax) can never produce negative amounts owed.
             return max(0.0, sum() / sumOfItems())
         }
         return .zero
@@ -206,10 +201,6 @@ final class Receipt: Identifiable {
         }
     }
 
-    /// Toggles a single item's settlement, mirroring the in-app behavior so the
-    /// widget intent and the detail view stay perfectly consistent.
-    /// - For an assigned item, flips its `paid` flag.
-    /// - For a shared item, settles or un-settles every participant at once.
     func toggleSettled(_ item: ReceiptItem) {
         if item.person != nil {
             item.paid.toggle()
@@ -228,12 +219,9 @@ final class Receipt: Identifiable {
         } else {
             item.addPersonWhoPaid(from: participantList)
         }
-        // Recompute paid from the set membership so an empty participant list can
-        // never leave a shared item wrongly marked paid.
         item.refreshSharedPaidState(participantIDs: participantIDs)
     }
 
-    /// Toggles whether a single participant has settled their share of a shared item.
     func toggleSettled(_ item: ReceiptItem, for person: Person) {
         if item.person != nil {
             item.paid.toggle()

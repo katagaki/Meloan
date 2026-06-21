@@ -2,9 +2,6 @@
 //  ReceiptScannerView.swift
 //  Meloan
 //
-//  A thin SwiftUI wrapper around VisionKit's document camera, which handles edge
-//  detection, perspective correction, and multi-page capture for us.
-//
 
 import SwiftUI
 import VisionKit

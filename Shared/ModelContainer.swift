@@ -26,16 +26,14 @@ func newContainer() -> ModelContainer {
     if let container = try? ModelContainer(for: schema, configurations: [cloudConfiguration]) {
         return container
     }
-    // Fallback 1: persistent store without CloudKit (e.g. an iCloud account/quota issue
-    // that would otherwise prevent the store from opening).
+    // Fallback: local store without CloudKit.
     let localConfiguration = ModelConfiguration(schema: schema,
                                                 isStoredInMemoryOnly: false,
                                                 cloudKitDatabase: .none)
     if let container = try? ModelContainer(for: schema, configurations: [localConfiguration]) {
         return container
     }
-    // Fallback 2: in-memory store so the app still launches instead of bricking;
-    // the user can then recover via Troubleshooting rather than facing a crash loop.
+    // Last resort: in-memory store so the app still launches.
     do {
         let memoryConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
         return try ModelContainer(for: schema, configurations: [memoryConfiguration])

@@ -29,8 +29,7 @@ struct TogglePaidIntent: AppIntent {
     @MainActor
     func perform() async throws -> some IntentResult {
         if let receiptItem = getReceiptItem() {
-            // Mirror the in-app settlement logic so shared items keep peopleWhoPaid
-            // consistent with the paid flag (otherwise IOU totals desync).
+            // Mirror in-app settlement so shared items keep peopleWhoPaid consistent.
             if let receipt = receiptItem.receipts?.first {
                 receipt.toggleSettled(receiptItem)
             } else {

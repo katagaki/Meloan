@@ -46,8 +46,7 @@ struct ReceiptQuery: EntityQuery, Sendable {
 
     @MainActor
     func all() -> [ReceiptEntity] {
-        // Reuse the shared container (which honors the user's CloudKit-sync setting)
-        // instead of opening a second, divergent store; degrade gracefully on error.
+        // Reuse the shared container instead of opening a second, divergent store.
         do {
             let receiptFetchDescriptor = FetchDescriptor<Receipt>()
             return try sharedModelContainer

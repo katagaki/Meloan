@@ -2,9 +2,6 @@
 //  ReceiptParserModels.swift
 //  Meloan
 //
-//  Value types and multilingual keyword tables used by ReceiptTextParser. Kept in
-//  a separate file so the parser logic stays focused and within length limits.
-//
 
 import Foundation
 
@@ -48,8 +45,6 @@ extension ReceiptTextParser {
         var isNegative: Bool
     }
 
-    /// Multilingual keyword tables covering North America, Europe, and SEA. All
-    /// entries must already be diacritic-folded + lowercased to match `fold(_:)`.
     enum Keywords {
         static let total = [
             "grand total", "total due", "amount due", "balance due", "total amount", "total",
@@ -82,8 +77,6 @@ extension ReceiptTextParser {
             "balance", "tel", "phone", "www", "http", "vat reg", "gst reg",
             "お釣り", "現金", "クレジット", "找零", "ありがとう"
         ]
-        /// Informational tax-breakdown lines that are NOT a charge to add (common on
-        /// PH/SEA receipts). Checked first so they aren't misread as taxes.
         static let informational = [
             "vatable", "vatable sales", "vat exempt", "vat-exempt", "vat exempt sales",
             "zero rated", "zero-rated", "non-vat", "net of vat", "vat sales", "taxable amount"

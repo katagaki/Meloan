@@ -280,8 +280,7 @@ struct ReceiptEditor: View {
             modelContext.delete(receipt)
             try? modelContext.save()
         } else {
-            // Discard any unsaved edits (e.g. from a failed save attempt) so backing
-            // out never persists changes the user abandoned.
+            // Discard unsaved edits from a failed save attempt.
             modelContext.rollback()
         }
         dismiss()
@@ -289,8 +288,7 @@ struct ReceiptEditor: View {
 
     // swiftlint:disable function_body_length cyclomatic_complexity
     func saveEditing() {
-        // A previous failed save may have rolled the context back, detaching a brand-new
-        // receipt. Re-insert it so a retry persists cleanly from the draft.
+        // Re-insert if a previous failed save rolled the context back.
         if isNewReceipt && receipt.modelContext == nil {
             modelContext.insert(receipt)
         }
@@ -347,19 +345,16 @@ struct ReceiptEditor: View {
             }
         }
 
-        // Only auto-mark the payer's own items as paid on first creation, so manual
-        // paid/unpaid toggles made later are never silently overwritten on re-save.
+        // Only auto-mark self-paid on first creation, never overwriting later edits.
         if isNewReceipt && (defaults.value(forKey: "MarkSelfPaid") == nil || markSelfPaid) {
             receipt.setLenderItemsPaid()
         }
-        // Keep every shared item's paid flag consistent with the (possibly edited)
-        // participant list — e.g. adding a participant un-settles a fully-paid item.
+        // Keep shared items' paid flags consistent with the edited participant list.
         let participantIDs = Set(receipt.participants().map { $0.id })
         for item in receipt.receiptItems ?? [] where item.person == nil {
             item.refreshSharedPaidState(participantIDs: participantIDs)
         }
-        // Auto charges only apply when the user hasn't supplied their own tax/charge
-        // lines (e.g. scanned or hand-entered), preventing double taxation.
+        // Auto charges are suppressed when the user supplied their own tax (no double tax).
         let hasManualTax = receipt.taxItems?.contains(where: {
             !$0.id.hasPrefix("AUTOTAX-") && !$0.id.hasPrefix("AUTOTEN-")
         }) ?? false
@@ -410,9 +405,7 @@ struct ReceiptEditor: View {
         do {
             try modelContext.save()
         } catch {
-            // Surface the failure and discard the partially-applied, unsaved mutations
-            // so autosave can't later persist exactly the changes the user backs out of.
-            // The draft is untouched, so a retry re-applies everything cleanly.
+            // Discard the unsaved mutations so autosave can't persist abandoned changes.
             saveErrorMessage = error.localizedDescription
             modelContext.rollback()
             isSaveErrorPresented = true
@@ -424,8 +417,6 @@ struct ReceiptEditor: View {
     }
     // swiftlint:enable function_body_length cyclomatic_complexity
 
-    /// Removes an auto-generated tax/service-charge item (if present) from both the
-    /// receipt and the model context.
     func removeAutoTaxItem(withID id: String) {
         guard let item = receipt.taxItems?.first(where: { $0.id == id }) else { return }
         receipt.taxItems?.removeAll { $0.id == id }

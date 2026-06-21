@@ -2,11 +2,6 @@
 //  ReceiptTextParser.swift
 //  Meloan
 //
-//  Parses raw text lines recognized from a scanned receipt into structured
-//  items, taxes, discounts, and detected totals. This type is intentionally
-//  pure (Foundation only, no Vision/UIKit) so it can be unit-tested and reasoned
-//  about independently of the camera/OCR pipeline.
-//
 
 import Foundation
 
@@ -23,8 +18,6 @@ enum ReceiptTextParser {
 
     // MARK: - Public API
 
-    /// Parses receipt text where each element of `lines` is one visual row
-    /// (left-to-right) of the receipt.
     static func parse(lines rawLines: [String]) -> ParsedReceipt {
         let lines = rawLines
             .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
@@ -82,8 +75,6 @@ enum ReceiptTextParser {
 
     /// Finds the right-most monetary amount in a line and returns its value.
     static func extractTrailingAmount(from line: String) -> ParsedAmount? {
-        // A monetary token: optional sign/paren/symbol, digits with . or , groupings,
-        // optional trailing sign/paren. We scan for all candidates and take the last.
         let pattern = #"[-(]?\s*(?:[$€£¥₫₱฿₩]|RM|Rp|S\$|HK\$|NT\$|kr|zł|Kč|Ft|лв|руб)?\s*\d[\d.,]*\d|\d"#
         guard let regex = try? NSRegularExpression(pattern: pattern) else { return nil }
         let nsLine = line as NSString
@@ -100,8 +91,6 @@ enum ReceiptTextParser {
             // Reject percentages ("8%") and bare small integers that are likely quantities/codes.
             if tail.hasPrefix("%") { continue }
             if !raw.contains(".") && !raw.contains(",") && !containsCurrencySymbol(raw) {
-                // A lone integer with no separators/symbol is rarely a price; require it be
-                // reasonably "money-like" only when nothing better exists. Skip here.
                 continue
             }
             return ParsedAmount(value: negative ? -abs(value) : value, matchedText: raw, isNegative: negative)
@@ -204,9 +193,6 @@ enum ReceiptTextParser {
         if containsAny(haystack, in: Keywords.tax) {
             return .tax
         }
-        // A line carrying a small percentage (e.g. "PB1 10%", "Service 5%") alongside an
-        // amount is almost always a tax/charge. Guard to typical tax rates so product
-        // descriptions like "100% Cotton" stay items.
         if let pct = percentageValue(in: line), pct > 0, pct <= 30,
            !containsAny(haystack, in: Keywords.subtotal), !containsAny(haystack, in: Keywords.total) {
             return .tax
@@ -269,8 +255,6 @@ enum ReceiptTextParser {
     // MARK: - Merchant / currency detection
 
     static func detectMerchantName(in lines: [String]) -> String? {
-        // The merchant is usually one of the first lines: has letters, no trailing price,
-        // not a pure address/phone/url.
         for line in lines.prefix(4) {
             if extractTrailingAmount(from: line) != nil { continue }
             if looksLikeDateOrPhone(line) { continue }
@@ -322,8 +306,6 @@ enum ReceiptTextParser {
             #"\b\d{1,2}:\d{2}(:\d{2})?\b"#,               // time 14:05
             #"\b(?:\+?\d[\d\s\-]{7,})\b(?!\d*[.,]\d{2})"# // phone-ish runs of digits
         ]
-        // A date/time line could still carry a real total; only skip it when there is
-        // no decimal amount present anywhere on the line.
         let hasDecimalAmount = line.range(of: #"\d[.,]\d{2}\b"#, options: .regularExpression) != nil
         for pattern in patterns where line.range(of: pattern, options: .regularExpression) != nil {
             if !hasDecimalAmount { return true }
@@ -344,9 +326,6 @@ enum ReceiptTextParser {
         return false
     }
 
-    /// Whole-word match for Latin-script keywords so "vat" doesn't match "vatable"
-    /// and "iva" doesn't match "private". Scripts without word boundaries (CJK, Thai,
-    /// Korean) fall back to a plain substring check. `haystack` is already folded.
     private static func matchesKeyword(_ haystack: String, _ keyword: String) -> Bool {
         guard keyword.allSatisfy({ $0.isASCII }) else {
             return haystack.contains(keyword)
