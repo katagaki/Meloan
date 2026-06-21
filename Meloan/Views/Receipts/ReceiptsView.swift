@@ -18,6 +18,7 @@ struct ReceiptsView: View {
 
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
+    @EnvironmentObject var toastManager: ToastManager
     @Query(sort: \Receipt.dateAdded, order: .reverse, animation: .snappy.speed(2)) var receipts: [Receipt]
     @Query(sort: \Person.name) var people: [Person]
 
@@ -67,9 +68,7 @@ struct ReceiptsView: View {
                                             receiptBeingEdited = receipt
                                         }
                                         ActionButton(text: "Shared.Delete", icon: "Delete", isPrimary: true) {
-                                            withAnimation(.snappy.speed(2)) {
-                                                modelContext.delete(receipt)
-                                            }
+                                            deleteWithUndo(receipt)
                                         }
                                         .tint(.red)
                                     }
@@ -343,6 +342,25 @@ struct ReceiptsView: View {
     func rubberBand(_ offset: CGFloat, limit: CGFloat) -> CGFloat {
         let clamped = max(limit, 1.0)
         return offset * clamped / (abs(offset) + clamped)
+    }
+
+    // MARK: - Deletion
+
+    func deleteWithUndo(_ receipt: Receipt) {
+        // Capture the full graph before deleting so Undo can rebuild the exact receipt.
+        let snapshot = ReceiptSnapshot(receipt: receipt)
+        let restorePeople = people
+        withAnimation(.snappy.speed(2)) {
+            modelContext.delete(receipt)
+        }
+        try? modelContext.save()
+        MeloanApp.reloadWidget()
+        toastManager.show(message: NSLocalizedString("Toast.ReceiptDeleted", comment: "")) {
+            withAnimation(.snappy.speed(2)) {
+                snapshot.restore(into: modelContext, people: restorePeople)
+            }
+            MeloanApp.reloadWidget()
+        }
     }
 
     // MARK: - Creation & scanning

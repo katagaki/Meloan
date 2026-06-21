@@ -5347,6 +5347,57 @@
         }
       }
     },
+    "Toast.PersonDeleted": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Person deleted"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "人を削除しました"
+          }
+        }
+      }
+    },
+    "Toast.ReceiptDeleted": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Receipt deleted"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "領収書を削除しました"
+          }
+        }
+      }
+    },
+    "Toast.Undo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Undo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "元に戻す"
+          }
+        }
+      }
+    },
     "ViewTitle.Data": {
       "localizations": {
         "en": {
