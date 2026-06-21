@@ -157,6 +157,11 @@ struct ReceiptEditor: View {
                             Image(systemName: "plus.circle")
                         }
                     }
+                } footer: {
+                    if draftHasManualTax && autoChargesConfigured {
+                        Text("Receipt.Tax.ManualOverridesAutoHint")
+                            .font(.subheadline)
+                    }
                 }
             }
         }
@@ -416,6 +421,18 @@ struct ReceiptEditor: View {
         dismiss()
     }
     // swiftlint:enable function_body_length cyclomatic_complexity
+
+    /// The draft carries at least one user-supplied (non-auto) tax/charge line.
+    /// When true, `saveEditing()` suppresses the automatic tax and service charge to
+    /// avoid double-charging — surfaced to the user via a section footer.
+    var draftHasManualTax: Bool {
+        draft.taxItems.contains { !$0.id.hasPrefix("AUTOTAX-") && !$0.id.hasPrefix("AUTOTEN-") }
+    }
+
+    /// Whether the user has any automatic tax/service-charge setting enabled.
+    var autoChargesConfigured: Bool {
+        addTenPercent || taxRateCountry != ""
+    }
 
     func removeAutoTaxItem(withID id: String) {
         guard let item = receipt.taxItems?.first(where: { $0.id == id }) else { return }

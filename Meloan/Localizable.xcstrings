@@ -2592,6 +2592,23 @@
         }
       }
     },
+    "Receipt.Tax.ManualOverridesAutoHint": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This receipt has its own tax lines, so your automatic tax and service charge settings are not applied here."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この領収書には独自の税項目があるため、自動税率とサービス料の設定はここでは適用されません。"
+          }
+        }
+      }
+    },
     "Receipt.Tax.Detail": {
       "extractionState": "manual",
       "localizations": {
