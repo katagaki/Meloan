@@ -40,28 +40,20 @@ struct ReceiptsView: View {
     @AppStorage(wrappedValue: true, "FilterShowOthersPaid", store: defaults) var filterShowOthersPaid: Bool
     @State var filterPayer: Person?
 
-    // Gesture variables
-    @State var offsets: [Receipt: CGSize] = [:]
-    @State var previousOffsets: [Receipt: CGSize] = [:]
-    @State var expectedOffset: CGFloat = 0.0
-
     var body: some View {
         NavigationStack(path: $navigationManager.receiptsTabPath) {
             VStack(alignment: .leading, spacing: 0.0) {
-                Group {
-                    if receipts.count > 0 {
-                        TipView(ReceiptDeleteAndEditTip())
-                    } else {
-                        TipView(ReceiptsTip())
-                    }
+                if receipts.count == 0 {
+                    TipView(ReceiptsTip())
+                        .padding(20.0)
+                        .background(.background)
                 }
-                .padding(20.0)
-                .background(.background)
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .top, spacing: 20.0) {
                         ForEach(receipts) { receipt in
                             if shouldShowReceipt(receipt) {
-                                ZStack(alignment: .bottom) {
+                                VStack(alignment: .center, spacing: 16.0) {
+                                    ReceiptColumn(receipt: receipt)
                                     VStack(alignment: .center, spacing: 16.0) {
                                         ActionButton(text: "Shared.Edit", icon: "Edit", isPrimary: false) {
                                             isNewReceipt = false
@@ -72,53 +64,12 @@ struct ReceiptsView: View {
                                         }
                                         .tint(.red)
                                     }
-                                    .padding(16.0)
-                                    .overlay {
-                                        GeometryReader { metrics in
-                                            Color.clear
-                                                .onAppear {
-                                                    expectedOffset = metrics.size.height
-                                                }
-                                        }
-                                    }
-                                    ReceiptColumn(receipt: receipt)
-                                        .offset(y: offsets[receipt]?.height ?? 0.0)
-                                        .mask {
-                                            VStack(spacing: 0.0) {
-                                                let progress = fadeProgress(for: receipt)
-                                                LinearGradient(
-                                                    colors: [.clear, .black],
-                                                    startPoint: .top,
-                                                    endPoint: UnitPoint(x: 0.5, y: min(progress * 2.0, 1.0))
-                                                )
-                                                .frame(height: progress > 0.0 ? 24.0 : 0.0)
-                                                Rectangle()
-                                            }
-                                        }
-                                        .gesture(
-                                            DragGesture(minimumDistance: 20)
-                                                .onChanged { gesture in
-                                                    handleChange(of: gesture, for: receipt)
-                                                }
-                                                .onEnded { gesture in
-                                                    handleEndOfGesture(of: gesture, for: receipt)
-                                                }
-                                        )
+                                    .frame(width: 288.0)
                                 }
                             }
                         }
                     }
                     .padding(20.0)
-                    .onTapGesture {
-                        withAnimation {
-                            offsets.keys.forEach { key in
-                                offsets.updateValue(.zero, forKey: key)
-                            }
-                            previousOffsets.keys.forEach { key in
-                                previousOffsets.updateValue(.zero, forKey: key)
-                            }
-                        }
-                    }
                 }
                 .scrollClipDisabled()
             }
@@ -237,16 +188,6 @@ struct ReceiptsView: View {
             } message: {
                 Text("Scan.CameraDenied.Message")
             }
-            .onDisappear {
-                withAnimation(.snappy.speed(2)) {
-                    offsets.keys.forEach { key in
-                        offsets.updateValue(CGSize.zero, forKey: key)
-                    }
-                    previousOffsets.keys.forEach { key in
-                        previousOffsets.updateValue(CGSize.zero, forKey: key)
-                    }
-                }
-            }
             .onAppear {
                 if let filterPayer = people.first(where: { $0.id == filterPayerID }) {
                     self.filterPayer = filterPayer
@@ -295,53 +236,6 @@ struct ReceiptsView: View {
             return false
         }
         return true
-    }
-
-    func fadeProgress(for receipt: Receipt) -> CGFloat {
-        let offset = offsets[receipt]?.height ?? 0.0
-        guard offset < 0.0, expectedOffset > 0.0 else { return 0.0 }
-        return min(-offset / expectedOffset, 1.0)
-    }
-
-    func handleChange(of gesture: DragGesture.Value, for receipt: Receipt) {
-        if offsets[receipt] == nil { offsets[receipt] = .zero }
-        if previousOffsets[receipt] == nil { previousOffsets[receipt] = .zero }
-        let baseOffset = previousOffsets[receipt]?.height ?? 0.0
-        let rawOffset = baseOffset + gesture.translation.height
-        if rawOffset > 0.0 {
-            // Rubber-band above rest position
-            offsets[receipt]!.height = rubberBand(rawOffset, limit: expectedOffset)
-        } else if rawOffset < -expectedOffset {
-            // Rubber-band below the revealed position
-            let excess = rawOffset + expectedOffset
-            offsets[receipt]!.height = -expectedOffset + rubberBand(excess, limit: expectedOffset)
-        } else {
-            // Normal range between 0 and -expectedOffset
-            offsets[receipt]!.height = rawOffset
-        }
-    }
-
-    func handleEndOfGesture(of gesture: DragGesture.Value, for receipt: Receipt) {
-        guard offsets[receipt] != nil else { return }
-        let currentOffset = offsets[receipt]!.height
-        let velocity = gesture.velocity.height
-        let projectedOffset = currentOffset + velocity * 0.15
-        let midpoint = -expectedOffset / 2.0
-        if projectedOffset <= midpoint {
-            withAnimation(.snappy.speed(2)) {
-                offsets[receipt]!.height = -expectedOffset
-            }
-        } else {
-            withAnimation(.snappy.speed(2)) {
-                offsets[receipt]!.height = 0.0
-            }
-        }
-        previousOffsets[receipt] = offsets[receipt]
-    }
-
-    func rubberBand(_ offset: CGFloat, limit: CGFloat) -> CGFloat {
-        let clamped = max(limit, 1.0)
-        return offset * clamped / (abs(offset) + clamped)
     }
 
     // MARK: - Deletion

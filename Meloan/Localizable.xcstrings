@@ -1947,40 +1947,6 @@
         }
       }
     },
-    "Receipt.DeleteAndEdit.Tip.Text": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To edit/delete a receipt, swipe up on a receipt."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "領収書を編集または削除するには、上にスワイプしてください。"
-          }
-        }
-      }
-    },
-    "Receipt.DeleteAndEdit.Tip.Title": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Editing & Deleting Receipts"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "領収書の編集または削除"
-          }
-        }
-      }
-    },
     "Receipt.Discounts": {
       "extractionState": "manual",
       "localizations": {
