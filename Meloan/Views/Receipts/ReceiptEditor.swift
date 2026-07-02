@@ -200,29 +200,13 @@ struct ReceiptEditor: View {
                  NSLocalizedString("Alert.SaveFailed.Message", comment: "") : saveErrorMessage)
         }
         .onChange(of: draft.name) { oldValue, newValue in
-            guard oldValue != newValue, !draft.isApplyingUndoRedo else { return }
-            undoManager?.registerUndo(withTarget: draft) { draft in
-                draft.isApplyingUndoRedo = true
-                draft.name = oldValue
-                DispatchQueue.main.async { draft.isApplyingUndoRedo = false }
-            }
+            registerUndo(\.name, from: oldValue, to: newValue)
         }
         .onChange(of: draft.personWhoPaid) { oldValue, newValue in
-            guard oldValue != newValue, !draft.isApplyingUndoRedo else { return }
-            undoManager?.registerUndo(withTarget: draft) { draft in
-                draft.isApplyingUndoRedo = true
-                draft.personWhoPaid = oldValue
-                DispatchQueue.main.async { draft.isApplyingUndoRedo = false }
-            }
+            registerUndo(\.personWhoPaid, from: oldValue, to: newValue)
         }
         .onChange(of: draft.peopleWhoParticipated) { oldValue, newValue in
-            if oldValue != newValue, !draft.isApplyingUndoRedo {
-                undoManager?.registerUndo(withTarget: draft) { draft in
-                    draft.isApplyingUndoRedo = true
-                    draft.peopleWhoParticipated = oldValue
-                    DispatchQueue.main.async { draft.isApplyingUndoRedo = false }
-                }
-            }
+            registerUndo(\.peopleWhoParticipated, from: oldValue, to: newValue)
             if !draft.isApplyingUndoRedo, let personWhoPaid = draft.personWhoPaid {
                 if !draft.participants().contains(where: { $0.id == personWhoPaid.id }) {
                     draft.personWhoPaid = nil
@@ -230,28 +214,25 @@ struct ReceiptEditor: View {
             }
         }
         .onChange(of: draft.receiptItems) { oldValue, newValue in
-            guard oldValue != newValue, !draft.isApplyingUndoRedo else { return }
-            undoManager?.registerUndo(withTarget: draft) { draft in
-                draft.isApplyingUndoRedo = true
-                draft.receiptItems = oldValue
-                DispatchQueue.main.async { draft.isApplyingUndoRedo = false }
-            }
+            registerUndo(\.receiptItems, from: oldValue, to: newValue)
         }
         .onChange(of: draft.discountItems) { oldValue, newValue in
-            guard oldValue != newValue, !draft.isApplyingUndoRedo else { return }
-            undoManager?.registerUndo(withTarget: draft) { draft in
-                draft.isApplyingUndoRedo = true
-                draft.discountItems = oldValue
-                DispatchQueue.main.async { draft.isApplyingUndoRedo = false }
-            }
+            registerUndo(\.discountItems, from: oldValue, to: newValue)
         }
         .onChange(of: draft.taxItems) { oldValue, newValue in
-            guard oldValue != newValue, !draft.isApplyingUndoRedo else { return }
-            undoManager?.registerUndo(withTarget: draft) { draft in
-                draft.isApplyingUndoRedo = true
-                draft.taxItems = oldValue
-                DispatchQueue.main.async { draft.isApplyingUndoRedo = false }
-            }
+            registerUndo(\.taxItems, from: oldValue, to: newValue)
+        }
+    }
+
+    /// Registers an undo that restores `keyPath` to `oldValue`, unless the change
+    /// itself came from an undo/redo (which would corrupt the undo stack).
+    func registerUndo<T: Equatable>(_ keyPath: ReferenceWritableKeyPath<ReceiptDraft, T>,
+                                    from oldValue: T, to newValue: T) {
+        guard oldValue != newValue, !draft.isApplyingUndoRedo else { return }
+        undoManager?.registerUndo(withTarget: draft) { draft in
+            draft.isApplyingUndoRedo = true
+            draft[keyPath: keyPath] = oldValue
+            DispatchQueue.main.async { draft.isApplyingUndoRedo = false }
         }
     }
 
