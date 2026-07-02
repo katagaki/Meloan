@@ -37,7 +37,7 @@ struct ReceiptItemCompactRow: View {
             .clipShape(Circle())
             .opacity(hidesPhoto ? 0 : 1)
             Group {
-                Text(LocalizedStringKey(name))
+                Text(name)
                 Spacer()
                 Text(displayedPrice)
             }

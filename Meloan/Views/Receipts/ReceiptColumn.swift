@@ -48,7 +48,8 @@ struct ReceiptColumn: View {
                             }
                         }
                         Divider()
-                        ReceiptItemCompactRow(name: "Receipt.Total", price: receipt.sum(), hidesPhoto: true)
+                        ReceiptItemCompactRow(name: NSLocalizedString("Receipt.Total", comment: ""),
+                                              price: receipt.sum(), hidesPhoto: true)
                     }
                     .padding([.leading, .trailing])
                 }
