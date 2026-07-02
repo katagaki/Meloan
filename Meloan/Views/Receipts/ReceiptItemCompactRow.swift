@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ReceiptItemCompactRow: View {
 
+    // Not read directly, but keeps the row re-rendering when the currency changes.
     @AppStorage(wrappedValue: "", "CurrencySymbol", store: defaults) var currencySymbol: String
     var name: String
     var price: Double
     var isPaid: Bool = false
     var person: Person?
     var hidesPhoto: Bool = false
-    @State var displayedPrice: String = ""
 
     var body: some View {
         HStack(alignment: .top, spacing: 8.0) {
@@ -39,21 +39,12 @@ struct ReceiptItemCompactRow: View {
             Group {
                 Text(name)
                 Spacer()
-                Text(displayedPrice)
+                Text(format(price))
             }
             .strikethrough(isPaid)
             // TODO: Allow selection of currency per receipt
         }
         .font(.system(size: 14.0))
         .monospaced()
-        .onAppear {
-            displayedPrice = format(price)
-        }
-        .onChange(of: price, { _, _ in
-            displayedPrice = format(price)
-        })
-        .onChange(of: currencySymbol) { _, _ in
-            displayedPrice = format(price)
-        }
     }
 }
