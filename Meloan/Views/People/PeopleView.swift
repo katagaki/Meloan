@@ -14,6 +14,7 @@ struct PeopleView: View {
 
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
+    @EnvironmentObject var toastManager: ToastManager
     @Query(sort: \Person.name) var people: [Person]
 
     var body: some View {
@@ -33,9 +34,9 @@ struct PeopleView: View {
                                         !(person.receiptsParticipated?.isEmpty ?? true))
                     }
                     .onDelete(perform: { indexSet in
-                        for index in indexSet {
-                            modelContext.delete(people[index + 1])
-                        }
+                        // indexSet is into the filtered (non-ME) list, not `people`.
+                        let others = people.filter { $0.id != "ME" }
+                        deleteWithUndo(indexSet.compactMap { $0 < others.count ? others[$0] : nil })
                     })
                 }
                 .listStyle(.plain)
@@ -57,6 +58,27 @@ struct PeopleView: View {
                 }
             }
             .navigationTitle("ViewTitle.People")
+        }
+    }
+
+    func deleteWithUndo(_ peopleToDelete: [Person]) {
+        guard !peopleToDelete.isEmpty else { return }
+        let snapshots = peopleToDelete.map {
+            (id: $0.id, name: $0.name, photo: $0.photo, dateAdded: $0.dateAdded)
+        }
+        for person in peopleToDelete {
+            modelContext.delete(person)
+        }
+        try? modelContext.save()
+        toastManager.show(message: NSLocalizedString("Toast.PersonDeleted", comment: "")) {
+            for snapshot in snapshots {
+                let person = Person(name: snapshot.name)
+                person.id = snapshot.id
+                person.photo = snapshot.photo
+                person.dateAdded = snapshot.dateAdded
+                modelContext.insert(person)
+            }
+            try? modelContext.save()
         }
     }
 }

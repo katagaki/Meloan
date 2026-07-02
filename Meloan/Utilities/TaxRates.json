@@ -1,163 +1,349 @@
 {
+    "AD": {
+        "currency": "EUR",
+        "rate": 0.045,
+        "type": "vat"
+    },
+    "AL": {
+        "currency": "ALL",
+        "rate": 0.2,
+        "type": "vat"
+    },
+    "BA": {
+        "currency": "BAM",
+        "rate": 0.17,
+        "type": "vat"
+    },
+    "BN": {
+        "currency": "BND",
+        "rate": 0.0,
+        "type": "none"
+    },
+    "CA": {
+        "currency": "CAD",
+        "rate": 0,
+        "states": {
+            "AB": {
+                "currency": "CAD",
+                "rate": 0.05,
+                "type": "gst"
+            },
+            "BC": {
+                "currency": "CAD",
+                "rate": 0.12,
+                "type": "gst"
+            },
+            "MB": {
+                "currency": "CAD",
+                "rate": 0.12,
+                "type": "gst"
+            },
+            "NB": {
+                "currency": "CAD",
+                "rate": 0.15,
+                "type": "gst"
+            },
+            "NL": {
+                "currency": "CAD",
+                "rate": 0.15,
+                "type": "gst"
+            },
+            "NS": {
+                "currency": "CAD",
+                "rate": 0.14,
+                "type": "gst"
+            },
+            "NT": {
+                "currency": "CAD",
+                "rate": 0.05,
+                "type": "gst"
+            },
+            "NU": {
+                "currency": "CAD",
+                "rate": 0.05,
+                "type": "gst"
+            },
+            "ON": {
+                "currency": "CAD",
+                "rate": 0.13,
+                "type": "gst"
+            },
+            "PE": {
+                "currency": "CAD",
+                "rate": 0.15,
+                "type": "gst"
+            },
+            "QC": {
+                "currency": "CAD",
+                "rate": 0.14975,
+                "type": "gst"
+            },
+            "SK": {
+                "currency": "CAD",
+                "rate": 0.11,
+                "type": "gst"
+            },
+            "YT": {
+                "currency": "CAD",
+                "rate": 0.05,
+                "type": "gst"
+            }
+        },
+        "type": "none"
+    },
+    "CH": {
+        "currency": "CHF",
+        "rate": 0.081,
+        "type": "vat"
+    },
     "EU": {
-        "type": "none",
         "currency": "EUR",
         "rate": 0,
         "states": {
             "AT": {
-                "type": "vat",
                 "currency": "EUR",
-                "rate": 0.2
+                "rate": 0.2,
+                "type": "vat"
             },
             "BE": {
-                "type": "vat",
                 "currency": "EUR",
-                "rate": 0.21
+                "rate": 0.21,
+                "type": "vat"
             },
             "BG": {
-                "type": "vat",
                 "currency": "BGN",
-                "rate": 0.2
-            },
-            "HR": {
-                "type": "vat",
-                "currency": "EUR",
-                "rate": 0.25
+                "rate": 0.2,
+                "type": "vat"
             },
             "CY": {
-                "type": "vat",
                 "currency": "EUR",
-                "rate": 0.19
+                "rate": 0.19,
+                "type": "vat"
             },
             "CZ": {
-                "type": "vat",
                 "currency": "CZK",
-                "rate": 0.21
-            },
-            "DK": {
-                "type": "vat",
-                "currency": "DKK",
-                "rate": 0.25
-            },
-            "EE": {
-                "type": "vat",
-                "currency": "EUR",
-                "rate": 0.2
-            },
-            "FI": {
-                "type": "vat",
-                "currency": "EUR",
-                "rate": 0.24
-            },
-            "FR": {
-                "type": "vat",
-                "currency": "EUR",
-                "rate": 0.2
+                "rate": 0.21,
+                "type": "vat"
             },
             "DE": {
-                "type": "vat",
                 "currency": "EUR",
-                "rate": 0.19
+                "rate": 0.19,
+                "type": "vat"
             },
-            "GR": {
-                "type": "vat",
+            "DK": {
+                "currency": "DKK",
+                "rate": 0.25,
+                "type": "vat"
+            },
+            "EE": {
                 "currency": "EUR",
-                "rate": 0.24
-            },
-            "HU": {
-                "type": "vat",
-                "currency": "HUF",
-                "rate": 0.27
-            },
-            "IE": {
-                "type": "vat",
-                "currency": "EUR",
-                "rate": 0.23
-            },
-            "IT": {
-                "type": "vat",
-                "currency": "EUR",
-                "rate": 0.22
-            },
-            "LV": {
-                "type": "vat",
-                "currency": "EUR",
-                "rate": 0.21
-            },
-            "LT": {
-                "type": "vat",
-                "currency": "EUR",
-                "rate": 0.21
-            },
-            "LU": {
-                "type": "vat",
-                "currency": "EUR",
-                "rate": 0.17
-            },
-            "MT": {
-                "type": "vat",
-                "currency": "EUR",
-                "rate": 0.18
-            },
-            "NL": {
-                "type": "vat",
-                "currency": "EUR",
-                "rate": 0.21
-            },
-            "PL": {
-                "type": "vat",
-                "currency": "PLN",
-                "rate": 0.23
-            },
-            "PT": {
-                "type": "vat",
-                "currency": "EUR",
-                "rate": 0.23
-            },
-            "RO": {
-                "type": "vat",
-                "currency": "RON",
-                "rate": 0.19
-            },
-            "SK": {
-                "type": "vat",
-                "currency": "EUR",
-                "rate": 0.2
-            },
-            "SI": {
-                "type": "vat",
-                "currency": "EUR",
-                "rate": 0.22
+                "rate": 0.2,
+                "type": "vat"
             },
             "ES": {
-                "type": "vat",
                 "currency": "EUR",
-                "rate": 0.21
+                "rate": 0.21,
+                "type": "vat"
             },
-            "SE": {
-                "type": "vat",
-                "currency": "SEK",
-                "rate": 0.25
+            "FI": {
+                "currency": "EUR",
+                "rate": 0.24,
+                "type": "vat"
+            },
+            "FR": {
+                "currency": "EUR",
+                "rate": 0.2,
+                "type": "vat"
             },
             "GB": {
-                "type": "vat",
                 "currency": "GBP",
-                "rate": 0.2
+                "rate": 0.2,
+                "type": "vat"
+            },
+            "GR": {
+                "currency": "EUR",
+                "rate": 0.24,
+                "type": "vat"
+            },
+            "HR": {
+                "currency": "EUR",
+                "rate": 0.25,
+                "type": "vat"
+            },
+            "HU": {
+                "currency": "HUF",
+                "rate": 0.27,
+                "type": "vat"
+            },
+            "IE": {
+                "currency": "EUR",
+                "rate": 0.23,
+                "type": "vat"
+            },
+            "IT": {
+                "currency": "EUR",
+                "rate": 0.22,
+                "type": "vat"
+            },
+            "LT": {
+                "currency": "EUR",
+                "rate": 0.21,
+                "type": "vat"
+            },
+            "LU": {
+                "currency": "EUR",
+                "rate": 0.17,
+                "type": "vat"
+            },
+            "LV": {
+                "currency": "EUR",
+                "rate": 0.21,
+                "type": "vat"
+            },
+            "MT": {
+                "currency": "EUR",
+                "rate": 0.18,
+                "type": "vat"
+            },
+            "NL": {
+                "currency": "EUR",
+                "rate": 0.21,
+                "type": "vat"
+            },
+            "PL": {
+                "currency": "PLN",
+                "rate": 0.23,
+                "type": "vat"
+            },
+            "PT": {
+                "currency": "EUR",
+                "rate": 0.23,
+                "type": "vat"
+            },
+            "RO": {
+                "currency": "RON",
+                "rate": 0.19,
+                "type": "vat"
+            },
+            "SE": {
+                "currency": "SEK",
+                "rate": 0.25,
+                "type": "vat"
+            },
+            "SI": {
+                "currency": "EUR",
+                "rate": 0.22,
+                "type": "vat"
+            },
+            "SK": {
+                "currency": "EUR",
+                "rate": 0.2,
+                "type": "vat"
             }
-        }
+        },
+        "type": "none"
+    },
+    "ID": {
+        "currency": "IDR",
+        "rate": 0.11,
+        "type": "vat"
+    },
+    "IS": {
+        "currency": "ISK",
+        "rate": 0.24,
+        "type": "vat"
     },
     "JP": {
-        "type": "vat",
         "currency": "JPY",
-        "rate": 0.10
+        "rate": 0.1,
+        "type": "vat"
+    },
+    "KH": {
+        "currency": "KHR",
+        "rate": 0.1,
+        "type": "vat"
+    },
+    "LA": {
+        "currency": "LAK",
+        "rate": 0.1,
+        "type": "vat"
+    },
+    "LI": {
+        "currency": "CHF",
+        "rate": 0.081,
+        "type": "vat"
+    },
+    "MC": {
+        "currency": "EUR",
+        "rate": 0.2,
+        "type": "vat"
+    },
+    "MD": {
+        "currency": "MDL",
+        "rate": 0.2,
+        "type": "vat"
+    },
+    "ME": {
+        "currency": "EUR",
+        "rate": 0.21,
+        "type": "vat"
+    },
+    "MK": {
+        "currency": "MKD",
+        "rate": 0.18,
+        "type": "vat"
+    },
+    "MM": {
+        "currency": "MMK",
+        "rate": 0.05,
+        "type": "vat"
+    },
+    "MX": {
+        "currency": "MXN",
+        "rate": 0.16,
+        "type": "vat"
+    },
+    "MY": {
+        "currency": "MYR",
+        "rate": 0.08,
+        "type": "vat"
+    },
+    "NO": {
+        "currency": "NOK",
+        "rate": 0.25,
+        "type": "vat"
+    },
+    "PH": {
+        "currency": "PHP",
+        "rate": 0.12,
+        "type": "vat"
+    },
+    "RS": {
+        "currency": "RSD",
+        "rate": 0.2,
+        "type": "vat"
     },
     "SG": {
-        "type": "gst",
         "currency": "SGD",
-        "rate": 0.09
+        "rate": 0.09,
+        "type": "gst"
+    },
+    "TH": {
+        "currency": "THB",
+        "rate": 0.07,
+        "type": "vat"
+    },
+    "TR": {
+        "currency": "TRY",
+        "rate": 0.2,
+        "type": "vat"
+    },
+    "UA": {
+        "currency": "UAH",
+        "rate": 0.2,
+        "type": "vat"
     },
     "US": {
-        "type": "none",
         "currency": "USD",
         "rate": 0,
         "states": {
@@ -345,11 +531,12 @@
                 "rate": 0.04,
                 "type": "vat"
             }
-        }
+        },
+        "type": "none"
     },
     "VN": {
-        "type": "vat",
         "currency": "VND",
-        "rate": 0.1
+        "rate": 0.1,
+        "type": "vat"
     }
 }

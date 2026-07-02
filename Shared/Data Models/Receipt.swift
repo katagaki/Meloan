@@ -61,11 +61,11 @@ final class Receipt: Identifiable {
     }
 
     func sumUnpaid() -> Double {
-        return receiptItems?.reduce(into: 0.0, { partialResult, item in
+        return (receiptItems?.reduce(into: 0.0, { partialResult, item in
             if !item.paid {
                 partialResult += item.price
             }
-        }) ?? .zero * overallRate()
+        }) ?? .zero) * overallRate()
     }
 
     func sumPaid() -> Double {
@@ -99,7 +99,7 @@ final class Receipt: Identifiable {
 
     func overallRate() -> Double {
         if sumOfItems() > 0 {
-            return sum() / sumOfItems()
+            return max(0.0, sum() / sumOfItems())
         }
         return .zero
     }
@@ -187,18 +187,51 @@ final class Receipt: Identifiable {
     }
 
     func setLenderItemsPaid() {
-        if let personWhoPaid = personWhoPaid {
-            for item in receiptItems ?? [] where item.person == personWhoPaid {
-                item.paid = true
-            }
-            for item in receiptItems ?? [] where item.person == nil {
-                item.addPersonWhoPaid(from: [personWhoPaid])
-                if (peopleWhoParticipated?.count ?? -1) == (item.peopleWhoPaid?.count ?? -2) {
-                    item.paid = true
-                } else {
-                    item.paid = false
-                }
-            }
+        guard let personWhoPaid = personWhoPaid else { return }
+        let participantIDs = Set(participants().map { $0.id })
+        for item in receiptItems ?? [] where item.person?.id == personWhoPaid.id {
+            item.paid = true
         }
+        for item in receiptItems ?? [] where item.person == nil {
+            // addPersonWhoPaid is now idempotent, but guard anyway for clarity.
+            if !item.personHasPaid(personWhoPaid) {
+                item.addPersonWhoPaid(from: [personWhoPaid])
+            }
+            item.refreshSharedPaidState(participantIDs: participantIDs)
+        }
+    }
+
+    func toggleSettled(_ item: ReceiptItem) {
+        if item.person != nil {
+            item.paid.toggle()
+            return
+        }
+        let participantList = participants()
+        let participantIDs = Set(participantList.map { $0.id })
+        let paidIDs = Set((item.peopleWhoPaid ?? []).map { $0.id })
+        let allPaid = !participantIDs.isEmpty && participantIDs.isSubset(of: paidIDs)
+        if allPaid {
+            // Clear the borrowers, but keep the payer settled — they paid the bill.
+            item.peopleWhoPaid?.removeAll()
+            if let personWhoPaid = personWhoPaid {
+                item.addPersonWhoPaid(from: [personWhoPaid])
+            }
+        } else {
+            item.addPersonWhoPaid(from: participantList)
+        }
+        item.refreshSharedPaidState(participantIDs: participantIDs)
+    }
+
+    func toggleSettled(_ item: ReceiptItem, for person: Person) {
+        if item.person != nil {
+            item.paid.toggle()
+            return
+        }
+        if item.personHasPaid(person) {
+            item.removePersonWhoPaid(withID: person.id)
+        } else {
+            item.addPersonWhoPaid(from: [person])
+        }
+        item.refreshSharedPaidState(participantIDs: Set(participants().map { $0.id }))
     }
 }

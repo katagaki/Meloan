@@ -19,6 +19,7 @@ struct MainTabView: View {
     @Environment(\.requestReview) var requestReview
     @EnvironmentObject var tabManager: TabManager
     @EnvironmentObject var navigationManager: NavigationManager
+    @EnvironmentObject var toastManager: ToastManager
     @AppStorage(wrappedValue: false, "ReviewPrompted", store: .standard) var hasReviewBeenPrompted: Bool
     @AppStorage(wrappedValue: 0, "LaunchCount", store: .standard) var launchCount: Int
     @Query var people: [Person]
@@ -43,6 +44,7 @@ struct MainTabView: View {
                 MoreView()
             }
         }
+        .undoToast()
         .task {
             createMePerson()
             MeloanApp.reloadWidget()

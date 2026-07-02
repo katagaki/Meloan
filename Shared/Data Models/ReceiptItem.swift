@@ -31,13 +31,21 @@ final class ReceiptItem {
     }
 
     func personHasPaid(_ person: Person) -> Bool {
-        return peopleWhoPaid?.contains(person) ?? false
+        return peopleWhoPaid?.contains(where: { $0.id == person.id }) ?? false
     }
+
     func addPersonWhoPaid(from people: [Person]) {
-        peopleWhoPaid?.append(contentsOf: people)
+        for person in people where !personHasPaid(person) {
+            peopleWhoPaid?.append(person)
+        }
     }
 
     func removePersonWhoPaid(withID id: String) {
         peopleWhoPaid?.removeAll(where: { $0.id == id })
+    }
+
+    func refreshSharedPaidState(participantIDs: Set<String>) {
+        let paidIDs = Set((peopleWhoPaid ?? []).map { $0.id })
+        paid = !participantIDs.isEmpty && participantIDs.isSubset(of: paidIDs)
     }
 }

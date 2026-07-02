@@ -14,10 +14,14 @@ struct ReceiptDetailView: View {
     @State var receipt: Receipt
     @State var confettiCounter: Int = 0
     @State var isSharing: Bool = false
+    @State private var shareImage: Image = Image(systemName: "doc.richtext")
 
     var body: some View {
         List {
             receiptDetails()
+        }
+        .task(id: shareSignature) {
+            shareImage = createImageToShare()
         }
         .confettiCannon(counter: $confettiCounter, num: Int(receipt.sum()), rainHeight: 1000.0, radius: 500.0)
         .sheet(isPresented: $isSharing, content: {
@@ -32,8 +36,8 @@ struct ReceiptDetailView: View {
                     } label: {
                         Label("Receipt.ExportPDF", systemImage: "doc.richtext")
                     }
-                    ShareLink(item: createImageToShare(),
-                              preview: SharePreview(receipt.name, image: createImageToShare())) {
+                    ShareLink(item: shareImage,
+                              preview: SharePreview(receipt.name, image: shareImage)) {
                         Label("Receipt.ExportImage", systemImage: "photo")
                     }
                     .disabled(receipt.items().count + receipt.discountItems().count + receipt.taxItems().count > 45)
@@ -111,29 +115,7 @@ struct ReceiptDetailView: View {
                                     .clipShape(Circle())
                             }
                         }
-                        Button {
-                            if item.person != nil {
-                                item.paid.toggle()
-                            } else {
-                                // Shared item: toggle all participants
-                                let allPaid = receipt.participants().count == item.peopleWhoPaid?.count
-                                if allPaid {
-                                    item.peopleWhoPaid?.removeAll()
-                                    item.paid = false
-                                } else {
-                                    item.addPersonWhoPaid(from: receipt.participants())
-                                    item.paid = true
-                                }
-                            }
-                            MeloanApp.reloadWidget()
-                            if receipt.isPaid() {
-                                confettiCounter += 1
-                            }
-                        } label: {
-                            ReceiptItemRow(name: item.name, price: item.price)
-                                .strikethrough(item.paid)
-                                .multilineTextAlignment(.leading)
-                        }
+                        settlementControl(for: item)
                     }
                 }
             } header: {
@@ -180,6 +162,91 @@ struct ReceiptDetailView: View {
                 .bold()
                 .foregroundStyle(.primary)
             }
+        }
+    }
+
+    @ViewBuilder
+    func settlementControl(for item: ReceiptItem) -> some View {
+        if item.person != nil {
+            Button {
+                receipt.toggleSettled(item)
+                afterSettlementChange()
+            } label: {
+                settlementRowLabel(for: item)
+            }
+            .accessibilityHint(Text("Receipt.Item.Settle.Hint"))
+        } else {
+            Menu {
+                Section {
+                    ForEach(receipt.participants()) { person in
+                        Button {
+                            receipt.toggleSettled(item, for: person)
+                            afterSettlementChange()
+                        } label: {
+                            Label {
+                                Text(verbatim: person.name)
+                            } icon: {
+                                Image(systemName: item.personHasPaid(person) ?
+                                      "checkmark.circle.fill" : "circle")
+                            }
+                        }
+                    }
+                } header: {
+                    Text("Receipt.Item.Settle.WhoPaid")
+                }
+                Divider()
+                Button {
+                    receipt.toggleSettled(item)
+                    afterSettlementChange()
+                } label: {
+                    if item.paid {
+                        Label("Receipt.Item.Settle.ClearAll", systemImage: "arrow.uturn.backward")
+                    } else {
+                        Label("Receipt.Item.Settle.MarkAllPaid", systemImage: "checkmark.circle")
+                    }
+                }
+            } label: {
+                settlementRowLabel(for: item)
+            }
+        }
+    }
+
+    @ViewBuilder
+    func settlementRowLabel(for item: ReceiptItem) -> some View {
+        HStack(alignment: .center, spacing: 8.0) {
+            ReceiptItemRow(name: item.name, price: item.price)
+                .strikethrough(item.paid)
+                .multilineTextAlignment(.leading)
+            if item.person == nil {
+                let paidCount = sharedPaidCount(for: item)
+                let total = receipt.participants().count
+                if paidCount > 0 && !item.paid {
+                    Text(verbatim: "\(paidCount)/\(total)")
+                        .font(.caption2)
+                        .monospaced()
+                        .foregroundStyle(.secondary)
+                        .accessibilityLabel(Text(settledCountAccessibility(paid: paidCount, total: total)))
+                }
+            }
+        }
+    }
+
+    func sharedPaidCount(for item: ReceiptItem) -> Int {
+        let participantIDs = Set(receipt.participants().map { $0.id })
+        let paidIDs = Set((item.peopleWhoPaid ?? []).map { $0.id })
+        return participantIDs.intersection(paidIDs).count
+    }
+
+    func settledCountAccessibility(paid: Int, total: Int) -> String {
+        NSLocalizedString("Receipt.Item.SettledCount", comment: "")
+            .replacingOccurrences(of: "%1", with: String(paid))
+            .replacingOccurrences(of: "%2", with: String(total))
+    }
+
+    func afterSettlementChange() {
+        MeloanApp.reloadWidget()
+        if receipt.isPaid() {
+            confettiCounter += 1
         }
     }
 
@@ -270,15 +337,20 @@ struct ReceiptDetailView: View {
     }
     // swiftlint:enable function_body_length
 
+    var shareSignature: String {
+        let items = receipt.items().map { "\($0.id):\($0.price):\($0.paid)" }.joined(separator: ",")
+        return "\(receipt.name)|\(items)|\(receipt.discountItems().count)|\(receipt.taxItems().count)|\(receipt.sum())"
+    }
+
     @MainActor
     func createImageToShare() -> Image {
         let renderer = ImageRenderer(content: receiptDetailsForExport())
         renderer.scale = 3.0
         if let image = renderer.cgImage {
             return Image(uiImage: UIImage(cgImage: image))
-        } else {
-            fatalError("Could not export image.")
         }
+        // Degrade gracefully instead of crashing if rendering fails.
+        return Image(systemName: "doc.richtext")
     }
 
     func createTextToShare() -> String {

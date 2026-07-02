@@ -5,23 +5,33 @@
 //  Created by シン・ジャスティン on 2023/09/16.
 //
 
+import AVFoundation
 import Komponents
 import SwiftData
 import SwiftUI
 import TipKit
 import UIKit
+import VisionKit
 
-// swiftlint:disable type_body_length
+// swiftlint:disable type_body_length file_length
 struct ReceiptsView: View {
 
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var navigationManager: NavigationManager
+    @EnvironmentObject var toastManager: ToastManager
     @Query(sort: \Receipt.dateAdded, order: .reverse, animation: .snappy.speed(2)) var receipts: [Receipt]
     @Query(sort: \Person.name) var people: [Person]
 
     // State variables
     @State var receiptBeingEdited: Receipt?
     @State var isNewReceipt: Bool = false
+
+    // Scan (OCR) flow
+    @State var isScannerPresented: Bool = false
+    @State var isProcessingScan: Bool = false
+    @State var isScanFailedPresented: Bool = false
+    @State var isNoItemsFoundPresented: Bool = false
+    @State var isCameraDeniedPresented: Bool = false
 
     // Filter variables
     @AppStorage(wrappedValue: false, "HidePaidReceipts", store: defaults) var hidePaid: Bool
@@ -30,87 +40,36 @@ struct ReceiptsView: View {
     @AppStorage(wrappedValue: true, "FilterShowOthersPaid", store: defaults) var filterShowOthersPaid: Bool
     @State var filterPayer: Person?
 
-    // Gesture variables
-    @State var offsets: [Receipt: CGSize] = [:]
-    @State var previousOffsets: [Receipt: CGSize] = [:]
-    @State var expectedOffset: CGFloat = 0.0
-
     var body: some View {
         NavigationStack(path: $navigationManager.receiptsTabPath) {
             VStack(alignment: .leading, spacing: 0.0) {
-                Group {
-                    if receipts.count > 0 {
-                        TipView(ReceiptDeleteAndEditTip())
-                    } else {
-                        TipView(ReceiptsTip())
-                    }
+                if receipts.count == 0 {
+                    TipView(ReceiptsTip())
+                        .padding(20.0)
+                        .background(.background)
                 }
-                .padding(20.0)
-                .background(.background)
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .top, spacing: 20.0) {
                         ForEach(receipts) { receipt in
                             if shouldShowReceipt(receipt) {
-                                ZStack(alignment: .bottom) {
+                                VStack(alignment: .center, spacing: 16.0) {
+                                    ReceiptColumn(receipt: receipt)
                                     VStack(alignment: .center, spacing: 16.0) {
                                         ActionButton(text: "Shared.Edit", icon: "Edit", isPrimary: false) {
                                             isNewReceipt = false
                                             receiptBeingEdited = receipt
                                         }
                                         ActionButton(text: "Shared.Delete", icon: "Delete", isPrimary: true) {
-                                            withAnimation(.snappy.speed(2)) {
-                                                modelContext.delete(receipt)
-                                            }
+                                            deleteWithUndo(receipt)
                                         }
                                         .tint(.red)
                                     }
-                                    .padding(16.0)
-                                    .overlay {
-                                        GeometryReader { metrics in
-                                            Color.clear
-                                                .onAppear {
-                                                    expectedOffset = metrics.size.height
-                                                }
-                                        }
-                                    }
-                                    ReceiptColumn(receipt: receipt)
-                                        .offset(y: offsets[receipt]?.height ?? 0.0)
-                                        .mask {
-                                            VStack(spacing: 0.0) {
-                                                let progress = fadeProgress(for: receipt)
-                                                LinearGradient(
-                                                    colors: [.clear, .black],
-                                                    startPoint: .top,
-                                                    endPoint: UnitPoint(x: 0.5, y: min(progress * 2.0, 1.0))
-                                                )
-                                                .frame(height: progress > 0.0 ? 24.0 : 0.0)
-                                                Rectangle()
-                                            }
-                                        }
-                                        .gesture(
-                                            DragGesture(minimumDistance: 20)
-                                                .onChanged { gesture in
-                                                    handleChange(of: gesture, for: receipt)
-                                                }
-                                                .onEnded { gesture in
-                                                    handleEndOfGesture(of: gesture, for: receipt)
-                                                }
-                                        )
+                                    .frame(width: 288.0)
                                 }
                             }
                         }
                     }
                     .padding(20.0)
-                    .onTapGesture {
-                        withAnimation {
-                            offsets.keys.forEach { key in
-                                offsets.updateValue(.zero, forKey: key)
-                            }
-                            previousOffsets.keys.forEach { key in
-                                previousOffsets.updateValue(.zero, forKey: key)
-                            }
-                        }
-                    }
                 }
                 .scrollClipDisabled()
             }
@@ -172,11 +131,17 @@ struct ReceiptsView: View {
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        let receipt = Receipt(name: NSLocalizedString("Receipt.Create.Name.Default", comment: ""))
-                        modelContext.insert(receipt)
-                        isNewReceipt = true
-                        receiptBeingEdited = receipt
+                    Menu {
+                        Button {
+                            startScan()
+                        } label: {
+                            Label("Receipt.Create.Scan", systemImage: "doc.text.viewfinder")
+                        }
+                        Button {
+                            createBlankReceipt()
+                        } label: {
+                            Label("Receipt.Create.Manual", systemImage: "square.and.pencil")
+                        }
                     } label: {
                         Label("Shared.Create", systemImage: "plus")
                     }
@@ -187,15 +152,41 @@ struct ReceiptsView: View {
                     ReceiptEditor(receipt: receipt, isNewReceipt: isNewReceipt)
                 }
             })
-            .onDisappear {
-                withAnimation(.snappy.speed(2)) {
-                    offsets.keys.forEach { key in
-                        offsets.updateValue(CGSize.zero, forKey: key)
-                    }
-                    previousOffsets.keys.forEach { key in
-                        previousOffsets.updateValue(CGSize.zero, forKey: key)
-                    }
+            .fullScreenCover(isPresented: $isScannerPresented) {
+                ReceiptScannerView { images in
+                    isScannerPresented = false
+                    processScan(images)
+                } onCancel: {
+                    isScannerPresented = false
+                } onError: { _ in
+                    isScannerPresented = false
+                    isScanFailedPresented = true
                 }
+                .ignoresSafeArea()
+            }
+            .overlay {
+                if isProcessingScan {
+                    scanProcessingOverlay
+                }
+            }
+            .alert("Scan.Failed.Title", isPresented: $isScanFailedPresented) {
+                Button("Shared.OK", role: .cancel) { }
+            } message: {
+                Text("Scan.Failed.Message")
+            }
+            .alert("Scan.NoText.Title", isPresented: $isNoItemsFoundPresented) {
+                Button("Receipt.Create.Manual") {
+                    createBlankReceipt(named: NSLocalizedString("Receipt.Scan.DefaultName", comment: ""))
+                }
+                Button("Shared.Cancel", role: .cancel) { }
+            } message: {
+                Text("Scan.NoText.Message")
+            }
+            .alert("Scan.CameraDenied.Title", isPresented: $isCameraDeniedPresented) {
+                Button("Shared.OpenSettings") { openAppSettings() }
+                Button("Shared.Cancel", role: .cancel) { }
+            } message: {
+                Text("Scan.CameraDenied.Message")
             }
             .onAppear {
                 if let filterPayer = people.first(where: { $0.id == filterPayerID }) {
@@ -247,51 +238,106 @@ struct ReceiptsView: View {
         return true
     }
 
-    func fadeProgress(for receipt: Receipt) -> CGFloat {
-        let offset = offsets[receipt]?.height ?? 0.0
-        guard offset < 0.0, expectedOffset > 0.0 else { return 0.0 }
-        return min(-offset / expectedOffset, 1.0)
-    }
+    // MARK: - Deletion
 
-    func handleChange(of gesture: DragGesture.Value, for receipt: Receipt) {
-        if offsets[receipt] == nil { offsets[receipt] = .zero }
-        if previousOffsets[receipt] == nil { previousOffsets[receipt] = .zero }
-        let baseOffset = previousOffsets[receipt]?.height ?? 0.0
-        let rawOffset = baseOffset + gesture.translation.height
-        if rawOffset > 0.0 {
-            // Rubber-band above rest position
-            offsets[receipt]!.height = rubberBand(rawOffset, limit: expectedOffset)
-        } else if rawOffset < -expectedOffset {
-            // Rubber-band below the revealed position
-            let excess = rawOffset + expectedOffset
-            offsets[receipt]!.height = -expectedOffset + rubberBand(excess, limit: expectedOffset)
-        } else {
-            // Normal range between 0 and -expectedOffset
-            offsets[receipt]!.height = rawOffset
+    func deleteWithUndo(_ receipt: Receipt) {
+        // Capture the full graph before deleting so Undo can rebuild the exact receipt.
+        let snapshot = ReceiptSnapshot(receipt: receipt)
+        let restorePeople = people
+        withAnimation(.snappy.speed(2)) {
+            modelContext.delete(receipt)
+        }
+        try? modelContext.save()
+        MeloanApp.reloadWidget()
+        toastManager.show(message: NSLocalizedString("Toast.ReceiptDeleted", comment: "")) {
+            withAnimation(.snappy.speed(2)) {
+                snapshot.restore(into: modelContext, people: restorePeople)
+            }
+            MeloanApp.reloadWidget()
         }
     }
 
-    func handleEndOfGesture(of gesture: DragGesture.Value, for receipt: Receipt) {
-        guard offsets[receipt] != nil else { return }
-        let currentOffset = offsets[receipt]!.height
-        let velocity = gesture.velocity.height
-        let projectedOffset = currentOffset + velocity * 0.15
-        let midpoint = -expectedOffset / 2.0
-        if projectedOffset <= midpoint {
-            withAnimation(.snappy.speed(2)) {
-                offsets[receipt]!.height = -expectedOffset
+    // MARK: - Creation & scanning
+
+    var scanProcessingOverlay: some View {
+        ZStack {
+            Color.black.opacity(0.4)
+                .ignoresSafeArea()
+            VStack(spacing: 16.0) {
+                ProgressView()
+                    .controlSize(.large)
+                Text("Scan.Processing")
+                    .font(.headline)
+                    .foregroundStyle(.white)
             }
-        } else {
-            withAnimation(.snappy.speed(2)) {
-                offsets[receipt]!.height = 0.0
-            }
+            .padding(28.0)
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20.0))
         }
-        previousOffsets[receipt] = offsets[receipt]
+        .accessibilityElement(children: .combine)
     }
 
-    func rubberBand(_ offset: CGFloat, limit: CGFloat) -> CGFloat {
-        let clamped = max(limit, 1.0)
-        return offset * clamped / (abs(offset) + clamped)
+    func createBlankReceipt(named name: String = "") {
+        let receiptName = name.isEmpty ?
+            NSLocalizedString("Receipt.Create.Name.Default", comment: "") : name
+        let receipt = Receipt(name: receiptName)
+        modelContext.insert(receipt)
+        isNewReceipt = true
+        receiptBeingEdited = receipt
+    }
+
+    func startScan() {
+        guard VNDocumentCameraViewController.isSupported else {
+            // No camera available (e.g. Simulator) — fall back to manual entry.
+            createBlankReceipt()
+            return
+        }
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized, .notDetermined:
+            // .notDetermined: the scanner itself triggers the system permission prompt.
+            isScannerPresented = true
+        case .denied, .restricted:
+            isCameraDeniedPresented = true
+        @unknown default:
+            isScannerPresented = true
+        }
+    }
+
+    func processScan(_ images: [UIImage]) {
+        guard !images.isEmpty else { return }
+        isProcessingScan = true
+        Task {
+            let rows = await ReceiptOCRService.recognizeRows(in: images)
+            let parsed = ReceiptTextParser.parse(lines: rows)
+            await MainActor.run {
+                isProcessingScan = false
+                if parsed.isEmpty {
+                    isNoItemsFoundPresented = true
+                } else {
+                    openEditor(forScanned: parsed)
+                }
+            }
+        }
+    }
+
+    func openEditor(forScanned parsed: ParsedReceipt) {
+        let name = (parsed.merchantName?.isEmpty == false) ? parsed.merchantName! :
+            NSLocalizedString("Receipt.Scan.DefaultName", comment: "")
+        let receipt = Receipt(name: name)
+        let items = parsed.items.map { item in
+            ReceiptItem(name: item.name, price: item.price, amount: max(item.quantity, 1))
+        }
+        receipt.addReceiptItems(from: items)
+        receipt.addTaxItems(from: parsed.taxes.map { TaxItem(name: $0.name, price: $0.price) })
+        receipt.addDiscountItems(from: parsed.discounts.map { DiscountItem(name: $0.name, price: $0.price) })
+        modelContext.insert(receipt)
+        isNewReceipt = true
+        receiptBeingEdited = receipt
+    }
+
+    func openAppSettings() {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(url)
+        }
     }
 }
 // swiftlint:enable type_body_length

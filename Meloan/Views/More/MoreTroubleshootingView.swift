@@ -84,6 +84,11 @@ struct MoreTroubleshootingView: View {
         for person in people where person.id != "ME" {
             modelContext.delete(person)
         }
+        try? modelContext.save()
+        // Return to a clean first-run state.
+        defaults.set(false, forKey: "SampleDataCreated")
+        defaults.removeObject(forKey: "SearchHistory")
+        MeloanApp.reloadWidget()
     }
 
     func resetSettings() {

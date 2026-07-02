@@ -10,6 +10,7 @@ import SwiftData
 import SwiftUI
 import UIKit
 
+// swiftlint:disable type_body_length file_length
 struct ReceiptEditor: View {
 
     @Environment(\.modelContext) var modelContext
@@ -24,6 +25,8 @@ struct ReceiptEditor: View {
     @State var taxRates: TaxRate.List = Bundle.main.decode(TaxRate.List.self, from: "TaxRates.json")!
     @State var isPersonPickerPresented: Bool = false
     @State var isSaveConfirmed: Bool = false
+    @State private var isSaveErrorPresented: Bool = false
+    @State private var saveErrorMessage: String = ""
     @State var draft: ReceiptDraft
     var receipt: Receipt
     var isNewReceipt: Bool = false
@@ -154,6 +157,11 @@ struct ReceiptEditor: View {
                             Image(systemName: "plus.circle")
                         }
                     }
+                } footer: {
+                    if draftHasManualTax && autoChargesConfigured {
+                        Text("Receipt.Tax.ManualOverridesAutoHint")
+                            .font(.subheadline)
+                    }
                 }
             }
         }
@@ -186,6 +194,12 @@ struct ReceiptEditor: View {
         }
         .sensoryFeedback(.success, trigger: isSaveConfirmed)
         .interactiveDismissDisabled()
+        .alert("Alert.SaveFailed.Title", isPresented: $isSaveErrorPresented) {
+            Button("Shared.OK", role: .cancel) { }
+        } message: {
+            Text(saveErrorMessage.isEmpty ?
+                 NSLocalizedString("Alert.SaveFailed.Message", comment: "") : saveErrorMessage)
+        }
         .onChange(of: draft.name) { oldValue, newValue in
             guard oldValue != newValue, !draft.isApplyingUndoRedo else { return }
             undoManager?.registerUndo(withTarget: draft) { draft in
@@ -270,13 +284,21 @@ struct ReceiptEditor: View {
         if isNewReceipt {
             modelContext.delete(receipt)
             try? modelContext.save()
+        } else {
+            // Discard unsaved edits from a failed save attempt.
+            modelContext.rollback()
         }
         dismiss()
     }
 
-    // swiftlint:disable function_body_length
+    // swiftlint:disable function_body_length cyclomatic_complexity
     func saveEditing() {
+        // Re-insert if a previous failed save rolled the context back.
+        if isNewReceipt && receipt.modelContext == nil {
+            modelContext.insert(receipt)
+        }
         // Apply draft data to the model
+        let previousPayerID = receipt.personWhoPaid?.id
         receipt.name = draft.name
         receipt.personWhoPaid = draft.personWhoPaid
         receipt.peopleWhoParticipated = draft.peopleWhoParticipated
@@ -329,12 +351,26 @@ struct ReceiptEditor: View {
             }
         }
 
-        if defaults.value(forKey: "MarkSelfPaid") == nil || markSelfPaid {
+        // Honor the MarkSelfPaid setting on first creation or whenever the payer
+        // changes, but skip it when the payer is unchanged so manual paid/unpaid
+        // toggles made on an existing receipt are never silently overwritten.
+        let shouldMarkSelfPaid = defaults.value(forKey: "MarkSelfPaid") == nil || markSelfPaid
+        let payerChanged = previousPayerID != receipt.personWhoPaid?.id
+        if shouldMarkSelfPaid && (isNewReceipt || payerChanged) {
             receipt.setLenderItemsPaid()
         }
+        // Keep shared items' paid flags consistent with the edited participant list.
+        let participantIDs = Set(receipt.participants().map { $0.id })
+        for item in receipt.receiptItems ?? [] where item.person == nil {
+            item.refreshSharedPaidState(participantIDs: participantIDs)
+        }
+        // Auto charges are suppressed when the user supplied their own tax (no double tax).
+        let hasManualTax = receipt.taxItems?.contains(where: {
+            !$0.id.hasPrefix("AUTOTAX-") && !$0.id.hasPrefix("AUTOTEN-")
+        }) ?? false
         // Calculate service charge first (needed for tax-above-service-charge)
         let serviceChargeAmount: Double
-        if addTenPercent {
+        if addTenPercent && !hasManualTax {
             serviceChargeAmount = receipt.sumOfItems() * 0.1
             if let serviceChargeItem = receipt.taxItems?.first(where: { $0.id == "AUTOTEN-\(receipt.id)" }) {
                 serviceChargeItem.price = serviceChargeAmount
@@ -346,9 +382,10 @@ struct ReceiptEditor: View {
             }
         } else {
             serviceChargeAmount = 0.0
+            // Service charge off, or the user supplied their own — remove any stale auto item.
+            removeAutoTaxItem(withID: "AUTOTEN-\(receipt.id)")
         }
-        // Calculate tax (supports tax above service charge)
-        if taxRateCountry != "" {
+        if taxRateCountry != "" && !hasManualTax {
             let taxBase: Double
             if taxAboveServiceCharge && addTenPercent {
                 taxBase = serviceChargeAmount
@@ -371,11 +408,41 @@ struct ReceiptEditor: View {
                 }
                 receipt.addTaxItems(from: [automaticTaxItem])
             }
+        } else {
+            // Tax region cleared, or the user provided their own tax — drop the auto item.
+            removeAutoTaxItem(withID: "AUTOTAX-\(receipt.id)")
         }
-        try? modelContext.save()
+        do {
+            try modelContext.save()
+        } catch {
+            // Discard the unsaved mutations so autosave can't persist abandoned changes.
+            saveErrorMessage = error.localizedDescription
+            modelContext.rollback()
+            isSaveErrorPresented = true
+            return
+        }
         isSaveConfirmed = true
         MeloanApp.reloadWidget()
         dismiss()
     }
-    // swiftlint:enable function_body_length
+    // swiftlint:enable function_body_length cyclomatic_complexity
+
+    /// The draft carries at least one user-supplied (non-auto) tax/charge line.
+    /// When true, `saveEditing()` suppresses the automatic tax and service charge to
+    /// avoid double-charging — surfaced to the user via a section footer.
+    var draftHasManualTax: Bool {
+        draft.taxItems.contains { !$0.id.hasPrefix("AUTOTAX-") && !$0.id.hasPrefix("AUTOTEN-") }
+    }
+
+    /// Whether the user has any automatic tax/service-charge setting enabled.
+    var autoChargesConfigured: Bool {
+        addTenPercent || taxRateCountry != ""
+    }
+
+    func removeAutoTaxItem(withID id: String) {
+        guard let item = receipt.taxItems?.first(where: { $0.id == id }) else { return }
+        receipt.taxItems?.removeAll { $0.id == id }
+        modelContext.delete(item)
+    }
 }
+// swiftlint:enable type_body_length
