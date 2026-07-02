@@ -353,9 +353,8 @@ struct ReceiptEditor: View {
         // Honor the MarkSelfPaid setting on first creation or whenever the payer
         // changes, but skip it when the payer is unchanged so manual paid/unpaid
         // toggles made on an existing receipt are never silently overwritten.
-        let shouldMarkSelfPaid = defaults.value(forKey: "MarkSelfPaid") == nil || markSelfPaid
         let payerChanged = previousPayerID != receipt.personWhoPaid?.id
-        if shouldMarkSelfPaid && (isNewReceipt || payerChanged) {
+        if markSelfPaid && (isNewReceipt || payerChanged) {
             receipt.setLenderItemsPaid()
         }
         // Keep shared items' paid flags consistent with the edited participant list.
