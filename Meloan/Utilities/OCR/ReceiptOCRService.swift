@@ -29,7 +29,19 @@ enum ReceiptOCRService {
         request.recognitionLevel = .accurate
         // Disabled so item codes and prices aren't "corrected" into dictionary words.
         request.usesLanguageCorrection = false
-        request.recognitionLanguages = recognitionLanguages()
+        // An unsupported language makes perform() throw and the whole scan return
+        // nothing, so map preferred languages onto identifiers Vision supports.
+        let supported = (try? request.supportedRecognitionLanguages()) ?? []
+        var languages: [String] = []
+        for language in recognitionLanguages() {
+            let base = String(language.prefix(2))
+            if let match = supported.first(where: { $0.hasPrefix(base) }), !languages.contains(match) {
+                languages.append(match)
+            }
+        }
+        if !languages.isEmpty {
+            request.recognitionLanguages = languages
+        }
         let handler = VNImageRequestHandler(cgImage: cgImage,
                                             orientation: cgOrientation(image.imageOrientation),
                                             options: [:])
