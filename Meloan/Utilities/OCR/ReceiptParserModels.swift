@@ -24,9 +24,6 @@ struct ParsedReceipt: Equatable {
     var items: [ParsedReceiptItem]
     var taxes: [ParsedAdjustment]
     var discounts: [ParsedAdjustment]
-    var detectedSubtotal: Double?
-    var detectedTotal: Double?
-    var currencyCode: String?
 
     var isEmpty: Bool {
         items.isEmpty && taxes.isEmpty && discounts.isEmpty
@@ -42,7 +39,6 @@ extension ReceiptTextParser {
     struct ParsedAmount {
         var value: Double
         var matchedText: String
-        var isNegative: Bool
     }
 
     enum Keywords {

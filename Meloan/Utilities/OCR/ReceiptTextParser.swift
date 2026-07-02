@@ -12,8 +12,6 @@ enum ReceiptTextParser {
         var items: [ParsedReceiptItem] = []
         var taxes: [ParsedAdjustment] = []
         var discounts: [ParsedAdjustment] = []
-        var subtotal: Double?
-        var total: Double?
     }
 
     // MARK: - Public API
@@ -32,10 +30,7 @@ enum ReceiptTextParser {
             merchantName: detectMerchantName(in: lines),
             items: accumulator.items,
             taxes: accumulator.taxes,
-            discounts: accumulator.discounts,
-            detectedSubtotal: accumulator.subtotal,
-            detectedTotal: accumulator.total,
-            currencyCode: detectCurrency(in: lines)
+            discounts: accumulator.discounts
         )
     }
 
@@ -47,14 +42,9 @@ enum ReceiptTextParser {
 
         let label = labelPortion(of: line, removingAmount: amount.matchedText)
         switch classify(line: line, label: label, amount: amount.value) {
-        case .ignore:
+        case .ignore, .subtotal, .total:
+            // Subtotal/total lines are classified only so they never become items.
             return
-        case .subtotal:
-            // Keep the largest subtotal seen (some receipts repeat it).
-            accumulator.subtotal = max(accumulator.subtotal ?? 0, abs(amount.value))
-        case .total:
-            // The grand total is usually the last/largest total on the slip.
-            accumulator.total = max(accumulator.total ?? 0, abs(amount.value))
         case .tax where abs(amount.value) > 0:
             accumulator.taxes.append(ParsedAdjustment(name: cleanedLabel(label, fallback: "Tax"),
                                                       price: abs(amount.value)))
@@ -93,7 +83,7 @@ enum ReceiptTextParser {
             if !raw.contains(".") && !raw.contains(",") && !containsCurrencySymbol(raw) {
                 continue
             }
-            return ParsedAmount(value: negative ? -abs(value) : value, matchedText: raw, isNegative: negative)
+            return ParsedAmount(value: negative ? -abs(value) : value, matchedText: raw)
         }
 
         // Fallback: a lone integer at the end (e.g. whole-number currencies like JPY/VND/IDR).
@@ -106,7 +96,7 @@ enum ReceiptTextParser {
                 let tail = trailingContext(of: nsLine, after: last.range)
                 if tail.hasPrefix("%") { return nil }
                 let negative = raw.hasPrefix("-") || tail.hasPrefix(")") || tail.hasPrefix("-")
-                return ParsedAmount(value: negative ? -abs(value) : value, matchedText: raw, isNegative: negative)
+                return ParsedAmount(value: negative ? -abs(value) : value, matchedText: raw)
             }
         }
         return nil
@@ -255,7 +245,7 @@ enum ReceiptTextParser {
         return trimmed.isEmpty ? fallback : trimmed
     }
 
-    // MARK: - Merchant / currency detection
+    // MARK: - Merchant detection
 
     static func detectMerchantName(in lines: [String]) -> String? {
         for line in lines.prefix(4) {
@@ -265,35 +255,6 @@ enum ReceiptTextParser {
             if letters.count >= 2 && !line.lowercased().contains("http") {
                 return line.trimmingCharacters(in: .whitespaces)
             }
-        }
-        return nil
-    }
-
-    static func detectCurrency(in lines: [String]) -> String? {
-        let blob = lines.joined(separator: " ")
-        let symbolMap: [(String, String)] = [
-            ("€", "EUR"), ("£", "GBP"), ("₫", "VND"), ("₱", "PHP"), ("฿", "THB"),
-            ("Rp", "IDR"), ("RM", "MYR"), ("S$", "SGD"), ("zł", "PLN"), ("Kč", "CZK"),
-            ("Ft", "HUF"), ("円", "JPY")
-        ]
-        for (symbol, code) in symbolMap where blob.contains(symbol) {
-            return code
-        }
-        // The ¥ glyph is shared by Japanese yen and Chinese yuan. Map it to JPY only
-        // when there's no explicit yuan marker (元/圆/CNY/RMB); otherwise leave the
-        // currency undetected rather than mislabel a yuan receipt as yen.
-        if blob.contains("¥") {
-            let upperBlob = blob.uppercased()
-            let looksLikeYuan = blob.contains("元") || blob.contains("圆")
-                || upperBlob.contains("CNY") || upperBlob.contains("RMB")
-            if !looksLikeYuan { return "JPY" }
-        }
-        // Explicit ISO codes in the text.
-        let isoCodes = ["USD", "CAD", "MXN", "EUR", "GBP", "SGD", "MYR", "IDR", "THB",
-                        "PHP", "VND", "JPY", "SEK", "DKK", "NOK", "CHF", "PLN", "CZK", "HUF"]
-        let upperBlob = blob.uppercased()
-        for code in isoCodes where upperBlob.contains(code) {
-            return code
         }
         return nil
     }
