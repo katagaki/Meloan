@@ -52,7 +52,11 @@ struct PersonEditor: View {
             VStack(alignment: .center, spacing: 0.0) {
                 Button {
                     person.name = name
-                    person.setPhoto(photo: selectedPhoto)
+                    // Only re-crop when a new photo was picked — person.photo is
+                    // already cropped, and re-cropping it degrades it on every save.
+                    if selectedPhotoItem != nil {
+                        person.setPhoto(photo: selectedPhoto)
+                    }
                     dismiss()
                 } label: {
                     LargeButtonLabel(iconName: "square.and.arrow.down.fill", text: "Shared.Save")
