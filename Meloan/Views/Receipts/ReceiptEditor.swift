@@ -22,7 +22,6 @@ struct ReceiptEditor: View {
     @AppStorage(wrappedValue: "", "TaxRateType", store: defaults) var taxRateType: String
     @AppStorage(wrappedValue: false, "AddTenPercent", store: defaults) var addTenPercent: Bool
     @AppStorage(wrappedValue: false, "TaxAboveServiceCharge", store: defaults) var taxAboveServiceCharge: Bool
-    @State var taxRates: TaxRate.List = Bundle.main.decode(TaxRate.List.self, from: "TaxRates.json")!
     @State var isPersonPickerPresented: Bool = false
     @State var isSaveConfirmed: Bool = false
     @State private var isSaveErrorPresented: Bool = false
