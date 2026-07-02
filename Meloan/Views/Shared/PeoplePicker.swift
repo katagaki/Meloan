@@ -27,54 +27,10 @@ struct PeoplePicker: View {
                     .listRowBackground(Color.clear)
             }
             if let mePerson = people.first(where: { $0.id == "ME" }) {
-                Button {
-                    if selection?.contains(where: { $0.id == "ME" }) ?? false {
-                        selection?.removeAll { selectedPerson in
-                            selectedPerson.id == "ME"
-                        }
-                    } else {
-                        selection?.append(mePerson)
-                    }
-                } label: {
-                    HStack {
-                        PersonRow(person: mePerson)
-                            .tint(.primary)
-                        Spacer()
-                        if selection?.contains(where: { $0.id == "ME" }) ?? false {
-                            Image(systemName: "checkmark")
-                                .fontWeight(.medium)
-                        } else {
-                            Image(systemName: "checkmark")
-                                .fontWeight(.medium)
-                                .opacity(0)
-                        }
-                    }
-                }
+                personToggleRow(mePerson)
             }
             ForEach(people.filter({ $0.id != "ME" })) { person in
-                Button {
-                    if selection?.contains(where: { $0.id == person.id }) ?? false {
-                        selection?.removeAll { selectedPerson in
-                            selectedPerson.id == person.id
-                        }
-                    } else {
-                        selection?.append(person)
-                    }
-                } label: {
-                    HStack {
-                        PersonRow(person: person)
-                            .tint(.primary)
-                        Spacer()
-                        if selection?.contains(where: { $0.id == person.id }) ?? false {
-                            Image(systemName: "checkmark")
-                                .fontWeight(.medium)
-                        } else {
-                            Image(systemName: "checkmark")
-                                .fontWeight(.medium)
-                                .opacity(0)
-                        }
-                    }
-                }
+                personToggleRow(person)
             }
             Button {
                 isAddingPerson = true
@@ -97,5 +53,24 @@ struct PeoplePicker: View {
             }
         }
         .navigationTitle(LocalizedStringKey(title))
+    }
+
+    func personToggleRow(_ person: Person) -> some View {
+        Button {
+            if selection?.contains(where: { $0.id == person.id }) ?? false {
+                selection?.removeAll { $0.id == person.id }
+            } else {
+                selection?.append(person)
+            }
+        } label: {
+            HStack {
+                PersonRow(person: person)
+                    .tint(.primary)
+                Spacer()
+                Image(systemName: "checkmark")
+                    .fontWeight(.medium)
+                    .opacity((selection?.contains(where: { $0.id == person.id }) ?? false) ? 1 : 0)
+            }
+        }
     }
 }
