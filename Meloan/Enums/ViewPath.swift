@@ -15,6 +15,5 @@ enum ViewPath: Hashable {
     case personEditor(person: Person)
     case moreData
     case moreTroubleshooting
-    case moreAttributions
     case moreLicenses
 }
