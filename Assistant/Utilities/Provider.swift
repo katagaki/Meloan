@@ -21,21 +21,7 @@ struct Provider: AppIntentTimelineProvider {
     @MainActor
     func snapshot(for configuration: ReceiptIntent, in context: Context) async -> ReceiptEntry {
         if let receipt = configuration.receipt {
-            // Get receipt for snapshot
-            let selectedReceiptID = receipt.id
-            var receipt: Receipt?
-            let descriptor = FetchDescriptor<Receipt>(
-                predicate: #Predicate<Receipt> { $0.id == selectedReceiptID },
-                sortBy: [SortDescriptor(\Receipt.name)])
-            do {
-                let receipts = try sharedModelContainer.mainContext.fetch(descriptor)
-                receipt = receipts.first
-                // Create entry to pass to widget
-                let entry = ReceiptEntry(date: Date.now, receipt: receipt)
-                return entry
-            } catch {
-                debugPrint(error.localizedDescription)
-            }
+            return ReceiptEntry(date: Date.now, receipt: fetchReceipt(id: receipt.id))
         }
         return ReceiptEntry()
     }
@@ -43,22 +29,20 @@ struct Provider: AppIntentTimelineProvider {
     @MainActor
     func timeline(for configuration: ReceiptIntent, in context: Context) async -> Timeline<ReceiptEntry> {
         if let receipt = configuration.receipt {
-            // Get receipt for timeline
-            let selectedReceiptID = receipt.id
-            var receipt: Receipt?
-            let descriptor = FetchDescriptor<Receipt>(
-                predicate: #Predicate<Receipt> { $0.id == selectedReceiptID },
-                sortBy: [SortDescriptor(\Receipt.name)])
-            do {
-                let receipts = try sharedModelContainer.mainContext.fetch(descriptor)
-                receipt = receipts.first
-                // Return timeline with entry to pass to widget
-                let timeline = Timeline(entries: [ReceiptEntry(receipt: receipt)], policy: .atEnd)
-                return timeline
-            } catch {
-                debugPrint(error.localizedDescription)
-            }
+            return Timeline(entries: [ReceiptEntry(receipt: fetchReceipt(id: receipt.id))], policy: .atEnd)
         }
         return Timeline(entries: [], policy: .atEnd)
+    }
+
+    @MainActor
+    private func fetchReceipt(id: String) -> Receipt? {
+        var descriptor = FetchDescriptor<Receipt>(predicate: #Predicate<Receipt> { $0.id == id })
+        descriptor.fetchLimit = 1
+        do {
+            return try sharedModelContainer.mainContext.fetch(descriptor).first
+        } catch {
+            debugPrint(error.localizedDescription)
+            return nil
+        }
     }
 }
