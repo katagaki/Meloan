@@ -69,9 +69,6 @@
 			membershipExceptions = (
 				AppIcon.icon,
 				Assets.xcassets,
-				Structs/TaxRate.swift,
-				Utilities/Bundle.swift,
-				Utilities/JSONs.swift,
 			);
 			target = E46082342AB9575D001CF504 /* AssistantExtension */;
 		};
