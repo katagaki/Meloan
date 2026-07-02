@@ -14,7 +14,7 @@ struct PeoplePicker: View {
 
     @Environment(\.dismiss) var dismiss
     @Query(sort: \Person.name) var people: [Person]
-    @State var title: String
+    var title: String
     @Binding var selection: [Person]?
     @State private var isAddingPerson: Bool = false
 
