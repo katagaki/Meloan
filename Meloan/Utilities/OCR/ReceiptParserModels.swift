@@ -75,6 +75,10 @@ extension ReceiptTextParser {
             "ref", "reference", "terminal", "merchant", "thank you", "thank", "invoice no",
             "receipt no", "order no", "table", "server", "cashier", "qty", "points",
             "balance", "tel", "phone", "www", "http", "vat reg", "gst reg",
+            // Receipt/invoice-number words (mostly European) — keeps ID lines like
+            // "Rechnung Nr. 4711" from being read as a whole-number-currency item.
+            "rechnung", "beleg", "bon nr", "facture", "factura", "recibo", "fattura",
+            "faktura", "kvitto", "kuitti", "check no", "chk", "trans",
             "お釣り", "現金", "クレジット", "找零", "ありがとう"
         ]
         static let informational = [
