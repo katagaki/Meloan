@@ -9,7 +9,6 @@ import Foundation
 
 struct TaxRate: Codable, Hashable {
     var type: TRType
-    var currency: String?
     var rate: Double
     var states: [String: TaxRate]?
 
