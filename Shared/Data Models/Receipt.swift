@@ -104,14 +104,6 @@ final class Receipt: Identifiable {
         return .zero
     }
 
-    func sumOfSharedItemCost(excludingPaid: Bool = false) -> Double {
-        return receiptItems?.reduce(into: 0.0, { partialResult, item in
-            if item.person == nil, !excludingPaid || !item.paid {
-                partialResult += item.price
-            }
-        }) ?? .zero
-    }
-
     func sumOfSharedItemCost(for person: Person) -> Double {
         return receiptItems?.reduce(into: 0.0, {partialResult, item in
             if item.person == nil, !item.personHasPaid(person) {
