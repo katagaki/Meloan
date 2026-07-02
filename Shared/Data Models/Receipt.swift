@@ -105,9 +105,10 @@ final class Receipt: Identifiable {
     }
 
     func sumOfSharedItemCost(for person: Person) -> Double {
+        guard let participantCount = peopleWhoParticipated?.count, participantCount > 0 else { return .zero }
         return receiptItems?.reduce(into: 0.0, {partialResult, item in
             if item.person == nil, !item.personHasPaid(person) {
-                partialResult += item.price / Double(peopleWhoParticipated?.count ?? 0)
+                partialResult += item.price / Double(participantCount)
             }
         }) ?? .zero
     }
