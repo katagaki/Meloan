@@ -71,8 +71,4 @@ class ReceiptDraft {
         result.append(contentsOf: remaining)
         return result
     }
-
-    func sumOfItems() -> Double {
-        receiptItems.reduce(0.0) { $0 + $1.price }
-    }
 }
