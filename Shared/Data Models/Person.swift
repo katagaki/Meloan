@@ -53,16 +53,19 @@ final class Person {
             let cropRect = CGRect(x: xOffset, y: yOffset, width: shortSideLength, height: shortSideLength)
             let imageRendererFormat = sourceImage.imageRendererFormat
             imageRendererFormat.opaque = false
-            let circleCroppedImage = UIGraphicsImageRenderer(size: cropRect.size,
-                                                             format: imageRendererFormat).image { _ in
+            guard let circleCroppedImage = UIGraphicsImageRenderer(size: cropRect.size,
+                                                                   format: imageRendererFormat).image(actions: { _ in
                 UIBezierPath(ovalIn: CGRect(origin: .zero, size: cropRect.size)).addClip()
                 sourceImage.draw(in: CGRect(origin: CGPoint(x: -xOffset, y: -yOffset), size: sourceImage.size))
-            }.cgImage!
+            }).cgImage else { return nil }
             let length = 144 * 3
-            let context = CGContext(data: nil, width: length, height: length, bitsPerComponent: 8,
-                                    bytesPerRow: length * circleCroppedImage.bitsPerPixel / 8,
-                                    space: circleCroppedImage.colorSpace!,
-                                    bitmapInfo: circleCroppedImage.bitmapInfo.rawValue)!
+            // CGContext can reject unusual bitmap formats from arbitrary photo-library
+            // images — return nil (no photo) instead of crashing.
+            guard let colorSpace = circleCroppedImage.colorSpace,
+                  let context = CGContext(data: nil, width: length, height: length, bitsPerComponent: 8,
+                                          bytesPerRow: length * circleCroppedImage.bitsPerPixel / 8,
+                                          space: colorSpace,
+                                          bitmapInfo: circleCroppedImage.bitmapInfo.rawValue) else { return nil }
             context.interpolationQuality = .high
             context.draw(circleCroppedImage, in: CGRect(origin: CGPoint.zero,
                                                         size: CGSize(width: length, height: length)))
