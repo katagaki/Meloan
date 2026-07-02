@@ -37,13 +37,13 @@ struct ReceiptColumn: View {
                         }
                         if !receipt.discountItems().isEmpty {
                             Divider()
-                            ForEach(receipt.discountItems().sorted(by: { $0.dateAdded < $1.dateAdded })) { item in
+                            ForEach(receipt.discountItems()) { item in
                                 ReceiptItemCompactRow(name: item.name, price: item.price)
                             }
                         }
                         if !receipt.taxItems().isEmpty {
                             Divider()
-                            ForEach(receipt.taxItems().sorted(by: { $0.dateAdded < $1.dateAdded })) { item in
+                            ForEach(receipt.taxItems()) { item in
                                 ReceiptItemCompactRow(name: item.name, price: item.price)
                             }
                         }
