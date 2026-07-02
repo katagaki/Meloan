@@ -138,17 +138,11 @@ struct SearchView: View {
             }
             .searchable(text: $searchTerm)
             .onSubmit(of: .search, {
-                if searchHistory.contains(where: { $0 == searchTerm }) {
-                    searchHistory.removeAll(where: { $0 == searchTerm })
-                }
-                searchHistory.insert(searchTerm, at: 0)
+                saveSearchTermToHistory()
             })
             .onChange(of: navigationManager.searchTabPath, { oldValue, newValue in
                 if oldValue.count == 0 && newValue.count == 1 {
-                    if searchHistory.contains(searchTerm) {
-                        searchHistory.removeAll(where: { $0 == searchTerm })
-                    }
-                    searchHistory.insert(searchTerm, at: 0)
+                    saveSearchTermToHistory()
                 }
             })
             .navigationTitle("ViewTitle.Search")
@@ -157,6 +151,12 @@ struct SearchView: View {
 
     func searchTermTrimmed() -> String {
         return searchTerm.trimmingCharacters(in: .whitespaces)
+    }
+
+    func saveSearchTermToHistory() {
+        guard !searchTermTrimmed().isEmpty else { return }
+        searchHistory.removeAll(where: { $0 == searchTerm })
+        searchHistory.insert(searchTerm, at: 0)
     }
 
     func receiptsFound() -> [Receipt] {
